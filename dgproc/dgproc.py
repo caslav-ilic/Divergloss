@@ -123,6 +123,8 @@ def main ():
 
     # If help on subcommands required, show and exit.
     if options.help_subcmd:
+        print schandler.help([(dg.filter, filter_names),
+                              (dg.view, view_names)])
         sys.exit(0)
 
     # Construct glossary.
@@ -130,7 +132,6 @@ def main ():
 
     # Filter glossary.
     for fl in filters:
-        print type(fl)
         gloss = fl.process(gloss)
 
     # View glossary.
