@@ -1,0 +1,380 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-03 13:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: dg/construct.py:33
+#, python-format
+msgctxt "error message"
+msgid ""
+"XML parsing failed:\n"
+"%(msg)s"
+msgstr ""
+
+#: dg/construct.py:45 dg/construct.py:58
+#, python-format
+msgctxt "error message"
+msgid ""
+"DTD validation failed:\n"
+"%(msg)s"
+msgstr ""
+
+#: dg/construct.py:47
+#, python-format
+msgctxt "error message"
+msgid "duplicate ID '%(id)s'"
+msgstr ""
+
+#: dg/construct.py:125
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-language key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:129 dg/construct.py:153
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states non-environment keys: %(keys)s"
+msgstr ""
+
+#: dg/construct.py:133
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-editor key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:137
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-source key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:141
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-grammar key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:145
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-root key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:149
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states a non-concept key: %(key)s"
+msgstr ""
+
+#: dg/construct.py:157
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states non-topic keys: %(keys)s"
+msgstr ""
+
+#: dg/construct.py:161
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states non-level keys: %(keys)s"
+msgstr ""
+
+#: dg/construct.py:165
+#, python-format
+msgctxt "error message"
+msgid "attribute '%(att)s' states non-concept keys: %(keys)s"
+msgstr ""
+
+#: dg/construct.py:189
+#, python-format
+msgctxt "message with the location it speaks of"
+msgid "%(file)s:%(line)s: %(msg)s"
+msgstr ""
+
+#: dg/construct.py:193
+#, python-format
+msgctxt "error message"
+msgid ""
+"post-DTD validation failed:\n"
+"%(msg)s"
+msgstr ""
+
+#: dg/construct.py:920
+#, python-format
+msgctxt "warning message"
+msgid "unterminated embedded selector '%(esel)s'"
+msgstr ""
+
+#: dg/construct.py:940
+#, python-format
+msgctxt "warning message"
+msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
+msgstr ""
+
+#: dg/construct.py:989
+#, python-format
+msgctxt "warning message"
+msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
+msgstr ""
+
+#: dg/filter/pass.py:18
+msgctxt "subcommand description"
+msgid "Pass-through filter, changes nothing in the glossary."
+msgstr ""
+
+#: dgproc.py:43
+msgctxt "command usage; do NOT translate %prog"
+msgid "%prog DGFILE [FILTERS] [VIEWS] [OPTIONS]"
+msgstr ""
+
+#: dgproc.py:45
+msgctxt "command description"
+msgid "Filter a Divergloss XML document and build various outputs. Also fully validates the document, past what the DTD only can do."
+msgstr ""
+
+#: dgproc.py:50
+msgctxt "command version; do NOT translate %prog"
+msgid ""
+"%prog experimental\n"
+"Copyright 2008, Chusslove Illich <caslav.ilic@gmx.net>"
+msgstr ""
+
+#: dgproc.py:58
+msgctxt "description of cmdline option"
+msgid "do not check the glossary for validity"
+msgstr ""
+
+#: dgproc.py:61 dgproc.py:67
+msgctxt "placeholder for value to cmdline option"
+msgid "PARSPEC"
+msgstr ""
+
+#: dgproc.py:64
+msgctxt "description of cmdline option"
+msgid "specify parameter to filters"
+msgstr ""
+
+#: dgproc.py:70
+msgctxt "description of cmdline option"
+msgid "specify parameter to views"
+msgstr ""
+
+#: dgproc.py:75
+msgctxt "description of cmdline option"
+msgid "list available filters and views and exit"
+msgstr ""
+
+#: dgproc.py:80
+msgctxt "description of cmdline option"
+msgid "display help on filters and views and exit"
+msgstr ""
+
+#: dgproc.py:85
+msgctxt "category of subcommands"
+msgid "filter"
+msgstr ""
+
+#: dgproc.py:86
+msgctxt "category of subcommands"
+msgid "view"
+msgstr ""
+
+#: dgproc.py:89
+msgctxt "error in command line"
+msgid "too many free arguments"
+msgstr ""
+
+#: dgproc.py:93
+msgctxt "header to listing"
+msgid "Available filters:"
+msgstr ""
+
+#: dgproc.py:95
+msgctxt "header to listing"
+msgid "Available views:"
+msgstr ""
+
+#: dgproc.py:101
+msgctxt "error in command line"
+msgid "no file given"
+msgstr ""
+
+#: dgproc.py:105
+#, python-format
+msgctxt "error in command line"
+msgid "file '%(file)s' does not exists"
+msgstr ""
+
+#: dg/subcmd.py:135
+msgctxt "error message"
+msgid "requested names of subcommands from an unknown category"
+msgstr ""
+
+#: dg/subcmd.py:190
+#, python-format
+msgctxt "error message"
+msgid "requested unknown category of subcommands: %(cat)s"
+msgstr ""
+
+#: dg/subcmd.py:202
+#, python-format
+msgctxt "error in command line"
+msgid "unknown subcommand requested in category '%(cat)s': %(cmd)s"
+msgstr ""
+
+#: dg/subcmd.py:289
+#, python-format
+msgctxt "error message"
+msgid "trying to add subcommand '%(cmd)s' once again"
+msgstr ""
+
+#: dg/subcmd.py:311
+#, python-format
+msgctxt "error message"
+msgid "trying to get a view for an unknown subcommand '%(cmd)s'"
+msgstr ""
+
+#: dg/subcmd.py:334
+#, python-format
+msgctxt "error message"
+msgid "trying to get help for an unknown subcommand '%(cmd)s'"
+msgstr ""
+
+#: dg/subcmd.py:376
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "unregistered subcommand '%(cmd)s' issued"
+msgstr ""
+
+#: dg/subcmd.py:388
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "parameter '%(par)s' repeated more than once"
+msgstr ""
+
+#: dg/subcmd.py:401
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "parameter '%(par)s' is a flag, no value expected"
+msgstr ""
+
+#: dg/subcmd.py:414
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "cannot convert value '%(val)s' to parameter '%(par)s' into expected type '%(type)s'"
+msgstr ""
+
+#: dg/subcmd.py:426
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "cannot convert value '%(val)s' to parameter '%(par)s' into list of elements of expected type '%(type)s'"
+msgstr ""
+
+#: dg/subcmd.py:436
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "parameter '%(par)s' not expected in any of the issued subcommands"
+msgstr ""
+
+#: dg/subcmd.py:453
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "mandatory parameter '%(par)s' to subcommand '%(cmd)s' not given"
+msgstr ""
+
+#: dg/subcmd.py:549
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' different from its stated type '%(type)s'"
+msgstr ""
+
+#: dg/subcmd.py:556
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' once again"
+msgstr ""
+
+#: dg/subcmd.py:564
+#, python-format
+msgctxt "error message"
+msgid "suboption '%(opt)s' to subcommand '%(cmd)s' stated to be list-valued, but the default value is not given as a list"
+msgstr ""
+
+#: dg/subcmd.py:577
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands in the category '%(cat)s'"
+msgstr ""
+
+#: dg/subcmd.py:584
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands in the category '%(cat)s'"
+msgstr ""
+
+#: dg/subcmd.py:636
+msgctxt "subcommand help: somewhere near the suboption name, indicates the suboption is a flag"
+msgid "[flag]"
+msgstr ""
+
+#: dg/subcmd.py:642
+msgctxt "subcommand help: default name for the suboptions' parameter; do keep uppercase"
+msgid "ARG"
+msgstr ""
+
+#: dg/subcmd.py:649
+#, python-format
+msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
+msgid "[default %(arg)s: %(val)s]"
+msgstr ""
+
+#: dg/subcmd.py:659
+msgctxt "subcommand help: header"
+msgid "Subcommand:"
+msgstr ""
+
+#: dg/subcmd.py:661
+#, python-format
+msgctxt "subcommand help: header"
+msgid "Subcommand (%(cat)s):"
+msgstr ""
+
+#: dg/subcmd.py:670
+msgctxt "subcommand help: header"
+msgid "Mandatory parameters:"
+msgstr ""
+
+#: dg/subcmd.py:677
+msgctxt "subcommand help: header"
+msgid "Optional parameters:"
+msgstr ""
+
+#: dg/util.py:20
+#, python-format
+msgctxt "error message"
+msgid "%(cmdname)s: error: %(msg)s"
+msgstr ""
+
+#: dg/util.py:27
+#, python-format
+msgctxt "error message"
+msgid "%(cmdname)s: warning: %(msg)s"
+msgstr ""
+
+#: dg/view/null.py:18
+msgctxt "subcommand description"
+msgid "Null-view, builds no view of the glossary."
+msgstr ""
