@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary SYSTEM "divergloss.dtd">
+
+<glossary id="sverapoj" lang="sr" env="pre"
+          xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <metadata>
+        <title>Сверачунарски појмовник</title>
+        <desc>
+            Зборник појмова које сусрећу корисници рачунара у разноликим
+            применама, од свакодневних до опскурних, са кратким описима и
+            изразима који их именују у различитим рачунарским окружењима
+            и литератури.</desc>
+        <version>проба-00</version>
+        <date>2008-04-10</date>
+    </metadata>
+
+    <xi:include href="dgex01-keydefs.xml"/>
+
+    <concepts>
+
+        <concept id="cut"
+                 related="copy paste">
+            <desc>
+                Обрисати текст или други садржај из једног документа,
+                али тако да потом буде доступан у
+                <ref c="clipboard">~ooo:остави|fed moz:клипборду~</ref>.</desc>
+            <term lang="en">cut</term>
+            <term>исећи</term>
+        </concept>
+
+        <concept id="copy"
+                 related="cut paste">
+            <desc>
+                Учинити да текст или други садржај из једног документа,
+                постане доступан кроз
+                <ref c="clipboard">~ooo:оставу|fed moz:клипборд~</ref>.</desc>
+            <term lang="en">copy</term>
+            <term env="fed">копирати</term>
+            <term env="ooo moz">умножити</term>
+        </concept>
+
+        <concept id="copyfs">
+            <desc>
+                Од одређене датотеке или фасцикле, направити још једну
+                истоветну на другој локацији.</desc>
+            <term lang="en">copy</term>
+            <eterm>
+                <nom>копирати</nom>
+                <comment by="ci">
+                    Можда није заиста свуда исто, проверити.</comment>
+            </eterm>
+        </concept>
+
+        <concept id="paste"
+                     related="copy cut">
+            <desc>
+                Убацити умножак текста или другог садржаја из
+                <ref c="clipboard">~ooo:оставе|fed moz:клипборда~</ref>
+                у документ на коме се тренутно ради.</desc>
+            <term lang="en">paste</term>
+            <term env="ooo fed moz">убацити</term>
+            <term env="x" src="rmk">унети</term>
+            <term env="x" src="rmk">пренети</term>
+            <term>налепити</term>
+        </concept>
+
+        <concept id="clipboard"
+                 related="copy cut paste">
+            <desc>
+                Место на систему где се чувају одломци текста или другог
+                садржаја, доспели ту <ref c="cut">исецањима</ref> и
+                <ref c="copy">~ooo moz:умножавањима|fed:копирањима~</ref> из
+                разних докумената.</desc>
+            <eterm env="ooo">
+                <nom>остава</nom>
+                <decl gr="genmn">остава̑</decl>
+            </eterm>
+            <term env="fed moz">клипборд</term>
+            <term env="x" src="rri">списак исечака</term>
+            <details lang="en" root="rwpen" rel="Clipboard_(software)"/>
+        </concept>
+
+    </concepts>
+
+<!--     <xi:include href="dummyconcepts.xml"/> -->
+
+</glossary>

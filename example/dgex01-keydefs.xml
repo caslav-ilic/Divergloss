@@ -1,0 +1,125 @@
+<keydefs>
+
+    <languages>
+        <language id="sr">
+            <name>српски</name>
+            <shortname>ср.</shortname>
+        </language>
+        <language id="en">
+            <name>енглески</name>
+            <shortname>ен.</shortname>
+        </language>
+    </languages>
+
+    <environments>
+        <environment id="fed"
+                     closeto="pre">
+            <name>Федора</name>
+            <shortname>Фед.</shortname>
+            <desc>
+                Распрострањена дистрибуција оперативног система Гну-Линукс,
+                коју одржава и развија заједница њених корисника, уз
+                спонзорство компаније Редхет.</desc>
+        </environment>
+        <environment id="moz"
+                     closeto="pre">
+            <name>Мозила</name>
+            <shortname>Моз.</shortname>
+            <desc>
+                Популарна збирка програма за мрежне намене, попут
+                разгледања Интернета и управљања е-поштом, под
+                покровитељством Задужбине Мозила.</desc>
+        </environment>
+        <environment id="ooo"
+                     closeto="pre">
+            <name>Опенофис.орг</name>
+            <shortname>Ооо.</shortname>
+            <desc>
+                Бесплатна и слободна збирка канцеларијских програма, с
+                подршком за ОДФ, запис докумената по стандарду ИСО/ИЕЦ
+                26300.</desc>
+        </environment>
+
+        <!-- Метаокружења -->
+        <environment id="pre">
+            <name>претежно</name>
+            <shortname>пре.</shortname>
+            <desc>
+                Изрази који се користе у претежно свим окружењима,
+                литератури, или чак свакодневном говору.</desc>
+        </environment>
+        <environment id="x">
+            <name>идејно</name>
+            <shortname>идеј.</shortname>
+            <desc>
+                Изрази који се не користе ни у једном од окружења, чекајући
+                свој час у свету маштања, сањарија, пустих жеља.</desc>
+        </environment>
+    </environments>
+
+    <editors>
+        <editor id="ci">
+            <name>Часлав Илић</name>
+            <shortname>ЧИ</shortname>
+            <email>caslav.ilic@gmx.net</email>
+            <desc>Безвезњаковић, дежурни гњаватор.</desc>
+        </editor>
+    </editors>
+
+    <sources>
+        <source id="rri">
+            <name>Речник рачунарских израза</name>
+            <shortname>РРИ</shortname>
+            <url>http://recnik.prevod.org</url>
+            <desc>
+                Кооперативни речник рачунарских израза на Интернету,
+                где посетиоци могу додавати своје предлоге превода и
+                гласати за друге.</desc>
+        </source>
+        <source id="rmk">
+            <name>Речник Микрокњиге</name>
+            <shortname>РМк</shortname>
+            <url>http://www.mikroknjiga.co.yu/pub/rmk/</url>
+            <desc>
+                Речник издавачке куће Микрокњига, који се ствара радом
+                њених уредника, преводилаца, рецензената и лектора.</desc>
+        </source>
+    </sources>
+
+    <grammar>
+        <gramm id="i">
+            <name>именица</name>
+            <shortname>и.</shortname>
+        </gramm>
+        <gramm id="g">
+            <name>глагол</name>
+            <shortname>г.</shortname>
+        </gramm>
+        <gramm id="p">
+            <name>придев</name>
+            <shortname>п.</shortname>
+        </gramm>
+        <gramm id="genmn">
+            <name>генитив множине</name>
+            <shortname>ген.мн.</shortname>
+        </gramm>
+    </grammar>
+
+    <extroots>
+        <extroot id="rwpsr">
+            <name>Википедија</name>
+            <shortname>Вп.</shortname>
+            <rooturl>http://sr.wikipedia.org/sr-ec</rooturl>
+            <browseurl>http://sr.wikipedia.org</browseurl>
+            <desc>Чланци на Википедији.</desc>
+        </extroot>
+        <extroot id="rwpen">
+            <name>Википедија (енглески)</name>
+            <shortname>Вп.ен.</shortname>
+            <rooturl>http://en.wikipedia.org/wiki</rooturl>
+            <browseurl>http://en.wikipedia.org</browseurl>
+            <desc>Чланци на Википедији на енглеском.</desc>
+        </extroot>
+    </extroots>
+
+</keydefs>
