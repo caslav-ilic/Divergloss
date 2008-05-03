@@ -390,7 +390,7 @@ class Glossary (Gnode):
                    [["id",
                      "lang"]]),
                   (_attrib_lists,
-                   [[("env")]])])
+                   [[("env", [None])]])])
 
         for md_node in _child_els_by_tag(node, "metadata", [None]):
             _content(self, self, md_node,

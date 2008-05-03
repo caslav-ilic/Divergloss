@@ -45,20 +45,22 @@ class Dset (object):
         if lang is None:
             lang = self.parent.lang
         if env is None:
-            env = self.parent.env
+            if self.parent.env:
+                env = self.parent.env[0]
 
         if lang not in self._data:
             return None
 
-        if env not in self._data[lang]:
+        if env not in self._data[lang] and self.gloss.environments:
             # Try to select environment by closeness.
             environment = self.gloss.environments[env]
             for close_env in environment.closeto:
                 if close_env in self._data[lang]:
                     env = close_env
                     break
-            if not env in self._data[lang]:
-                return None
+
+        if env not in self._data[lang]:
+            return None
 
         return self._data[lang][env]
 
