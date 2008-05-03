@@ -642,11 +642,11 @@ class SubcmdView (object):
                                  "ARG")
                 s += ":%s" % metavar
             defval = self._defvals[subopt]
-            if otype is not bool and defval is not None:
+            if otype is not bool and str(defval):
                 s += " "*1 + p_("subcommand help: somewhere near the "
                                 "suboption name, states the default value "
                                 "of its argument",
-                                "[default %(arg)s: %(val)s]") \
+                                "[default %(arg)s=%(val)s]") \
                              % dict(arg=metavar, val=defval)
             s += "\n"
             desc = self._descs[subopt]
