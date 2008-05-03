@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-03 13:32+0200\n"
+"POT-Creation-Date: 2008-05-03 23:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,7 +338,7 @@ msgstr ""
 #: dg/subcmd.py:649
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
-msgid "[default %(arg)s: %(val)s]"
+msgid "[default %(arg)s=%(val)s]"
 msgstr ""
 
 #: dg/subcmd.py:659
