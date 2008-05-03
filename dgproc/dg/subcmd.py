@@ -498,6 +498,9 @@ class SubcmdView (object):
         self._islists = {}
         self._descs = {}
 
+        # Option names in the order in which they were added.
+        self._ordered = []
+
 
     def set_desc (self, desc):
         """
@@ -593,6 +596,8 @@ class SubcmdView (object):
         self._islists[subopt] = islist
         self._descs[subopt] = desc
 
+        self._ordered.append(subopt)
+
 
     def help (self, wcol=79):
         """
@@ -608,7 +613,7 @@ class SubcmdView (object):
         # Split parameters into mandatory and optional.
         m_subopts = []
         o_subopts = []
-        for subopt in self._otypes:
+        for subopt in self._ordered:
             if self._defvals[subopt] is None:
                 m_subopts.append(subopt)
             else:
