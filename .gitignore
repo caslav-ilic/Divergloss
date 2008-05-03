@@ -10,3 +10,6 @@ dgproc/mo/
 # Any random stuff for which no version control is wanted.
 novcs/
 
+# Eclipse things you don't want to share.
+.project
+.pydevproject
