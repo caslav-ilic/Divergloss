@@ -399,7 +399,7 @@ class Glossary (Gnode):
                          ("desc", Desc, ("desc", "ldesc")),
                          ("version", Version)]]),
                       (_children,
-                       [[("date", OnlyText)]])])
+                       [[("date", Date)]])])
 
         for kd_node in _child_els_by_tag(node, "keydefs", [None]):
             for chmspec in [("languages", Language, "language"),
@@ -470,7 +470,7 @@ class Editor (Gnode):
                      ("affiliation", Affiliation),
                      ("desc", Desc, ("desc", "ldesc"))]]),
                   (_children,
-                   [[("email", OnlyText)]])])
+                   [[("email", Email)]])])
 
 
 class Source (Gnode):
@@ -487,8 +487,8 @@ class Source (Gnode):
                      ("shortname", Shortname),
                      ("desc", Desc, ("desc", "ldesc"))]]),
                   (_children,
-                   [[("url", OnlyText),
-                     ("email", OnlyText)]])])
+                   [[("url", Url),
+                     ("email", Email)]])])
 
 
 class Topic (Gnode):
@@ -550,8 +550,8 @@ class Extroot (Gnode):
                      ("shortname", Shortname),
                      ("desc", Desc, ("desc", "ldesc"))]]),
                   (_children,
-                   [[("rooturl", OnlyText),
-                     ("browseurl", OnlyText)]])])
+                   [[("rooturl", RootUrl),
+                     ("browseurl", BrowseUrl)]])])
 
 
 class Concept (Gnode):
@@ -600,10 +600,10 @@ class Term (Gnode):
                       (_child_lists,
                        [[("decl", Decl)]]),
                       (_children,
-                       [[("nom", OnlyText),
-                         ("stem", OnlyText)]])])
+                       [[("nom", Nom),
+                         ("stem", Stem)]])])
         else:
-            self.nom = OnlyText(gloss, node)
+            self.nom = Nom(gloss, node)
 
 
 class Title (Gnode):
@@ -783,7 +783,7 @@ class Decl (Gnode):
                    [])])
 
 
-class OnlyText (Gnode):
+class OnlyText (Gnode): # subclass for nodes having no attributes, only text
 
     def __init__ (self, gloss, node=None):
 
@@ -796,6 +796,55 @@ class OnlyText (Gnode):
                    [[("env", gloss.env)]]),
                   (_text,
                    [])])
+
+
+class Date (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class Email (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class Url (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class RootUrl (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class BrowseUrl (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class Nom (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
+
+
+class Stem (OnlyText):
+
+    def __init__ (self, gloss, node=None):
+
+        OnlyText.__init__(self, gloss, node)
 
 
 # Text.
