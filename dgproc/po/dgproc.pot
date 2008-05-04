@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-03 23:52+0200\n"
+"POT-Creation-Date: 2008-05-04 17:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,19 +112,24 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:920
+#: dg/construct.py:375 dg/construct.py:859
+msgctxt "an unknown file"
+msgid "<unknown>"
+msgstr ""
+
+#: dg/construct.py:980
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr ""
 
-#: dg/construct.py:940
+#: dg/construct.py:1000
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr ""
 
-#: dg/construct.py:989
+#: dg/construct.py:1048
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
@@ -133,6 +138,11 @@ msgstr ""
 #: dg/filter/pass.py:18
 msgctxt "subcommand description"
 msgid "Pass-through filter, changes nothing in the glossary."
+msgstr ""
+
+#: dg/filter/sr_latin.py:21
+msgctxt "subcommand description"
+msgid "Transform Serbian Cyrillic text in the glossary into Serbian Latin."
 msgstr ""
 
 #: dgproc.py:43
@@ -277,89 +287,130 @@ msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:426
+#: dg/subcmd.py:427
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into list of elements of expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:436
+#: dg/subcmd.py:440
+#, python-format
+msgctxt "error in command line (subcommand)"
+msgid "value '%(val)s' to parameter '%(par)s' not from the admissible set: %(avals)s"
+msgstr ""
+
+#: dg/subcmd.py:449
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "parameter '%(par)s' not expected in any of the issued subcommands"
 msgstr ""
 
-#: dg/subcmd.py:453
+#: dg/subcmd.py:466
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "mandatory parameter '%(par)s' to subcommand '%(cmd)s' not given"
 msgstr ""
 
-#: dg/subcmd.py:549
+#: dg/subcmd.py:497
+msgctxt "the name for an empty string as parameter value"
+msgid "<empty>"
+msgstr ""
+
+#: dg/subcmd.py:582
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' different from its stated type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:556
+#: dg/subcmd.py:589
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' not from the admissible set: %(avals)s"
+msgstr ""
+
+#: dg/subcmd.py:597
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' once again"
 msgstr ""
 
-#: dg/subcmd.py:564
+#: dg/subcmd.py:605
 #, python-format
 msgctxt "error message"
 msgid "suboption '%(opt)s' to subcommand '%(cmd)s' stated to be list-valued, but the default value is not given as a list"
 msgstr ""
 
-#: dg/subcmd.py:577
+#: dg/subcmd.py:618
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:584
+#: dg/subcmd.py:625
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:636
+#: dg/subcmd.py:680
 msgctxt "subcommand help: somewhere near the suboption name, indicates the suboption is a flag"
 msgid "[flag]"
 msgstr ""
 
-#: dg/subcmd.py:642
+#: dg/subcmd.py:686
 msgctxt "subcommand help: default name for the suboptions' parameter; do keep uppercase"
 msgid "ARG"
 msgstr ""
 
-#: dg/subcmd.py:649
+#: dg/subcmd.py:693
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
 msgid "[default %(arg)s=%(val)s]"
 msgstr ""
 
-#: dg/subcmd.py:659
+#: dg/subcmd.py:701
+#, python-format
+msgctxt "subcommand help: somewhere near the suboption name, states the admissible values for its argument"
+msgid "[%(arg)s is one of: %(avals)s]"
+msgstr ""
+
+#: dg/subcmd.py:711
 msgctxt "subcommand help: header"
 msgid "Subcommand:"
 msgstr ""
 
-#: dg/subcmd.py:661
+#: dg/subcmd.py:713
 #, python-format
 msgctxt "subcommand help: header"
 msgid "Subcommand (%(cat)s):"
 msgstr ""
 
-#: dg/subcmd.py:670
+#: dg/subcmd.py:722
 msgctxt "subcommand help: header"
 msgid "Mandatory parameters:"
 msgstr ""
 
-#: dg/subcmd.py:677
+#: dg/subcmd.py:729
 msgctxt "subcommand help: header"
 msgid "Optional parameters:"
+msgstr ""
+
+#: dg/textfmt.py:132
+#, python-format
+msgctxt "formatting of an emphasized phrase in running plain text"
+msgid "*%(phrase)s*"
+msgstr ""
+
+#: dg/textfmt.py:138
+#, python-format
+msgctxt "formatting of a foreign language phrase in running plain text"
+msgid "/%(phrase)s/"
+msgstr ""
+
+#: dg/textfmt.py:146
+#, python-format
+msgctxt "formatting of a foreign language phrase in running plain text, where the short language name is provided too"
+msgid "%(lang)s /%(phrase)s/"
 msgstr ""
 
 #: dg/util.py:20
