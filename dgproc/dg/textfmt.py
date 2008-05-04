@@ -87,34 +87,8 @@ class TextFormatterPlain (object):
         @type suffix: string or C{None}
         """
 
-        fmt_text = ""
-
-        for seg in text:
-            if isinstance(seg, Para):
-                fmt_seg = self.format(seg) + "\n\n"
-            elif isinstance(seg, Ref):
-                # FIXME: Better way to handle reference?
-                fmt_seg = self.format(seg) + "°"
-            elif isinstance(seg, Em):
-                fmt_seg = "*%s*" % self.format(seg)
-            elif isinstance(seg, Ol):
-                if seg.lang:
-                    lnode = self._gloss.languages[seg.lang]\
-                                .shortname.get(self._lang, self._env)[0]
-                    fmt_seg = "(%s /%s/)" % (self.format(lnode.text),
-                                             self.format(seg))
-                else:
-                    fmt_seg = "(/%s/)" % (self.format(seg))
-            elif isinstance(seg, Text):
-                # Any unhandled text type.
-                fmt_seg = self.format(seg)
-            else:
-                # Must be a string
-                fmt_seg = seg
-            fmt_text += fmt_seg
-
-        # Strip superfluous whitespace.
-        fmt_text = re.sub("\s+", " ", fmt_text).strip()
+        # Basic format, resolve tags.
+        fmt_text = self._format_sub(text)
 
         # Prefixate and suffixate if requested.
         prefix = prefix or self._prefix
@@ -124,11 +98,51 @@ class TextFormatterPlain (object):
         if suffix:
             fmt_text = fmt_text + suffix
 
-        # Wrap if requested.
+        # Split into lines by masked line breaks.
+        fmt_lines = fmt_text.strip("\x04").split("\x04")
+
+        # Strip superfluous whitespace.
+        fmt_lines = [re.sub("\s+", " ", x).strip() for x in fmt_lines]
+
+        # Wrap if requested, or just indent.
         if self._wrapper:
-            fmt_text = self._wrapper.fill(fmt_text)
+            fmt_lines = [self._wrapper.fill(x) for x in fmt_lines]
         elif self._indent:
-            fmt_text = self._indent + fmt_text
+            fmt_lines = [self._indent + x for x in fmt_lines]
+
+        # Put lines back into single string.
+        fmt_text = "\n".join(fmt_lines)
+
+        return fmt_text
+
+
+    def _format_sub (self, text):
+
+        fmt_text = ""
+        for seg in text:
+            if isinstance(seg, Para):
+                fmt_seg = self._format_sub(seg) + "\x04\x04"
+            elif isinstance(seg, Ref):
+                # FIXME: Better way to handle reference?
+                fmt_seg = self._format_sub(seg) + "°"
+            elif isinstance(seg, Em):
+                fmt_seg = "*%s*" % self._format_sub(seg)
+            elif isinstance(seg, Ol):
+                if seg.lang:
+                    lnode = self._gloss.languages[seg.lang]\
+                                .shortname.get(self._lang, self._env)[0]
+                    fmt_seg = "(%s /%s/)" % (self._format_sub(lnode.text),
+                                             self._format_sub(seg))
+                else:
+                    fmt_seg = "(/%s/)" % (self._format_sub(seg))
+            elif isinstance(seg, Text):
+                # Any unhandled text type.
+                fmt_seg = self._format_sub(seg)
+            else:
+                # Must be a string
+                fmt_seg = seg
+
+            fmt_text += fmt_seg
 
         return fmt_text
 
