@@ -372,7 +372,7 @@ class Gnode:
     def __init__ (self, node=None):
 
         self.src_line = 0
-        self.src_file = "<unknown>"
+        self.src_file = p_("an unknown file", "<unknown>")
         if node is not None:
             self.src_line = node.sourceline
             # self.src_file = ?
@@ -775,7 +775,10 @@ class Decl (Gnode):
 
         _content(self, gloss, node,
                  [(_attributes,
-                   [["gr"]]),
+                   [[("lang", gloss.lang),
+                      "gr"]]),
+                  (_attrib_lists,
+                   [[("env", gloss.env)]]),
                   (_text,
                    [])])
 
@@ -787,7 +790,11 @@ class OnlyText (Gnode):
         Gnode.__init__(self, node)
 
         _content(self, gloss, node,
-                 [(_text,
+                 [(_attributes,
+                   [[("lang", gloss.lang)]]),
+                  (_attrib_lists,
+                   [[("env", gloss.env)]]),
+                  (_text,
                    [])])
 
 
@@ -795,11 +802,15 @@ class OnlyText (Gnode):
 # Organized as a list of structured text segments,
 # where the basic segment is plain string.
 
-class Text (list, Gnode): # base class for all in-text elements
+class Text (list): # base class for all in-text elements
 
     def __init__ (self, node=None, tags=None):
 
-        Gnode.__init__(self, node)
+        self.src_line = 0
+        self.src_file = p_("an unknown file", "<unknown>")
+        if node is not None:
+            self.src_line = node.sourceline
+            # self.src_file = ?
 
         if tags is None:
             tags = ["para", "ref", "em", "ol"]
