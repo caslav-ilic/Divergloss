@@ -41,5 +41,12 @@ if test $mode = all || test $mode = compile; then
         mofile=$modir/$lang/LC_MESSAGES/$potbase.mo
         mkdir -p `dirname $mofile`
         msgfmt -c --statistics $pofile -o $mofile
+
+        # Special handling for sr->sr@latin.
+        if test `basename $pofile` = sr.po; then
+            mofile_lat=${mofile/\/sr/\/sr@latin}
+            mkdir -p `dirname $mofile_lat`
+            recode-sr-latin < $pofile | msgfmt -o $mofile_lat -
+        fi
     done
 fi
