@@ -76,6 +76,7 @@
                 <nom>остава</nom>
                 <decl gr="genmn">остава̑</decl>
             </eterm>
+	    <term lang="en">clipboard</term>
             <term env="fed moz">клипборд</term>
             <term env="x" src="rri">списак исечака</term>
             <details lang="en" root="rwpen" rel="Clipboard_(software)"/>
