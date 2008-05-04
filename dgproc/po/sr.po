@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-04 17:07+0200\n"
+"POT-Creation-Date: 2008-05-04 22:43+0200\n"
 "PO-Revision-Date: 2008-05-04 16:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -81,7 +81,7 @@ msgstr "атрибут ‘%(att)s’ наводи некорени кључ: %(k
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-concept key: %(key)s"
-msgstr "атрибут ‘%(att)s’ наводи неконцептни кључ: %(key)s"
+msgstr "атрибут ‘%(att)s’ наводи непојмовни кључ: %(key)s"
 
 #: dg/construct.py:157
 #, python-format
@@ -99,7 +99,7 @@ msgstr "атрибут ‘%(att)s’ наводи ненивоске кључе�
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-concept keys: %(keys)s"
-msgstr "атрибут ‘%(att)s’ наводи неконцептне кључеве: %(keys)s"
+msgstr "атрибут ‘%(att)s’ наводи непојмовне кључеве: %(keys)s"
 
 #: dg/construct.py:189
 #, python-format
@@ -117,24 +117,24 @@ msgstr ""
 "неуспех овере након ДТД-а:\n"
 "%(msg)s"
 
-#: dg/construct.py:375 dg/construct.py:859
+#: dg/construct.py:375 dg/construct.py:863
 msgctxt "an unknown file"
 msgid "<unknown>"
 msgstr "<непозната>"
 
-#: dg/construct.py:980
+#: dg/construct.py:984
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr "неокончани угњеждени изборник ‘%(esel)s’"
 
-#: dg/construct.py:1000
+#: dg/construct.py:1004
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr "сегмент ‘%(eseg)s’ угњежденог изборника ‘%(esel)s’ понавља окружења: %(envs)s"
 
-#: dg/construct.py:1048
+#: dg/construct.py:1052
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
@@ -436,3 +436,98 @@ msgstr "%(cmdname)s: упозорење: %(msg)s"
 msgctxt "subcommand description"
 msgid "Null-view, builds no view of the glossary."
 msgstr "Нулти поглед, игнорише садржај појмовника."
+
+#: dg/view/po.py:26
+msgctxt "subcommand description"
+msgid "Create a PO file out of the glossary."
+msgstr "Градња ПО датотеке према појмовнику."
+
+#: dg/view/po.py:29 dg/view/po.py:33
+msgctxt "placeholder for parameter value"
+msgid "LANGKEY"
+msgstr "ЈЕЗКЉУЧ"
+
+#: dg/view/po.py:31
+msgctxt "subcommand option description"
+msgid "Original language from the PO point of view."
+msgstr "Изворни језик с тачке гледишта ПО-а."
+
+#: dg/view/po.py:35
+msgctxt "subcommand option description"
+msgid "Target language from the PO point of view."
+msgstr "Циљни језик с тачке гледишта ПО-а."
+
+#: dg/view/po.py:37
+msgctxt "placeholder for parameter value"
+msgid "ENVKEY"
+msgstr "ОКРКЉУЧ"
+
+#: dg/view/po.py:39
+msgctxt "subcommand option description"
+msgid "Environment for which the PO file is produced."
+msgstr "Окружење за које се производи ПО датотека."
+
+#: dg/view/po.py:41
+msgctxt "placeholder for parameter value"
+msgid "FILE"
+msgstr "ДАТОТЕКА"
+
+#: dg/view/po.py:43
+msgctxt "subcommand option description"
+msgid "File to output the PO content (defaults to stdout)."
+msgstr "Датотека за испис ПО садржаја (подразумевано стдиз.)"
+
+#: dg/view/po.py:46
+msgctxt "subcommand option description"
+msgid "Show descriptions only on conflicts, for concepts having terms also used to name other concepts."
+msgstr "Дај описе само при сукобима, за појмове са изразима који именују и још неке друге појмове."
+
+#: dg/view/po.py:63
+#, python-format
+msgctxt "error message"
+msgid "origin language '%(lang)s' not present in the glossary"
+msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
+
+#: dg/view/po.py:68
+#, python-format
+msgctxt "error message"
+msgid "target language '%(lang)s' not present in the glossary"
+msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
+
+#: dg/view/po.py:73
+#, python-format
+msgctxt "error message"
+msgid "environment '%(env)s' not defined by the glossary"
+msgstr "окружење ‘%(env)s’ није дефинисано појмовником"
+
+#: dg/view/po.py:80
+msgctxt "message comment in the PO view: short label preceeding a concept description"
+msgid "desc: "
+msgstr "опис: "
+
+#: dg/view/po.py:87
+msgctxt "message comment in the PO view: short label preceeding a declination"
+msgid "decl: "
+msgstr "декл: "
+
+#: dg/view/po.py:106
+msgctxt "warning message"
+msgid "no concepts found for PO view that have terms in both the requested origin and target language"
+msgstr "нема ниједног концепта за ПО поглед који би имао изразе и за тражени изворни и циљни језик"
+
+#: dg/view/po.py:179
+#, python-format
+msgctxt "header comment in the PO view (title)"
+msgid "PO view of a Divergloss glossary: %(title)s"
+msgstr "ПО поглед на диверглоски појмовник: %(title)s"
+
+#: dg/view/po.py:187
+#, python-format
+msgctxt "header comment in the PO view (subtitle)"
+msgid "languages: %(ol)s->%(tl)s, environment: %(env)s"
+msgstr "језици: %(ol)s→%(tl)s, окружење: %(env)s"
+
+#: dg/view/po.py:192
+msgctxt "header comment in the PO view (warning to user)"
+msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
+msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂИВАТИ ====="
