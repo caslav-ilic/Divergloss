@@ -415,6 +415,7 @@ class SuboptParser (object):
                                      "parameter '%(par)s' into expected "
                                      "type '%(type)s'")
                                   % dict(val=strval, par=subopt, type=otype))
+                        val_lst = [val]
                     else:
                         strval = strval.replace(",,", "\x04")
                         tmplst = strval.split(",")
@@ -427,6 +428,18 @@ class SuboptParser (object):
                                      "parameter '%(par)s' into list of "
                                      "elements of expected type '%(type)s'")
                                   % dict(val=strval, par=subopt, type=otype))
+                        val_lst = val
+
+                # Assure admissibility of option values.
+                admvals = scview._admvals[subopt]
+                if admvals is not None:
+                    for val in val_lst:
+                        if val not in admvals:
+                            avals = self._fmt_admvals(admvals)
+                            error(p_("error in command line (subcommand)",
+                                     "value '%(val)s' to parameter '%(par)s' "
+                                     "not from the admissible set: %(avals)s")
+                                  % dict(val=strval, par=subopt, avals=avals))
 
                 subopt_accepted = True
                 subopt_vals[subcmd][subopt] = val
@@ -472,6 +485,19 @@ class SuboptParser (object):
         return opts
 
 
+    def _fmt_admvals (self, admvals, delim=" "):
+
+        lst = []
+        for aval in admvals:
+            aval_str = str(aval)
+            if aval_str != "":
+                lst.append(aval_str)
+            else:
+                lst.append(p_("the name for an empty string as parameter value",
+                              "<empty>"))
+        return delim.join(lst)
+
+
 class SubcmdView (object):
     """
     The view of a particular subcommand in an suboption parser.
@@ -494,6 +520,7 @@ class SubcmdView (object):
         # Maps by option name.
         self._otypes = {}
         self._defvals = {}
+        self._admvals = {}
         self._metavars = {}
         self._islists = {}
         self._descs = {}
@@ -511,7 +538,8 @@ class SubcmdView (object):
 
 
     def add_subopt (self, subopt, otype,
-                    defval=None, metavar=None, islist=False, desc=None):
+                    defval=None, admvals=None,
+                    metavar=None, islist=False, desc=None):
         """
         Define a suboption.
 
@@ -539,6 +567,8 @@ class SubcmdView (object):
         @type otype: type
         @param defval: default value for the argument
         @type defval: instance of C{otype} or C{None}
+        @param admvals: admissible values for the argument
+        @type admvals: list of C{otype} elements or C{None}
         @param metavar: name for option's value
         @type metavar: string or C{None}
         @param islist: whether the option value should be parsed as list
@@ -553,6 +583,14 @@ class SubcmdView (object):
                      "subcommand '%(cmd)s' with default value '%(val)s' "
                      "different from its stated type '%(type)s'")
                   % dict(opt=subopt, cmd=self._subcmd, val=defval, type=otype))
+
+        if defval is not None and admvals is not None and defval not in admvals:
+            error(p_("error message",
+                     "trying to add suboption '%(opt)s' to "
+                     "subcommand '%(cmd)s' with default value '%(val)s' "
+                     "not from the admissible set: %(avals)s")
+                  % dict(opt=subopt, cmd=self._subcmd, val=defval,
+                         avals=self._parent._fmt_admvals(admvals)))
 
         if subopt in self._otypes:
             error(p_("error message",
@@ -592,6 +630,7 @@ class SubcmdView (object):
 
         self._otypes[subopt] = otype
         self._defvals[subopt] = defval
+        self._admvals[subopt] = admvals
         self._metavars[subopt] = metavar
         self._islists[subopt] = islist
         self._descs[subopt] = desc
@@ -653,6 +692,14 @@ class SubcmdView (object):
                                 "of its argument",
                                 "[default %(arg)s=%(val)s]") \
                              % dict(arg=metavar, val=defval)
+            admvals = self._admvals[subopt]
+            if otype is not bool and admvals is not None:
+                avals = self._parent._fmt_admvals(admvals)
+                s += " "*1 + p_("subcommand help: somewhere near the "
+                                "suboption name, states the admissible values "
+                                "for its argument",
+                                "[%(arg)s is one of: %(avals)s]") \
+                             % dict(arg=metavar, avals=avals)
             s += "\n"
             desc = self._descs[subopt]
             if desc:
