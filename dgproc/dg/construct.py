@@ -591,18 +591,22 @@ class Term (Gnode):
                   (_attrib_lists,
                    [[("env", gloss.env)]])])
 
+        # In case of simple term, run this through with node=None
+        # to have proper initialization of all attributes.
+        vnode = None
         if _child_els_by_tag(node, "nom"):
-            _content(self, gloss, node,
-                     [(_child_dsets,
-                       [[("origin", Origin, ("origin", "lorigin")),
-                         ("comment", Comment, ("comment", "lcomment"))],
-                        self]),
-                      (_child_lists,
-                       [[("decl", Decl)]]),
-                      (_children,
-                       [[("nom", Nom),
-                         ("stem", Stem)]])])
-        else:
+            vnode = node
+        _content(self, gloss, vnode,
+                 [(_child_dsets,
+                   [[("origin", Origin, ("origin", "lorigin")),
+                     ("comment", Comment, ("comment", "lcomment"))],
+                    self]),
+                  (_child_lists,
+                   [[("decl", Decl)]]),
+                  (_children,
+                   [[("nom", Nom),
+                     ("stem", Stem)]])])
+        if vnode is None:
             self.nom = Nom(gloss, node)
 
 
