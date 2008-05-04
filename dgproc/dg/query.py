@@ -86,7 +86,7 @@ def descendant_nodes (gnode, gtype=None):
             gtypes = tuple(gtype)
         else:
             gtypes = (gtype,)
-        descendants = [x for x in descendants if isinstance(x, gtype)]
+        descendants = [x for x in descendants if isinstance(x, gtypes)]
 
     return descendants
 
