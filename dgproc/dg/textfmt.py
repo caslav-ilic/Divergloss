@@ -71,7 +71,7 @@ class TextFormatterPlain (object):
                                         width=wcol)
 
 
-    def format (self, text, prefix=None, suffix=None):
+    def __call__ (self, text, prefix=None, suffix=None):
         """
         Format the text.
 
