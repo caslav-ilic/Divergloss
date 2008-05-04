@@ -91,9 +91,9 @@ def main ():
     # If any subcommand listing required, show and exit.
     if options.list_subcmd:
         print p_("header to listing", "Available filters:")
-        print "  " + "  \n".join(schandler.subcmd_names(dg.filter))
+        print "  " + "\n  ".join(schandler.subcmd_names(dg.filter))
         print p_("header to listing", "Available views:")
-        print "  " + "  \n".join(schandler.subcmd_names(dg.view))
+        print "  " + "\n  ".join(schandler.subcmd_names(dg.view))
         sys.exit(0)
 
     # Collect glossary file, filters and views.
