@@ -66,7 +66,10 @@ class TextFormatterPlain (object):
                 indent = ""
             if first_indent is None:
                 first_indent = indent
-            self._wrapper = TextWrapper(initial_indent=first_indent,
+            self._wrapper_first = TextWrapper(initial_indent=first_indent,
+                                              subsequent_indent=indent,
+                                              width=wcol)
+            self._wrapper = TextWrapper(initial_indent=indent,
                                         subsequent_indent=indent,
                                         width=wcol)
 
@@ -107,9 +110,16 @@ class TextFormatterPlain (object):
 
         # Wrap if requested, or just indent.
         if self._wrapper:
-            fmt_lines = [self._wrapper.fill(x) for x in fmt_lines]
+            fmt_lines = (  [self._wrapper_first.fill(fmt_lines[0])]
+                         + [self._wrapper.fill(x) for x in fmt_lines[1:]])
         elif self._indent:
             fmt_lines = [self._indent + x for x in fmt_lines]
+
+        # Add indent for emtpy lines (can happen also after wrapping).
+        if self._indent:
+            for i in range(len(fmt_lines)):
+                if not fmt_lines[i]:
+                    fmt_lines[i] = self._indent + fmt_lines[i]
 
         # Put lines back into single string.
         fmt_text = "\n".join(fmt_lines)
