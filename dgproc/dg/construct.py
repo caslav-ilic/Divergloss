@@ -846,6 +846,7 @@ class Ol (Text):
 
         Text.__init__(self, node, ["ref", "em", "ol"])
         self.lang = _attkey(node, "lang")
+        self.wl = _attkey(node, "wl")
 
 
 # Map between text segment types and their tag names.

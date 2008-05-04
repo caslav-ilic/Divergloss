@@ -10,6 +10,7 @@ Format text in glossary for different outputs.
 import re
 from textwrap import TextWrapper
 
+from dg.util import p_
 from dg.construct import Text, Para, Ref, Em, Ol
 
 
@@ -126,15 +127,25 @@ class TextFormatterPlain (object):
                 # FIXME: Better way to handle reference?
                 fmt_seg = self._format_sub(seg) + "°"
             elif isinstance(seg, Em):
-                fmt_seg = "*%s*" % self._format_sub(seg)
+                fmt_seg = p_("formatting of an emphasized phrase in "
+                             "running plain text",
+                             "*%(phrase)s*") \
+                          % dict(phrase=self._format_sub(seg))
             elif isinstance(seg, Ol):
-                if seg.lang:
+                if not seg.wl:
+                    fmt_seg = p_("formatting of a foreign language phrase in "
+                                 "running plain text",
+                                 "/%(phrase)s/") \
+                              % dict(phrase=self._format_sub(seg))
+                else:
                     lnode = self._gloss.languages[seg.lang]\
                                 .shortname.get(self._lang, self._env)[0]
-                    fmt_seg = "(%s /%s/)" % (self._format_sub(lnode.text),
-                                             self._format_sub(seg))
-                else:
-                    fmt_seg = "(/%s/)" % (self._format_sub(seg))
+                    fmt_seg = p_("formatting of a foreign language phrase in "
+                                 "running plain text, where the short "
+                                 "language name is provided too",
+                                 "%(lang)s /%(phrase)s/") \
+                              % dict(lang=self._format_sub(lnode.text),
+                                     phrase=self._format_sub(seg))
             elif isinstance(seg, Text):
                 # Any unhandled text type.
                 fmt_seg = self._format_sub(seg)

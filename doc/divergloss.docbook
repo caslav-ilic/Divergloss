@@ -652,7 +652,7 @@
         </varlistentry>
         <varlistentry><term><literal>ol</literal></term>
         <listitem>
-            <para>A word or a phrase in another language, as opposed to that of the text. Should have a <literal>lang</literal> attribute, though it is not obliged to.</para>
+            <para>A word or a phrase in another language, as opposed to that of the text. Must have a <literal>lang</literal> attribute stating the language of the phrase. An optional argument is <literal>wl</literal>, which if present indicates that the short language name should be formatted together with the phrase (its value must be one of <literal>1|y|yes|t|true</literal>).</para>
         </listitem>
         </varlistentry>
     </variablelist>
