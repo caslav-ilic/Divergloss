@@ -686,13 +686,16 @@ class SubcmdView (object):
                                  "ARG")
                 s += ":%s" % metavar
             defval = self._defvals[subopt]
+            admvals = self._admvals[subopt]
             if otype is not bool and str(defval):
+                cpos = len(s) - s.rfind("\n") - 1
                 s += " "*1 + p_("subcommand help: somewhere near the "
                                 "suboption name, states the default value "
                                 "of its argument",
                                 "[default %(arg)s=%(val)s]") \
                              % dict(arg=metavar, val=defval)
-            admvals = self._admvals[subopt]
+                if admvals is not None:
+                    s += "\n" + (" " * cpos)
             if otype is not bool and admvals is not None:
                 avals = self._parent._fmt_admvals(admvals)
                 s += " "*1 + p_("subcommand help: somewhere near the "
@@ -703,7 +706,12 @@ class SubcmdView (object):
             s += "\n"
             desc = self._descs[subopt]
             if desc:
-                s += fmt_wrap(desc, indent + "    ") + "\n"
+                fmt_desc = fmt_wrap(desc, indent + "    ")
+                s += fmt_desc + "\n"
+                if "\n\n" in fmt_desc:
+                    # Wrap current option with empty lines if
+                    # the description spanned several lines.
+                    s = "\n" + s + "\n"
             return s
 
         s = ""
