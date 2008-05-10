@@ -993,7 +993,8 @@ def _res_embsel_parse_one (seg):
             p2 = p1 - 1
             break
 
-        envsegs = {}
+        class DictWProps (dict): pass
+        envsegs = DictWProps()
         locenvs = set()
         for eseg in seg[p1+1:p2].split("|"):
             pc = eseg.find(":")
@@ -1018,7 +1019,7 @@ def _res_embsel_parse_one (seg):
 
         # Add embedded selector string under a dummy environment,
         # needed later for error reporting.
-        envsegs["_esel_"] = seg
+        envsegs.unparsed = seg
 
         ntext.append(envsegs)
         envs.update(locenvs)
@@ -1059,7 +1060,7 @@ def _res_embsel_best_text (gloss, ntext, env):
                         warning(p_("warning message",
                                    "no resolution for expected environment "
                                    "'%(env)s' in embedded selector '%(esel)s'")
-                                % {"env":env, "esel":seg["_esel_"]})
+                                % dict(env=env, esel=envsegs.unparsed))
                     # Pick at random.
                     text.append(random.choice(seg.values()))
         else:
