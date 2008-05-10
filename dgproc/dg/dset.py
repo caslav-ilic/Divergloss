@@ -23,14 +23,26 @@ class Dset (object):
         self._data = {}
 
 
+    def _parent_att (self, att, defval):
+
+        val = defval
+        parent = self.parent
+        while parent:
+            if hasattr(parent, att):
+                val = getattr(parent, att)
+                break
+            parent = getattr(parent, "parent", None)
+        return val
+
+
     def add (self, obj):
 
         lang = obj.lang
         if lang is None:
-            lang = getattr(self.parent, "lang", None)
+            lang = self._parent_att("lang", None)
         envs = obj.env
         if not envs:
-            envs = getattr(self.parent, "env", [None])
+            envs = self._parent_att("env", [None])
 
         if lang not in self._data:
             self._data[lang] = {}
@@ -43,9 +55,9 @@ class Dset (object):
     def get (self, lang=None, env=None):
 
         if lang is None:
-            lang = getattr(self.parent, "lang", None)
+            lang = self._parent_att("lang", None)
         if env is None:
-            env = getattr(self.parent, "env", [None])[0]
+            env = self._parent_att("env", [None])[0]
 
         if lang not in self._data:
             return None
@@ -77,7 +89,7 @@ class Dset (object):
     def envs (self, lang=None):
 
         if lang is None:
-            lang = getattr(self.parent, "lang", None)
+            lang = self._parent_att("lang", None)
 
         if lang not in self._data:
             return None
