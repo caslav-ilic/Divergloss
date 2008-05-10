@@ -99,7 +99,7 @@ class SubcmdHandler (object):
             sch = SubcmdHandler([(subcmds.foo, "Foos"), (subcmds.bar, "Bars")])
 
         @param subcmd_reg_bundle: subcommand registration bundle
-        @type: list of tuples
+        @rtype: list of tuples
         """
 
         # By package:
@@ -170,7 +170,7 @@ class SubcmdHandler (object):
         names in the initialization bundle.
 
         All options that the main command received, in the form of object with
-        attributes (e.g. as created by L{optparse.OptionParser}) may also
+        attributes (e.g. as created by C{optparse.OptionParser}) may also
         be routed to the subcommands if desired. This may be useful for
         subcommands to heed standard options like quiet, verbose, etc.
 
@@ -273,7 +273,7 @@ class SuboptParser (object):
         Add a subcommand for which the suboptions may be added afterwards.
 
         Use double-newline in the description for splitting into paragraphs.
-        The description can also be set later, using L{set_desc} method of
+        The description can also be set later, using C{set_desc} method of
         subcommand view.
 
         @param subcmd: subcommand name
