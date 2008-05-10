@@ -950,7 +950,8 @@ def _res_embsel (gloss, obj):
 
 def _res_embsel_norm_text (text):
 
-    ntext = type(text)()
+    ntext = copy.copy(text)
+    ntext[:] = []
     envs = set()
 
     for seg in text:
@@ -1033,7 +1034,8 @@ def _res_embsel_parse_one (seg):
 
 def _res_embsel_best_text (gloss, ntext, env):
 
-    text = type(ntext)()
+    text = copy.copy(ntext)
+    text[:] = []
     for seg in ntext:
         if isinstance(seg, Text):
             text.append(_res_embsel_best_text(gloss, seg, env))
