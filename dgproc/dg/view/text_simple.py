@@ -68,7 +68,7 @@ class Subcommand (object):
         concepts = {}
         ordering_links = []
         for ckey, concept in gloss.concepts.iteritems():
-            terms = concept.term.get(lang, env)
+            terms = concept.term(lang, env)
             if terms:
                 concepts[ckey] = concept
                 # Use first of the synonymous terms for ordering.
@@ -79,10 +79,9 @@ class Subcommand (object):
         # Format glossary metadata for output.
         fmt_header = ""
         tfm = TextFormatterPlain(gloss, lang=lang, env=env)
-        fmt_title = tfm(gloss.title.get(lang, env)[0].text)
+        fmt_title = tfm(gloss.title(lang, env)[0].text)
         if env is not None:
-            fmt_envname = tfm(gloss.environments[env]\
-                              .name.get(lang, env)[0].text)
+            fmt_envname = tfm(gloss.environments[env].name(lang, env)[0].text)
             fmt_title = "%s (%s)" % (fmt_title, fmt_envname)
         fmt_header += fmt_title + "\n"
         fmt_header += "-" * len(fmt_title) + "\n"
@@ -94,14 +93,14 @@ class Subcommand (object):
 
             # Terms for this langenv.
             tft = TextFormatterPlain(gloss, lang=lang, env=env)
-            terms = concept.term.get(lang, env)
+            terms = concept.term(lang, env)
             fmt += "  "
             fmt += ", ".join([tft(x.nom.text) for x in terms])
             # Also terms in other languages, but the same environment.
             fmt_ots = []
             for olang in [x for x in gloss.languages if x != lang]:
-                oterms = concept.term.get(olang, env)
-                lname = gloss.languages[olang].shortname.get(lang, env)
+                oterms = concept.term(olang, env)
+                lname = gloss.languages[olang].shortname(lang, env)
                 if oterms and lname:
                     l = tft(lname[0].text)
                     ts = ", ".join([tft(x.nom.text) for x in oterms])
@@ -113,7 +112,7 @@ class Subcommand (object):
             # All descriptions for this langenv.
             tfd = TextFormatterPlain(gloss, lang=lang, env=env, indent="    ",
                                      wcol=self._options.wcol)
-            descs = concept.desc.get(lang, env)
+            descs = concept.desc(lang, env)
             if descs:
                 fmt_ds = []
                 if len(descs) == 1:

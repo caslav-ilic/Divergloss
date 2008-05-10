@@ -149,7 +149,7 @@ class TextFormatterPlain (object):
                               % dict(phrase=self._format_sub(seg))
                 else:
                     lnode = self._gloss.languages[seg.lang]\
-                                .shortname.get(self._lang, self._env)[0]
+                                .shortname(self._lang, self._env)[0]
                     fmt_seg = p_("formatting of a foreign language phrase in "
                                  "running plain text, where the short "
                                  "language name is provided too",
@@ -304,7 +304,7 @@ class TextFormatterHtml (object):
                               % dict(phrase=self._format_sub(seg))
                 else:
                     lnode = self._gloss.languages[seg.lang]\
-                                .shortname.get(self._lang, self._env)[0]
+                                .shortname(self._lang, self._env)[0]
                     fmt_seg = p_("formatting of a foreign language phrase in "
                                  "running HTML text, where the short "
                                  "language name is provided too",

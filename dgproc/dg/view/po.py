@@ -94,8 +94,8 @@ class Subcommand (object):
         concepts = {}
         ordering_links = []
         for ckey, concept in gloss.concepts.iteritems():
-            oterms = concept.term.get(olang, env)
-            tterms = concept.term.get(tlang, env)
+            oterms = concept.term(olang, env)
+            tterms = concept.term(tlang, env)
             if oterms and tterms:
                 concepts[ckey] = concept
                 # Use first of the synonymous origin terms for ordering.
@@ -114,8 +114,8 @@ class Subcommand (object):
             # concepts, in either of the languages.
             all_ckeys_by_term = {}
             for ckey, concept in concepts.iteritems():
-                aterms = (  concept.term.get(olang, env)
-                          + concept.term.get(tlang, env))
+                aterms = (  concept.term(olang, env)
+                          + concept.term(tlang, env))
                 for term in aterms:
                     nomstr = tft(term.nom.text)
                     if nomstr not in all_ckeys_by_term:
@@ -144,11 +144,11 @@ class Subcommand (object):
             messages.append(msg)
 
             # Origin terms into the msgid.
-            oterms = concept.term.get(olang, env)
+            oterms = concept.term(olang, env)
             msg.msgid = tdelim.join([tft(x.nom.text) for x in oterms])
 
             # Target terms into the msgstr.
-            tterms = concept.term.get(tlang, env)
+            tterms = concept.term(tlang, env)
             msg.msgstr = tdelim.join([tft(x.nom.text) for x in tterms])
 
             # Concept key into the msgctxt.
@@ -158,31 +158,31 @@ class Subcommand (object):
             # - full description (possibly only if there is a term conflict)
             if not self._options.condesc or ckey in conflicted:
                 # Give priority to description in target language.
-                descs = concept.desc.get(tlang, env)
+                descs = concept.desc(tlang, env)
                 if not descs:
-                     descs = concept.desc.get(olang, env)
+                     descs = concept.desc(olang, env)
                 if descs:
                     # Pick only first description if there are several.
                     msg.comments.append(tfds(descs[0].text))
             # - any declensions in target language
             for tterm in tterms:
                 for decl in tterm.decl:
-                    grn = gloss.grammar[decl.gr].shortname.get(tlang, env)[0]
+                    grn = gloss.grammar[decl.gr].shortname(tlang, env)[0]
                     msg.comments.append(tfdl(grn.text + [" "] + decl.text))
 
             # TODO: Implement source reference when lxml.etree can extract them.
 
         # Format PO header for output.
         fmt_header = ""
-        s_title = tft(gloss.title.get(tlang, env)[0].text)
+        s_title = tft(gloss.title(tlang, env)[0].text)
         fmt_header += (  '# '
                        + p_('header comment in the PO view (title)',
                             'PO view of a Divergloss glossary: %(title)s')
                          % dict(title=s_title)
                        + '\n')
-        s_olang = tft(gloss.languages[olang].name.get(tlang, env)[0].text)
-        s_tlang = tft(gloss.languages[tlang].name.get(tlang, env)[0].text)
-        s_env = tft(gloss.environments[env].name.get(tlang, env)[0].text)
+        s_olang = tft(gloss.languages[olang].name(tlang, env)[0].text)
+        s_tlang = tft(gloss.languages[tlang].name(tlang, env)[0].text)
+        s_env = tft(gloss.environments[env].name(tlang, env)[0].text)
         fmt_header += (  '# '
                        + p_('header comment in the PO view (subtitle)',
                             'languages: %(ol)s->%(tl)s, environment: %(env)s')
