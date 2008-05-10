@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-04 22:43+0200\n"
-"PO-Revision-Date: 2008-05-04 16:00+0200\n"
+"POT-Creation-Date: 2008-05-10 22:24+0200\n"
+"PO-Revision-Date: 2008-05-10 16:30+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
 "MIME-Version: 1.0\n"
@@ -41,73 +41,73 @@ msgctxt "error message"
 msgid "duplicate ID '%(id)s'"
 msgstr "дупликатски ИД ‘%(id)s’"
 
-#: dg/construct.py:125
+#: dg/construct.py:127
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-language key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи нејезички кључ: %(key)s"
 
-#: dg/construct.py:129 dg/construct.py:153
+#: dg/construct.py:131 dg/construct.py:155
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-environment keys: %(keys)s"
 msgstr "атрибут ‘%(att)s’ наводи неокружењске кључеве: %(keys)s"
 
-#: dg/construct.py:133
+#: dg/construct.py:135
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-editor key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи неуреднички кључ: %(key)s"
 
-#: dg/construct.py:137
+#: dg/construct.py:139
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-source key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи неизворни кључ: %(key)s"
 
-#: dg/construct.py:141
+#: dg/construct.py:143
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-grammar key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи неграматички кључ: %(key)s"
 
-#: dg/construct.py:145
+#: dg/construct.py:147
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-root key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи некорени кључ: %(key)s"
 
-#: dg/construct.py:149
+#: dg/construct.py:151
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-concept key: %(key)s"
 msgstr "атрибут ‘%(att)s’ наводи непојмовни кључ: %(key)s"
 
-#: dg/construct.py:157
+#: dg/construct.py:159
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-topic keys: %(keys)s"
 msgstr "атрибут ‘%(att)s’ наводи нетематске кључеве: %(keys)s"
 
-#: dg/construct.py:161
+#: dg/construct.py:163
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-level keys: %(keys)s"
 msgstr "атрибут ‘%(att)s’ наводи ненивоске кључеве: %(keys)s"
 
-#: dg/construct.py:165
+#: dg/construct.py:167
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-concept keys: %(keys)s"
 msgstr "атрибут ‘%(att)s’ наводи непојмовне кључеве: %(keys)s"
 
-#: dg/construct.py:189
+#: dg/construct.py:191
 #, python-format
 msgctxt "message with the location it speaks of"
 msgid "%(file)s:%(line)s: %(msg)s"
 msgstr "%(file)s:%(line)s: %(msg)s"
 
-#: dg/construct.py:193
+#: dg/construct.py:195
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -117,24 +117,24 @@ msgstr ""
 "неуспех овере након ДТД-а:\n"
 "%(msg)s"
 
-#: dg/construct.py:375 dg/construct.py:863
+#: dg/construct.py:379 dg/construct.py:866
 msgctxt "an unknown file"
 msgid "<unknown>"
 msgstr "<непозната>"
 
-#: dg/construct.py:984
+#: dg/construct.py:991
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr "неокончани угњеждени изборник ‘%(esel)s’"
 
-#: dg/construct.py:1004
+#: dg/construct.py:1012
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr "сегмент ‘%(eseg)s’ угњежденог изборника ‘%(esel)s’ понавља окружења: %(envs)s"
 
-#: dg/construct.py:1052
+#: dg/construct.py:1061
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
@@ -369,56 +369,74 @@ msgctxt "subcommand help: default name for the suboptions' parameter; do keep up
 msgid "ARG"
 msgstr "АРГ"
 
-#: dg/subcmd.py:693
+#: dg/subcmd.py:695
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
 msgid "[default %(arg)s=%(val)s]"
 msgstr "[подразумевано %(arg)s=%(val)s]"
 
-#: dg/subcmd.py:701
+#: dg/subcmd.py:704
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the admissible values for its argument"
 msgid "[%(arg)s is one of: %(avals)s]"
 msgstr "[%(arg)s може бити: %(avals)s]"
 
-#: dg/subcmd.py:711
+#: dg/subcmd.py:719
 msgctxt "subcommand help: header"
 msgid "Subcommand:"
 msgstr "Поднаредба:"
 
-#: dg/subcmd.py:713
+#: dg/subcmd.py:721
 #, python-format
 msgctxt "subcommand help: header"
 msgid "Subcommand (%(cat)s):"
 msgstr "Поднаредба (%(cat)s):"
 
-#: dg/subcmd.py:722
+#: dg/subcmd.py:730
 msgctxt "subcommand help: header"
 msgid "Mandatory parameters:"
 msgstr "Обавезни параметри:"
 
-#: dg/subcmd.py:729
+#: dg/subcmd.py:737
 msgctxt "subcommand help: header"
 msgid "Optional parameters:"
 msgstr "Опциони параметри:"
 
-#: dg/textfmt.py:132
+#: dg/textfmt.py:142
 #, python-format
 msgctxt "formatting of an emphasized phrase in running plain text"
 msgid "*%(phrase)s*"
 msgstr "*%(phrase)s*"
 
-#: dg/textfmt.py:138
+#: dg/textfmt.py:148
 #, python-format
 msgctxt "formatting of a foreign language phrase in running plain text"
 msgid "/%(phrase)s/"
 msgstr "/%(phrase)s/"
 
-#: dg/textfmt.py:146
+#: dg/textfmt.py:156
 #, python-format
 msgctxt "formatting of a foreign language phrase in running plain text, where the short language name is provided too"
 msgid "%(lang)s /%(phrase)s/"
 msgstr "%(lang)s /%(phrase)s/"
+
+#: dg/textfmt.py:297
+#, python-format
+msgctxt "formatting of an emphasized phrase in running HTML text"
+msgid "<em>%(phrase)s</em>"
+msgstr "<em>%(phrase)s</em>"
+
+#: dg/textfmt.py:303
+#, python-format
+msgctxt "formatting of a foreign language phrase in running HTML text"
+msgid "<em class='frlng'>%(phrase)s</em>"
+msgstr "<em class='frlng'>%(phrase)s</em>"
+
+#: dg/textfmt.py:311
+#, python-format
+msgctxt "formatting of a foreign language phrase in running HTML text, where the short language name is provided too"
+msgid "%(lang)s <em class='frlng'>%(phrase)s</em>"
+msgstr "%(lang)s <em class='frlng'>%(phrase)s</em>"
 
 #: dg/util.py:20
 #, python-format
@@ -432,6 +450,83 @@ msgctxt "error message"
 msgid "%(cmdname)s: warning: %(msg)s"
 msgstr "%(cmdname)s: упозорење: %(msg)s"
 
+#: dg/view/html.py:24
+msgctxt "subcommand description"
+msgid "Create HTML pages out of the glossary."
+msgstr "Градња ХТМЛ страна према појмовнику."
+
+#: dg/view/html.py:27 dg/view/po.py:29 dg/view/po.py:33
+#: dg/view/text_simple.py:25
+msgctxt "placeholder for parameter value"
+msgid "LANGKEY"
+msgstr "ЈЕЗКЉУЧ"
+
+#: dg/view/html.py:29
+msgctxt "subcommand option description"
+msgid "Pivotal language for the view. If not given, there is no pivotal language."
+msgstr "Осовински језик за поглед. Ако није дат, нема осовинског језика."
+
+#: dg/view/html.py:32 dg/view/po.py:37 dg/view/text_simple.py:30
+msgctxt "placeholder for parameter value"
+msgid "ENVKEY"
+msgstr "ОКРКЉУЧ"
+
+#: dg/view/html.py:34
+msgctxt "subcommand option description"
+msgid "Pivotal environment for the view. If not given, there is no pivotal environment."
+msgstr "Осовинско окружење за поглед. Ако није дато, нема осовинског окружења."
+
+#: dg/view/html.py:37
+msgctxt "placeholder for parameter value"
+msgid "BASENAME"
+msgstr "БАЗНОИМЕ"
+
+#: dg/view/html.py:39
+msgctxt "subcommand option description"
+msgid "Base name for writing generated HTML to disk, used to derive file names by chunking policy. If not given, glossary ID is used."
+msgstr "Базно име за испис произведеног ХТМЛ-а на диск, за извођење имена датотека при комадању. Ако није дато, узима се ИД појмовника."
+
+#: dg/view/html.py:44
+msgctxt "placeholder for parameter value"
+msgid "POLICY"
+msgstr "СМЕРНИЦА"
+
+#: dg/view/html.py:46
+#, python-format
+msgctxt "subcommand option description"
+msgid ""
+"How to subdivide the glossary into chunks. The possible policies are:\n"
+"\n"
+"%(alpha)s: concepts alphabetically split by pages, a separate title page with main glossary data, and another page for rest of the global data.\n"
+"\n"
+"%(chlim)s: similar to '%(alpha)s', but concept pages are split based on the limit of maximum characters per page (see '%(maxch)s' option).\n"
+"\n"
+"%(none)s: no chunking, all glossary content on a single page.\n"
+msgstr ""
+"Како изделити појмовник на комаде. Могуће смернице су:\n"
+"\n"
+"%(alpha)s: појмови алфабетски подељени по странама, засебна насловна страна с главним подацима о појмовнику, и још једна страна са осталим глобалним подацима.\n"
+"\n"
+"%(chlim)s: слично као ‘%(alpha)s’, али се стране појмова деле на основу ограничења највећег броја знакова по страни (в. опцију ‘%(maxch)s’).\n"
+"\n"
+"%(none)s: без комадања, сав садржај појмовника на једној страни.\n"
+
+#: dg/view/html.py:62
+msgctxt "placeholder for parameter value"
+msgid "NCHAR"
+msgstr "ЗНАКОВА"
+
+#: dg/view/html.py:64
+#, python-format
+msgctxt "subcommand option description"
+msgid "The character limit when using the '%(chlim)s' chunking policy."
+msgstr "Ограничење броја знакова при смерници комадања ‘%(chlim)s’."
+
+#: dg/view/html.py:76
+msgctxt "error message"
+msgid "chunking by character count not implemented yet"
+msgstr "комадање по броју знакова још увек није изведено"
+
 #: dg/view/null.py:18
 msgctxt "subcommand description"
 msgid "Null-view, builds no view of the glossary."
@@ -441,11 +536,6 @@ msgstr "Нулти поглед, игнорише садржај појмовн�
 msgctxt "subcommand description"
 msgid "Create a PO file out of the glossary."
 msgstr "Градња ПО датотеке према појмовнику."
-
-#: dg/view/po.py:29 dg/view/po.py:33
-msgctxt "placeholder for parameter value"
-msgid "LANGKEY"
-msgstr "ЈЕЗКЉУЧ"
 
 #: dg/view/po.py:31
 msgctxt "subcommand option description"
@@ -457,17 +547,12 @@ msgctxt "subcommand option description"
 msgid "Target language from the PO point of view."
 msgstr "Циљни језик с тачке гледишта ПО-а."
 
-#: dg/view/po.py:37
-msgctxt "placeholder for parameter value"
-msgid "ENVKEY"
-msgstr "ОКРКЉУЧ"
-
 #: dg/view/po.py:39
 msgctxt "subcommand option description"
 msgid "Environment for which the PO file is produced."
 msgstr "Окружење за које се производи ПО датотека."
 
-#: dg/view/po.py:41
+#: dg/view/po.py:41 dg/view/text_simple.py:35
 msgctxt "placeholder for parameter value"
 msgid "FILE"
 msgstr "ДАТОТЕКА"
@@ -505,29 +590,71 @@ msgctxt "message comment in the PO view: short label preceeding a concept descri
 msgid "desc: "
 msgstr "опис: "
 
-#: dg/view/po.py:87
+#: dg/view/po.py:88
 msgctxt "message comment in the PO view: short label preceeding a declination"
 msgid "decl: "
 msgstr "декл: "
 
-#: dg/view/po.py:106
+#: dg/view/po.py:107
 msgctxt "warning message"
 msgid "no concepts found for PO view that have terms in both the requested origin and target language"
 msgstr "нема ниједног концепта за ПО поглед који би имао изразе и за тражени изворни и циљни језик"
 
-#: dg/view/po.py:179
+#: dg/view/po.py:180
 #, python-format
 msgctxt "header comment in the PO view (title)"
 msgid "PO view of a Divergloss glossary: %(title)s"
 msgstr "ПО поглед на диверглоски појмовник: %(title)s"
 
-#: dg/view/po.py:187
+#: dg/view/po.py:188
 #, python-format
 msgctxt "header comment in the PO view (subtitle)"
 msgid "languages: %(ol)s->%(tl)s, environment: %(env)s"
 msgstr "језици: %(ol)s→%(tl)s, окружење: %(env)s"
 
-#: dg/view/po.py:192
+#: dg/view/po.py:193
 msgctxt "header comment in the PO view (warning to user)"
 msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
 msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂИВАТИ ====="
+
+#: dg/view/text_simple.py:22
+msgctxt "subcommand description"
+msgid "Simple text view as a demonstration of writing views."
+msgstr "Једноставни текстуални поглед као пример писања погледа."
+
+#: dg/view/text_simple.py:27
+msgctxt "subcommand option description"
+msgid "Pivotal language for the view. The glossary default language is used if not given."
+msgstr "Осовински језик за поглед. Ако није дат, користи се подразумевани језик појмовника."
+
+#: dg/view/text_simple.py:32
+msgctxt "subcommand option description"
+msgid "Pivotal environment for the view. The glossary default environment is used if not given."
+msgstr "Осовинско окружење за поглед. Ако није дато, користи се подразумевано окружење из појмовника."
+
+#: dg/view/text_simple.py:37
+msgctxt "subcommand option description"
+msgid "File to output the text into (defaults to stdout)."
+msgstr "Датотека за испис текста (подразумевано стдиз)."
+
+#: dg/view/text_simple.py:39
+msgctxt "placeholder for parameter value"
+msgid "COLUMN"
+msgstr "КОЛОНА"
+
+#: dg/view/text_simple.py:41
+msgctxt "subcommand option description"
+msgid "Wrap text after this column."
+msgstr "Прелом редова после ове колоне."
+
+#: dg/view/text_simple.py:57
+#, python-format
+msgctxt "error message"
+msgid "language '%(lang)s' does not exits in the glossary"
+msgstr "језик ‘%(lang)s’ не постоји у појмовнику"
+
+#: dg/view/text_simple.py:63
+#, python-format
+msgctxt "error message"
+msgid "environment '%(env)s' does not exits in the glossary"
+msgstr "окружење ‘%(env)s’ не постоји у појмовнику"
