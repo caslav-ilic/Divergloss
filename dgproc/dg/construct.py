@@ -1,7 +1,133 @@
 # -*- coding: UTF-8 -*-
 
 """
-Construct the glossary out of XML document.
+Construct internal glossary out of a Divergloss XML document.
+
+
+Glossary Structure
+==================
+
+For manipulations in the client code, the glossary is structured as
+a tree of node object, where XML attributes and children elements map to
+data attributes (sequences when required) of a node object.
+
+All node objects are of base type L{Gnode}, which is subclassed to match
+corresponding Divergloss XML elements. For example, C{<concept>} XML
+elements are represented by objects of the L{Concept} subclass of L{Gnode}.
+
+A g-node may have data attributes of types as follows:
+
+  - string: used to represent XML element attributes
+  - list of strings: used to represent list-valued XML element attributes
+  - g-node: for non-repeating children of an XML element
+  - list of g-nodes: repeating children XML elements without a unique ID
+  - dict of g-nodes: repeating children having a unique ID
+  - d-set of g-nodes: repeating children having C{lang}/C{env} attributes
+
+String and list of string attributes are just that, named as the underlying
+XML attribute and having its value or list of values. E.g. if the top
+glossary node is C{gloss}, and there is a concept with the ID C{con},
+the list of its related concepts (i.e. their keys) may be reached by
+C{gloss.concepts[con].related}.
+
+XML elements which are unique children of their parent are represented by
+a L{Gnode} attribute. For example, the email address of an editor with
+the ID C{ed} is obtained by C{gloss.editors[ed].email}.
+
+List and dict attributes are named as the corresponding XML elements, but
+additionally in plural (-s ending) to indicate their sequence nature.
+These were already seen in previous passages, e.g. to get to the concept
+with ID C{con} one uses C{gloss.concepts[con]}.
+
+The most peculiar members of g-nodes' ensemble of attributes are I{d-sets},
+short for "diversity sets". Many of Divergloss elements can carry language
+and environment (langenv for short) attributes, as a "diversification"
+moment of the glossary. It would be burdensome to represent such children
+elements as ordinary sequences, since they usually need to be accessed by
+a langenv combination. A d-set attribute of a g-node is named same as its
+XML namesake (not in plural), but has the type L{Dset}, and is callable for
+specialization by langenv. For example, if there is a language C{lang} and environment C{env} in the glossary, the terms naming the concept C{con} in
+that langenv are obtained by the quering the term d-set like
+C{gloss.concepts[ckey].term(lang, env)}; this will return a I{list} of
+term g-nodes, which may have one, more, or zero elements, depending if in
+that langenv the term is unique, has synonyms, or isn't defined at all.
+
+The documentation of each of the C{Gnode} subclasses lists all of its
+attributes and their types, according to the described taxonomy.
+
+Additional notes on the structure:
+
+  - The internal structure closely follows the Divergloss XML element
+    structure, but for the top containers, the C{<metadata>}, C{<keydefs>},
+    and C{<concepts>} elements. These are not present internally, their
+    content having been flattened in the top g-node. Thus, instead of e.g.
+    C{gloss.keydefs.editors[ed]}, the path is just C{gloss.editors[ed]}.
+    This is because in the XML, these containers serve only to allow
+    better chunking of the document.
+
+  - Dual XML elements, such as C{desc}/C{ldesc} or C{term}/C{eterm} are
+    always represented as an attribute of the shorter name. This is because
+    the duality is caused by constraints of XML, while there is no need for
+    it internally. For terms, this means that internally the nominal form
+    of the term is always accessed as C{termnode.nom}, regardless if the
+    XML was C{<term>...</term>} or C{<eterm><nom>...</nom></eterm>}.
+
+  - Attributes and elements defined as optional by Divergloss DTD for a
+    particular element, are always present in its corresponding g-node.
+    For attributes or child elements that the XML element didn't contain,
+    g-node attributes will have appropriate null-value: non-sequences
+    will be C{None}, and sequences empty.
+
+  - The C{env} attribute, when present in a g-node, will never be an
+    empty sequence. It is, like language, inherited from first parent
+    g-node that has it, and the top g-node will set it to C{[None]} if
+    not explicitly provided.
+
+  - Each g-node has a C{parent} attribute, which points to the parent g-node.
+    For the top g-node its value is C{None}. Remember this if at any time
+    you want to make deep copy a g-node.
+
+  - D-sets may be queried without providing language and environment
+    parameters, in which case they use langenv of their parent.
+
+
+Text Representation
+===================
+
+Text within Diverloss XML elements is always internally represented as a
+C{text} attribute of a g-node. The type of this attribute is always L{Text},
+regardless if the XML element allowed text markup or only plain text.
+L{Text} is a base class for text segments, from which other segment types
+are subclassed, like C{Para}, C{Ref}, etc. according to XML markup elements.
+L{Text} is itself a subclass of list, i.e. on the basic level text markup
+is represented as nested list of lists, with terminal elements pure strings.
+For example, XML text such as::
+
+    Blah blah <ref c='whatever'>one</ref> blah <em>other</em> blah.
+
+would be represented in pseudo-form as::
+
+    Text['Blah blah ', Ref['one'], ' blah ', Em['other'], ' blah.']
+
+where C{Foo[]} stands for instance of C{Text}, i.e. of list, of type C{Foo}.
+The C{Ref} object in the list would further have a C{c} attribute with the
+referenced concept key as its value.
+
+To convert text represented like this into an output format, like plain or
+HTML text, there is the L{textfmt} module which contains various formatters.
+E.g. to turn a certain concept description into plain text, in a certain
+langenv context, we would do::
+
+    tf = textfmt.TextFormatterPlain(gloss, lang, env)
+    plaindesc = tf(gloss.concepts[con].desc(lang, env)[0].text)
+
+where the langenv must be specified when creating the formatter too,
+in order to resolve any internal markup which draws strings from other
+places in the glossary (e.g. the language name in C{<ol lang="...">}).
+
+When writing search filters, it is probably best to pass the text through
+the formatter and search on the plain text version of it.
+
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
@@ -20,6 +146,19 @@ from dg import _dtd_dir
 
 
 def from_file (dgfile, validate=True):
+    """
+    Construct glossary from a Divergloss file.
+
+    The glossary file may use XInclude to include subdocuments.
+
+    @param dgfile: Divergloss file name
+    @type dgfile: string
+    @param validate: whether to validate the glossary
+    @type validate: bool
+
+    @return: constructed glossary
+    @rtype: L{Gnode}
+    """
 
     try:
         # Do not validate at parse time, but afterwards.
@@ -65,6 +204,17 @@ def from_file (dgfile, validate=True):
 
 
 def from_tree (tree, validate=True):
+    """
+    Construct glossary from a Divergloss document tree.
+
+    @param tree: Divergloss tree
+    @type tree: etree from C{lxml.etree}
+    @param validate: whether to validate the glossary
+    @type validate: bool
+
+    @return: constructed glossary
+    @rtype: L{Gnode}
+    """
 
     root = tree.getroot()
     gloss = Glossary(root)
