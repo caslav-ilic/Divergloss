@@ -79,10 +79,10 @@ class Subcommand (object):
         # Format glossary metadata for output.
         fmt_header = ""
         tfm = TextFormatterPlain(gloss, lang=lang, env=env)
-        fmt_title = tfm.format(gloss.title.get(lang, env)[0].text)
+        fmt_title = tfm(gloss.title.get(lang, env)[0].text)
         if env is not None:
-            fmt_envname = tfm.format(gloss.environments[env]\
-                                          .name.get(lang, env)[0].text)
+            fmt_envname = tfm(gloss.environments[env]\
+                              .name.get(lang, env)[0].text)
             fmt_title = "%s (%s)" % (fmt_title, fmt_envname)
         fmt_header += fmt_title + "\n"
         fmt_header += "-" * len(fmt_title) + "\n"
@@ -96,15 +96,15 @@ class Subcommand (object):
             tft = TextFormatterPlain(gloss, lang=lang, env=env)
             terms = concept.term.get(lang, env)
             fmt += "  "
-            fmt += ", ".join([tft.format(x.nom.text) for x in terms])
+            fmt += ", ".join([tft(x.nom.text) for x in terms])
             # Also terms in other languages, but the same environment.
             fmt_ots = []
             for olang in [x for x in gloss.languages if x != lang]:
                 oterms = concept.term.get(olang, env)
                 lname = gloss.languages[olang].shortname.get(lang, env)
                 if oterms and lname:
-                    l = tft.format(lname[0].text)
-                    ts = ", ".join([tft.format(x.nom.text) for x in oterms])
+                    l = tft(lname[0].text)
+                    ts = ", ".join([tft(x.nom.text) for x in oterms])
                     fmt_ots.append("%s /%s/" % (l, ts))
             if fmt_ots:
                 fmt += " (%s)" % ("; ".join(fmt_ots))
@@ -117,12 +117,12 @@ class Subcommand (object):
             if descs:
                 fmt_ds = []
                 if len(descs) == 1:
-                    fmt_ds.append(tfd.format(descs[0].text))
+                    fmt_ds.append(tfd(descs[0].text))
                 elif len(descs) > 1:
                     # Enumerate descriptions.
                     for i in range(len(descs)):
-                        fmt_ds.append(tfd.format(descs[i].text,
-                                                 prefix=("%d. " % (i + 1))))
+                        fmt_ds.append(tfd(descs[i].text,
+                                      prefix=("%d. " % (i + 1))))
                 fmt += "\n\n".join(fmt_ds)
 
             # Done formatting concept.
