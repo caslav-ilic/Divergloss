@@ -27,10 +27,10 @@ class Dset (object):
 
         lang = obj.lang
         if lang is None:
-            lang = self.parent.lang
+            lang = getattr(self.parent, "lang", None)
         envs = obj.env
         if not envs:
-            envs = self.parent.env
+            envs = getattr(self.parent, "env", [None])
 
         if lang not in self._data:
             self._data[lang] = {}
@@ -43,10 +43,9 @@ class Dset (object):
     def get (self, lang=None, env=None):
 
         if lang is None:
-            lang = self.parent.lang
+            lang = getattr(self.parent, "lang", None)
         if env is None:
-            if self.parent.env:
-                env = self.parent.env[0]
+            env = getattr(self.parent, "env", [None])[0]
 
         if lang not in self._data:
             return None
@@ -78,7 +77,7 @@ class Dset (object):
     def envs (self, lang=None):
 
         if lang is None:
-            lang = self.parent.lang
+            lang = getattr(self.parent, "lang", None)
 
         if lang not in self._data:
             return None

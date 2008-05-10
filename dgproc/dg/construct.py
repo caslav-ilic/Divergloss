@@ -89,7 +89,9 @@ def _post_dtd_in_node (gloss, gnode):
     _post_dtd_check_keys(gloss, gnode)
 
     # Traverse further.
-    for obj in gnode.__dict__.values():
+    for att, obj in gnode.__dict__.iteritems():
+        if att == "parent":
+            continue
         if isinstance(obj, Text):
             _post_dtd_in_text(gloss, obj)
         else:
@@ -295,7 +297,7 @@ def _attrib_lists (obj, gloss, node, attspecs):
         obj.__dict__[attname] = val
 
 
-def _child_dsets (obj, gloss, node, chdspecs, parent=None):
+def _child_dsets (obj, gloss, node, chdspecs):
 
     for chdspec in chdspecs:
         if len(chdspec) == 3:
@@ -304,11 +306,11 @@ def _child_dsets (obj, gloss, node, chdspecs, parent=None):
             attname, subtype = chdspec
             tagnames = (attname,)
         if attname not in obj.__dict__:
-            obj.__dict__[attname] = Dset(gloss, parent)
+            obj.__dict__[attname] = Dset(gloss, obj)
         dst = obj.__dict__[attname]
         if node is not None:
             for cnode in _child_els_by_tag(node, tagnames):
-                subobj = subtype(gloss, cnode)
+                subobj = subtype(gloss, obj, cnode)
                 # Add several resolved objects if any embedded selections.
                 for rsubobj in _res_embsel(gloss, subobj):
                     dst.add(rsubobj)
@@ -327,7 +329,7 @@ def _child_lists (obj, gloss, node, chlspecs):
         lst = obj.__dict__[attname]
         if node is not None:
             for cnode in _child_els_by_tag(node, tagnames):
-                lst.append(subtype(gloss, cnode))
+                lst.append(subtype(gloss, obj, cnode))
 
 
 def _child_dicts (obj, gloss, node, chmspecs):
@@ -338,7 +340,7 @@ def _child_dicts (obj, gloss, node, chmspecs):
         dct = obj.__dict__[dictname]
         if node is not None:
             for cnode in _child_els_by_tag(node, tagname):
-                o = subtype(gloss, cnode)
+                o = subtype(gloss, obj, cnode)
                 dct[o.id] = o
 
 
@@ -352,7 +354,7 @@ def _children (obj, gloss, node, chspecs):
             tagnames = (attname,)
         if node is not None:
             for cnode in _child_els_by_tag(node, tagnames):
-                obj.__dict__[attname] = subtype(gloss, cnode)
+                obj.__dict__[attname] = subtype(gloss, obj, cnode)
                 break # a single node expected, so take first
         else:
             obj.__dict__[attname] = None
@@ -369,7 +371,9 @@ def _text (obj, gloss, node):
 # Base of glossary nodes.
 class Gnode:
 
-    def __init__ (self, node=None):
+    def __init__ (self, parent, node=None):
+
+        self.parent = parent
 
         self.src_line = 0
         self.src_file = p_("an unknown file", "<unknown>")
@@ -383,7 +387,7 @@ class Glossary (Gnode):
 
     def __init__ (self, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, None, node)
 
         _content(self, self, node,
                  [(_attributes,
@@ -423,9 +427,9 @@ class Glossary (Gnode):
 
 class Language (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -437,9 +441,9 @@ class Language (Gnode):
 
 class Environment (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -457,9 +461,9 @@ class Environment (Gnode):
 
 class Editor (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -475,9 +479,9 @@ class Editor (Gnode):
 
 class Source (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -493,9 +497,9 @@ class Source (Gnode):
 
 class Topic (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -508,9 +512,9 @@ class Topic (Gnode):
 
 class Level (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -523,9 +527,9 @@ class Level (Gnode):
 
 class Gramm (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -538,9 +542,9 @@ class Gramm (Gnode):
 
 class Extroot (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -556,9 +560,9 @@ class Extroot (Gnode):
 
 class Concept (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -578,9 +582,9 @@ class Concept (Gnode):
 
 class Term (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -599,22 +603,21 @@ class Term (Gnode):
         _content(self, gloss, vnode,
                  [(_child_dsets,
                    [[("origin", Origin, ("origin", "lorigin")),
-                     ("comment", Comment, ("comment", "lcomment"))],
-                    self]),
+                     ("comment", Comment, ("comment", "lcomment"))]]),
                   (_child_lists,
                    [[("decl", Decl)]]),
                   (_children,
                    [[("nom", Nom),
                      ("stem", Stem)]])])
         if vnode is None:
-            self.nom = Nom(gloss, node)
+            self.nom = Nom(gloss, self, node)
 
 
 class Title (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -627,9 +630,9 @@ class Title (Gnode):
 
 class Version (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -642,9 +645,9 @@ class Version (Gnode):
 
 class Name (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -657,9 +660,9 @@ class Name (Gnode):
 
 class Shortname (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -672,9 +675,9 @@ class Shortname (Gnode):
 
 class Affiliation (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -687,9 +690,9 @@ class Affiliation (Gnode):
 
 class Desc (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -704,9 +707,9 @@ class Desc (Gnode):
 
 class Origin (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -721,9 +724,9 @@ class Origin (Gnode):
 
 class Comment (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -737,9 +740,9 @@ class Comment (Gnode):
 
 class Details (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -755,9 +758,9 @@ class Details (Gnode):
 
 class Media (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -773,9 +776,9 @@ class Media (Gnode):
 
 class Decl (Gnode):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -789,9 +792,9 @@ class Decl (Gnode):
 
 class OnlyText (Gnode): # subclass for nodes having no attributes, only text
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        Gnode.__init__(self, node)
+        Gnode.__init__(self, parent, node)
 
         _content(self, gloss, node,
                  [(_attributes,
@@ -804,51 +807,51 @@ class OnlyText (Gnode): # subclass for nodes having no attributes, only text
 
 class Date (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class Email (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class Url (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class RootUrl (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class BrowseUrl (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class Nom (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 class Stem (OnlyText):
 
-    def __init__ (self, gloss, node=None):
+    def __init__ (self, gloss, parent, node=None):
 
-        OnlyText.__init__(self, gloss, node)
+        OnlyText.__init__(self, gloss, parent, node)
 
 
 # Text.
@@ -929,12 +932,15 @@ def _res_embsel (gloss, obj):
 
     # Create a version of the object for each of the environments.
     robjs = []
+    parent = obj.parent
+    obj.parent = None # to avoid going up on deep copy
     for env in envs:
         # Piece up the best version of text for current environment.
         text = _res_embsel_best_text(gloss, ntext, env)
 
         # Create object with this environment and text.
         robj = copy.deepcopy(obj)
+        robj.parent = parent
         robj.env = [env]
         robj.text = text
         robjs.append(robj)

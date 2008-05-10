@@ -33,7 +33,7 @@ def child_nodes (gnode, gtype=None):
 
     flatlst = []
     for attrname, attr in gnode.__dict__.iteritems():
-        if attrname.startswith("_"):
+        if attrname.startswith("_") or attrname == "parent":
             continue
 
         if type(attr) == Dset:
