@@ -134,6 +134,7 @@ class SubcmdHandler (object):
             error(p_("error message",
                      "requested names of subcommands from an "
                      "unknown category"))
+        subcmds.sort()
         return subcmds
 
 
