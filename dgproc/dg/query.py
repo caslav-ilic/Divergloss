@@ -37,7 +37,7 @@ def child_nodes (gnode, gtype=None):
             continue
 
         if type(attr) == Dset:
-            flatlst.extend(attr.get_all())
+            flatlst.extend(attr.values())
         elif type(attr) == dict:
             flatlst.extend(attr.values())
         elif type(attr) == list:

@@ -99,7 +99,7 @@ def _post_dtd_in_node (gloss, gnode):
             if isinstance(obj, Gnode):
                 subns = [obj]
             elif isinstance(obj, Dset):
-                subns = obj.get_all() # all in Dset are Gnode
+                subns = obj.values() # all in Dset are Gnode
             elif isinstance(obj, dict):
                 subns = [x for x in obj.values() if isinstance(x, Gnode)]
             elif isinstance(obj, list):

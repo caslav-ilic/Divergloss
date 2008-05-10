@@ -52,7 +52,7 @@ class Dset (object):
             self._data[lang][env].append(obj)
 
 
-    def get (self, lang=None, env=None):
+    def __call__ (self, lang=None, env=None):
 
         if lang is None:
             lang = self._parent_att("lang", None)
@@ -76,7 +76,7 @@ class Dset (object):
         return self._data[lang][env]
 
 
-    def get_all (self):
+    def values (self):
 
         return [z for x in self._data.values() for y in x.values() for z in y]
 
