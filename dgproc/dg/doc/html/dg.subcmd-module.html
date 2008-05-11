@@ -80,7 +80,8 @@
   parameter they are using. On the other hand, there may be two or more 
   <i>categories</i> of subcommands, each with its own collector-option:</p>
 <pre class="literalblock">
-   $ cmd -a -c -b           catx-subcmd \  # subcommand in category z
+   $ cmd -a -c -b \ 
+         catx-subcmd \  # subcommand in category z
          -x foo \       # subcommand parameter for category z
          caty-subcmd \  # subcommand in category y
          -y bar:xyz     # subcommand parameter for category y

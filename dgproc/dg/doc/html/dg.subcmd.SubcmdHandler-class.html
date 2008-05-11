@@ -301,12 +301,12 @@ object --+
          [&quot;bar-sierra&quot;],
          [&quot;bpar1&quot;, &quot;bpar2:val&quot;])])
 </pre>
-  <p>The packages given here must be a subset of what has been given to the
-  constructor, and subcommands a subset of those that the constructor than 
+  <p>The packages given here must be a subset of those that were given to 
+  the constructor, and subcommands a subset of those that the constructor 
   found inside the packages.</p>
   <p>If everything goes well -- all subcommands exist, no parameter errors 
   -- then the subcommand objects are created from the subcommand modules, 
-  and return in a list of lists, according to the ordering of subcommand 
+  and returned in a list of lists, according to the ordering of subcommand 
   names in the initialization bundle.</p>
   <p>All options that the main command received, in the form of object with
   attributes (e.g. as created by <code>optparse.OptionParser</code>) may 
@@ -316,6 +316,7 @@ object --+
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>subcmd_init_bundle</code></strong> (list of tuples) - subcommand initialization bundle</li>
+        <li><strong class="pname"><code>cmdline_options</code></strong> (object) - global options</li>
     </ul></dd>
     <dt>Returns: list of lists</dt>
         <dd>subcommand object</dd>
