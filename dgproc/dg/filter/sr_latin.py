@@ -95,7 +95,7 @@ def sr_c2l (text):
     """
 
     tlen = len(text)
-    ntext = ""
+    nlist = []
     for i in range(tlen):
         c = text[i]
         c2 = text[i:i+2]
@@ -105,11 +105,11 @@ def sr_c2l (text):
                 and (   (i + 1 < tlen and text[i + 1].isupper())
                      or (i > 0 and text[i - 1].isupper()))
             ):
-                ntext += r.upper()
+                nlist.append(r.upper())
             else:
-                ntext += r
+                nlist.append(r)
         else:
-            ntext += c;
-
+            nlist.append(c);
+    ntext = "".join(nlist)
     return ntext
 
