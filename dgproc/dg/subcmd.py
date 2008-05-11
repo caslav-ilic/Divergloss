@@ -32,7 +32,7 @@ all those subcommands should place the same semantics into the same-named
 parameter they are using. On the other hand, there may be two or more
 I{categories} of subcommands, each with its own collector-option::
 
-    $ cmd -a -c -b \
+    $ cmd -a -c -b \ 
           catx-subcmd \  # subcommand in category z
           -x foo \       # subcommand parameter for category z
           caty-subcmd \  # subcommand in category y
@@ -160,13 +160,13 @@ class SubcmdHandler (object):
                   ["bar-sierra"],
                   ["bpar1", "bpar2:val"])])
 
-        The packages given here must be a subset of what has been given
+        The packages given here must be a subset of those that were given
         to the constructor, and subcommands a subset of those that the
-        constructor than found inside the packages.
+        constructor found inside the packages.
 
         If everything goes well -- all subcommands exist, no parameter errors --
         then the subcommand objects are created from the subcommand modules,
-        and return in a list of lists, according to the ordering of subcommand
+        and returned in a list of lists, according to the ordering of subcommand
         names in the initialization bundle.
 
         All options that the main command received, in the form of object with
@@ -176,6 +176,8 @@ class SubcmdHandler (object):
 
         @param subcmd_init_bundle: subcommand initialization bundle
         @type subcmd_init_bundle: list of tuples
+        @param cmdline_options: global options
+        @type cmdline_options: object
 
         @return: subcommand object
         @rtype: list of lists
