@@ -77,25 +77,27 @@ class Subcommand (object):
         ordering_links.sort(lambda x, y: cmp(x[0], y[0]))
 
         # Format glossary metadata for output.
-        fmt_header = ""
+        fmt_header_list = []
         tfm = TextFormatterPlain(gloss, lang=lang, env=env)
         fmt_title = tfm(gloss.title(lang, env)[0].text)
         if env is not None:
             fmt_envname = tfm(gloss.environments[env].name(lang, env)[0].text)
             fmt_title = "%s (%s)" % (fmt_title, fmt_envname)
-        fmt_header += fmt_title + "\n"
-        fmt_header += "-" * len(fmt_title) + "\n"
+        fmt_header_list.append(fmt_title)
+        fmt_header_list.append("\n")
+        fmt_header_list.append("-" * len(fmt_title) + "\n")
+        fmt_header = "".join(fmt_header_list)
 
         # Format concepts for output.
         fmt_concepts = []
         for concept in [concepts[x[1]] for x in ordering_links]:
-            fmt = ""
+            fmtlist = []
 
             # Terms for this langenv.
             tft = TextFormatterPlain(gloss, lang=lang, env=env)
             terms = concept.term(lang, env)
-            fmt += "  "
-            fmt += ", ".join([tft(x.nom.text) for x in terms])
+            fmtlist.append("  ")
+            fmtlist.append(", ".join([tft(x.nom.text) for x in terms]))
             # Also terms in other languages, but the same environment.
             fmt_ots = []
             for olang in [x for x in gloss.languages if x != lang]:
@@ -106,8 +108,8 @@ class Subcommand (object):
                     ts = ", ".join([tft(x.nom.text) for x in oterms])
                     fmt_ots.append("%s /%s/" % (l, ts))
             if fmt_ots:
-                fmt += " (%s)" % ("; ".join(fmt_ots))
-            fmt += "\n"
+                fmtlist.append(" (%s)" % ("; ".join(fmt_ots)))
+            fmtlist.append("\n")
 
             # All descriptions for this langenv.
             tfd = TextFormatterPlain(gloss, lang=lang, env=env, indent="    ",
@@ -122,10 +124,10 @@ class Subcommand (object):
                     for i in range(len(descs)):
                         fmt_ds.append(tfd(descs[i].text,
                                       prefix=("%d. " % (i + 1))))
-                fmt += "\n\n".join(fmt_ds)
+                fmtlist.append("\n\n".join(fmt_ds))
 
             # Done formatting concept.
-            fmt_concepts.append(fmt)
+            fmt_concepts.append("".join(fmtlist))
 
         # Output formatted concepts to requested stream.
         outf = sys.stdout

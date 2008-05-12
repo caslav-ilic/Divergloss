@@ -400,12 +400,13 @@ def _pure_text (string_node):
 
     if string_node is None:
         return ""
-
-    s = string_node.text
+    sl = []
+    sl.append(string_node.text)
     for node in string_node:
-        s += _pure_text(node) + node.tail
+        sl.append(_pure_text(node))
+        sl.append(node.tail)
 
-    return s
+    return "".join(sl)
 
 
 # --------------------------------------
