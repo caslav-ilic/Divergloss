@@ -29,7 +29,7 @@ class Subcommand (object):
         self._options = options
 
 
-    def process (self, gloss):
+    def __call__ (self, gloss):
 
         # Do nothing if Serbian is not one of the glossary languages.
         if "sr" not in gloss.languages:

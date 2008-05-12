@@ -54,7 +54,7 @@ class Subcommand (object):
         self._options = options
 
 
-    def process (self, gloss):
+    def __call__ (self, gloss):
 
         # Resolve languages and environment.
         olang = self._options.olang

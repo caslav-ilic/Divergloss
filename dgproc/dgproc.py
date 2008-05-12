@@ -123,7 +123,9 @@ def main ():
 
     # Sieve the glossary.
     for sieve in sieves:
-        gloss = sieve.process(gloss)
+        ret = sieve(gloss)
+        if ret is not None:
+            gloss = ret
 
 
 if __name__ == '__main__':
