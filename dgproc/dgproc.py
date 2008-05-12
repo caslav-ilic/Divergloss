@@ -38,8 +38,8 @@ def main ():
     sys.setdefaultencoding(cmdlenc)
 
     # Setup options and parse the command line.
-    usage = p_("command usage; do NOT translate %prog",
-               "%prog [OPTIONS] [SIEVES] DGFILE")
+    usage = p_("command usage",
+               "%(cmd)s [OPTIONS] [SIEVES] DGFILE") % dict(cmd="%prog")
     description = p_("command description",
                      "Query a Divergloss XML document and "
                      "build various outputs. "
