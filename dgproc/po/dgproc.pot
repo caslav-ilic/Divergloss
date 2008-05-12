@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-10 22:25+0200\n"
+"POT-Creation-Date: 2008-05-12 13:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dg/construct.py:33
+#: dg/construct.py:172
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -24,7 +24,7 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:45 dg/construct.py:58
+#: dg/construct.py:184 dg/construct.py:197
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -32,79 +32,79 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:47
+#: dg/construct.py:186
 #, python-format
 msgctxt "error message"
 msgid "duplicate ID '%(id)s'"
 msgstr ""
 
-#: dg/construct.py:127
+#: dg/construct.py:277
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-language key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:131 dg/construct.py:155
+#: dg/construct.py:281 dg/construct.py:305
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-environment keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:135
+#: dg/construct.py:285
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-editor key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:139
+#: dg/construct.py:289
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-source key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:143
+#: dg/construct.py:293
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-grammar key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:147
+#: dg/construct.py:297
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-root key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:151
+#: dg/construct.py:301
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-concept key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:159
+#: dg/construct.py:309
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-topic keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:163
+#: dg/construct.py:313
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-level keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:167
+#: dg/construct.py:317
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-concept keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:191
+#: dg/construct.py:341
 #, python-format
 msgctxt "message with the location it speaks of"
 msgid "%(file)s:%(line)s: %(msg)s"
 msgstr ""
 
-#: dg/construct.py:195
+#: dg/construct.py:345
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -112,53 +112,45 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:379 dg/construct.py:866
+#: dg/construct.py:530 dg/construct.py:1017
 msgctxt "an unknown file"
 msgid "<unknown>"
 msgstr ""
 
-#: dg/construct.py:991
+#: dg/construct.py:1142
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr ""
 
-#: dg/construct.py:1012
+#: dg/construct.py:1163
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr ""
 
-#: dg/construct.py:1061
+#: dg/construct.py:1212
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
 msgstr ""
 
-#: dg/filter/pass.py:18
-msgctxt "subcommand description"
-msgid "Pass-through filter, changes nothing in the glossary."
+#: dgproc.py:42
+#, python-format
+msgctxt "command usage"
+msgid "%(cmd)s [OPTIONS] [SIEVES] DGFILE"
 msgstr ""
 
-#: dg/filter/sr_latin.py:21
-msgctxt "subcommand description"
-msgid "Transform Serbian Cyrillic text in the glossary into Serbian Latin."
-msgstr ""
-
-#: dgproc.py:43
-msgctxt "command usage; do NOT translate %prog"
-msgid "%prog DGFILE [FILTERS] [VIEWS] [OPTIONS]"
-msgstr ""
-
-#: dgproc.py:45
+#: dgproc.py:44
 msgctxt "command description"
-msgid "Filter a Divergloss XML document and build various outputs. Also fully validates the document, past what the DTD only can do."
+msgid "Query a Divergloss XML document and build various outputs. Also fully validates the document, past what the DTD only can do."
 msgstr ""
 
-#: dgproc.py:50
-msgctxt "command version; do NOT translate %prog"
+#: dgproc.py:49
+#, python-format
+msgctxt "command version"
 msgid ""
-"%prog experimental\n"
+"%(cmd)s experimental\n"
 "Copyright 2008, Chusslove Illich <caslav.ilic@gmx.net>"
 msgstr ""
 
@@ -167,230 +159,441 @@ msgctxt "description of cmdline option"
 msgid "do not check the glossary for validity"
 msgstr ""
 
-#: dgproc.py:61 dgproc.py:67
+#: dgproc.py:61
 msgctxt "placeholder for value to cmdline option"
 msgid "PARSPEC"
 msgstr ""
 
 #: dgproc.py:64
 msgctxt "description of cmdline option"
-msgid "specify parameter to filters"
+msgid "specify parameter to sieves"
 msgstr ""
 
-#: dgproc.py:70
+#: dgproc.py:69
 msgctxt "description of cmdline option"
-msgid "specify parameter to views"
+msgid "list available sieves and exit"
 msgstr ""
 
-#: dgproc.py:75
+#: dgproc.py:74
 msgctxt "description of cmdline option"
-msgid "list available filters and views and exit"
+msgid "display help on sieves and exit"
 msgstr ""
 
-#: dgproc.py:80
-msgctxt "description of cmdline option"
-msgid "display help on filters and views and exit"
-msgstr ""
-
-#: dgproc.py:85
-msgctxt "category of subcommands"
-msgid "filter"
-msgstr ""
-
-#: dgproc.py:86
-msgctxt "category of subcommands"
-msgid "view"
-msgstr ""
-
-#: dgproc.py:89
+#: dgproc.py:81
 msgctxt "error in command line"
 msgid "too many free arguments"
 msgstr ""
 
-#: dgproc.py:93
+#: dgproc.py:85
 msgctxt "header to listing"
-msgid "Available filters:"
+msgid "Available sieves:"
 msgstr ""
 
-#: dgproc.py:95
-msgctxt "header to listing"
-msgid "Available views:"
-msgstr ""
-
-#: dgproc.py:101
+#: dgproc.py:92
 msgctxt "error in command line"
 msgid "no file given"
 msgstr ""
 
-#: dgproc.py:105
+#: dgproc.py:96
 #, python-format
 msgctxt "error in command line"
 msgid "file '%(file)s' does not exists"
 msgstr ""
 
-#: dg/subcmd.py:135
-msgctxt "error message"
-msgid "requested names of subcommands from an unknown category"
+#: dgproc.py:109
+msgctxt "header to listing"
+msgid "Help on sieves:"
 msgstr ""
 
-#: dg/subcmd.py:190
+#: dgproc.py:113
+msgctxt "message"
+msgid "No sieves specified to provide help on."
+msgstr ""
+
+#: dg/sieve/html.py:24
+msgctxt "subcommand description"
+msgid "Create HTML pages out of the glossary."
+msgstr ""
+
+#: dg/sieve/html.py:27 dg/sieve/po.py:29 dg/sieve/po.py:33
+#: dg/sieve/text_simple.py:25
+msgctxt "placeholder for parameter value"
+msgid "LANGKEY"
+msgstr ""
+
+#: dg/sieve/html.py:29 dg/sieve/text_simple.py:27
+msgctxt "subcommand option description"
+msgid "Pivotal language for the view. The glossary default language is used if not given."
+msgstr ""
+
+#: dg/sieve/html.py:32 dg/sieve/po.py:37 dg/sieve/text_simple.py:30
+msgctxt "placeholder for parameter value"
+msgid "ENVKEY"
+msgstr ""
+
+#: dg/sieve/html.py:34
+msgctxt "subcommand option description"
+msgid "Pivotal environment for the view. If not given, there is no pivotal environment."
+msgstr ""
+
+#: dg/sieve/html.py:37
+msgctxt "placeholder for parameter value"
+msgid "BASENAME"
+msgstr ""
+
+#: dg/sieve/html.py:39
+msgctxt "subcommand option description"
+msgid "Base name for writing generated HTML to disk, used to derive file names by chunking policy. If not given, glossary ID is used."
+msgstr ""
+
+#: dg/sieve/html.py:44
+msgctxt "placeholder for parameter value"
+msgid "POLICY"
+msgstr ""
+
+#: dg/sieve/html.py:46
+#, python-format
+msgctxt "subcommand option description"
+msgid ""
+"How to subdivide the glossary into chunks. The possible policies are:\n"
+"\n"
+"%(alpha)s: concepts alphabetically split by pages, a separate title page with main glossary data, and another page for rest of the global data.\n"
+"\n"
+"%(chlim)s: similar to '%(alpha)s', but concept pages are split based on the limit of maximum characters per page (see '%(maxch)s' option).\n"
+"\n"
+"%(none)s: no chunking, all glossary content on a single page.\n"
+msgstr ""
+
+#: dg/sieve/html.py:62
+msgctxt "placeholder for parameter value"
+msgid "NCHAR"
+msgstr ""
+
+#: dg/sieve/html.py:64
+#, python-format
+msgctxt "subcommand option description"
+msgid "The character limit when using the '%(chlim)s' chunking policy."
+msgstr ""
+
+#: dg/sieve/html.py:76
+msgctxt "error message"
+msgid "chunking by character count not implemented yet"
+msgstr ""
+
+#: dg/sieve/html.py:85
 #, python-format
 msgctxt "error message"
-msgid "requested unknown category of subcommands: %(cat)s"
+msgid "language '%(lang)s' not present in the glossary"
 msgstr ""
 
-#: dg/subcmd.py:202
+#: dg/sieve/html.py:90 dg/sieve/po.py:73
+#, python-format
+msgctxt "error message"
+msgid "environment '%(env)s' not defined by the glossary"
+msgstr ""
+
+#: dg/sieve/po.py:26
+msgctxt "subcommand description"
+msgid "Create a PO file out of the glossary."
+msgstr ""
+
+#: dg/sieve/po.py:31
+msgctxt "subcommand option description"
+msgid "Original language from the PO point of view."
+msgstr ""
+
+#: dg/sieve/po.py:35
+msgctxt "subcommand option description"
+msgid "Target language from the PO point of view."
+msgstr ""
+
+#: dg/sieve/po.py:39
+msgctxt "subcommand option description"
+msgid "Environment for which the PO file is produced."
+msgstr ""
+
+#: dg/sieve/po.py:41 dg/sieve/text_simple.py:35
+msgctxt "placeholder for parameter value"
+msgid "FILE"
+msgstr ""
+
+#: dg/sieve/po.py:43
+msgctxt "subcommand option description"
+msgid "File to output the PO content (defaults to stdout)."
+msgstr ""
+
+#: dg/sieve/po.py:46
+msgctxt "subcommand option description"
+msgid "Show descriptions only on conflicts, for concepts having terms also used to name other concepts."
+msgstr ""
+
+#: dg/sieve/po.py:63
+#, python-format
+msgctxt "error message"
+msgid "origin language '%(lang)s' not present in the glossary"
+msgstr ""
+
+#: dg/sieve/po.py:68
+#, python-format
+msgctxt "error message"
+msgid "target language '%(lang)s' not present in the glossary"
+msgstr ""
+
+#: dg/sieve/po.py:80
+msgctxt "message comment in the PO view: short label preceeding a concept description"
+msgid "desc: "
+msgstr ""
+
+#: dg/sieve/po.py:88
+msgctxt "message comment in the PO view: short label preceeding a declination"
+msgid "decl: "
+msgstr ""
+
+#: dg/sieve/po.py:107
+msgctxt "warning message"
+msgid "no concepts found for PO view that have terms in both the requested origin and target language"
+msgstr ""
+
+#: dg/sieve/po.py:180
+#, python-format
+msgctxt "header comment in the PO view (title)"
+msgid "PO view of a Divergloss glossary: %(title)s"
+msgstr ""
+
+#: dg/sieve/po.py:188
+#, python-format
+msgctxt "header comment in the PO view (subtitle)"
+msgid "languages: %(ol)s->%(tl)s, environment: %(env)s"
+msgstr ""
+
+#: dg/sieve/po.py:193
+msgctxt "header comment in the PO view (warning to user)"
+msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
+msgstr ""
+
+#: dg/sieve/sr_latin.py:21
+msgctxt "subcommand description"
+msgid "Transform Serbian Cyrillic text in the glossary into Serbian Latin."
+msgstr ""
+
+#: dg/sieve/text_simple.py:22
+msgctxt "subcommand description"
+msgid "Simple text view as a demonstration of writing views."
+msgstr ""
+
+#: dg/sieve/text_simple.py:32
+msgctxt "subcommand option description"
+msgid "Pivotal environment for the view. The glossary default environment is used if not given."
+msgstr ""
+
+#: dg/sieve/text_simple.py:37
+msgctxt "subcommand option description"
+msgid "File to output the text into (defaults to stdout)."
+msgstr ""
+
+#: dg/sieve/text_simple.py:39
+msgctxt "placeholder for parameter value"
+msgid "COLUMN"
+msgstr ""
+
+#: dg/sieve/text_simple.py:41
+msgctxt "subcommand option description"
+msgid "Wrap text after this column."
+msgstr ""
+
+#: dg/sieve/text_simple.py:57
+#, python-format
+msgctxt "error message"
+msgid "language '%(lang)s' does not exits in the glossary"
+msgstr ""
+
+#: dg/sieve/text_simple.py:63
+#, python-format
+msgctxt "error message"
+msgid "environment '%(env)s' does not exits in the glossary"
+msgstr ""
+
+#: dg/subcmd.py:132
 #, python-format
 msgctxt "error in command line"
 msgid "unknown subcommand requested in category '%(cat)s': %(cmd)s"
 msgstr ""
 
-#: dg/subcmd.py:289
+#: dg/subcmd.py:137
+#, python-format
+msgctxt "error in command line"
+msgid "unknown subcommand requested: %(cmd)s"
+msgstr ""
+
+#: dg/subcmd.py:160
+msgctxt "error message"
+msgid "requested names of subcommands from an unknown category"
+msgstr ""
+
+#: dg/subcmd.py:217
+msgctxt "error message"
+msgid "requested unknown category of subcommands"
+msgstr ""
+
+#: dg/subcmd.py:300
 #, python-format
 msgctxt "error message"
 msgid "trying to add subcommand '%(cmd)s' once again"
 msgstr ""
 
-#: dg/subcmd.py:311
+#: dg/subcmd.py:322
 #, python-format
 msgctxt "error message"
 msgid "trying to get a view for an unknown subcommand '%(cmd)s'"
 msgstr ""
 
-#: dg/subcmd.py:334
+#: dg/subcmd.py:345
 #, python-format
 msgctxt "error message"
 msgid "trying to get help for an unknown subcommand '%(cmd)s'"
 msgstr ""
 
-#: dg/subcmd.py:376
+#: dg/subcmd.py:388
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "unregistered subcommand '%(cmd)s' issued"
 msgstr ""
 
-#: dg/subcmd.py:388
+#: dg/subcmd.py:400
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "parameter '%(par)s' repeated more than once"
 msgstr ""
 
-#: dg/subcmd.py:401
+#: dg/subcmd.py:413
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "parameter '%(par)s' is a flag, no value expected"
 msgstr ""
 
-#: dg/subcmd.py:414
+#: dg/subcmd.py:426
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:427
+#: dg/subcmd.py:439
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into list of elements of expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:440
+#: dg/subcmd.py:452
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "value '%(val)s' to parameter '%(par)s' not from the admissible set: %(avals)s"
 msgstr ""
 
-#: dg/subcmd.py:449
+#: dg/subcmd.py:461
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "parameter '%(par)s' not expected in any of the issued subcommands"
 msgstr ""
 
-#: dg/subcmd.py:466
+#: dg/subcmd.py:478
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "mandatory parameter '%(par)s' to subcommand '%(cmd)s' not given"
 msgstr ""
 
-#: dg/subcmd.py:497
+#: dg/subcmd.py:509
 msgctxt "the name for an empty string as parameter value"
 msgid "<empty>"
 msgstr ""
 
-#: dg/subcmd.py:582
+#: dg/subcmd.py:594
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' different from its stated type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:589
+#: dg/subcmd.py:601
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' not from the admissible set: %(avals)s"
 msgstr ""
 
-#: dg/subcmd.py:597
+#: dg/subcmd.py:609
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' once again"
 msgstr ""
 
-#: dg/subcmd.py:605
+#: dg/subcmd.py:617
 #, python-format
 msgctxt "error message"
 msgid "suboption '%(opt)s' to subcommand '%(cmd)s' stated to be list-valued, but the default value is not given as a list"
 msgstr ""
 
-#: dg/subcmd.py:618
+#: dg/subcmd.py:633
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:625
+#: dg/subcmd.py:639
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands"
+msgstr ""
+
+#: dg/subcmd.py:647
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:680
+#: dg/subcmd.py:653
+#, python-format
+msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands"
+msgstr ""
+
+#: dg/subcmd.py:708
 msgctxt "subcommand help: somewhere near the suboption name, indicates the suboption is a flag"
 msgid "[flag]"
 msgstr ""
 
-#: dg/subcmd.py:686
+#: dg/subcmd.py:714
 msgctxt "subcommand help: default name for the suboptions' parameter; do keep uppercase"
 msgid "ARG"
 msgstr ""
 
-#: dg/subcmd.py:695
+#: dg/subcmd.py:723
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
 msgid "[default %(arg)s=%(val)s]"
 msgstr ""
 
-#: dg/subcmd.py:704
+#: dg/subcmd.py:732
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the admissible values for its argument"
 msgid "[%(arg)s is one of: %(avals)s]"
 msgstr ""
 
-#: dg/subcmd.py:719
-msgctxt "subcommand help: header"
-msgid "Subcommand:"
-msgstr ""
-
-#: dg/subcmd.py:721
+#: dg/subcmd.py:747
 #, python-format
 msgctxt "subcommand help: header"
-msgid "Subcommand (%(cat)s):"
+msgid "%(cmd)s"
 msgstr ""
 
-#: dg/subcmd.py:730
+#: dg/subcmd.py:750
+#, python-format
+msgctxt "subcommand help: header"
+msgid "%(cmd)s (%(cat)s)"
+msgstr ""
+
+#: dg/subcmd.py:759
 msgctxt "subcommand help: header"
 msgid "Mandatory parameters:"
 msgstr ""
 
-#: dg/subcmd.py:737
+#: dg/subcmd.py:766
 msgctxt "subcommand help: header"
 msgid "Optional parameters:"
 msgstr ""
@@ -441,206 +644,4 @@ msgstr ""
 #, python-format
 msgctxt "error message"
 msgid "%(cmdname)s: warning: %(msg)s"
-msgstr ""
-
-#: dg/view/html.py:24
-msgctxt "subcommand description"
-msgid "Create HTML pages out of the glossary."
-msgstr ""
-
-#: dg/view/html.py:27 dg/view/po.py:29 dg/view/po.py:33
-#: dg/view/text_simple.py:25
-msgctxt "placeholder for parameter value"
-msgid "LANGKEY"
-msgstr ""
-
-#: dg/view/html.py:29
-msgctxt "subcommand option description"
-msgid "Pivotal language for the view. If not given, there is no pivotal language."
-msgstr ""
-
-#: dg/view/html.py:32 dg/view/po.py:37 dg/view/text_simple.py:30
-msgctxt "placeholder for parameter value"
-msgid "ENVKEY"
-msgstr ""
-
-#: dg/view/html.py:34
-msgctxt "subcommand option description"
-msgid "Pivotal environment for the view. If not given, there is no pivotal environment."
-msgstr ""
-
-#: dg/view/html.py:37
-msgctxt "placeholder for parameter value"
-msgid "BASENAME"
-msgstr ""
-
-#: dg/view/html.py:39
-msgctxt "subcommand option description"
-msgid "Base name for writing generated HTML to disk, used to derive file names by chunking policy. If not given, glossary ID is used."
-msgstr ""
-
-#: dg/view/html.py:44
-msgctxt "placeholder for parameter value"
-msgid "POLICY"
-msgstr ""
-
-#: dg/view/html.py:46
-#, python-format
-msgctxt "subcommand option description"
-msgid ""
-"How to subdivide the glossary into chunks. The possible policies are:\n"
-"\n"
-"%(alpha)s: concepts alphabetically split by pages, a separate title page with main glossary data, and another page for rest of the global data.\n"
-"\n"
-"%(chlim)s: similar to '%(alpha)s', but concept pages are split based on the limit of maximum characters per page (see '%(maxch)s' option).\n"
-"\n"
-"%(none)s: no chunking, all glossary content on a single page.\n"
-msgstr ""
-
-#: dg/view/html.py:62
-msgctxt "placeholder for parameter value"
-msgid "NCHAR"
-msgstr ""
-
-#: dg/view/html.py:64
-#, python-format
-msgctxt "subcommand option description"
-msgid "The character limit when using the '%(chlim)s' chunking policy."
-msgstr ""
-
-#: dg/view/html.py:76
-msgctxt "error message"
-msgid "chunking by character count not implemented yet"
-msgstr ""
-
-#: dg/view/null.py:18
-msgctxt "subcommand description"
-msgid "Null-view, builds no view of the glossary."
-msgstr ""
-
-#: dg/view/po.py:26
-msgctxt "subcommand description"
-msgid "Create a PO file out of the glossary."
-msgstr ""
-
-#: dg/view/po.py:31
-msgctxt "subcommand option description"
-msgid "Original language from the PO point of view."
-msgstr ""
-
-#: dg/view/po.py:35
-msgctxt "subcommand option description"
-msgid "Target language from the PO point of view."
-msgstr ""
-
-#: dg/view/po.py:39
-msgctxt "subcommand option description"
-msgid "Environment for which the PO file is produced."
-msgstr ""
-
-#: dg/view/po.py:41 dg/view/text_simple.py:35
-msgctxt "placeholder for parameter value"
-msgid "FILE"
-msgstr ""
-
-#: dg/view/po.py:43
-msgctxt "subcommand option description"
-msgid "File to output the PO content (defaults to stdout)."
-msgstr ""
-
-#: dg/view/po.py:46
-msgctxt "subcommand option description"
-msgid "Show descriptions only on conflicts, for concepts having terms also used to name other concepts."
-msgstr ""
-
-#: dg/view/po.py:63
-#, python-format
-msgctxt "error message"
-msgid "origin language '%(lang)s' not present in the glossary"
-msgstr ""
-
-#: dg/view/po.py:68
-#, python-format
-msgctxt "error message"
-msgid "target language '%(lang)s' not present in the glossary"
-msgstr ""
-
-#: dg/view/po.py:73
-#, python-format
-msgctxt "error message"
-msgid "environment '%(env)s' not defined by the glossary"
-msgstr ""
-
-#: dg/view/po.py:80
-msgctxt "message comment in the PO view: short label preceeding a concept description"
-msgid "desc: "
-msgstr ""
-
-#: dg/view/po.py:88
-msgctxt "message comment in the PO view: short label preceeding a declination"
-msgid "decl: "
-msgstr ""
-
-#: dg/view/po.py:107
-msgctxt "warning message"
-msgid "no concepts found for PO view that have terms in both the requested origin and target language"
-msgstr ""
-
-#: dg/view/po.py:180
-#, python-format
-msgctxt "header comment in the PO view (title)"
-msgid "PO view of a Divergloss glossary: %(title)s"
-msgstr ""
-
-#: dg/view/po.py:188
-#, python-format
-msgctxt "header comment in the PO view (subtitle)"
-msgid "languages: %(ol)s->%(tl)s, environment: %(env)s"
-msgstr ""
-
-#: dg/view/po.py:193
-msgctxt "header comment in the PO view (warning to user)"
-msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
-msgstr ""
-
-#: dg/view/text_simple.py:22
-msgctxt "subcommand description"
-msgid "Simple text view as a demonstration of writing views."
-msgstr ""
-
-#: dg/view/text_simple.py:27
-msgctxt "subcommand option description"
-msgid "Pivotal language for the view. The glossary default language is used if not given."
-msgstr ""
-
-#: dg/view/text_simple.py:32
-msgctxt "subcommand option description"
-msgid "Pivotal environment for the view. The glossary default environment is used if not given."
-msgstr ""
-
-#: dg/view/text_simple.py:37
-msgctxt "subcommand option description"
-msgid "File to output the text into (defaults to stdout)."
-msgstr ""
-
-#: dg/view/text_simple.py:39
-msgctxt "placeholder for parameter value"
-msgid "COLUMN"
-msgstr ""
-
-#: dg/view/text_simple.py:41
-msgctxt "subcommand option description"
-msgid "Wrap text after this column."
-msgstr ""
-
-#: dg/view/text_simple.py:57
-#, python-format
-msgctxt "error message"
-msgid "language '%(lang)s' does not exits in the glossary"
-msgstr ""
-
-#: dg/view/text_simple.py:63
-#, python-format
-msgctxt "error message"
-msgid "environment '%(env)s' does not exits in the glossary"
 msgstr ""
