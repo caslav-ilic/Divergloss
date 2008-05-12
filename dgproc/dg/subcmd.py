@@ -248,6 +248,7 @@ class SubcmdHandler (object):
         fmts = []
         for pack, subcmds in help_req_bundle:
             fmts.append(self._optparsers[pack].help(subcmds))
+            fmts.append("")
         return "\n".join(fmts)
 
 
@@ -710,36 +711,37 @@ class SubcmdView (object):
             desc = self._descs[subopt]
             if desc:
                 fmt_desc = fmt_wrap(desc, indent + "    ")
-                s += fmt_desc + "\n"
+                s += fmt_desc
                 if "\n\n" in fmt_desc:
                     # Wrap current option with empty lines if
                     # the description spanned several lines.
                     s = "\n" + s + "\n"
             return s
 
-        s = ""
+        ls = []
         if not self._parent._category:
-            s += p_("subcommand help: header", "Subcommand:") + "\n"
+            ls += ["  " + p_("subcommand help: header", "%(cmd)s")
+                          % dict(cmd=self._subcmd)]
         else:
-            s += p_("subcommand help: header", "Subcommand (%(cat)s):") \
-                 % dict(cat=self._parent._category) + "\n"
-        s += "  " + self._subcmd + "\n"
+            ls += ["  " + p_("subcommand help: header", "%(cmd)s (%(cat)s)")
+                          % dict(cmd=self._subcmd, cat=self._parent._category)]
+        ls += ["  " + "-" * len(ls[-1].strip())]
         if self._desc:
-            s +=  fmt_wrap(self._desc, "    ") + "\n"
+            ls += [fmt_wrap(self._desc, "    ")]
 
         if m_subopts:
-            s += "\n"
-            s += "  " + p_("subcommand help: header",
-                           "Mandatory parameters:") + "\n"
+            ls += [""]
+            ls += ["  " + p_("subcommand help: header",
+                             "Mandatory parameters:")]
             for subopt in m_subopts:
-                s += fmt_opt(subopt, "  ")
+                ls += [fmt_opt(subopt, "  ")]
 
         if o_subopts:
-            s += "\n"
-            s += "  " + p_("subcommand help: header",
-                           "Optional parameters:") + "\n"
+            ls += [""]
+            ls += ["  " + p_("subcommand help: header",
+                             "Optional parameters:")]
             for subopt in o_subopts:
-                s += fmt_opt(subopt, "  ")
+                ls += [fmt_opt(subopt, "  ")]
 
-        return s
+        return "\n".join(ls)
 
