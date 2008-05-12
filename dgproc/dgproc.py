@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Filter and build outputs of a Divergloss XML document.
+Query and build outputs of a Divergloss XML document.
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
@@ -20,9 +20,8 @@ from dg.util import p_
 from dg.util import error
 from dg.util import lstr
 import dg.construct
-import dg.filter
-import dg.view
 import dg.subcmd
+import dg.sieve
 
 
 def main ():
@@ -40,15 +39,16 @@ def main ():
 
     # Setup options and parse the command line.
     usage = p_("command usage; do NOT translate %prog",
-               "%prog DGFILE [FILTERS] [VIEWS] [OPTIONS]")
+               "%prog [OPTIONS] [SIEVES] DGFILE")
     description = p_("command description",
-                     "Filter a Divergloss XML document and "
+                     "Query a Divergloss XML document and "
                      "build various outputs. "
                      "Also fully validates the document, "
                      "past what the DTD only can do.")
-    version = p_("command version; do NOT translate %prog",
-                 "%prog experimental\n"
-                 "Copyright 2008, Chusslove Illich <caslav.ilic@gmx.net>")
+    version = p_("command version",
+                 "%(cmd)s experimental\n"
+                 "Copyright 2008, Chusslove Illich <caslav.ilic@gmx.net>") \
+              % dict(cmd="%prog")
 
     opars = OptionParser(usage=usage, description=description, version=version)
     opars.add_option(
@@ -57,86 +57,73 @@ def main ():
         help=p_("description of cmdline option",
                 "do not check the glossary for validity"))
     opars.add_option(
-        "-f", "--filter-par",
+        "-s", "--sieve-par",
         metavar=p_("placeholder for value to cmdline option", "PARSPEC"),
-        dest="filter_par", action="append", default=[],
+        dest="sieve_par", action="append", default=[],
         help=p_("description of cmdline option",
-                "specify parameter to filters"))
+                "specify parameter to sieves"))
     opars.add_option(
-        "-w", "--view-par",
-        metavar=p_("placeholder for value to cmdline option", "PARSPEC"),
-        dest="view_par", action="append", default=[],
+        "-S", "--list-sieves",
+        action="store_true", dest="list_sieves", default=False,
         help=p_("description of cmdline option",
-                "specify parameter to views"))
+                "list available sieves and exit"))
     opars.add_option(
-        "-S", "--list-subcmd",
-        action="store_true", dest="list_subcmd", default=False,
+        "-H", "--help-sieves",
+        action="store_true", dest="help_sieves", default=False,
         help=p_("description of cmdline option",
-                "list available filters and views and exit"))
-    opars.add_option(
-        "-H", "--help-subcmd",
-        action="store_true", dest="help_subcmd", default=False,
-        help=p_("description of cmdline option",
-                "display help on filters and views and exit"))
+                "display help on sieves and exit"))
     (options, free_args) = opars.parse_args()
 
     # Register subcommands.
-    schandler = dg.subcmd.SubcmdHandler(
-        [(dg.filter, p_("category of subcommands", "filter")),
-         (dg.view, p_("category of subcommands", "view"))])
+    schandler = dg.subcmd.SubcmdHandler([(dg.sieve, None)])
 
-    if len(free_args) > 3:
+    if len(free_args) > 2:
         error(p_("error in command line", "too many free arguments"))
 
     # If any subcommand listing required, show and exit.
-    if options.list_subcmd:
-        print p_("header to listing", "Available filters:")
-        print "  " + "\n  ".join(schandler.subcmd_names(dg.filter))
-        print p_("header to listing", "Available views:")
-        print "  " + "\n  ".join(schandler.subcmd_names(dg.view))
+    if options.list_sieves:
+        print p_("header to listing", "Available sieves:")
+        print "  " + "\n  ".join(schandler.subcmd_names(dg.sieve))
         sys.exit(0)
 
-    # Collect glossary file, filters and views.
-    if len(free_args) < 1:
-        error(p_("error in command line", "no file given"))
-    dgfile = free_args[0]
-    if not os.path.isfile(dgfile):
-        error(p_("error in command line",
-                 "file '%(file)s' does not exists") % dict(file=dgfile))
+    # Collect sieves and glossary file.
+    if not options.help_sieves:
+        if len(free_args) < 1:
+            error(p_("error in command line", "no file given"))
+        dgfile = free_args.pop()
+        if not os.path.isfile(dgfile):
+            error(p_("error in command line",
+                     "file '%(file)s' does not exists") % dict(file=dgfile))
+    else:
+        free_args = free_args[:1]
 
-    # Parse filter names.
-    filter_names = ["pass"]
-    if len(free_args) >= 2:
-        filter_names = [x for x in free_args[1].split(",")]
-
-    # Parse view names.
-    # nada
-    view_names = ["null"]
-    if len(free_args) >= 3:
-        view_names = [x for x in free_args[2].split(",")]
-
-    # Create subcommands.
-    filters, views = schandler.init_subcmds(
-        [(dg.filter, filter_names, options.filter_par),
-         (dg.view, view_names, options.view_par)],
-        options)
+    # Parse sieve names.
+    sieve_names = []
+    if free_args:
+        sievespec = free_args.pop()
+        sieve_names = [x for x in sievespec.split(",")]
 
     # If help on subcommands required, show and exit.
-    if options.help_subcmd:
-        print schandler.help([(dg.filter, filter_names),
-                              (dg.view, view_names)])
+    if options.help_sieves:
+        if sieve_names:
+            print p_("header to listing", "Help on sieves:")
+            print
+            print schandler.help([(dg.sieve, sieve_names)])
+        else:
+            print p_("message", "No sieves specified to provide help on.")
         sys.exit(0)
 
-    # Construct glossary.
+    # Create subcommands.
+    sieves = schandler.make_subcmds(
+        [(dg.sieve, sieve_names, options.sieve_par)],
+        options)[0]
+
+    # Construct the glossary.
     gloss = dg.construct.from_file(dgfile, validate=options.check)
 
-    # Filter glossary.
-    for fl in filters:
-        gloss = fl.process(gloss)
-
-    # View glossary.
-    for vw in views:
-        vw.process(gloss)
+    # Sieve the glossary.
+    for sieve in sieves:
+        gloss = sieve.process(gloss)
 
 
 if __name__ == '__main__':

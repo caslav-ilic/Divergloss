@@ -104,6 +104,7 @@ class SubcmdHandler (object):
 
         # By package:
         self._packs = {} # subcommand packages (dummy true value)
+        self._mods = {} # subcommand modules by package
         self._cats = {} # subcommand categories
         self._subcmds = {} # subcommand names
         self._optparsers = {} # suboption parsers
@@ -116,6 +117,30 @@ class SubcmdHandler (object):
             self._packs[pack] = True
             self._cats[pack] = cat
             self._subcmds[pack] = subcmds
+
+            # Create option parser for subcommands in this category.
+            optparser = SuboptParser(cat)
+            self._optparsers[pack] = optparser
+
+            # Load modules for requested subcommands in this category,
+            # and fill their option parsers.
+            self._mods[pack] = {}
+            for subcmd in subcmds:
+                if subcmd not in self._subcmds[pack]:
+                    if cat:
+                        error(p_("error in command line",
+                                 "unknown subcommand requested in "
+                                 "category '%(cat)s': %(cmd)s")
+                              % dict(cat=cat, cmd=subcmd))
+                    else:
+                        error(p_("error in command line",
+                                 "unknown subcommand requested: %(cmd)s")
+                              % dict(cmd=subcmd))
+
+                mod = self._import_submod(pack, subcmd)
+                mod.fill_optparser(optparser.add_subcmd(subcmd))
+
+                self._mods[pack][subcmd] = mod
 
 
     def subcmd_names (self, pack):
@@ -138,7 +163,7 @@ class SubcmdHandler (object):
         return subcmds
 
 
-    def init_subcmds (self, subcmd_init_bundle, cmdline_options=None):
+    def make_subcmds (self, subcmd_init_bundle, cmdline_options=None):
         """
         Create subcommand objects and parse and route parameters to them.
 
@@ -187,33 +212,16 @@ class SubcmdHandler (object):
 
         for pack, subcmds, rawopts in subcmd_init_bundle:
 
-
             if pack not in self._packs:
                 error(p_("error message",
-                         "requested unknown category of subcommands: %(cat)s")
-                      % dict(cat=cat))
-
-            cat = self._cats[pack]
-            optparser = SuboptParser(cat)
-            self._optparsers[pack] = optparser
-
-            # Load modules for requested subcommands in this category.
-            mods = {}
-            for subcmd in subcmds:
-                if subcmd not in self._subcmds[pack]:
-                    error(p_("error in command line",
-                             "unknown subcommand requested in "
-                             "category '%(cat)s': %(cmd)s")
-                          % dict(cat=cat, cmd=subcmd))
-
-                mod = self._import_submod(pack, subcmd)
-                mod.fill_optparser(optparser.add_subcmd(subcmd))
-                mods[subcmd] = mod
+                         "requested unknown category of subcommands"))
 
             # Parse options in this category.
+            optparser = self._optparsers[pack]
             subopts = optparser.parse(rawopts, subcmds)
 
             # Create subcommand objects in this category.
+            mods = self._mods[pack]
             scobjs.append([])
             for subcmd in subcmds:
                 sc = mods[subcmd].Subcommand(subopts[subcmd], cmdline_options)
@@ -248,7 +256,6 @@ class SubcmdHandler (object):
         fmts = []
         for pack, subcmds in help_req_bundle:
             fmts.append(self._optparsers[pack].help(subcmds))
-            fmts.append("")
         return "\n".join(fmts)
 
 
@@ -338,6 +345,7 @@ class SuboptParser (object):
                          "trying to get help for an unknown "
                          "subcommand '%(cmd)s'") % dict(cmd=subcmd))
             fmts.append(scview.help())
+            fmts.append("")
 
         return "\n".join(fmts)
 
@@ -617,19 +625,35 @@ class SubcmdView (object):
             general_otype = scview._otypes.get(subopt, None)
             general_islist = scview._islists.get(subopt, None)
 
+        cat = self._parent._category
+
         if general_otype is not None and otype is not general_otype:
-            error(p_("error message",
-                     "trying to add suboption '%(opt)s' to "
-                     "subcommand '%(cmd)s' with a type different from "
-                     "other subcommands in the category '%(cat)s'")
-                  % dict(opt=subopt, cmd=subcmd, cat=self._parent._category))
+            if cat:
+                error(p_("error message",
+                         "trying to add suboption '%(opt)s' to "
+                         "subcommand '%(cmd)s' with a type different from "
+                         "other subcommands in the category '%(cat)s'")
+                      % dict(opt=subopt, cmd=subcmd, cat=cat))
+            else:
+                error(p_("error message",
+                         "trying to add suboption '%(opt)s' to "
+                         "subcommand '%(cmd)s' with a type different from "
+                         "other subcommands")
+                      % dict(opt=subopt, cmd=subcmd))
 
         if general_islist is not None and islist is not general_islist:
-            error(p_("error message",
-                     "trying to add suboption '%(opt)s' to "
-                     "subcommand '%(cmd)s' with a list-indicator different "
-                     "from other subcommands in the category '%(cat)s'")
-                  % dict(opt=subopt, cmd=subcmd, cat=self._parent._category))
+            if cat:
+                error(p_("error message",
+                         "trying to add suboption '%(opt)s' to "
+                         "subcommand '%(cmd)s' with a list-indicator different "
+                         "from other subcommands in the category '%(cat)s'")
+                      % dict(opt=subopt, cmd=subcmd, cat=cat))
+            else:
+                error(p_("error message",
+                         "trying to add suboption '%(opt)s' to "
+                         "subcommand '%(cmd)s' with a list-indicator different "
+                         "from other subcommands")
+                      % dict(opt=subopt, cmd=subcmd))
 
 
         self._otypes[subopt] = otype
@@ -725,7 +749,7 @@ class SubcmdView (object):
         else:
             ls += ["  " + p_("subcommand help: header", "%(cmd)s (%(cat)s)")
                           % dict(cmd=self._subcmd, cat=self._parent._category)]
-        ls += ["  " + "-" * len(ls[-1].strip())]
+        ls += ["  " + "=" * len(ls[-1].strip())]
         if self._desc:
             ls += [fmt_wrap(self._desc, "    ")]
 
