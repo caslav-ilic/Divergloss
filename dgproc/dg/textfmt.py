@@ -129,7 +129,7 @@ class TextFormatterPlain (object):
 
     def _format_sub (self, text):
 
-        fmt_text = ""
+        fmt_text = []
         for seg in text:
             if isinstance(seg, Para):
                 fmt_seg = self._format_sub(seg) + "\x04\x04"
@@ -163,9 +163,9 @@ class TextFormatterPlain (object):
                 # Must be a string
                 fmt_seg = seg
 
-            fmt_text += fmt_seg
+            fmt_text.append(fmt_seg)
 
-        return fmt_text
+        return "".join(fmt_text)
 
 
 class TextFormatterHtml (object):
@@ -277,7 +277,7 @@ class TextFormatterHtml (object):
 
     def _format_sub (self, text):
 
-        fmt_text = ""
+        fmt_text = []
         for seg in text:
             if isinstance(seg, Para):
                 fmt_seg = "<p>%s</p>" % self._format_sub(seg)
@@ -318,8 +318,8 @@ class TextFormatterHtml (object):
                 # Must be a string.
                 fmt_seg = seg
 
-            fmt_text += fmt_seg
+            fmt_text.append(fmt_seg)
 
-        return fmt_text
+        return "".join(fmt_text)
 
 
