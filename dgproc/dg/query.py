@@ -90,3 +90,27 @@ def descendant_nodes (gnode, gtype=None):
 
     return descendants
 
+
+def descendant_dsets (gnode):
+    """
+    Get descendent d-sets of a glossary node in a flat list.
+
+    @param gnode: a glossary node
+    @type gnode: L{Gnode}
+
+    @return: descendant dsets
+    @rtype: list of L{Dset}
+    """
+
+    dsets = []
+    for attrname, attr in gnode.__dict__.iteritems():
+        if attrname.startswith("_") or attrname == "parent":
+            continue
+        if isinstance(attr, Dset):
+            dsets.append(attr)
+
+    for child in child_nodes(gnode):
+        dsets.extend(descendant_dsets(child))
+
+    return dsets
+
