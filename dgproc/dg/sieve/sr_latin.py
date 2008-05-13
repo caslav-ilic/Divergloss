@@ -44,6 +44,8 @@ class Subcommand (object):
                 gnode.lang = srlatkey
                 if hasattr(gnode, "text"):
                     gnode.text = self._conv_text(gnode.text)
+        if gloss.lang == srkey:
+            gloss.lang = srlatkey
 
         # Convert Wikipedia root links.
         for gnode in dg.query.descendant_nodes(gloss, dg.construct.Extroot):
