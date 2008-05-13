@@ -715,7 +715,7 @@ class SubcmdView (object):
                 s += ":%s" % metavar
             defval = self._defvals[subopt]
             admvals = self._admvals[subopt]
-            if otype is not bool and str(defval):
+            if otype is not bool and defval is not None and str(defval):
                 cpos = len(s) - s.rfind("\n") - 1
                 s += " "*1 + p_("subcommand help: somewhere near the "
                                 "suboption name, states the default value "
