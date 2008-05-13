@@ -15,6 +15,7 @@ import time
 from dg.util import p_
 from dg.util import error, warning
 from dg.textfmt import TextFormatterPlain
+from dg.util import langsort_tuples
 from dg.util import lstr
 
 
@@ -107,7 +108,7 @@ class Subcommand (object):
                        "no concepts found for PO view that have terms in both "
                        "the requested origin and target language"))
 
-        ordering_links.sort(lambda x, y: cmp(x[0], y[0]))
+        langsort_tuples(ordering_links, 0, olang)
 
         if self._options.condesc:
             # Collect keys of all concepts which have same terms for different

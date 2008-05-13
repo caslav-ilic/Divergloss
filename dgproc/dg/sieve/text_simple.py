@@ -11,6 +11,7 @@ import sys
 
 from dg.util import p_
 from dg.util import error
+from dg.util import langsort_tuples
 from dg.textfmt import TextFormatterPlain
 
 
@@ -63,6 +64,9 @@ class Subcommand (object):
                      "environment '%(env)s' does not exits in the glossary")
                   % dict(env=env))
 
+        # Text formatter for selected language and environment.
+        tfm = TextFormatterPlain(gloss, lang=lang, env=env)
+
         # Select all concepts which have a term in this langenv.
         # Collect terms for lexicographical ordering.
         concepts = {}
@@ -72,13 +76,12 @@ class Subcommand (object):
             if terms:
                 concepts[ckey] = concept
                 # Use first of the synonymous terms for ordering.
-                ordering_links.append((terms[0], ckey))
+                ordering_links.append((tfm(terms[0].nom.text), ckey))
 
-        ordering_links.sort(lambda x, y: cmp(x[0], y[0]))
+        langsort_tuples(ordering_links, 0, lang)
 
         # Format glossary metadata for output.
         fmt_header_list = []
-        tfm = TextFormatterPlain(gloss, lang=lang, env=env)
         fmt_title = tfm(gloss.title(lang, env)[0].text)
         if env is not None:
             fmt_envname = tfm(gloss.environments[env].name(lang, env)[0].text)
