@@ -95,3 +95,16 @@ class Dset (object):
             return None
         return self._data[lang].keys()
 
+
+    def rename_lang (self, olang, nlang):
+
+        if olang in self._data:
+            self._data[nlang] = self._data.pop(olang)
+
+
+    def rename_env (self, oenv, nenv):
+
+        for lang, envs in self._data.iteritems():
+            if oenv in envs:
+                envs[nenv] = envs.pop(oenv)
+
