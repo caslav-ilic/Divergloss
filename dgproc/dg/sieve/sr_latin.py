@@ -31,14 +31,19 @@ class Subcommand (object):
 
     def __call__ (self, gloss):
 
+        srkey = "sr"
+        srlatkey = "sr@latin"
+
         # Do nothing if Serbian is not one of the glossary languages.
-        if "sr" not in gloss.languages:
+        if srkey not in gloss.languages:
             return gloss
 
         # Convert text in all nodes where it exists and is in Serbian.
         for gnode in dg.query.descendant_nodes(gloss):
-            if hasattr(gnode, "text") and getattr(gnode, "lang", "") == "sr":
-                gnode.text = self._conv_text(gnode.text)
+            if getattr(gnode, "lang", "") == srkey:
+                gnode.lang = srlatkey
+                if hasattr(gnode, "text"):
+                    gnode.text = self._conv_text(gnode.text)
 
         # Convert Wikipedia root links.
         for gnode in dg.query.descendant_nodes(gloss, dg.construct.Extroot):
@@ -46,6 +51,15 @@ class Subcommand (object):
                 url = gnode.rooturl.text[i]
                 if "sr.wikipedia" in url:
                     gnode.rooturl.text[i] = url.replace("sr-ec", "sr-el")
+
+        # Convert language ID of Serbian to Serbian Latin.
+        serbian = gloss.languages.pop(srkey)
+        serbian.id = srlatkey
+        gloss.languages[srlatkey] = serbian
+
+        # Convert language ID in all d-sets too.
+        for dset in dg.query.descendant_dsets(gloss):
+            dset.rename_lang(srkey, srlatkey)
 
         return gloss
 
