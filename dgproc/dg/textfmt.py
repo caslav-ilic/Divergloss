@@ -384,3 +384,20 @@ def wtext (text, tag, attrs=None):
 
     return stag(tag, attrs) + text + etag(tag)
 
+
+def itext (indent, text):
+    """
+    Indent text possibly containing internal newlines.
+
+    @param indent: line indent
+    @type indent: string
+    @param text: text to indent
+    @type text: string
+
+    @return: indented text
+    @rtype: string
+    """
+
+    lines = text.split("\n")
+    return indent + ("\n" + indent).join(lines)
+
