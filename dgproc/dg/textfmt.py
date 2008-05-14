@@ -207,8 +207,8 @@ class TextFormatterHtml (object):
         @param wtag: tag to wrap the resulting text with
         @type wtag: string or C{None}
 
-        @param wattrs: attributes to the wrapping tag, as (name, value) pairs
-        @type wattrs: list of tuples or C{None}
+        @param wattrs: attributes to the wrapping tag, as name->value mapping
+        @type wattrs: dict or C{None}
 
         @param refbase: mapping of concept keys to source pages
         @type refbase: dict of string:string
@@ -245,8 +245,8 @@ class TextFormatterHtml (object):
         @param wtag: tag to wrap the resulting text with
         @type wtag: string or C{None}
 
-        @param wattrs: attributes to the wrapping tag, as (name, value) pairs
-        @type wattrs: list of tuples or C{None}
+        @param wattrs: attributes to the wrapping tag, as name->value mapping
+        @type wattrs: dict or C{None}
         """
 
         # Basic format, resolve tags.
@@ -268,9 +268,7 @@ class TextFormatterHtml (object):
         wattrs = wattrs or self._wattrs
         if wtag:
             fmt_wattrs = ""
-            if wattrs:
-                fmt_wattrs = "".join([" %s='%s'" % x for x in wattrs])
-            fmt_text = "<%s%s>%s</%s>" % (wtag, fmt_wattrs, fmt_text, wtag)
+            fmt_text = wtext(fmt_text, wtag, wattrs)
 
         return fmt_text
 
@@ -280,15 +278,15 @@ class TextFormatterHtml (object):
         fmt_text = []
         for seg in text:
             if isinstance(seg, Para):
-                fmt_seg = "<p>%s</p>" % self._format_sub(seg)
+                fmt_seg = wtext(self._format_sub(seg), "p")
             elif isinstance(seg, Ref):
                 if self._refbase is None or seg.c in self._refbase:
                     if self._refbase is None:
                         target = "#%s" % seg.c
                     else:
                         target = "%s#%s" % (self._refbase[seg.c], seg.c)
-                    fmt_seg =   "<a class='cref' href='%s'>%s</a>" \
-                              % (target, self._format_sub(seg))
+                    fmt_seg = wtext(self._format_sub(seg),
+                                    "a", {"class":"cref", "href":target})
                 else:
                     fmt_seg = self._format_sub(seg)
             elif isinstance(seg, Em):
@@ -322,4 +320,58 @@ class TextFormatterHtml (object):
 
         return "".join(fmt_text)
 
+
+def stag (tag, attrs=None):
+    """
+    Format starting tag.
+
+    @param tag: tag name
+    @type tag: string
+    @param attrs: attributes and their values
+    @type attrs: dict or C{None}
+
+    @return: formatted starting tag
+    @rtype: string
+    """
+
+    fmt_attr = ""
+    if attrs is not None:
+        # FIXME: Escape attribute values.
+        atts_vals = attrs.items()
+        atts_vals.sort(lambda x, y: cmp(x[0], y[0]))
+        fmt_attr = "".join([" %s='%s'" % x for x in atts_vals])
+
+    return "<%s%s>" % (tag, fmt_attr)
+
+
+def etag (tag):
+    """
+    Format ending tag.
+
+    @param tag: tag name
+    @type tag: string
+
+    @return: formatted ending tag
+    @rtype: string
+    """
+
+    return "</%s>" % tag
+
+
+def wtext (text, tag, attrs=None):
+    """
+    Wrap text with a tag.
+
+    @param tag: tag name
+    @type tag: string
+    @param text: text to wrap
+    @type text: string
+    @param attrs: attributes and their values
+    @type attrs: dict or C{None}
+
+    @return: text wrapped in tag
+    @rtype: string
+    """
+
+    return stag(tag, attrs) + text + etag(tag)
 
