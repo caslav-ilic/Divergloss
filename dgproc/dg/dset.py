@@ -93,7 +93,17 @@ class Dset (object):
 
         if lang not in self._data:
             return None
-        return self._data[lang].keys()
+
+        # Must collect also the environments close to this one.
+        envs = []
+        for env in self._data[lang]:
+            if env not in envs:
+                envs.append(env)
+            for env2, environment in self.gloss.environments.iteritems():
+                if env in environment.closeto and env2 not in envs:
+                    envs.append(env2)
+
+        return envs
 
 
     def rename_lang (self, olang, nlang):
