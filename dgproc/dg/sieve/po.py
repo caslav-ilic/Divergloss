@@ -101,7 +101,7 @@ class Subcommand (object):
                 concepts[ckey] = concept
                 # Use first of the synonymous origin terms for ordering.
                 # Must format it to plain text beforehand.
-                ordering_links.append((tft(oterms[0].nom.text), ckey))
+                ordering_links.append((tft(oterms[0].nom.text).lower(), ckey))
 
         if not concepts:
             warning(p_("warning message",

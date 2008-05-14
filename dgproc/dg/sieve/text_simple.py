@@ -76,7 +76,7 @@ class Subcommand (object):
             if terms:
                 concepts[ckey] = concept
                 # Use first of the synonymous terms for ordering.
-                ordering_links.append((tfm(terms[0].nom.text), ckey))
+                ordering_links.append((tfm(terms[0].nom.text).lower(), ckey))
 
         langsort_tuples(ordering_links, 0, lang)
 
