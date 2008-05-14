@@ -22,3 +22,14 @@ except IOError:
 # Path to DTDs.
 _dtd_dir = os.path.join(os.path.dirname(__path__[0]), "dtd") # FIXME
 
+
+def rootdir():
+    """
+    Get root directory of Dg installation.
+
+    @return: absolute directory path
+    @rtype: string
+    """
+
+    return __path__[0]
+
