@@ -173,3 +173,23 @@ def lstr (obj):
     cmdlenc = locale.getdefaultlocale()[1]
     return repr(obj).decode("unicode_escape").encode(cmdlenc)
 
+
+def mkdirpath (dirpath):
+    """
+    Make all the directories in the path which do not exist yet.
+
+    Like shell's C{mkdir -p}.
+
+    @param dirpath: the directory path to create
+    @type dirpath: string
+    """
+
+    if os.path.isdir(dirpath):
+        return
+
+    incpath = ""
+    for subdir in os.path.normpath(dirpath).split(os.path.sep):
+        incpath = os.path.join(incpath, subdir)
+        if not os.path.isdir(incpath):
+            os.mkdir(incpath)
+
