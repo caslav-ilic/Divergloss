@@ -233,6 +233,8 @@ class TextFormatterHtml (object):
         Prefix/suffix and wrapping given by the constructor may be overriden
         here. This is useful e.g. for lists.
 
+        The formatted text is stripped of leading and trailing whitespace.
+
         @param text: the text to be formatted
         @type text: instance of C{Text}
 
@@ -263,14 +265,21 @@ class TextFormatterHtml (object):
         # Strip superfluous whitespace.
         fmt_text = re.sub("\s+", " ", fmt_text).strip()
 
+        # Split into lines by some closing tags.
+        tmp = re.sub(r"(</(p|ul|li)>)", "\\1\n", fmt_text).strip()
+        fmt_lines = [x.strip() for x in tmp.split("\n")]
+
         # Wrap if requested.
         wtag = wtag or self._wtag
         wattrs = wattrs or self._wattrs
         if wtag:
-            fmt_wattrs = ""
-            fmt_text = wtext(fmt_text, wtag, wattrs)
+            if len(fmt_lines) > 1:
+                fmt_lines.insert(0, stag(wtag, wattrs))
+                fmt_lines.append(etag(wtag))
+            else:
+                fmt_lines[0] = wtext(wtag, fmt_lines[0], wattrs)
 
-        return fmt_text
+        return "\n".join(fmt_lines)
 
 
     def _format_sub (self, text):
