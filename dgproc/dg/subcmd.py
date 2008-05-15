@@ -589,11 +589,19 @@ class SubcmdView (object):
         @type desc: string or C{None}
         """
 
-        if defval is not None and not isinstance(defval, otype):
+        if defval is not None and not islist and not isinstance(defval, otype):
             error(p_("error message",
                      "trying to add suboption '%(opt)s' to "
                      "subcommand '%(cmd)s' with default value '%(val)s' "
                      "different from its stated type '%(type)s'")
+                  % dict(opt=subopt, cmd=self._subcmd, val=defval, type=otype))
+
+        if defval is not None and islist and not _isinstance_els(defval, otype):
+            error(p_("error message",
+                     "trying to add suboption '%(opt)s' to "
+                     "subcommand '%(cmd)s' with default value '%(val)s' "
+                     "which contains some elements different from their "
+                     "stated type '%(type)s'")
                   % dict(opt=subopt, cmd=self._subcmd, val=defval, type=otype))
 
         if defval is not None and admvals is not None and defval not in admvals:
@@ -610,9 +618,7 @@ class SubcmdView (object):
                      "'%(cmd)s' once again")
                   % dict(opt=subopt, cmd=self._subcmd))
 
-        if islist and defval is None:
-            defval = []
-        if islist and not isinstance(defval, (tuple, list)):
+        if islist and not isinstance(defval, (type(None), tuple, list)):
             error(p_("error message",
                      "suboption '%(opt)s' to subcommand '%(cmd)s' "
                      "stated to be list-valued, but the default value "
@@ -768,4 +774,13 @@ class SubcmdView (object):
                 ls += [fmt_opt(subopt, "  ")]
 
         return "\n".join(ls)
+
+
+# Check if all elements in a list are instances of given type
+def _isinstance_els (lst, typ):
+
+    for el in lst:
+        if not isinstance(el, typ):
+            return False
+    return True
 
