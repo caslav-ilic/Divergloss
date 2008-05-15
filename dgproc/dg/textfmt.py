@@ -414,3 +414,45 @@ def itext (indent, text, strip=False, empty=False):
 
     return "\n".join(nlines)
 
+
+class LineAccumulator (list):
+    """
+    A list specialized for accumulation of text lines.
+    """
+
+    def __init__ (self, indent="  ", ilevel=0, strip=False, empty=False):
+        """
+        Constructor.
+
+        @param indent: line indent per level
+        @type indent: string
+        @param ilevel: base indenting level
+        @type ilevel: int >= 0
+        @param strip: whether to strip lines before indenting
+        @type strip: bool
+        @param empty: whether to indent empty lines too
+        @type empty: bool
+        """
+
+        self._indent = indent
+        self._ilevel = ilevel
+        self._strip = strip
+        self._empty = empty
+
+
+    def __call__ (self, text="", level=0):
+        """
+        Accumulate line of text, with given indent level.
+
+        The indent level is added to the base level given to the constructor.
+        The newline is added to the text.
+
+        @param text: text to accumulate
+        @type text: string
+        @param level: indenting level
+        @type level: int >= 0
+        """
+
+        cindent = self._indent * (self._ilevel + level)
+        self.append(itext(cindent, text, self._strip, self._empty) + "\n")
+
