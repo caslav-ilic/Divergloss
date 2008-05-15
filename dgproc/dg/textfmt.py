@@ -385,7 +385,7 @@ def wtext (text, tag, attrs=None):
     return stag(tag, attrs) + text + etag(tag)
 
 
-def itext (indent, text):
+def itext (indent, text, strip=False, empty=False):
     """
     Indent text possibly containing internal newlines.
 
@@ -393,11 +393,24 @@ def itext (indent, text):
     @type indent: string
     @param text: text to indent
     @type text: string
+    @param strip: whether to strip lines before indenting
+    @type strip: bool
+    @param empty: whether to indent empty lines too
+    @type empty: bool
 
     @return: indented text
     @rtype: string
     """
 
     lines = text.split("\n")
-    return indent + ("\n" + indent).join(lines)
+
+    nlines = []
+    for line in lines:
+        if strip:
+            line = line.strip()
+        if empty or line.strip():
+            line = indent + line
+        nlines.append(line)
+
+    return "\n".join(nlines)
 
