@@ -89,6 +89,9 @@ class TextFormatterPlain (object):
 
         @param suffix: overriding suffix for the text
         @type suffix: string or C{None}
+
+        @return: formatted plain text
+        @rtype: string
         """
 
         # Basic format, resolve tags.
@@ -249,6 +252,9 @@ class TextFormatterHtml (object):
 
         @param wattrs: attributes to the wrapping tag, as name->value mapping
         @type wattrs: dict or C{None}
+
+        @return: formatted HTML text
+        @rtype: string
         """
 
         # Basic format, resolve tags.
