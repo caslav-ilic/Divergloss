@@ -1105,7 +1105,8 @@ def _res_embsel_norm_text (text):
     ntext[:] = []
     envs = set()
 
-    for seg in text:
+    for i in range(len(text)):
+        seg = text[i]
         if isinstance(seg, Text):
             # Sublist of segments.
             subntext, subenvs = _res_embsel_norm_text(seg)
@@ -1117,6 +1118,7 @@ def _res_embsel_norm_text (text):
                 locntext, locenvs = _res_embsel_parse_one(seg)
                 ntext.extend(locntext)
                 envs.update(locenvs)
+                text[i] = seg.replace("~~", "~") # unescape segment
             else:
                 # A clean string.
                 ntext.append(seg)
