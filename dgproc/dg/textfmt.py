@@ -9,6 +9,7 @@ Format text in glossary for different outputs.
 
 import re
 from textwrap import TextWrapper
+import copy
 
 from dg.util import p_
 from dg.construct import Text, Para, Ref, Em, Ol
@@ -421,9 +422,14 @@ def itext (indent, text, strip=False, empty=False):
     return "\n".join(nlines)
 
 
-class LineAccumulator (list):
+class LineAccumulator (object):
     """
-    A list specialized for accumulation of text lines.
+    An accumulator of lines of text.
+
+    The accumulated lines are reached through the C{lines} member variable.
+
+    @ivar lines: stored lines
+    @type lines: list of strings
     """
 
     def __init__ (self, indent="  ", ilevel=0, strip=False, empty=False):
@@ -445,6 +451,8 @@ class LineAccumulator (list):
         self._strip = strip
         self._empty = empty
 
+        self.lines = []
+
 
     def __call__ (self, text="", level=0):
         """
@@ -460,5 +468,24 @@ class LineAccumulator (list):
         """
 
         cindent = self._indent * (self._ilevel + level)
-        self.append(itext(cindent, text, self._strip, self._empty) + "\n")
+        text = itext(cindent, text, self._strip, self._empty)
+        self.lines.append(text + "\n")
+
+
+    def newind (self, dlevel=1):
+        """
+        A new accumulator with same line storage but different
+        base indent level.
+
+        @param dlevel: increase in indent level
+        @type dlevel: int
+
+        @return: accumulator with different indent level
+        @rtype: L{LineAccumulator}
+        """
+
+        acc = copy.copy(self)
+        acc._ilevel += dlevel
+        acc.lines = self.lines
+        return acc
 
