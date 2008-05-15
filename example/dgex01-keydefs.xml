@@ -3,11 +3,11 @@
     <languages>
         <language id="sr">
             <name>српски</name>
-            <shortname>ср.</shortname>
+            <shortname>срп.</shortname>
         </language>
         <language id="en">
             <name>енглески</name>
-            <shortname>ен.</shortname>
+            <shortname>енгл.</shortname>
         </language>
     </languages>
 

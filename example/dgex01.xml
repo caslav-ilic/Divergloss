@@ -62,7 +62,7 @@
             <term env="ooo fed moz">убацити</term>
             <term env="x" src="rmk">унети</term>
             <term env="x" src="rmk">пренети</term>
-            <term>налепити</term>
+            <term env="x">налепити</term>
         </concept>
 
         <concept id="clipboard"
