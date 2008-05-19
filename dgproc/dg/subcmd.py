@@ -777,10 +777,14 @@ class SubcmdView (object):
 
 
 # Check if all elements in a list are instances of given type
+#
+# Args: 
+#   lst : list [T]
+#   typ : type
+# Returns:
+#   True if C{lst} is empty or all instances belong to the type C{typ}
+#   False otherwise.
 def _isinstance_els (lst, typ):
 
-    for el in lst:
-        if not isinstance(el, typ):
-            return False
-    return True
+    return reduce(lambda x,y : x and isinstance(y,typ), lst, True)
 
