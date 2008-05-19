@@ -10,19 +10,6 @@ Module for handling Divergloss XML glossaries.
 
 import os
 
-
-# Global translation object, used internally (only calls exposed in dg.util).
-_mo_dir = os.path.join(os.path.dirname(__path__[0]), "mo") # FIXME
-import gettext
-try:
-    _tr = gettext.translation("dgproc", _mo_dir)
-except IOError:
-    _tr = gettext.NullTranslations()
-
-# Path to DTDs.
-_dtd_dir = os.path.join(os.path.dirname(__path__[0]), "dtd") # FIXME
-
-
 def rootdir():
     """
     Get root directory of Dg installation.
@@ -32,4 +19,18 @@ def rootdir():
     """
 
     return __path__[0]
+
+# Global translation object, used internally (only calls exposed in dg.util).
+_mo_dir = os.path.join(os.path.dirname(rootdir()), "mo") # FIXME
+import gettext
+try:
+    _tr = gettext.translation("dgproc", _mo_dir)
+except IOError:
+    _tr = gettext.NullTranslations()
+
+# Path to DTDs.
+_dtd_dir = os.path.join(os.path.dirname(rootdir()), "dtd") # FIXME
+
+
+
 
