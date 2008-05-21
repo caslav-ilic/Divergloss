@@ -178,8 +178,8 @@ class TextFormatterHtml (object):
     """
 
     def __init__ (self, gloss, lang=None, env=None,
-                        prefix=None, suffix=None, wtag=None, wattrs=None,
-                        refbase=None):
+                        prefix=None, suffix=None, refbase=None,
+                        wtag=None, wattrs=None, wcond=True):
         """
         Constructor.
 
@@ -208,14 +208,17 @@ class TextFormatterHtml (object):
         @param suffix: suffix to add to the text
         @type suffix: string or C{None}
 
+        @param refbase: mapping of concept keys to source pages
+        @type refbase: dict of string:string
+
         @param wtag: tag to wrap the resulting text with
         @type wtag: string or C{None}
 
         @param wattrs: attributes to the wrapping tag, as name->value mapping
         @type wattrs: dict or C{None}
 
-        @param refbase: mapping of concept keys to source pages
-        @type refbase: dict of string:string
+        @param wcond: add wrapping tag only if not wrapped with it as it is
+        @type wcond: bool
         """
 
         self._gloss = gloss
@@ -226,11 +229,13 @@ class TextFormatterHtml (object):
         self._suffix = suffix
         self._wtag = wtag
         self._wattrs = wattrs
+        self._wcond = wcond
 
         self._refbase = refbase
 
 
-    def __call__ (self, text, prefix=None, suffix=None, wtag=None, wattrs=None):
+    def __call__ (self, text, prefix=None, suffix=None,
+                  wtag=None, wattrs=None, wcond=None):
         """
         Format the text.
 
@@ -253,6 +258,9 @@ class TextFormatterHtml (object):
 
         @param wattrs: attributes to the wrapping tag, as name->value mapping
         @type wattrs: dict or C{None}
+
+        @param wcond: add wrapping tag only if not wrapped with it as it is
+        @type wcond: bool or C{None}
 
         @return: formatted HTML text
         @rtype: string
@@ -279,12 +287,14 @@ class TextFormatterHtml (object):
         # Wrap if requested.
         wtag = wtag or self._wtag
         wattrs = wattrs or self._wattrs
-        if wtag:
+        if wcond is None:
+            wcond = self._wcond
+        if wtag and (not wcond or not fmt_text.startswith("<" + wtag)):
             if len(fmt_lines) > 1:
                 fmt_lines.insert(0, stag(wtag, wattrs))
                 fmt_lines.append(etag(wtag))
             else:
-                fmt_lines[0] = wtext(wtag, fmt_lines[0], wattrs)
+                fmt_lines[0] = wtext(fmt_lines[0], wtag, wattrs)
 
         return "\n".join(fmt_lines)
 
