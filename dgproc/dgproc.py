@@ -11,10 +11,7 @@ Query and build outputs of a Divergloss XML document.
 import sys, os, locale, mimetypes
 from optparse import OptionParser
 
-if not "PYTHONPATH" in os.environ:
-    os.environ["PYTHONPATH"] = ""
-os.environ["PYTHONPATH"] = (  os.path.dirname(sys.argv[0]) + ":"
-                            + os.environ["PYTHONPATH"])
+sys.path.append(os.path.dirname(sys.argv[0]))
 
 from dg.util import p_
 from dg.util import error
