@@ -1074,7 +1074,7 @@ def _res_embsel (gloss, obj):
     # Normalize text: each embedded selector is turned into its own segment
     # of the text, a dictionary of env/string;
     # all encountered environments are reported.
-    ntext, envs = _res_embsel_norm_text(obj.text)
+    ntext, envs = _res_embsel_norm_text(obj.text, obj.env)
     if not envs:
         return [obj]
 
@@ -1099,7 +1099,7 @@ def _res_embsel (gloss, obj):
     return robjs
 
 
-def _res_embsel_norm_text (text):
+def _res_embsel_norm_text (text, denvs):
 
     ntext = copy.copy(text)
     ntext[:] = []
@@ -1109,13 +1109,13 @@ def _res_embsel_norm_text (text):
         seg = text[i]
         if isinstance(seg, Text):
             # Sublist of segments.
-            subntext, subenvs = _res_embsel_norm_text(seg)
+            subntext, subenvs = _res_embsel_norm_text(seg, denvs)
             ntext.append(subntext)
             envs.update(subenvs)
         else:
             if "~" in seg:
                 # Split each embedded selector into an env/string dictionary.
-                locntext, locenvs = _res_embsel_parse_one(seg)
+                locntext, locenvs = _res_embsel_parse_one(seg, denvs)
                 ntext.extend(locntext)
                 envs.update(locenvs)
                 text[i] = seg.replace("~~", "~") # unescape segment
@@ -1126,7 +1126,7 @@ def _res_embsel_norm_text (text):
     return ntext, envs
 
 
-def _res_embsel_parse_one (seg):
+def _res_embsel_parse_one (seg, denvs):
 
     ntext = Text()
     envs = set()
@@ -1155,7 +1155,7 @@ def _res_embsel_parse_one (seg):
                 cenvs = eseg[:pc].split()
                 cseg = eseg[pc+1:]
             else:
-                cenvs = []
+                cenvs = denvs
                 cseg = eseg
 
             repenvs = locenvs.intersection(cenvs)
