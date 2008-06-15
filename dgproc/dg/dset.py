@@ -60,7 +60,7 @@ class Dset (object):
             env = self._parent_att("env", [None])[0]
 
         if lang not in self._data:
-            return None
+            return []
 
         if env not in self._data[lang] and self.gloss.environments:
             # Try to select environment by closeness.
@@ -71,7 +71,7 @@ class Dset (object):
                     break
 
         if env not in self._data[lang]:
-            return None
+            return []
 
         return self._data[lang][env]
 
