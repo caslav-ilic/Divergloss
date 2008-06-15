@@ -472,14 +472,24 @@ class LineAccumulator (object):
         The newline is added to the text.
 
         @param text: text to accumulate
-        @type text: string
+        @type text: string, list of strings, or another L{LineAccumulator}
         @param level: indenting level
         @type level: int >= 0
         """
 
-        cindent = self._indent * (self._ilevel + level)
-        text = itext(cindent, text, self._strip, self._empty)
-        self.lines.append(text + "\n")
+        if isinstance(text, LineAccumulator):
+            lines = text.lines
+        elif isinstance(text, (str, unicode)):
+            lines = [text]
+        else:
+            lines = list(text)
+
+        for text in lines:
+            cindent = self._indent * (self._ilevel + level)
+            text = itext(cindent, text, self._strip, self._empty)
+            if not text.endswith("\n"):
+                text += "\n"
+            self.lines.append(text)
 
 
     def newind (self, dlevel=1):
