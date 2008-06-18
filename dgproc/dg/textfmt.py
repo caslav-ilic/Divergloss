@@ -179,7 +179,8 @@ class TextFormatterHtml (object):
 
     def __init__ (self, gloss, lang=None, env=None,
                         prefix=None, suffix=None, refbase=None,
-                        wtag=None, wattrs=None, wcond=True):
+                        wtag=None, wattrs=None, wcond=True,
+                        pclass=None):
         """
         Constructor.
 
@@ -219,6 +220,9 @@ class TextFormatterHtml (object):
 
         @param wcond: add wrapping tag only if not wrapped with it as it is
         @type wcond: bool
+
+        @param pclass: class attribute to assign to paragraphs
+        @type pclass: string or C{None}
         """
 
         self._gloss = gloss
@@ -230,12 +234,14 @@ class TextFormatterHtml (object):
         self._wtag = wtag
         self._wattrs = wattrs
         self._wcond = wcond
+        self._pclass = pclass
 
         self._refbase = refbase
 
 
     def __call__ (self, text, prefix=None, suffix=None,
-                  wtag=None, wattrs=None, wcond=None):
+                  wtag=None, wattrs=None, wcond=None,
+                  pclass=None):
         """
         Format the text.
 
@@ -262,12 +268,16 @@ class TextFormatterHtml (object):
         @param wcond: add wrapping tag only if not wrapped with it as it is
         @type wcond: bool or C{None}
 
+        @param pclass: class attribute to assign to paragraphs
+        @type pclass: string or C{None}
+
         @return: formatted HTML text
         @rtype: string
         """
 
         # Basic format, resolve tags.
-        fmt_text = self._format_sub(text)
+        pclass = pclass or self._pclass
+        fmt_text = self._format_sub(text, pclass)
 
         # Prefixate and suffixate if requested.
         prefix = prefix or self._prefix
@@ -290,21 +300,31 @@ class TextFormatterHtml (object):
         if wcond is None:
             wcond = self._wcond
         if wtag and (not wcond or not fmt_text.startswith("<" + wtag)):
+            rwattrs = wattrs
+            if wtag.lower() == "p" and pclass:
+                rwattrs = {}
+                if wattrs:
+                    rwattrs = wattrs.copy()
+                rwattrs["class"] = pclass
             if len(fmt_lines) > 1:
-                fmt_lines.insert(0, stag(wtag, wattrs))
+                fmt_lines.insert(0, stag(wtag, rwattrs))
                 fmt_lines.append(etag(wtag))
             else:
-                fmt_lines[0] = wtext(fmt_lines[0], wtag, wattrs)
+                fmt_lines[0] = wtext(fmt_lines[0], wtag, rwattrs)
 
         return "\n".join(fmt_lines)
 
 
-    def _format_sub (self, text):
+    def _format_sub (self, text, pclass=None):
+
+        pattrs = {}
+        if pclass is not None:
+            pattrs["class"] = pclass
 
         fmt_text = []
         for seg in text:
             if isinstance(seg, Para):
-                fmt_seg = wtext(self._format_sub(seg), "p")
+                fmt_seg = wtext(self._format_sub(seg), "p", pattrs)
             elif isinstance(seg, Ref):
                 if self._refbase is None or seg.c in self._refbase:
                     if self._refbase is None:
@@ -337,7 +357,7 @@ class TextFormatterHtml (object):
                                      phrase=self._format_sub(seg))
             elif isinstance(seg, Text):
                 # Any unhandled text type.
-                fmt_seg = self._format_sub(seg)
+                fmt_seg = self._format_sub(seg, pclass)
             else:
                 # Must be a string.
                 fmt_seg = seg
@@ -347,7 +367,7 @@ class TextFormatterHtml (object):
         return "".join(fmt_text)
 
 
-def stag (tag, attrs=None):
+def stag (tag, attrs=None, close=False):
     """
     Format starting tag.
 
@@ -355,6 +375,8 @@ def stag (tag, attrs=None):
     @type tag: string
     @param attrs: attributes and their values
     @type attrs: dict or C{None}
+    @param close: close tag immediately
+    @type close: bool
 
     @return: formatted starting tag
     @rtype: string
@@ -367,7 +389,11 @@ def stag (tag, attrs=None):
         atts_vals.sort(lambda x, y: cmp(x[0], y[0]))
         fmt_attr = "".join([" %s='%s'" % x for x in atts_vals])
 
-    return "<%s%s>" % (tag, fmt_attr)
+    cslash = ""
+    if close:
+        cslash = "/"
+
+    return "<%s%s%s>" % (tag, fmt_attr, cslash)
 
 
 def etag (tag):
