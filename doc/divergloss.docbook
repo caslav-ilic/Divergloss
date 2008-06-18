@@ -3,6 +3,7 @@
  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
 [
     <!ENTITY dg "Divergloss">
+    <!ENTITY bool-true "<literal>1|y|yes|t|true</literal>">
 ]>
 <article lang="en">
 
@@ -498,6 +499,7 @@
 ]]></programlisting>
             If the environment is also one of the concepts, note the difference between the description here and the concept description: environment's description may provide info on the terminology aspects of the environment (if none are needed, the environment description may just point to the concept by a <literal>ref</literal> node).</para>
             <para>An environment may specify terminology-wise close environments: if a term is not defined in the present environment, another from a close environment can be used as if it were its own. Close environments are specified by a list of environment keys in the <literal>closeto</literal> attribute of the <literal>environment</literal> node. The list order matters: the first environment is considered the closest, etc.</para>
+            <para>Clients may sometimes need to pick one environment among others, or to order them in a certain way. Two additional attributes may be specified to influence clients at this. The <literal>meta</literal> attribute states that the environment is not a true environment (e.g. it may be an umbrella for several environments), and takes one of truth values &bool-true;. The <literal>weight</literal> attribute specifies environment's priority, in a case-dependent sense, and takes numbers from 0 to 9 as values (0 is default).</para>
         </listitem>
         </varlistentry>
         <varlistentry id="kd-editors">
@@ -652,7 +654,7 @@
         </varlistentry>
         <varlistentry><term><literal>ol</literal></term>
         <listitem>
-            <para>A word or a phrase in another language, as opposed to that of the text. Must have a <literal>lang</literal> attribute stating the language of the phrase. An optional argument is <literal>wl</literal>, which if present indicates that the short language name should be formatted together with the phrase (its value must be one of <literal>1|y|yes|t|true</literal>).</para>
+            <para>A word or a phrase in another language, as opposed to that of the text. Must have a <literal>lang</literal> attribute stating the language of the phrase. An optional argument is <literal>wl</literal>, which if present indicates that the short language name should be formatted together with the phrase (its value must be one of &bool-true;).</para>
         </listitem>
         </varlistentry>
     </variablelist>
