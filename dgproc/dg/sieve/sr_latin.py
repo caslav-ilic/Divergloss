@@ -93,7 +93,7 @@ _dict_c2l = {
     u'П':u'P', u'Р':u'R', u'С':u'S', u'Т':u'T', u'Ћ':u'Ć', u'У':u'U',
     u'Ф':u'F', u'Х':u'H', u'Ц':u'C', u'Ч':u'Č', u'Џ':u'Dž',u'Ш':u'Š',
     # accented (the keys are now 2-char):
-    u'а̑':u'â', u'о̑':u'ô',
+    #u'а̑':u'â', u'о̑':u'ô',
 }
 
 def sr_c2l (text):
