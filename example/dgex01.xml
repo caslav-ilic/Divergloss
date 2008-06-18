@@ -7,7 +7,7 @@
     <metadata>
         <title>Сверачунарски појмовник</title>
         <desc>
-            Зборник појмова које сусрећу корисници рачунара у разноликим
+            Зборник појмова које корисници рачунара̑ сусрећу у разноликим
             применама, од свакодневних до опскурних, са кратким описима и
             изразима који их именују у различитим рачунарским окружењима
             и литератури.</desc>
@@ -25,8 +25,8 @@
                 Обрисати текст или други садржај из једног документа,
                 али тако да потом буде доступан у
                 <ref c="clipboard">~ooo:остави|fed moz:клипборду~</ref>.</desc>
-            <term lang="en">cut</term>
-            <term>исећи</term>
+            <term lang="en" gr="g">cut</term>
+            <term gr="g">исећи</term>
         </concept>
 
         <concept id="copy"
@@ -35,17 +35,17 @@
                 Учинити да текст или други садржај из једног документа,
                 постане доступан кроз
                 <ref c="clipboard">~ooo:оставу|fed moz:клипборд~</ref>.</desc>
-            <term lang="en">copy</term>
-            <term env="fed">копирати</term>
-            <term env="ooo moz">умножити</term>
+            <term lang="en" gr="g">copy</term>
+            <term env="fed" gr="g">копирати</term>
+            <term env="ooo moz" gr="g">умножити</term>
         </concept>
 
         <concept id="copyfs">
             <desc>
                 Од одређене датотеке или фасцикле, направити још једну
                 истоветну на другој локацији.</desc>
-            <term lang="en">copy</term>
-            <eterm>
+            <term lang="en" gr="g">copy</term>
+            <eterm gr="g">
                 <nom>копирати</nom>
                 <comment by="ci">
                     Можда није заиста свуда исто, проверити.</comment>
@@ -53,16 +53,16 @@
         </concept>
 
         <concept id="paste"
-                     related="copy cut">
+                 related="copy cut">
             <desc>
                 Убацити умножак текста или другог садржаја из
                 <ref c="clipboard">~ooo:оставе|fed moz:клипборда~</ref>
                 у документ на коме се тренутно ради.</desc>
-            <term lang="en">paste</term>
-            <term env="ooo fed moz">убацити</term>
-            <term env="x" src="rmk">унети</term>
-            <term env="x" src="rmk">пренети</term>
-            <term env="x">налепити</term>
+            <term lang="en" gr="g">paste</term>
+            <term env="ooo fed moz" gr="g">убацити</term>
+            <term env="x" src="rmk" gr="g">унети</term>
+            <term env="x" src="rmk" gr="g">пренети</term>
+            <term env="x" gr="g">налепити</term>
         </concept>
 
         <concept id="clipboard"
@@ -72,14 +72,38 @@
                 садржаја, доспели ту <ref c="cut">исецањима</ref> и
                 <ref c="copy">~ooo moz:умножавањима|fed:копирањима~</ref> из
                 разних докумената.</desc>
-            <eterm env="ooo">
+            <desc env="pre fed moz ooo">
+                Још један опис ради пробе вишеструких описа.</desc>
+            <eterm env="ooo" gr="i">
                 <nom>остава</nom>
                 <decl gr="genmn">остава̑</decl>
             </eterm>
-	    <term lang="en">clipboard</term>
-            <term env="fed moz">клипборд</term>
-            <term env="x" src="rri">списак исечака</term>
-            <details lang="en" root="rwpen" rel="Clipboard_(software)"/>
+            <term lang="en" gr="i">clipboard</term>
+            <term env="fed moz" gr="i">клипборд</term>
+            <term env="x" src="rri" gr="i">списак исечака</term>
+            <details root="rwpen" rel="Clipboard_(software)"/>
+        </concept>
+
+        <concept id="pattern"
+                 topic="t:prog"
+                 related="zzz">
+            <desc>
+                Израз за <ref c="zzz">поклапање</ref> текстуалних ниски,
+                као што су имена датотека, речи у тексту, итд. Неки од
+                познатих језика за писање ~образаца~ су:
+                <ref c="zzz">регуларни изрази</ref>,
+                <ref c="zzz">захвати шкољке</ref>, и др.</desc>
+            <term lang="en" gr="i">pattern</term>
+            <term gr="i">образац</term>
+        </concept>
+
+        <concept id="zzz">
+            <desc>
+                Незнани појам.</desc>
+            <comment>
+                Уредници: упућујте на овај појам када неки појам још увек
+                није написан, а желите већ да означите део текста који
+                ће касније упућивати на њега.</comment>
         </concept>
 
     </concepts>
