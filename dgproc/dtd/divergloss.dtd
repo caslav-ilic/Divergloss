@@ -6,6 +6,9 @@
 <!-- License: GPLv3 -->
 
 
+<!ENTITY % bool-true '(1|y|yes|t|true)'>
+<!ENTITY % bool-false '(0|n|no|f|false)'>
+
 <!-- Common attributes -->
 <!ENTITY % a-id 'id ID #REQUIRED'>
 <!ENTITY % a-lang 'lang IDREFS #IMPLIED'>
@@ -50,7 +53,7 @@
 
 <!ELEMENT ol (#PCDATA|ref|em|ol)*>
 <!ATTLIST ol lang IDREF #REQUIRED
-             wl (1|y|yes|t|true) #IMPLIED>
+             wl %bool-true; #IMPLIED>
 
 <!-- Top element -->
 
@@ -81,7 +84,10 @@
 
 <!ELEMENT environments (environment*)>
 <!ELEMENT environment (name+,shortname+,(desc|ldesc)+)>
-<!ATTLIST environment %a-id; closeto IDREFS #IMPLIED>
+<!ATTLIST environment %a-id;
+                      closeto IDREFS #IMPLIED
+                      weight (0|1|2|3|4|5|6|7|8|9) "0"
+                      meta %bool-true; #IMPLIED>
 
 <!ELEMENT editors (editor*)>
 <!ELEMENT editor (name+,shortname+,email?,affiliation*,(desc|ldesc)*)>

@@ -598,7 +598,7 @@ class Environment (Gnode):
 
         _content(self, gloss, node,
                  [(_attributes,
-                   [["id"]]),
+                   [["id", "weight", "meta"]]),
                   (_attrib_lists,
                    [["closeto"]]),
                   (_child_dsets,
