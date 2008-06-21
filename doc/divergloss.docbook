@@ -657,6 +657,11 @@
             <para>A word or a phrase in another language, as opposed to that of the text. Must have a <literal>lang</literal> attribute stating the language of the phrase. An optional argument is <literal>wl</literal>, which if present indicates that the short language name should be formatted together with the phrase (its value must be one of &bool-true;).</para>
         </listitem>
         </varlistentry>
+        <varlistentry><term><literal>link</literal></term>
+            <listitem>
+                <para>Link to an external resource. The URL of the resource is given by the <literal>url</literal> attribute, which is mandatory.</para>
+            </listitem>
+        </varlistentry>
     </variablelist>
     </para>
 

@@ -1020,7 +1020,7 @@ class Text (list): # base class for all in-text elements
             # self.src_file = ?
 
         if tags is None:
-            tags = ["para", "ref", "em", "ol"]
+            tags = ["para", "ref", "em", "ol", "link"]
 
         self.extend(_text_segments(node, tags))
 
@@ -1029,7 +1029,7 @@ class Para (Text):
 
     def __init__ (self, node=None):
 
-        Text.__init__(self, node, ["ref", "em", "ol"])
+        Text.__init__(self, node, ["ref", "em", "ol", "link"])
 
 
 class Ref (Text):
@@ -1044,7 +1044,7 @@ class Em (Text):
 
     def __init__ (self, node=None):
 
-        Text.__init__(self, node, ["ref", "em", "ol"])
+        Text.__init__(self, node, ["ref", "em", "ol", "link"])
 
 
 class Ol (Text):
@@ -1056,9 +1056,17 @@ class Ol (Text):
         self.wl = _attkey(node, "wl")
 
 
+class Link (Text):
+
+    def __init__ (self, node=None):
+
+        Text.__init__(self, node, ["em", "ol"])
+        self.url = _attkey(node, "url")
+
+
 # Map between text segment types and their tag names.
 # Used in _text_segments()
-_tseg_name_type = {"para":Para, "ref":Ref, "em":Em, "ol":Ol}
+_tseg_name_type = {"para":Para, "ref":Ref, "em":Em, "ol":Ol, "link":Link}
 
 
 # Resolving of embedded selectors.

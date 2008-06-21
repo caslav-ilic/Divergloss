@@ -12,7 +12,7 @@ from textwrap import TextWrapper
 import copy
 
 from dg.util import p_
-from dg.construct import Text, Para, Ref, Em, Ol
+from dg.construct import Text, Para, Ref, Em, Ol, Link
 
 
 class TextFormatterPlain (object):
@@ -163,6 +163,11 @@ class TextFormatterPlain (object):
             elif isinstance(seg, Text):
                 # Any unhandled text type.
                 fmt_seg = self._format_sub(seg)
+            elif isinstance(seg, Link):
+                fmt_seg = p_("formatting of a linked phrase "
+                             "in running plain text",
+                             "%(phrase)s (%(url)s)") \
+                          % dict(phrase=self._format_sub(seg), url=seg.url)
             else:
                 # Must be a string
                 fmt_seg = seg
@@ -355,6 +360,9 @@ class TextFormatterHtml (object):
                                  "%(lang)s <em class='frlng'>%(phrase)s</em>") \
                               % dict(lang=self._format_sub(lnode.text),
                                      phrase=self._format_sub(seg))
+            elif isinstance(seg, Link):
+                phrase = self._format_sub(seg)
+                fmt_seg = wtext(phrase, "a", {"class":"ext", "href":seg.url})
             elif isinstance(seg, Text):
                 # Any unhandled text type.
                 fmt_seg = self._format_sub(seg, pclass)

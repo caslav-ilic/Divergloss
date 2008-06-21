@@ -20,7 +20,7 @@
 <!ENTITY % a-rel 'rel CDATA #IMPLIED'>
 
 <!-- Element content for nodes with flat text -->
-<!ENTITY % ec-ftext '(#PCDATA|ref|em|ol)*'>
+<!ENTITY % ec-ftext '(#PCDATA|ref|em|ol|link)*'>
 
 <!-- Element content for nodes with structured text -->
 <!ENTITY % ec-stext '(para)*'>
@@ -49,11 +49,14 @@
 <!ELEMENT ref (#PCDATA|em|ol)*>
 <!ATTLIST ref c IDREF #REQUIRED>
 
-<!ELEMENT em (#PCDATA|ref|em|ol)*>
+<!ELEMENT em (#PCDATA|ref|em|ol|link)*>
 
 <!ELEMENT ol (#PCDATA|ref|em|ol)*>
 <!ATTLIST ol lang IDREF #REQUIRED
              wl %bool-true; #IMPLIED>
+
+<!ELEMENT link (#PCDATA|em|ol)*>
+<!ATTLIST link url CDATA #REQUIRED>
 
 <!-- Top element -->
 
