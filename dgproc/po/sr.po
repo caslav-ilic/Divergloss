@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 13:58+0200\n"
-"PO-Revision-Date: 2008-05-10 16:30+0200\n"
+"POT-Creation-Date: 2008-06-22 01:15+0200\n"
+"PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
 "MIME-Version: 1.0\n"
@@ -122,36 +122,36 @@ msgctxt "an unknown file"
 msgid "<unknown>"
 msgstr "<непозната>"
 
-#: dg/construct.py:1142
+#: dg/construct.py:1152
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr "неокончани угњеждени изборник ‘%(esel)s’"
 
-#: dg/construct.py:1163
+#: dg/construct.py:1173
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr "сегмент ‘%(eseg)s’ угњежденог изборника ‘%(esel)s’ понавља окружења: %(envs)s"
 
-#: dg/construct.py:1212
+#: dg/construct.py:1222
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
 msgstr "нема разрешења за очекивано окружење ‘%(env)s’ у угњежденом изборнику ‘%(esel)s’"
 
-#: dgproc.py:42
+#: dgproc.py:39
 #, python-format
 msgctxt "command usage"
 msgid "%(cmd)s [OPTIONS] [SIEVES] DGFILE"
 msgstr "%(cmd)s [ОПЦИЈЕ] [СИТА] ДГТЕКА"
 
-#: dgproc.py:44
+#: dgproc.py:41
 msgctxt "command description"
 msgid "Query a Divergloss XML document and build various outputs. Also fully validates the document, past what the DTD only can do."
 msgstr "Испитује диверглоски ИксМЛ документ и гради разне излазе. Такође потпуно оверава документ, изнад могућег само ДТД-ом."
 
-#: dgproc.py:49
+#: dgproc.py:46
 #, python-format
 msgctxt "command version"
 msgid ""
@@ -161,104 +161,104 @@ msgstr ""
 "%(cmd)s експериментална\n"
 "© 2008, Часлав Илић <caslav.ilic@gmx.net>"
 
-#: dgproc.py:58
+#: dgproc.py:55
 msgctxt "description of cmdline option"
 msgid "do not check the glossary for validity"
 msgstr "не оверавај исправност појмовника"
 
-#: dgproc.py:61
+#: dgproc.py:58
 msgctxt "placeholder for value to cmdline option"
 msgid "PARSPEC"
 msgstr "ПАРСПЕЦ"
 
-#: dgproc.py:64
+#: dgproc.py:61
 msgctxt "description of cmdline option"
 msgid "specify parameter to sieves"
 msgstr "наведи параметар за сита"
 
-#: dgproc.py:69
+#: dgproc.py:66
 msgctxt "description of cmdline option"
 msgid "list available sieves and exit"
 msgstr "наброји доступна сита и изађи"
 
-#: dgproc.py:74
+#: dgproc.py:71
 msgctxt "description of cmdline option"
 msgid "display help on sieves and exit"
 msgstr "прикажи помоћ за сита и изађи"
 
-#: dgproc.py:81
+#: dgproc.py:78
 msgctxt "error in command line"
 msgid "too many free arguments"
 msgstr "превише слободних аргумената"
 
-#: dgproc.py:85
+#: dgproc.py:82
 msgctxt "header to listing"
 msgid "Available sieves:"
 msgstr "Расположива сита:"
 
-#: dgproc.py:92
+#: dgproc.py:89
 msgctxt "error in command line"
 msgid "no file given"
 msgstr "није задата датотека"
 
-#: dgproc.py:96
+#: dgproc.py:93
 #, python-format
 msgctxt "error in command line"
 msgid "file '%(file)s' does not exists"
 msgstr "датотека ‘%(file)s’ не постоји"
 
-#: dgproc.py:109
+#: dgproc.py:106
 msgctxt "header to listing"
 msgid "Help on sieves:"
 msgstr "Помоћ за сита:"
 
-#: dgproc.py:113
+#: dgproc.py:110
 msgctxt "message"
 msgid "No sieves specified to provide help on."
 msgstr "Нема ниједног сита за које би се дала помоћ."
 
-#: dg/sieve/html.py:24
+#: dg/sieve/html.py:46
 msgctxt "subcommand description"
 msgid "Create HTML pages out of the glossary."
 msgstr "Градња ХТМЛ страна према појмовнику."
 
-#: dg/sieve/html.py:27 dg/sieve/po.py:29 dg/sieve/po.py:33
-#: dg/sieve/text_simple.py:25
+#: dg/sieve/html.py:49 dg/sieve/po.py:30 dg/sieve/po.py:34
+#: dg/sieve/text_simple.py:26
 msgctxt "placeholder for parameter value"
 msgid "LANGKEY"
 msgstr "ЈЕЗКЉУЧ"
 
-#: dg/sieve/html.py:29 dg/sieve/text_simple.py:27
+#: dg/sieve/html.py:51 dg/sieve/text_simple.py:28
 msgctxt "subcommand option description"
 msgid "Pivotal language for the view. The glossary default language is used if not given."
 msgstr "Осовински језик за поглед. Ако није дат, користи се подразумевани језик појмовника."
 
-#: dg/sieve/html.py:32 dg/sieve/po.py:37 dg/sieve/text_simple.py:30
+#: dg/sieve/html.py:54 dg/sieve/po.py:38 dg/sieve/text_simple.py:31
 msgctxt "placeholder for parameter value"
 msgid "ENVKEY"
 msgstr "ОКРКЉУЧ"
 
-#: dg/sieve/html.py:34
+#: dg/sieve/html.py:56
 msgctxt "subcommand option description"
 msgid "Pivotal environment for the view. If not given, there is no pivotal environment."
 msgstr "Осовинско окружење за поглед. Ако није дато, нема осовинског окружења."
 
-#: dg/sieve/html.py:37
+#: dg/sieve/html.py:59
 msgctxt "placeholder for parameter value"
 msgid "BASENAME"
 msgstr "БАЗНОИМЕ"
 
-#: dg/sieve/html.py:39
+#: dg/sieve/html.py:61
 msgctxt "subcommand option description"
 msgid "Base name for writing generated HTML to disk, used to derive file names by chunking policy. If not given, glossary ID is used."
 msgstr "Базно име за испис произведеног ХТМЛ-а на диск, за извођење имена датотека при комадању. Ако није дато, узима се ИД појмовника."
 
-#: dg/sieve/html.py:44
+#: dg/sieve/html.py:66
 msgctxt "placeholder for parameter value"
 msgid "POLICY"
 msgstr "СМЕРНИЦА"
 
-#: dg/sieve/html.py:46
+#: dg/sieve/html.py:68
 #, python-format
 msgctxt "subcommand option description"
 msgid ""
@@ -278,150 +278,462 @@ msgstr ""
 "\n"
 "%(none)s: без комадања, сав садржај појмовника на једној страни.\n"
 
-#: dg/sieve/html.py:62
+#: dg/sieve/html.py:84
 msgctxt "placeholder for parameter value"
 msgid "NCHAR"
 msgstr "ЗНАКОВА"
 
-#: dg/sieve/html.py:64
+#: dg/sieve/html.py:86
 #, python-format
 msgctxt "subcommand option description"
 msgid "The character limit when using the '%(chlim)s' chunking policy."
 msgstr "Ограничење броја знакова при смерници комадања ‘%(chlim)s’."
 
-#: dg/sieve/html.py:76
+#: dg/sieve/html.py:90
+msgctxt "subcommand option description"
+msgid "Do not present terms in non-pivotal languages."
+msgstr "Без израза у неосовинским језицима."
+
+#: dg/sieve/html.py:93
+msgctxt "subcommand option description"
+msgid "Do not present terms in non-pivotal environments."
+msgstr "Без израза у неосовинским окружењима."
+
+#: dg/sieve/html.py:96
+msgctxt "placeholder for parameter value"
+msgid "STYLE"
+msgstr "СТИЛ"
+
+#: dg/sieve/html.py:98
+msgctxt "subcommand option description"
+msgid "Style sheet for the HTML pages."
+msgstr "Опис стила за ХТМЛ стране."
+
+#: dg/sieve/html.py:100
+msgctxt "placeholder for parameter value"
+msgid "NUM"
+msgstr "БРОЈ"
+
+#: dg/sieve/html.py:102
+msgctxt "subcommand option description"
+msgid "Number of columns in index of terms."
+msgstr "Број колона у индексу израза."
+
+#: dg/sieve/html.py:113
 msgctxt "error message"
 msgid "chunking by character count not implemented yet"
 msgstr "комадање по броју знакова још увек није изведено"
 
-#: dg/sieve/html.py:85
+#: dg/sieve/html.py:125
 #, python-format
 msgctxt "error message"
 msgid "language '%(lang)s' not present in the glossary"
 msgstr "језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/html.py:90 dg/sieve/po.py:73
+#: dg/sieve/html.py:130 dg/sieve/po.py:74
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' not defined by the glossary"
 msgstr "окружење ‘%(env)s’ није дефинисано појмовником"
 
-#: dg/sieve/po.py:26
+#: dg/sieve/html.py:319
+msgctxt "link to an about-page in running text"
+msgid "environments"
+msgstr "oкружења"
+
+#: dg/sieve/html.py:325
+msgctxt "link to an about-page in running text"
+msgid "editors"
+msgstr "уредници"
+
+#: dg/sieve/html.py:331
+msgctxt "link to an about-page in running text"
+msgid "sources"
+msgstr "извори"
+
+#: dg/sieve/html.py:337
+msgctxt "link to an about-page in running text"
+msgid "topics"
+msgstr "области"
+
+#: dg/sieve/html.py:411
+#, python-format
+msgctxt "error message"
+msgid "internal: while chunking concepts, produced file name '%(fname)s' twice"
+msgstr "унутрашња: при комадању појмова двапут настало име датотеке ‘%(fname)s’"
+
+#: dg/sieve/html.py:489 dg/sieve/po.py:194
+msgctxt "comment in generated files (warning to user)"
+msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
+msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂУЈ ====="
+
+#: dg/sieve/html.py:525
+#, python-format
+msgctxt "top page title"
+msgid "%(gloss)s (%(env)s)"
+msgstr "%(gloss)s (%(env)s)"
+
+#: dg/sieve/html.py:542
+#, python-format
+msgctxt "a paragraph on the top page"
+msgid "This view of the glossary has been specialized for the <em>%(env)s</em> environment."
+msgstr "Овај поглед на појмовник специјализован је за окружење <em>%(env)s</em>."
+
+#: dg/sieve/html.py:551
+#, python-format
+msgctxt "alphabetical concepts links in contents"
+msgid "Concepts: %(alpha)s"
+msgstr "Појмови: %(alpha)s"
+
+#: dg/sieve/html.py:555
+#, python-format
+msgctxt "alphabetical concepts links in contents"
+msgid "Concepts by key: %(alpha)s"
+msgstr "Појмови по кључу: %(alpha)s"
+
+#: dg/sieve/html.py:560
+msgctxt "concepts link in contents"
+msgid "Concepts"
+msgstr "Појмови"
+
+#: dg/sieve/html.py:566
+msgctxt "index of terms link in contents"
+msgid "Index of Terms"
+msgstr "Индекс израза̑"
+
+#: dg/sieve/html.py:582
+#, python-format
+msgctxt "links to about-pages in contents"
+msgid "About the glossary: %(topics)s"
+msgstr "О појмовнику: %(topics)s"
+
+#: dg/sieve/html.py:607
+#, python-format
+msgctxt "page title"
+msgid "%(gloss)s (%(env)s)"
+msgstr "%(gloss)s (%(env)s)"
+
+#: dg/sieve/html.py:621
+msgctxt "link text for going to index of terms"
+msgid "[index]"
+msgstr "[индекс]"
+
+#: dg/sieve/html.py:629
+msgctxt "link text for returning to top page"
+msgid "[top]"
+msgstr "[почетак]"
+
+#: dg/sieve/html.py:663
+#, python-format
+msgctxt "page subtitle"
+msgid "Concepts: %(alpha)s"
+msgstr "Појмови: %(alpha)s"
+
+#: dg/sieve/html.py:804
+#, python-format
+msgctxt "identifier of a description when the concept has several descriptions"
+msgid "#%(no)s)"
+msgstr "#%(no)s"
+
+#: dg/sieve/html.py:835
+#, python-format
+msgctxt "concept details: link to external source, and some text describing it"
+msgid "%(srclink)s (%(srctext)s)"
+msgstr "%(srclink)s (%(srctext)s)"
+
+#: dg/sieve/html.py:842
+msgctxt "more details about a concept"
+msgid "Details:"
+msgstr "Детаљније:"
+
+#: dg/sieve/html.py:857
+msgctxt "concepts related to current concept"
+msgid "See also:"
+msgstr "Види:"
+
+#: dg/sieve/html.py:872
+#, python-format
+msgctxt "comment label (by an editor on the concept)"
+msgid "%(editor)s on the concept:"
+msgstr "%(editor)s о појму:"
+
+#: dg/sieve/html.py:876
+msgctxt "comment label (on the concept)"
+msgid "On the concept:"
+msgstr "О појму:"
+
+#: dg/sieve/html.py:896
+#, python-format
+msgctxt "comment label (by an editor on a term)"
+msgid "%(editor)s on %(term)s:"
+msgstr "%(editor)s о %(term)s:"
+
+#: dg/sieve/html.py:900
+#, python-format
+msgctxt "comment label (on a term)"
+msgid "On %(term)s:"
+msgstr "О %(term)s:"
+
+#: dg/sieve/html.py:912
+msgctxt "header to list of comments"
+msgid "Comments:"
+msgstr "Коментари:"
+
+#: dg/sieve/html.py:963
+#, python-format
+msgctxt "formatting pattern for a term with its grammar category"
+msgid "%(term)s %(gr)s"
+msgstr "%(term)s %(gr)s"
+
+#: dg/sieve/html.py:1014
+#, python-format
+msgctxt "formatting pattern for a declination with its grammar category"
+msgid "%(gr)s %(decl)s"
+msgstr "%(gr)s %(decl)s"
+
+#: dg/sieve/html.py:1024
+msgctxt "format of the terms line"
+msgid "%(terms)s (%(olterms)s) [%(topics)] -- %(decls)s"
+msgstr "%(terms)s (%(olterms)s) [%(topics)] — %(decls)s"
+
+#: dg/sieve/html.py:1029
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s (%(olterms)s) [%(topics)s]"
+msgstr "%(terms)s (%(olterms)s) [%(topics)s]"
+
+#: dg/sieve/html.py:1034
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s [%(topics)s] -- %(decls)s"
+msgstr "%(terms)s [%(topics)s] — %(decls)s"
+
+#: dg/sieve/html.py:1039
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s (%(olterms)s) -- %(decls)s"
+msgstr "%(terms)s (%(olterms)s) — %(decls)s"
+
+#: dg/sieve/html.py:1044
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s (%(olterms)s)"
+msgstr "%(terms)s (%(olterms)s)"
+
+#: dg/sieve/html.py:1048
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s [%(topics)s]"
+msgstr "%(terms)s [%(topics)s]"
+
+#: dg/sieve/html.py:1052
+#, python-format
+msgctxt "format of the terms line"
+msgid "%(terms)s -- %(decls)s"
+msgstr "%(terms)s — %(decls)s"
+
+#: dg/sieve/html.py:1110
+#, python-format
+msgctxt "terms naming the concept in environments other than the pivotal one"
+msgid "In other environments: %(terms)s"
+msgstr "Др. окружења: %(terms)s"
+
+#: dg/sieve/html.py:1149
+#, python-format
+msgctxt "format of the concept key line"
+msgid "c.k. %(ckey)s [%(topics)s]"
+msgstr "кп. %(ckey)s [%(topics)s]"
+
+#: dg/sieve/html.py:1153
+#, python-format
+msgctxt "format of the concept key line"
+msgid "c.k. %(ckey)s"
+msgstr "кп. %(ckey)s"
+
+#: dg/sieve/html.py:1228
+msgctxt "page subtitle"
+msgid "Index of Terms"
+msgstr "Индекс израза̑"
+
+#: dg/sieve/html.py:1441
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt; -- %(url)s"
+msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt; — %(url)s"
+
+#: dg/sieve/html.py:1446
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt;"
+msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt;"
+
+#: dg/sieve/html.py:1450
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s (short: %(shortname)s) -- %(url)s"
+msgstr "%(name)s (скр. %(shortname)s) — %(url)s"
+
+#: dg/sieve/html.py:1454
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s &lt;%(email)s&gt; -- %(url)s"
+msgstr "%(name)s &lt;%(email)s&gt; — %(url)s"
+
+#: dg/sieve/html.py:1458
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s (short: %(shortname)s)"
+msgstr "%(name)s (скр. %(shortname)s)"
+
+#: dg/sieve/html.py:1462
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s &lt;%(email)s&gt;"
+msgstr "%(name)s &lt;%(email)s&gt;"
+
+#: dg/sieve/html.py:1466
+#, python-format
+msgctxt "about pages: entry header"
+msgid "%(name)s -- %(url)s"
+msgstr "%(name)s — %(url)s"
+
+#: dg/sieve/html.py:1498
+msgctxt "page subtitle"
+msgid "About: Environments"
+msgstr "О окружењима"
+
+#: dg/sieve/html.py:1522
+msgctxt "page subtitle"
+msgid "About: Sources"
+msgstr "О изворима"
+
+#: dg/sieve/html.py:1538
+msgctxt "page subtitle"
+msgid "About: Editors"
+msgstr "О уредницима"
+
+#: dg/sieve/html.py:1550
+#, python-format
+msgctxt "editor's affiliation"
+msgid "Affiliation: %(aff)s"
+msgstr "Намештење: %(aff)s"
+
+#: dg/sieve/html.py:1564
+msgctxt "page subtitle"
+msgid "About: Topics"
+msgstr "О областима"
+
+#: dg/sieve/po.py:27
 msgctxt "subcommand description"
 msgid "Create a PO file out of the glossary."
 msgstr "Градња ПО датотеке према појмовнику."
 
-#: dg/sieve/po.py:31
+#: dg/sieve/po.py:32
 msgctxt "subcommand option description"
 msgid "Original language from the PO point of view."
 msgstr "Изворни језик с тачке гледишта ПО-а."
 
-#: dg/sieve/po.py:35
+#: dg/sieve/po.py:36
 msgctxt "subcommand option description"
 msgid "Target language from the PO point of view."
 msgstr "Циљни језик с тачке гледишта ПО-а."
 
-#: dg/sieve/po.py:39
+#: dg/sieve/po.py:40
 msgctxt "subcommand option description"
 msgid "Environment for which the PO file is produced."
 msgstr "Окружење за које се производи ПО датотека."
 
-#: dg/sieve/po.py:41 dg/sieve/text_simple.py:35
+#: dg/sieve/po.py:42 dg/sieve/text_simple.py:36
 msgctxt "placeholder for parameter value"
 msgid "FILE"
 msgstr "ДАТОТЕКА"
 
-#: dg/sieve/po.py:43
+#: dg/sieve/po.py:44
 msgctxt "subcommand option description"
 msgid "File to output the PO content (defaults to stdout)."
 msgstr "Датотека за испис ПО садржаја (подразумевано стдиз.)"
 
-#: dg/sieve/po.py:46
+#: dg/sieve/po.py:47
 msgctxt "subcommand option description"
 msgid "Show descriptions only on conflicts, for concepts having terms also used to name other concepts."
 msgstr "Дај описе само при сукобима, за појмове са изразима који именују и још неке друге појмове."
 
-#: dg/sieve/po.py:63
+#: dg/sieve/po.py:64
 #, python-format
 msgctxt "error message"
 msgid "origin language '%(lang)s' not present in the glossary"
 msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/po.py:68
+#: dg/sieve/po.py:69
 #, python-format
 msgctxt "error message"
 msgid "target language '%(lang)s' not present in the glossary"
 msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/po.py:80
+#: dg/sieve/po.py:81
 msgctxt "message comment in the PO view: short label preceeding a concept description"
 msgid "desc: "
 msgstr "опис: "
 
-#: dg/sieve/po.py:88
+#: dg/sieve/po.py:89
 msgctxt "message comment in the PO view: short label preceeding a declination"
 msgid "decl: "
 msgstr "декл: "
 
-#: dg/sieve/po.py:107
+#: dg/sieve/po.py:108
 msgctxt "warning message"
 msgid "no concepts found for PO view that have terms in both the requested origin and target language"
 msgstr "нема ниједног концепта за ПО поглед који би имао изразе и за тражени изворни и циљни језик"
 
-#: dg/sieve/po.py:180
+#: dg/sieve/po.py:181
 #, python-format
 msgctxt "header comment in the PO view (title)"
 msgid "PO view of a Divergloss glossary: %(title)s"
 msgstr "ПО поглед на диверглоски појмовник: %(title)s"
 
-#: dg/sieve/po.py:188
+#: dg/sieve/po.py:189
 #, python-format
 msgctxt "header comment in the PO view (subtitle)"
 msgid "languages: %(ol)s->%(tl)s, environment: %(env)s"
 msgstr "језици: %(ol)s→%(tl)s, окружење: %(env)s"
-
-#: dg/sieve/po.py:193
-msgctxt "header comment in the PO view (warning to user)"
-msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
-msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂИВАТИ ====="
 
 #: dg/sieve/sr_latin.py:21
 msgctxt "subcommand description"
 msgid "Transform Serbian Cyrillic text in the glossary into Serbian Latin."
 msgstr "Претварање српског ћириличног текста кроз појмовник у латинични."
 
-#: dg/sieve/text_simple.py:22
+#: dg/sieve/text_simple.py:23
 msgctxt "subcommand description"
 msgid "Simple text view as a demonstration of writing views."
 msgstr "Једноставни текстуални поглед као пример писања погледа."
 
-#: dg/sieve/text_simple.py:32
+#: dg/sieve/text_simple.py:33
 msgctxt "subcommand option description"
 msgid "Pivotal environment for the view. The glossary default environment is used if not given."
 msgstr "Осовинско окружење за поглед. Ако није дато, користи се подразумевано окружење из појмовника."
 
-#: dg/sieve/text_simple.py:37
+#: dg/sieve/text_simple.py:38
 msgctxt "subcommand option description"
 msgid "File to output the text into (defaults to stdout)."
 msgstr "Датотека за испис текста (подразумевано стдиз)."
 
-#: dg/sieve/text_simple.py:39
+#: dg/sieve/text_simple.py:40
 msgctxt "placeholder for parameter value"
 msgid "COLUMN"
 msgstr "КОЛОНА"
 
-#: dg/sieve/text_simple.py:41
+#: dg/sieve/text_simple.py:42
 msgctxt "subcommand option description"
 msgid "Wrap text after this column."
 msgstr "Прелом редова после ове колоне."
 
-#: dg/sieve/text_simple.py:57
+#: dg/sieve/text_simple.py:58
 #, python-format
 msgctxt "error message"
 msgid "language '%(lang)s' does not exits in the glossary"
 msgstr "језик ‘%(lang)s’ не постоји у појмовнику"
 
-#: dg/sieve/text_simple.py:63
+#: dg/sieve/text_simple.py:64
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' does not exits in the glossary"
@@ -489,13 +801,13 @@ msgstr "параметар ‘%(par)s’ је заставица, не очек�
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into expected type '%(type)s'"
-msgstr "вредност ‘%(val)s’ параметра ‘%(par)s’ не може се претворити у очекивани тип ‘%(type)s’"
+msgstr "не могу да претворим вредност ‘%(val)s’ параметра ‘%(par)s’ у очекивани тип ‘%(type)s’"
 
 #: dg/subcmd.py:439
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into list of elements of expected type '%(type)s'"
-msgstr "вредност ‘%(val)s’ параметра ‘%(par)s’ не може се претворити у листу елемената очекиваног типа ‘%(type)s’"
+msgstr "не могу да претворим вредност ‘%(val)s’ параметра ‘%(par)s’ у листу елемената очекиваног типа ‘%(type)s’"
 
 #: dg/subcmd.py:452
 #, python-format
@@ -529,120 +841,132 @@ msgstr "покушај додавања поднаредби '%(cmd)s' подо�
 #: dg/subcmd.py:601
 #, python-format
 msgctxt "error message"
+msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' which contains some elements different from their stated type '%(type)s'"
+msgstr "покушај додавања поднаредби '%(cmd)s' подопције ‘%(opt)s’ подразумеване вредности ‘%(val)s’ која садржи неке елементе типа различитог од задатог ‘%(type)s’"
+
+#: dg/subcmd.py:609
+#, python-format
+msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' not from the admissible set: %(avals)s"
 msgstr "покушај додавања поднаредби '%(cmd)s' подопције ‘%(opt)s’ подразумеване вредности ‘%(val)s’ ван допуштеног скупа: %(avals)s"
 
-#: dg/subcmd.py:609
+#: dg/subcmd.py:617
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' once again"
 msgstr "покушај поновног додавања подопције ‘%(opt)s’ поднаредби ‘%(cmd)s’"
 
-#: dg/subcmd.py:617
+#: dg/subcmd.py:623
 #, python-format
 msgctxt "error message"
 msgid "suboption '%(opt)s' to subcommand '%(cmd)s' stated to be list-valued, but the default value is not given as a list"
 msgstr "вредност подопције ‘%(opt)s’ у поднаредби '%(cmd)s' задата је као листа, али подразумевана вредност није листа"
 
-#: dg/subcmd.py:633
+#: dg/subcmd.py:639
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands in the category '%(cat)s'"
 msgstr "покушај додавања поднаредби ‘%(cmd)s’ подопције ‘%(opt)s’ с типом различитим од других поднаредби у категорији ‘%(cat)s’"
 
-#: dg/subcmd.py:639
+#: dg/subcmd.py:645
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands"
 msgstr "покушај додавања поднаредби ‘%(cmd)s’ подопције ‘%(opt)s’ с типом различитим од других поднаредби"
 
-#: dg/subcmd.py:647
+#: dg/subcmd.py:653
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands in the category '%(cat)s'"
 msgstr "покушај додавања поднаредби ‘%(cmd)s’ подопције ‘%(opt)s’ с показатељем листе различитим од других поднаредби у категорији ‘%(cat)s’"
 
-#: dg/subcmd.py:653
+#: dg/subcmd.py:659
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands"
 msgstr "покушај додавања поднаредби ‘%(cmd)s’ подопције ‘%(opt)s’ с показатељем листе различитим од других поднаредби"
 
-#: dg/subcmd.py:708
+#: dg/subcmd.py:714
 msgctxt "subcommand help: somewhere near the suboption name, indicates the suboption is a flag"
 msgid "[flag]"
 msgstr "[заставица]"
 
-#: dg/subcmd.py:714
+#: dg/subcmd.py:720
 msgctxt "subcommand help: default name for the suboptions' parameter; do keep uppercase"
 msgid "ARG"
 msgstr "АРГ"
 
-#: dg/subcmd.py:723
+#: dg/subcmd.py:729
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
 msgid "[default %(arg)s=%(val)s]"
 msgstr "[подразумевано %(arg)s=%(val)s]"
 
-#: dg/subcmd.py:732
+#: dg/subcmd.py:738
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the admissible values for its argument"
 msgid "[%(arg)s is one of: %(avals)s]"
 msgstr "[%(arg)s може бити: %(avals)s]"
 
-#: dg/subcmd.py:747
+#: dg/subcmd.py:753
 #, python-format
 msgctxt "subcommand help: header"
 msgid "%(cmd)s"
 msgstr "%(cmd)s"
 
-#: dg/subcmd.py:750
+#: dg/subcmd.py:756
 #, python-format
 msgctxt "subcommand help: header"
 msgid "%(cmd)s (%(cat)s)"
 msgstr "%(cmd)s (%(cat)s)"
 
-#: dg/subcmd.py:759
+#: dg/subcmd.py:765
 msgctxt "subcommand help: header"
 msgid "Mandatory parameters:"
 msgstr "Обавезни параметри:"
 
-#: dg/subcmd.py:766
+#: dg/subcmd.py:772
 msgctxt "subcommand help: header"
 msgid "Optional parameters:"
 msgstr "Опциони параметри:"
 
-#: dg/textfmt.py:142
+#: dg/textfmt.py:147
 #, python-format
 msgctxt "formatting of an emphasized phrase in running plain text"
 msgid "*%(phrase)s*"
 msgstr "*%(phrase)s*"
 
-#: dg/textfmt.py:148
+#: dg/textfmt.py:153
 #, python-format
 msgctxt "formatting of a foreign language phrase in running plain text"
 msgid "/%(phrase)s/"
 msgstr "/%(phrase)s/"
 
-#: dg/textfmt.py:156
+#: dg/textfmt.py:161
 #, python-format
 msgctxt "formatting of a foreign language phrase in running plain text, where the short language name is provided too"
 msgid "%(lang)s /%(phrase)s/"
 msgstr "%(lang)s /%(phrase)s/"
 
-#: dg/textfmt.py:297
+#: dg/textfmt.py:170
+#, python-format
+msgctxt "formatting of a linked phrase in running plain text"
+msgid "%(phrase)s (%(url)s)"
+msgstr "%(phrase)s (%(url)s)"
+
+#: dg/textfmt.py:347
 #, python-format
 msgctxt "formatting of an emphasized phrase in running HTML text"
 msgid "<em>%(phrase)s</em>"
 msgstr "<em>%(phrase)s</em>"
 
-#: dg/textfmt.py:303
+#: dg/textfmt.py:353
 #, python-format
 msgctxt "formatting of a foreign language phrase in running HTML text"
 msgid "<em class='frlng'>%(phrase)s</em>"
 msgstr "<em class='frlng'>%(phrase)s</em>"
 
-#: dg/textfmt.py:311
+#: dg/textfmt.py:361
 #, python-format
 msgctxt "formatting of a foreign language phrase in running HTML text, where the short language name is provided too"
 msgid "%(lang)s <em class='frlng'>%(phrase)s</em>"
@@ -660,6 +984,8 @@ msgctxt "error message"
 msgid "%(cmdname)s: warning: %(msg)s"
 msgstr "%(cmdname)s: упозорење: %(msg)s"
 
-#~ msgctxt "subcommand option description"
-#~ msgid "Pivotal language for the view. If not given, there is no pivotal language."
-#~ msgstr "Осовински језик за поглед. Ако није дат, нема осовинског језика."
+#: dg/util.py:112
+#, python-format
+msgctxt "error message"
+msgid "cannot find a locale for language '%(lang)s', tried: %(locales)s"
+msgstr "не могу да нађем локалитет за језик ‘%(lang)s’, испробани: %(locales)s"
