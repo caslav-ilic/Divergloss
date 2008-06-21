@@ -10,6 +10,7 @@ Format text in glossary for different outputs.
 import re
 from textwrap import TextWrapper
 import copy
+import codecs
 
 from dg.util import p_
 from dg.construct import Text, Para, Ref, Em, Ol, Link
@@ -542,4 +543,19 @@ class LineAccumulator (object):
         acc._ilevel += dlevel
         acc.lines = self.lines
         return acc
+
+
+    def write (self, fpath, enc="UTF-8"):
+        """
+        Write accumulated lines into a file.
+
+        @param fpath: path of the file to write
+        @type fpath: string
+        @param enc: encoding for the text
+        @type enc: string
+        """
+
+        ofl = codecs.open(fpath, "w", enc)
+        ofl.writelines(self.lines)
+        ofl.close()
 
