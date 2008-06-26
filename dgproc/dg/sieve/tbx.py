@@ -166,11 +166,13 @@ class Subcommand (object):
     def _fmt_concepts (self, accl, concepts):
 
         accl(stag("body"))
+        accl()
         accl2 = accl.newind(2)
         for concept in concepts:
             accl(stag("termEntry", {"id":concept.id}), 1)
             self._fmt_concept(accl2, concept)
             accl(etag("termEntry"), 1)
+            accl()
 
         accl(etag("body"))
 
