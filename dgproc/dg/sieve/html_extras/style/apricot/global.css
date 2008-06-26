@@ -2,6 +2,8 @@
 /* Apricot style */
 /* ============= */
 
+@charset "UTF-8";
+
 body {
     background-color: ivory;
     font-family: serif;
@@ -225,10 +227,14 @@ a.email { /* email link */
 }
 .terms-cell-envs {
     padding: 0.0em;
+    padding-bottom: 0.25em;
     padding-right: 0.25em;
+    text-align: right;
+    width: 1em; /* to fit tight around contents */
 }
 .terms-cell-terms {
-    padding: 0.0em;
+    padding: 0.1em;
+    padding-bottom: 0.25em;
     padding-left: 0.25em;
 }
 
