@@ -82,7 +82,7 @@ class Subcommand (object):
         self._fmt_epilogue(accl)
 
         if self._options.file:
-            tbx_fname = self._option.file
+            tbx_fname = self._options.file
         else:
             tbx_fname = gloss.id + ".tbx"
         accl.write(tbx_fname)
