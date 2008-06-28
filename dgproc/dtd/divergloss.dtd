@@ -18,6 +18,7 @@
 <!ENTITY % a-gr 'gr IDREF #IMPLIED'>
 <!ENTITY % a-root 'root IDREF #IMPLIED'>
 <!ENTITY % a-rel 'rel CDATA #IMPLIED'>
+<!ENTITY % a-base 'xml:base CDATA #IMPLIED'>
 
 <!-- Element content for nodes with flat text -->
 <!ENTITY % ec-ftext '(#PCDATA|ref|em|ol|link)*'>
@@ -67,6 +68,7 @@
 <!-- Metadata -->
 
 <!ELEMENT metadata (title+,(desc|ldesc)*,version*,date?)>
+<!ATTLIST metadata %a-base;>
 
 <!ELEMENT title %ec-ftext;>
 <!ATTLIST title %a-lang; %a-env;>
@@ -80,12 +82,15 @@
 
 <!ELEMENT keydefs (languages?,environments?,editors?,sources?,topics?,
                    levels?,grammar?,extroots?)>
+<!ATTLIST keydefs %a-base;>
 
 <!ELEMENT languages (language*)>
+<!ATTLIST languages %a-base;>
 <!ELEMENT language (name+,shortname+)>
 <!ATTLIST language %a-id;>
 
 <!ELEMENT environments (environment*)>
+<!ATTLIST environments %a-base;>
 <!ELEMENT environment (name+,shortname+,(desc|ldesc)+)>
 <!ATTLIST environment %a-id;
                       closeto IDREFS #IMPLIED
@@ -93,26 +98,32 @@
                       meta %bool-true; #IMPLIED>
 
 <!ELEMENT editors (editor*)>
+<!ATTLIST editors %a-base;>
 <!ELEMENT editor (name+,shortname+,email?,affiliation*,(desc|ldesc)*)>
 <!ATTLIST editor %a-id;>
 
 <!ELEMENT sources (source*)>
+<!ATTLIST sources %a-base;>
 <!ELEMENT source (name+,shortname+,url?,email?,(desc|ldesc)+)>
 <!ATTLIST source %a-id;>
 
 <!ELEMENT topics (topic*)>
+<!ATTLIST topics %a-base;>
 <!ELEMENT topic (name+,shortname+,(desc|ldesc)+)>
 <!ATTLIST topic %a-id;>
 
 <!ELEMENT levels (level*)>
+<!ATTLIST levels %a-base;>
 <!ELEMENT level (name+,shortname+,(desc|ldesc)*)>
 <!ATTLIST level %a-id;>
 
 <!ELEMENT grammar (gramm*)>
+<!ATTLIST grammar %a-base;>
 <!ELEMENT gramm (name+,shortname+,(desc|ldesc)*)>
 <!ATTLIST gramm %a-id;>
 
 <!ELEMENT extroots (extroot*)>
+<!ATTLIST extroots %a-base;>
 <!ELEMENT extroot (name+,shortname+,rooturl,browseurl?,(desc|ldesc)*)>
 <!ATTLIST extroot %a-id;>
 
@@ -136,6 +147,7 @@
 <!-- Concepts -->
 
 <!ELEMENT concepts (concept*)>
+<!ATTLIST concepts %a-base;>
 
 <!ELEMENT concept ((desc|ldesc)+,(term|eterm)*,details*,media*,
                    (origin|lorigin)*,(comment|lcomment)*)>
