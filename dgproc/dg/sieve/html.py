@@ -555,6 +555,9 @@ class Subcommand (object):
                      % dict(env=ename)
             accl(wtext(fetext, "p"))
 
+        chead = p_("contents header on the top page", "Table of Contents")
+        accl(wtext(chead, "p", {"class":"tpage-content-header"}))
+
         if chunked:
             cplinks = self._cpage_link_row("", self._concept_base)
             if self._pivoted:

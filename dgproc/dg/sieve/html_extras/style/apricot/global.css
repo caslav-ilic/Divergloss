@@ -277,6 +277,12 @@ p {
     padding-right: 0.5em;
 }
 
+/* header to contents on the top page */
+.tpage-content-header {
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
 /* line with a contents item on the top page */
 .tpage-content {
     padding-left: 0.25em;
