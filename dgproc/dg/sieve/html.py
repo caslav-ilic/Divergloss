@@ -235,18 +235,14 @@ class Subcommand (object):
         if self._pivoted:
             return dset(self._lang, self._env)
         else:
-            pick = dset(self._lang, self._gloss.env[0])
-            if pick:
-                return pick
-            else:
-                for weight, envs in self._envs_by_weight:
-                    for env in envs:
-                        pick = dset(self._lang, env)
-                        if pick:
-                            break
+            for weight, envs in self._envs_by_weight:
+                for env in envs:
+                    pick = dset(self._lang, env)
                     if pick:
                         break
-                return pick
+                if pick:
+                    break
+            return pick
 
 
     def _key_term (self, concept):
