@@ -6,7 +6,6 @@
 
 body {
     background-color: ivory;
-    font-family: serif;
 }
 
 a {
@@ -16,6 +15,10 @@ a {
 a.ext { /* external link */
 }
 a.email { /* email link */
+}
+
+p {
+    font-family: serif;
 }
 
 /* -------- */
