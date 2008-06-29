@@ -1086,9 +1086,6 @@ def _res_embsel (gloss, obj):
     if not envs:
         return [obj]
 
-    # Add object's own environment to encountered environments.
-    envs.update(set(obj.env))
-
     # Create a version of the object for each of the environments.
     robjs = []
     parent = obj.parent
