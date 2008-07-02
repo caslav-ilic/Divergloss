@@ -1217,12 +1217,26 @@ class Subcommand (object):
         for wenvs, wenames, tline in term_lines_cl:
             accl(stag("tr", {"class":"terms-row"}), 1)
             # Equip links to environment names.
+            # Omit environments which inherit previous in the list.
             wenames_linked = []
+            prev_wenvs = []
             for wenv, wename in zip(wenvs, wenames):
                 wenvob = gloss.environments[wenv]
-                wename = wtext(wename, "a", {"href":self._glref(wenvob, crtop)})
-                wenames_linked.append(wename)
+                omit = False
+                for prev_wenv in prev_wenvs:
+                    if prev_wenv in wenvob.closeto:
+                        omit = True
+                        break
+                if not omit:
+                    wename = wtext(wename, "a",
+                                   {"href":self._glref(wenvob, crtop)})
+                    wenames_linked.append(wename)
+                prev_wenvs.append(wenv)
             fenvs = "/".join(wenames_linked)
+            if len(wenames_linked) < len(prev_wenvs):
+                fenvs = p_("list of environments where some have been omitted",
+                           "%(envs)s etc.") % dict(envs=fenvs)
+            fenvs = wtext(fenvs, "nobr")
             accl(wtext(fenvs, "td", {"class":"terms-cell-envs"}), 2)
             accl(wtext(tline, "td", {"class":"terms-cell-terms"}), 2)
             accl(etag("tr"), 1)
