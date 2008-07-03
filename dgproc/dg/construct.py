@@ -1218,7 +1218,7 @@ def _res_embsel_best_text (gloss, ntext, env):
                         warning(p_("warning message",
                                    "no resolution for expected environment "
                                    "'%(env)s' in embedded selector '%(esel)s'")
-                                % dict(env=env, esel=envsegs.unparsed))
+                                % dict(env=env, esel=seg.unparsed))
                     # Pick at random.
                     text.append(random.choice(seg.values()))
         else:
