@@ -6,6 +6,7 @@ all: divergloss.html
 	xmllint --valid $< >/dev/null
 #	xsltproc /usr/share/xml/docbook/stylesheet/ldp/html/tldp-one-page.xsl $< >$@
 	xsltproc /usr/share/xml/docbook/stylesheet/nwalsh/xhtml/docbook.xsl $< >$@
+	tidy -q -utf8 -xml -w 0 -m $@
 
 clean:
-	rm *.html
+	rm -r *.html
