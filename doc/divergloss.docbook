@@ -29,24 +29,13 @@
 
     <revhistory>
         <revision>
-            <date>2008-04-30</date>
-            <authorinitials>CI</authorinitials>
-            <revremark>Multiple keydefs and concepts nodes.</revremark>
+            <date>@date@</date>
+            <revremark>Last modification (repository rev. @vcsrev@).</revremark>
         </revision>
         <revision>
-            <date>2008-04-20</date>
+            <date>2008-02-18</date>
             <authorinitials>CI</authorinitials>
-            <revremark>Terminology closeness for environments.</revremark>
-        </revision>
-        <revision>
-            <date>2008-04-08</date>
-            <authorinitials>CI</authorinitials>
-            <revremark>All format details described.</revremark>
-        </revision>
-        <revision>
-            <date>2008-03-22</date>
-            <authorinitials>CI</authorinitials>
-            <revremark>Work in progress.</revremark>
+            <revremark>Writing started.</revremark>
         </revision>
     </revhistory>
 
