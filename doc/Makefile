@@ -8,10 +8,9 @@ all: divergloss.html
 date=`date "+%F"`; \
 vcsrev=`git log -n1 $< | head -1 | sed 's/^.* //'`; \
 cat $< | sed "s/@date@/$$date/" | sed "s/@vcsrev@/$$vcsrev/" > $<.tmp
-#	xsltproc /usr/share/xml/docbook/stylesheet/ldp/html/tldp-one-page.xsl $< >$@
-	xsltproc /usr/share/xml/docbook/stylesheet/nwalsh/xhtml/docbook.xsl $<.tmp > $@
+	xsltproc local.xsl $<.tmp >$@
 	rm $<.tmp
-	tidy -q -utf8 -xml -w 0 -m $@
+	tidy -q --show-warnings no -utf8 -w 0 -m $@; test -z
 
 clean:
 	rm -r *.html
