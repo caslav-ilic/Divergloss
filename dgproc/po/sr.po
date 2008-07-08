@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-03 01:37+0200\n"
+"POT-Creation-Date: 2008-07-09 00:57+0200\n"
 "PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -498,9 +498,10 @@ msgid "%(gr)s %(decl)s"
 msgstr "%(gr)s %(decl)s"
 
 #: dg/sieve/html.py:1038
+#, python-format
 msgctxt "format of the terms line"
-msgid "%(terms)s (%(olterms)s) [%(topics)] -- %(decls)s"
-msgstr "%(terms)s (%(olterms)s) [%(topics)] — %(decls)s"
+msgid "%(terms)s (%(olterms)s) [%(topics)s] -- %(decls)s"
+msgstr "%(terms)s (%(olterms)s) [%(topics)s] — %(decls)s"
 
 #: dg/sieve/html.py:1043
 #, python-format
@@ -562,75 +563,75 @@ msgctxt "list of environments where some have been omitted"
 msgid "%(envs)s etc."
 msgstr "%(envs)s и др."
 
-#: dg/sieve/html.py:1254
+#: dg/sieve/html.py:1255
 msgctxt "page subtitle"
 msgid "Index of Terms"
 msgstr "Индекс израза"
 
-#: dg/sieve/html.py:1467
+#: dg/sieve/html.py:1468
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt; -- %(url)s"
 msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt; — %(url)s"
 
-#: dg/sieve/html.py:1472
+#: dg/sieve/html.py:1473
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt;"
 msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt;"
 
-#: dg/sieve/html.py:1476
+#: dg/sieve/html.py:1477
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) -- %(url)s"
 msgstr "%(name)s (скр. %(shortname)s) — %(url)s"
 
-#: dg/sieve/html.py:1480
+#: dg/sieve/html.py:1481
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt; -- %(url)s"
 msgstr "%(name)s &lt;%(email)s&gt; — %(url)s"
 
-#: dg/sieve/html.py:1484
+#: dg/sieve/html.py:1485
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s)"
 msgstr "%(name)s (скр. %(shortname)s)"
 
-#: dg/sieve/html.py:1488
+#: dg/sieve/html.py:1489
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt;"
 msgstr "%(name)s &lt;%(email)s&gt;"
 
-#: dg/sieve/html.py:1492
+#: dg/sieve/html.py:1493
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s -- %(url)s"
 msgstr "%(name)s — %(url)s"
 
-#: dg/sieve/html.py:1524
+#: dg/sieve/html.py:1525
 msgctxt "page subtitle"
 msgid "About: Environments"
 msgstr "О окружењима"
 
-#: dg/sieve/html.py:1548
+#: dg/sieve/html.py:1549
 msgctxt "page subtitle"
 msgid "About: Sources"
 msgstr "О изворима"
 
-#: dg/sieve/html.py:1564
+#: dg/sieve/html.py:1565
 msgctxt "page subtitle"
 msgid "About: Editors"
 msgstr "О уредницима"
 
-#: dg/sieve/html.py:1576
+#: dg/sieve/html.py:1577
 #, python-format
 msgctxt "editor's affiliation"
 msgid "Affiliation: %(aff)s"
 msgstr "Намештење: %(aff)s"
 
-#: dg/sieve/html.py:1590
+#: dg/sieve/html.py:1591
 msgctxt "page subtitle"
 msgid "About: Topics"
 msgstr "О областима"
