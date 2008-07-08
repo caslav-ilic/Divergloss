@@ -1035,7 +1035,7 @@ class Subcommand (object):
         # Format the line.
         if olterms_sub and topic_sub and decls_sub:
             terms_line = p_("format of the terms line",
-                            "%(terms)s (%(olterms)s) [%(topics)] -- %(decls)s") \
+                            "%(terms)s (%(olterms)s) [%(topics)s] -- %(decls)s") \
                          % dict(terms=terms_sub, olterms=olterms_sub,
                                 topics=topic_sub, decls=decls_sub)
         elif olterms_sub and topic_sub:
