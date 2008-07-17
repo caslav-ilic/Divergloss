@@ -25,7 +25,8 @@ It is important to keep any free text in the hint within square brackets,
 so that the sieve can detect and indicate terminology changes.
 
 Newly added rules will have C{@gloss-new} string in their comment.
-Existing rules for which the terminology has changed will get C{@gloss-fuzzy}.
+Existing rules for which the terminology has changed will get C{@gloss-fuzzy},
+while those that no longer have a matching concept will get C{@gloss-obsolete}.
 
 The rule files is expected to be UTF-8 encoded (same as Pology expects).
 
@@ -142,12 +143,12 @@ class Subcommand (object):
 
             oterms, tterms = format_terms(concepts[rkey])
             if oterms != rule.oterms or tterms != rule.tterms:
-                note = "%s = %s" % (rule.oterms, rule.tterms)
-                rule.oterms, rule.tterms = oterms, tterms
+                note = "%s = %s" % (oterms, tterms)
                 rule.set_flag("fuzzy", note)
                 continue
 
-            rule.set_flag("")
+            if not rule.has_flag("new"):
+                rule.set_flag("")
 
         # Add new rules, in lexicographical order by keys.
         ckeys = concepts.keys()
@@ -160,6 +161,9 @@ class Subcommand (object):
             nrule = self._Rule()
             nrule.ckey = ckey
             nrule.oterms, nrule.tterms = format_terms(concepts[ckey])
+            nrule.disabled = True
+            # Add all fields for establishing ordering;
+            # some will get their real values on sync.
             if tdelim not in nrule.oterms:
                 topmatch = "{\\b%s}" % nrule.oterms
             else:
@@ -174,7 +178,8 @@ class Subcommand (object):
             else:
                 valmatch = "valid msgstr=\"\\b(%s)\"" % nrule.tterms
             nrule.lines.append(valmatch)
-            nrule.commented = True
+            nrule.lines.append("disabled=\"1\"")
+            nrule.set_flag("new")
 
             inserted = False
             for i in range(last_ins_pos + 1, len(rules)):
@@ -201,33 +206,46 @@ class Subcommand (object):
 
     class _Rule:
 
-        ocmnt = "#~ "
         hint_rx = re.compile(r"^\s*hint\s*=\s*\"(.*)\"")
         free_hint_rx = re.compile(r"\[(.*)\]")
         ident_rx = re.compile(r"^\s*id\s*=\s*\"(.*)\"")
+        disabled_rx = re.compile(r"^\s*disabled\s*=\s*\"(.*)\"")
+
+        flag_pref = "@gloss-"
+        flag_rx = re.compile(r"^\s*#\s*%s(\w+)" % flag_pref)
 
         def __init__ (self):
-
-            self.commented = False
 
             self.ckey = u""
             self.oterms = u""
             self.tterms = u""
             self.freehint = None
+            self.disabled = False
 
             self.lines = []
 
 
         def set_flag (self, flag, note=None):
 
-            flag_pref = "@gloss-"
             flag_cmnt = ""
             if flag:
-                flag_cmnt = "# " + flag_pref + flag
+                flag_cmnt = "# " + self.flag_pref + flag
                 if note is not None:
                     flag_cmnt += " [%s]" % note
-            self.set_line(lambda x: x.startswith("#") and flag_pref in x,
+            self.set_line(lambda x: x.startswith("#") and self.flag_pref in x,
                           flag_cmnt, 0)
+
+
+        def has_flag (self, flag):
+
+            for line in self.lines:
+                m = self.flag_rx.search(line)
+                if m:
+                    cflag = m.group(1)
+                    if cflag == flag:
+                        return True
+
+            return False
 
 
         def sync_lines (self):
@@ -248,6 +266,12 @@ class Subcommand (object):
             elif self.freehint is not None:
                 hintstr = "hint=\"%s\"" % self.freehint
             self.set_line(lambda x: self.hint_rx.search(x), hintstr)
+
+            # Create or remove disabled state.
+            disabledstr = ""
+            if self.disabled:
+                disabledstr = "disabledstr=\"1\""
+            self.set_line(lambda x: self.disabled_rx.search(x), disabledstr)
 
 
         def set_line (self, check, nline, defpos=None):
@@ -274,12 +298,7 @@ class Subcommand (object):
 
             self.sync_lines()
 
-            flines = []
-            for line in self.lines:
-                line += "\n"
-                if self.commented:
-                    line = self.ocmnt + line
-                flines.append(line)
+            flines = [x + "\n" for x in self.lines]
             flines.append("\n")
 
             return flines
@@ -305,7 +324,7 @@ class Subcommand (object):
         hint_rx = self._Rule.hint_rx
         free_hint_rx = self._Rule.free_hint_rx
         ident_rx = self._Rule.ident_rx
-        ocmnt = self._Rule.ocmnt
+        disabled_rx = self._Rule.disabled_rx
 
         prologue = []
         rules = []
@@ -316,16 +335,12 @@ class Subcommand (object):
         for line in ifl:
             line = line.rstrip("\n")
 
-            if line.startswith("#") and not line.startswith(ocmnt): # comment
+            if line.startswith("#"): # comment
                 if in_prologue:
                     prologue.append(line)
                 else:
                     crule.lines.append(line)
                 continue
-
-            if line.startswith(ocmnt): # commented out rule
-                crule.commented = True
-                line = line[len(ocmnt):]
 
             if not line: # rule finished
                 if in_prologue: # last line of file prologue
@@ -359,6 +374,10 @@ class Subcommand (object):
                     crule.tterms = hintstr[p+1:].strip()
                 else:
                     crule.freehint = orig_hintstr
+
+            m = disabled_rx.search(line)
+            if m:
+                crule.disabled = str2bool(m.group(1).strip())
 
             crule.lines.append(line)
 
