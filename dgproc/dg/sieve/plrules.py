@@ -178,7 +178,7 @@ class Subcommand (object):
             else:
                 valmatch = "valid msgstr=\"\\b(%s)\"" % nrule.tterms
             nrule.lines.append(valmatch)
-            nrule.lines.append("disabled=\"1\"")
+            nrule.lines.append("disabled")
             nrule.set_flag("new")
 
             inserted = False
@@ -209,7 +209,7 @@ class Subcommand (object):
         hint_rx = re.compile(r"^\s*hint\s*=\s*\"(.*)\"")
         free_hint_rx = re.compile(r"\[(.*)\]")
         ident_rx = re.compile(r"^\s*id\s*=\s*\"(.*)\"")
-        disabled_rx = re.compile(r"^\s*disabled\s*=\s*\"(.*)\"")
+        disabled_rx = re.compile(r"^\s*disabled\b")
 
         flag_pref = "@gloss-"
         flag_rx = re.compile(r"^\s*#\s*%s(\w+)" % flag_pref)
@@ -270,7 +270,7 @@ class Subcommand (object):
             # Create or remove disabled state.
             disabledstr = ""
             if self.disabled:
-                disabledstr = "disabledstr=\"1\""
+                disabledstr = "disabled"
             self.set_line(lambda x: self.disabled_rx.search(x), disabledstr)
 
 
@@ -377,7 +377,7 @@ class Subcommand (object):
 
             m = disabled_rx.search(line)
             if m:
-                crule.disabled = str2bool(m.group(1).strip())
+                crule.disabled = True
 
             crule.lines.append(line)
 
