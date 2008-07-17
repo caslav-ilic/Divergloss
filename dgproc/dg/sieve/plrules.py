@@ -143,6 +143,7 @@ class Subcommand (object):
             oterms, tterms = format_terms(concepts[rkey])
             if oterms != rule.oterms or tterms != rule.tterms:
                 note = "%s = %s" % (rule.oterms, rule.tterms)
+                rule.oterms, rule.tterms = oterms, tterms
                 rule.set_flag("fuzzy", note)
                 continue
 
