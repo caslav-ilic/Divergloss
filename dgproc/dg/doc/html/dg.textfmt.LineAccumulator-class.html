@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>dg.subcmd.SubcmdHandler</title>
+  <title>dg.textfmt.LineAccumulator</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -38,8 +38,8 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="dg-module.html">Package&nbsp;dg</a> ::
-        <a href="dg.subcmd-module.html">Module&nbsp;subcmd</a> ::
-        Class&nbsp;SubcmdHandler
+        <a href="dg.textfmt-module.html">Module&nbsp;textfmt</a> ::
+        Class&nbsp;LineAccumulator
       </span>
     </td>
     <td>
@@ -50,38 +50,17 @@
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class SubcmdHandler</h1><p class="nomargin-top"></p>
+<h1 class="epydoc">Class LineAccumulator</h1><p class="nomargin-top"></p>
 <pre class="base-tree">
 object --+
          |
-        <strong class="uidshort">SubcmdHandler</strong>
+        <strong class="uidshort">LineAccumulator</strong>
 </pre>
 
 <hr />
-<p>Handle subcommands organized by categories.</p>
-  <p>Each category of subcommands is contained in its own package, where 
-  every submodule is one subcommand. The subcommand names as seen by the 
-  user are then the submodule names, minus the <code>.py</code> extension 
-  and every underscore converted to hyphen (e.g. module 
-  <code>my_subcmd.py</code> becomes <code>my-subcmd</code> subcommand).</p>
-  <p>The API expected out of a subcommand module is simple:</p>
-  <ul>
-    <li>
-      It must define the function <code>fill_optparser(parser_view)</code>,
-      where it registers subcommand description, parameters, etc,; the 
-      <code>parser_view</code> is a subcommand view from the <a 
-      href="dg.subcmd.SuboptParser-class.html" 
-      class="link">SuboptParser</a>, see below for its API.
-    </li>
-    <li>
-      A class named <code>Subcommand</code> must be defined. Its 
-      constructor takes, in order, the options (parameters) to the 
-      subcommand itself and the global options of the main command; both 
-      are simple objects with options as their attributes. This object will
-      be constructed by the handler and delivered to the client, so the 
-      rest of its API shold be designed for the particular application.
-    </li>
-  </ul>
+<p>An accumulator of lines of text.</p>
+  <p>The accumulated lines are reached through the <code>lines</code> 
+  member variable.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -93,12 +72,15 @@ object --+
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list of tuples</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dg.subcmd.SubcmdHandler-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">subcmd_reg_bundle</span>)</span><br />
+          <td><span class="summary-sig"><a href="dg.textfmt.LineAccumulator-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">indent</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">  </code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">ilevel</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">strip</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">empty</span>=<span class="summary-sig-default">False</span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
             
@@ -111,13 +93,14 @@ object --+
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list of strings</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dg.subcmd.SubcmdHandler-class.html#subcmd_names" class="summary-sig-name">subcmd_names</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">pack</span>)</span><br />
-      Names of all the subcommands found in the given category.</td>
+          <td><span class="summary-sig"><a href="dg.textfmt.LineAccumulator-class.html#__call__" class="summary-sig-name">__call__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">text</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">level</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Accumulate line of text, with given indent level.</td>
           <td align="right" valign="top">
             
             
@@ -129,14 +112,15 @@ object --+
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list of lists</span>
+      <span class="summary-type"><a href="dg.textfmt.LineAccumulator-class.html" 
+      class="link">LineAccumulator</a></span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dg.subcmd.SubcmdHandler-class.html#make_subcmds" class="summary-sig-name">make_subcmds</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">subcmd_init_bundle</span>,
-        <span class="summary-sig-arg">cmdline_options</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Create subcommand objects and parse and route parameters to them.</td>
+          <td><span class="summary-sig"><a href="dg.textfmt.LineAccumulator-class.html#newind" class="summary-sig-name">newind</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dlevel</span>=<span class="summary-sig-default">1</span>)</span><br />
+      A new accumulator with same line storage but different base indent 
+      level.</td>
           <td align="right" valign="top">
             
             
@@ -148,13 +132,14 @@ object --+
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">string</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dg.subcmd.SubcmdHandler-class.html#help" class="summary-sig-name">help</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">help_req_bundle</span>)</span><br />
-      Produces a help string for the given subcommands by packages.</td>
+          <td><span class="summary-sig"><a href="dg.textfmt.LineAccumulator-class.html#write" class="summary-sig-name">write</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fpath</span>,
+        <span class="summary-sig-arg">enc</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>)</span><br />
+      Write accumulated lines into a file.</td>
           <td align="right" valign="top">
             
             
@@ -177,6 +162,23 @@ object --+
       <code>__setattr__</code>,
       <code>__str__</code>
       </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list of strings</span>
+    </td><td class="summary">
+        <a name="lines"></a><span class="summary-name">lines</span><br />
+      stored lines
     </td>
   </tr>
 </table>
@@ -213,7 +215,10 @@ object --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">subcmd_reg_bundle</span>)</span>
+        <span class="sig-arg">indent</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">  </code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">ilevel</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">strip</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">empty</span>=<span class="sig-default">False</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -222,132 +227,102 @@ object --+
   </tr></table>
   
   <p>Constructor.</p>
-  <p>Registeres the subcommand categories, using a list where every element
-  is a tuple specifying a package and category name:</p>
-<pre class="literalblock">
-   import subcmds.foo
-   import subcmds.bar
-   ...
-   sch = SubcmdHandler([(subcmds.foo, &quot;Foos&quot;), (subcmds.bar, &quot;Bars&quot;)])
-</pre>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>subcmd_reg_bundle</code></strong> - subcommand registration bundle</li>
+        <li><strong class="pname"><code>indent</code></strong> (string) - line indent per level</li>
+        <li><strong class="pname"><code>ilevel</code></strong> (int &gt;= 0) - base indenting level</li>
+        <li><strong class="pname"><code>strip</code></strong> (bool) - whether to strip lines before indenting</li>
+        <li><strong class="pname"><code>empty</code></strong> (bool) - whether to indent empty lines too</li>
     </ul></dd>
-    <dt>Returns: list of tuples</dt>
     <dt>Overrides:
         object.__init__
     </dt>
   </dl>
 </td></tr></table>
 </div>
-<a name="subcmd_names"></a>
+<a name="__call__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">subcmd_names</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">pack</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__call__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">text</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">level</span>=<span class="sig-default">0</span>)</span>
+    <br /><em class="fname">(Call operator)</em>
   </h3>
   </td><td align="right" valign="top"
     >&nbsp;
     </td>
   </tr></table>
   
-  <p>Names of all the subcommands found in the given category.</p>
+  <p>Accumulate line of text, with given indent level.</p>
+  <p>The indent level is added to the base level given to the constructor. 
+  The newline is added to the text.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pack</code></strong> (module) - subcommand package (one from the constructor bundle)</li>
+        <li><strong class="pname"><code>text</code></strong> (string, list of strings, or another <a 
+          href="dg.textfmt.LineAccumulator-class.html" 
+          class="link">LineAccumulator</a>) - text to accumulate</li>
+        <li><strong class="pname"><code>level</code></strong> (int &gt;= 0) - indenting level</li>
     </ul></dd>
-    <dt>Returns: list of strings</dt>
-        <dd>names of the subcommands found in the package</dd>
   </dl>
 </td></tr></table>
 </div>
-<a name="make_subcmds"></a>
+<a name="newind"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">make_subcmds</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">subcmd_init_bundle</span>,
-        <span class="sig-arg">cmdline_options</span>=<span class="sig-default">None</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">newind</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dlevel</span>=<span class="sig-default">1</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     >&nbsp;
     </td>
   </tr></table>
   
-  <p>Create subcommand objects and parse and route parameters to them.</p>
-  <p>After the client has parsed its command line, collected the names of 
-  issued subcommands and the inbound parameters (specified by the 
-  collector-options), it calls this function to create the subcommands.</p>
-  <p>The initialization bundle is a list of tuples. Each tuple states the 
-  subcommand package of the issued subcommands, list of subcommand names 
-  from that package, and the raw parameters for those subcommands (list of 
-  arguments from the collector-option):</p>
-<pre class="literalblock">
-   subcmds = sch.init_subcmds(
-       [(subcmds.foo, # package
-         [&quot;foo-alpha&quot;, &quot;foo-beta&quot;], # subcommand names
-         [&quot;fpar1&quot;, &quot;fpar2:val&quot;, &quot;fpar3:val&quot;]), # raw parameters
-        (subcmds.bar,
-         [&quot;bar-sierra&quot;],
-         [&quot;bpar1&quot;, &quot;bpar2:val&quot;])])
-</pre>
-  <p>The packages given here must be a subset of those that were given to 
-  the constructor, and subcommands a subset of those that the constructor 
-  found inside the packages.</p>
-  <p>If everything goes well -- all subcommands exist, no parameter errors 
-  -- then the subcommand objects are created from the subcommand modules, 
-  and returned in a list of lists, according to the ordering of subcommand 
-  names in the initialization bundle.</p>
-  <p>All options that the main command received, in the form of object with
-  attributes (e.g. as created by <code>optparse.OptionParser</code>) may 
-  also be routed to the subcommands if desired. This may be useful for 
-  subcommands to heed standard options like quiet, verbose, etc.</p>
+  <p>A new accumulator with same line storage but different base indent 
+  level.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>subcmd_init_bundle</code></strong> (list of tuples) - subcommand initialization bundle</li>
-        <li><strong class="pname"><code>cmdline_options</code></strong> (object) - global options</li>
+        <li><strong class="pname"><code>dlevel</code></strong> (int) - increase in indent level</li>
     </ul></dd>
-    <dt>Returns: list of lists</dt>
-        <dd>subcommand object</dd>
+    <dt>Returns: <a href="dg.textfmt.LineAccumulator-class.html" 
+      class="link">LineAccumulator</a></dt>
+        <dd>accumulator with different indent level</dd>
   </dl>
 </td></tr></table>
 </div>
-<a name="help"></a>
+<a name="write"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">help</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">help_req_bundle</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fpath</span>,
+        <span class="sig-arg">enc</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
     >&nbsp;
     </td>
   </tr></table>
   
-  <p>Produces a help string for the given subcommands by packages.</p>
-  <p>The request bundle is a list, where each element is a tuple stating a 
-  subcommand package and list of subcommand names.</p>
+  <p>Write accumulated lines into a file.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>help_req_bundle</code></strong> (list of tuples) - request bundle</li>
+        <li><strong class="pname"><code>fpath</code></strong> (string) - path of the file to write</li>
+        <li><strong class="pname"><code>enc</code></strong> (string) - encoding for the text</li>
     </ul></dd>
-    <dt>Returns: string</dt>
-        <dd>formatted help</dd>
   </dl>
 </td></tr></table>
 </div>
