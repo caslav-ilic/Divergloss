@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-17 03:02+0200\n"
+"POT-Creation-Date: 2008-07-19 19:26+0200\n"
 "PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -222,7 +222,7 @@ msgctxt "subcommand description"
 msgid "Create HTML pages out of the glossary."
 msgstr "Градња ХТМЛ страна према појмовнику."
 
-#: dg/sieve/html.py:49 dg/sieve/plrules.py:58 dg/sieve/plrules.py:62
+#: dg/sieve/html.py:49 dg/sieve/plrules.py:69 dg/sieve/plrules.py:73
 #: dg/sieve/po.py:30 dg/sieve/po.py:34 dg/sieve/tbx.py:32
 #: dg/sieve/text_simple.py:26
 msgctxt "placeholder for parameter value"
@@ -234,8 +234,8 @@ msgctxt "subcommand option description"
 msgid "Pivotal language for the view. The glossary default language is used if not given."
 msgstr "Осовински језик за поглед. Ако није дат, узима се подразумевани језик појмовника."
 
-#: dg/sieve/html.py:54 dg/sieve/plrules.py:70 dg/sieve/po.py:38
-#: dg/sieve/tbx.py:37 dg/sieve/text_simple.py:31
+#: dg/sieve/html.py:54 dg/sieve/plrules.py:81 dg/sieve/plrules.py:87
+#: dg/sieve/po.py:38 dg/sieve/tbx.py:37 dg/sieve/text_simple.py:31
 msgctxt "placeholder for parameter value"
 msgid "ENVKEY"
 msgstr "ОКРКЉУЧ"
@@ -332,8 +332,8 @@ msgctxt "error message"
 msgid "language '%(lang)s' not present in the glossary"
 msgstr "језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/html.py:130 dg/sieve/plrules.py:100 dg/sieve/po.py:74
-#: dg/sieve/tbx.py:69
+#: dg/sieve/html.py:130 dg/sieve/plrules.py:115 dg/sieve/plrules.py:120
+#: dg/sieve/po.py:74 dg/sieve/tbx.py:69
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' not defined by the glossary"
@@ -638,49 +638,54 @@ msgctxt "page subtitle"
 msgid "About: Topics"
 msgstr "О областима"
 
-#: dg/sieve/plrules.py:55
+#: dg/sieve/plrules.py:66
 msgctxt "subcommand description"
 msgid "Update rules files for Pology's check-rules sieve."
 msgstr "Ажурирање датотека с правилима за Пологијино сито check-rules."
 
-#: dg/sieve/plrules.py:60
+#: dg/sieve/plrules.py:71
 msgctxt "subcommand option description"
 msgid "Original language from the rules point of view."
 msgstr "Изворни језик с тачке гледишта правила."
 
-#: dg/sieve/plrules.py:64
+#: dg/sieve/plrules.py:75
 msgctxt "subcommand option description"
 msgid "Target language from the rules point of view."
 msgstr "Циљни језик с тачке гледишта правила."
 
-#: dg/sieve/plrules.py:66 dg/sieve/po.py:42 dg/sieve/text_simple.py:36
+#: dg/sieve/plrules.py:77 dg/sieve/po.py:42 dg/sieve/text_simple.py:36
 msgctxt "placeholder for parameter value"
 msgid "FILE"
 msgstr "ДАТОТЕКА"
 
-#: dg/sieve/plrules.py:68
+#: dg/sieve/plrules.py:79
 msgctxt "subcommand option description"
 msgid "Rules file to update or create."
 msgstr "Датотека с правилима коју треба ажурирати или створити."
 
-#: dg/sieve/plrules.py:72
+#: dg/sieve/plrules.py:83
 msgctxt "subcommand option description"
 msgid "Environment for which the rules are updated. The glossary default environment is used if not given."
 msgstr "Окружење за које се ажурирају правила. Ако није дато, узима се подразумевано окружење појмовника."
 
-#: dg/sieve/plrules.py:90 dg/sieve/po.py:64
+#: dg/sieve/plrules.py:89
+msgctxt "subcommand option description"
+msgid "Base environment when making hierarchical rules."
+msgstr "Базно окружење при прављењу хијерархијских правила."
+
+#: dg/sieve/plrules.py:105 dg/sieve/po.py:64
 #, python-format
 msgctxt "error message"
 msgid "origin language '%(lang)s' not present in the glossary"
 msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/plrules.py:95 dg/sieve/po.py:69
+#: dg/sieve/plrules.py:110 dg/sieve/po.py:69
 #, python-format
 msgctxt "error message"
 msgid "target language '%(lang)s' not present in the glossary"
 msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/plrules.py:130 dg/sieve/po.py:108
+#: dg/sieve/plrules.py:163 dg/sieve/po.py:108
 msgctxt "warning message"
 msgid "no concepts found for PO view that have terms in both the requested origin and target language"
 msgstr "нема ниједног концепта за ПО поглед који би имао изразе и за тражени изворни и циљни језик"
