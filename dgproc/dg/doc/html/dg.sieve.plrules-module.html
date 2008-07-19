@@ -72,8 +72,20 @@
   [&lt;free-hints&gt;]&quot;</code>. It is important to keep any free text 
   in the hint within square brackets, so that the sieve can detect and 
   indicate terminology changes.</p>
+  <p>Rules for terminology hierarchies can be maintained using the base 
+  environment parameter, <code>benv</code>. In this mode, first the rules 
+  are updated for the base environment, i.e. its key given as 
+  <code>env</code>; then another set of rules is updated for the inheriting
+  environment, where its key is given as <code>env</code>, and base 
+  environment's key as <code>benv</code>. The rules for inheriting 
+  environment will be updated only for those concepts with terminology 
+  different to that of the base environment.</p>
   <p>Newly added rules will have <code>@gloss-new</code> string in their 
   comment. Existing rules for which the terminology has changed will get 
+  <code>@gloss-fuzzy</code>, while those that no longer have a matching 
+  concept will get <code>@gloss-obsolete</code>. When the base environment 
+  is given and the terminology has been changed to match the base one, 
+  <code>@gloss-merge</code> will be set instead of 
   <code>@gloss-fuzzy</code>.</p>
   <p>The rule files is expected to be UTF-8 encoded (same as Pology 
   expects).</p>
