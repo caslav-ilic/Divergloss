@@ -24,9 +24,19 @@ C{"<original-terms> = <target-terms> [<free-hints>]"}.
 It is important to keep any free text in the hint within square brackets,
 so that the sieve can detect and indicate terminology changes.
 
+Rules for terminology hierarchies can be maintained using the base environment
+parameter, C{benv}. In this mode, first the rules are updated for the
+base environment, i.e. its key given as C{env}; then another set of rules
+is updated for the inheriting environment, where its key is given as C{env},
+and base environment's key as C{benv}. The rules for inheriting environment
+will be updated only for those concepts with terminology different to
+that of the base environment.
+
 Newly added rules will have C{@gloss-new} string in their comment.
 Existing rules for which the terminology has changed will get C{@gloss-fuzzy},
 while those that no longer have a matching concept will get C{@gloss-obsolete}.
+When the base environment is given and the terminology has been changed
+to match the base one, C{@gloss-merge} will be set instead of C{@gloss-fuzzy}.
 
 The rule files is expected to be UTF-8 encoded (same as Pology expects).
 
@@ -73,6 +83,10 @@ def fill_optparser (parser_view):
                           "Environment for which the rules are updated. "
                           "The glossary default environment is used "
                           "if not given."))
+    pv.add_subopt("benv", str, defval="",
+                  metavar=p_("placeholder for parameter value", "ENVKEY"),
+                  desc=p_("subcommand option description",
+                          "Base environment when making hierarchical rules."))
 
 
 class Subcommand (object):
@@ -84,7 +98,7 @@ class Subcommand (object):
 
     def __call__ (self, gloss):
 
-        # Resolve languages and environment.
+        # Resolve languages and environments.
         olang = self._options.olang
         if olang not in gloss.languages:
             error(p_("error message",
@@ -96,37 +110,55 @@ class Subcommand (object):
                      "target language '%(lang)s' not present in the glossary")
                     % dict(lang=tlang))
         env = self._options.env or gloss.env[0]
-        if env is not None and env not in gloss.environments:
+        if env not in gloss.environments:
             error(p_("error message",
                      "environment '%(env)s' not defined by the glossary")
                   % dict(env=env))
+        benv = self._options.benv
+        if benv and benv not in gloss.environments:
+            error(p_("error message",
+                     "environment '%(env)s' not defined by the glossary")
+                  % dict(env=benv))
         rulefile = self._options.file
 
         # Formatters for resolving glossary into plain text.
         tft = TextFormatterPlain(gloss, lang=tlang, env=env)
         tdelim = "|" # to be able to send terms to regex too
 
-        def format_terms (concept):
+        def format_terms (concept, env=env):
 
-            oterms = [tft(x.nom.text) for x in concept.term(olang, env)]
+            oterms = concept.term(olang, env)
+            tterms = concept.term(tlang, env)
+            if not oterms or not tterms:
+                return None, None
+
+            oterms = [tft(x.nom.text) for x in oterms]
             langsort(oterms, olang)
             otermsall = tdelim.join(oterms)
 
-            tterms = [tft(x.nom.text) for x in  concept.term(tlang, env)]
+            tterms = [tft(x.nom.text) for x in tterms]
             langsort(tterms, tlang)
             ttermsall = tdelim.join(tterms)
 
             return otermsall, ttermsall
 
-        # Select all concepts which have a term in both langenvs.
-        concepts = {}
+        # From concepts which have a term in both langenvs,
+        # assemble the data needed to construct rules.
+        # Also collect keys of concepts which are shared with
+        # the base environment *from the viewpoint of rules*.
+        concepts_data = {}
+        concepts_shared = set()
         for ckey, concept in gloss.concepts.iteritems():
-            oterms = concept.term(olang, env)
-            tterms = concept.term(tlang, env)
+            oterms, tterms = format_terms(concept)
             if oterms and tterms:
-                concepts[ckey] = concept
+                concepts_data[ckey] = (oterms, tterms)
+                if benv:
+                    # Concept shared if original/target terminology same.
+                    boterms, btterms = format_terms(concept, benv)
+                    if oterms == boterms and tterms == btterms:
+                        concepts_shared.add(ckey)
 
-        if not concepts:
+        if not concepts_data:
             warning(p_("warning message",
                        "no concepts found for PO view that have terms in both "
                        "the requested origin and target language"))
@@ -137,11 +169,19 @@ class Subcommand (object):
         # Flag all existing rules.
         for rkey, rule in rmap.iteritems():
 
-            if rkey not in concepts:
+            if rkey not in concepts_data:
                 rule.set_flag("obsolete")
                 continue
 
-            oterms, tterms = format_terms(concepts[rkey])
+            oterms, tterms = concepts_data[rkey]
+
+            if benv and rkey in concepts_shared:
+                note = None
+                if oterms != rule.oterms or tterms != rule.tterms:
+                    note = "%s = %s" % (oterms, tterms)
+                rule.set_flag("merge", note)
+                continue
+
             if oterms != rule.oterms or tterms != rule.tterms:
                 note = "%s = %s" % (oterms, tterms)
                 rule.set_flag("fuzzy", note)
@@ -151,16 +191,18 @@ class Subcommand (object):
                 rule.set_flag("")
 
         # Add new rules, in lexicographical order by keys.
-        ckeys = concepts.keys()
+        ckeys = concepts_data.keys()
         ckeys.sort()
         last_ins_pos = -1
         for ckey in ckeys:
             if ckey in rmap:
                 continue
+            if ckey in concepts_shared:
+                continue
 
             nrule = self._Rule()
             nrule.ckey = ckey
-            nrule.oterms, nrule.tterms = format_terms(concepts[ckey])
+            nrule.oterms, nrule.tterms = concepts_data[ckey]
             nrule.disabled = True
             # Add all fields for establishing ordering;
             # some will get their real values on sync.
