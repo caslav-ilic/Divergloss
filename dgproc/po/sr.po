@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 19:26+0200\n"
+"POT-Creation-Date: 2008-07-20 21:09+0200\n"
 "PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -799,15 +799,19 @@ msgid "Wrap text after this column."
 msgstr "Прелом редова после ове колоне."
 
 #: dg/sieve/text_simple.py:58
-#, python-format
+#, fuzzy, python-format
+#| msgctxt "error message"
+#| msgid "language '%(lang)s' does not exits in the glossary"
 msgctxt "error message"
-msgid "language '%(lang)s' does not exits in the glossary"
+msgid "language '%(lang)s' does not exist in the glossary"
 msgstr "језик ‘%(lang)s’ не постоји у појмовнику"
 
 #: dg/sieve/text_simple.py:64
-#, python-format
+#, fuzzy, python-format
+#| msgctxt "error message"
+#| msgid "environment '%(env)s' does not exits in the glossary"
 msgctxt "error message"
-msgid "environment '%(env)s' does not exits in the glossary"
+msgid "environment '%(env)s' does not exist in the glossary"
 msgstr "окружење ‘%(env)s’ не постоји у појмовнику"
 
 #: dg/subcmd.py:132

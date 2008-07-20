@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-20 15:14+0200\n"
+"POT-Creation-Date: 2008-07-20 21:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -787,13 +787,13 @@ msgstr ""
 #: dg/sieve/text_simple.py:58
 #, python-format
 msgctxt "error message"
-msgid "language '%(lang)s' does not exits in the glossary"
+msgid "language '%(lang)s' does not exist in the glossary"
 msgstr ""
 
 #: dg/sieve/text_simple.py:64
 #, python-format
 msgctxt "error message"
-msgid "environment '%(env)s' does not exits in the glossary"
+msgid "environment '%(env)s' does not exist in the glossary"
 msgstr ""
 
 #: dg/subcmd.py:132
