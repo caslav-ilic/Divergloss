@@ -30,23 +30,25 @@ if test $mode = all || test $mode = merge; then
     done
 fi
 
+# Generate sr@latin PO if sr present.
+if test -f $cdir/sr.po; then
+    recode-sr-latin <$cdir/sr.po >$cdir/sr@latin.po
+fi
+
 if test $mode = all || test $mode = compile; then
     echo ">>> Compiling MOs..."
     modir=$cdir/../mo
     pofiles=`echo $cdir/*.po`
     for pofile in $pofiles; do
+        # Build MO alongside PO, for distribution.
         echo -n "$pofile  "
         pobase=`basename $pofile`
         lang=${pobase/.po/}
-        mofile=$modir/$lang/LC_MESSAGES/$potbase.mo
-        mkdir -p `dirname $mofile`
-        msgfmt -c --statistics $pofile -o $mofile
+        msgfmt -c --statistics $pofile -o $cdir/$lang.mo
 
-        # Special handling for sr->sr@latin.
-        if test `basename $pofile` = sr.po; then
-            mofile_lat=${mofile/\/sr/\/sr@latin}
-            mkdir -p `dirname $mofile_lat`
-            recode-sr-latin < $pofile | msgfmt -o $mofile_lat -
-        fi
+        # Copy MO to local hierarchy, for use from within the repository.
+        molocal=$modir/$lang/LC_MESSAGES/$potbase.mo
+        mkdir -p `dirname $molocal`
+        cp $cdir/$lang.mo $molocal
     done
 fi

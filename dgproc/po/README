@@ -7,9 +7,11 @@ Running the update-po.sh without arguments will do the following:
 Each of this phases can be run separately by giving as argument one of:
 extract, merge, compile.
 
-The compiled translations will be put in ../mo subdir, where they will be
-picked up automatically on subsequent invocation of dgproc scripts
-(this subdir is ignored by version control).
+The compiled MO files will be put alongside PO files, for distribution,
+and installed into ../mo with proper locale hierarchy such that they
+get picked up automatically on subsequent invocation of dgproc scripts
+when run directly from the repository (without installing).
+MO files and ../mo subdirectory are ignored by version control.
 
 Run periodically to bring updated translations into action, possibly in the
 compile-only mode if you do not want to touch template and translations.
