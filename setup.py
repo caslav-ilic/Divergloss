@@ -6,8 +6,8 @@ from distutils.core import setup
 
 setup(name='divergloss',  
       version='0.1',
-      description='The (di)Versatile Glossary Toolkit',
-      author='Chusslove Illich (Часлав Илић)',
+      description='The Diversity Glossary Toolkit',
+      author='Chusslove Illich',
       author_email='caslav.ilic@gmx.net',
       requires=['lxml'],
       license='GPLv3',
