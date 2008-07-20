@@ -55,13 +55,13 @@ class Subcommand (object):
         lang = self._options.lang or gloss.lang
         if lang is not None and lang not in gloss.languages:
             error(p_("error message",
-                     "language '%(lang)s' does not exits in the glossary")
+                     "language '%(lang)s' does not exist in the glossary")
                     % dict(lang=lang))
 
         env = self._options.env or gloss.env[0]
         if env is not None and env not in gloss.environments:
             error(p_("error message",
-                     "environment '%(env)s' does not exits in the glossary")
+                     "environment '%(env)s' does not exist in the glossary")
                   % dict(env=env))
 
         # Text formatter for selected language and environment.
