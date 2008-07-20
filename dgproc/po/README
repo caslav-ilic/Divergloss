@@ -7,9 +7,8 @@ Running the update-po.sh without arguments will do the following:
 Each of this phases can be run separately by giving as argument one of:
 extract, merge, compile.
 
-The compiled MO files will be put alongside PO files, for distribution,
-and installed into ../mo with proper locale hierarchy such that they
-get picked up automatically on subsequent invocation of dgproc scripts
+Compiled MO files are put into ../mo, using proper locale hierarchy
+such that they get picked up automatically by dgproc scripts
 when run directly from the repository (without installing).
 MO files and ../mo subdirectory are ignored by version control.
 

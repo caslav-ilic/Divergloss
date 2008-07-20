@@ -40,15 +40,10 @@ if test $mode = all || test $mode = compile; then
     modir=$cdir/../mo
     pofiles=`echo $cdir/*.po`
     for pofile in $pofiles; do
-        # Build MO alongside PO, for distribution.
         echo -n "$pofile  "
         pobase=`basename $pofile`
         lang=${pobase/.po/}
-        msgfmt -c --statistics $pofile -o $cdir/$lang.mo
-
-        # Copy MO to local hierarchy, for use from within the repository.
-        molocal=$modir/$lang/LC_MESSAGES/$potbase.mo
-        mkdir -p `dirname $molocal`
-        cp $cdir/$lang.mo $molocal
+        mofile=$modir/$lang/LC_MESSAGES/$potbase.mo
+        msgfmt -c --statistics $pofile -o $mofile
     done
 fi
