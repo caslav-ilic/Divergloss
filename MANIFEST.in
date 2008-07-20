@@ -1,0 +1,9 @@
+# Manifest.in
+include *.py
+include *.sh
+include *.html
+include dgproc/po/*
+include dgproc/dtd/*
+include dgproc/dg/sieve/html_extras/*
+include doc/*
+include example/*
