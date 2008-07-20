@@ -1,9 +1,15 @@
 # Manifest.in
-include *.py
-include *.sh
-include *.html
-include dgproc/po/*
-include dgproc/dtd/*
-include dgproc/dg/sieve/html_extras/*
-include doc/*
-include example/*
+
+global-include *.py
+global-include *.sh
+global-include *.txt
+
+graft doc
+graft example
+
+graft dgproc/dtd
+graft dgproc/po
+graft dgproc/dg/doc
+graft dgproc/dg/sieve/html_extras
+
+global-exclude .htaccess
