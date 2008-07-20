@@ -4,7 +4,8 @@
     version="1.0"
 >
 <!-- href="/usr/share/xml/docbook/stylesheet/ldp/html/tldp-one-page.xsl" -->
-<!-- href="/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl" --> <xsl:import
+<!-- href="/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl" -->
+<xsl:import
     href="/usr/share/xml/docbook/stylesheet/ldp/html/tldp-one-page.xsl"
 />
 <xsl:output
