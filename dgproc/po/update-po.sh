@@ -38,12 +38,26 @@ fi
 if test $mode = all || test $mode = compile; then
     echo ">>> Compiling MOs..."
     modir=$cdir/../mo
+    if [ ! -a $modir ]; then
+	echo ">>> Target directory $modir does not exist. Making it now."
+	mkdir -p $modir
+    elif [ -a $modir && ! -d $modir ]; then
+	echo ">>> Target $modir exists but is not a directory."
+	echo ">>> Please check it out and make sure that it's a directory."
+	echo ">>> Subsequent actions are going to fail."
+    fi
     pofiles=`echo $cdir/*.po`
     for pofile in $pofiles; do
         echo -n "$pofile  "
         pobase=`basename $pofile`
         lang=${pobase/.po/}
-        mofile=$modir/$lang/LC_MESSAGES/$potbase.mo
+	newmodir=$modir/$lang/LC_MESSAGES
+	if [ ! -a $modir ]; then
+	    echo ">>> Target MO directory $newmodir does not exist. \
+Making it now."
+	    mkdir -p $newmodir
+	fi
+        mofile=$newmodir/$potbase.mo
         msgfmt -c --statistics $pofile -o $mofile
     done
 fi
