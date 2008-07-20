@@ -13,3 +13,9 @@ novcs/
 # Eclipse things you don't want to share.
 .project
 .pydevproject
+
+# Ignore the distribution files
+dist
+
+# Don't track the manifest as it is a generated file from MANIFEST.in
+MANIFEST
