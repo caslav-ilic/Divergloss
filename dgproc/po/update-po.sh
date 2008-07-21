@@ -38,26 +38,30 @@ fi
 if test $mode = all || test $mode = compile; then
     echo ">>> Compiling MOs..."
     modir=$cdir/../mo
-    if [ ! -a $modir ]; then
-	echo ">>> Target directory $modir does not exist. Making it now."
-	mkdir -p $modir
-    elif [ -a $modir && ! -d $modir ]; then
-	echo ">>> Target $modir exists but is not a directory."
-	echo ">>> Please check it out and make sure that it's a directory."
-	echo ">>> Subsequent actions are going to fail."
+    # Remove old MO dir if in pristine state, otherwise warn and exit.
+    if [ -d $modir ]; then
+        nonmofiles=`find $modir -type f | egrep -v '.*\.mo$'`
+        if [ -n "$nonmofiles" ]; then
+            echo "$nonmofiles"
+            echo ">>> $modir contains non-MO files."
+            echo ">>> Move them or delete them, then rerun the script."
+            exit 1
+        fi
+        rm -rf $modir
+    elif [ -e $modir ]; then
+        echo ">>> $modir not a directory."
+        echo ">>> Move it or delete it, then rerun the script."
+        exit 1
     fi
+
     pofiles=`echo $cdir/*.po`
     for pofile in $pofiles; do
         echo -n "$pofile  "
         pobase=`basename $pofile`
         lang=${pobase/.po/}
-	newmodir=$modir/$lang/LC_MESSAGES
-	if [ ! -a $modir ]; then
-	    echo ">>> Target MO directory $newmodir does not exist. \
-Making it now."
-	    mkdir -p $newmodir
-	fi
-        mofile=$newmodir/$potbase.mo
+        mosubdir=$modir/$lang/LC_MESSAGES
+        mkdir -p $mosubdir
+        mofile=$mosubdir/$potbase.mo
         msgfmt -c --statistics $pofile -o $mofile
     done
 fi
