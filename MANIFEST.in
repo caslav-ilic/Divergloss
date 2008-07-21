@@ -9,7 +9,7 @@ graft example
 
 graft dgproc/dtd
 graft dgproc/po
-graft dgproc/mo
+recursive-include dgproc/mo *.mo
 graft dgproc/dg/doc
 graft dgproc/dg/sieve/html_extras
 
