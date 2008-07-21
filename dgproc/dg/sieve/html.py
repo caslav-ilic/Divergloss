@@ -1383,6 +1383,22 @@ class Subcommand (object):
                         if cref not in lang_term_links[fterm]:
                             lang_term_links[fterm].append(cref)
 
+        # Eliminate terms in pivot language equal to terms
+        # in other languages and naming exact same concepts.
+        olangs = [x for x in term_links.keys() if x != lang]
+        if not self._options.no_term_olang:
+            term_links_filtered = {}
+            for term, links in term_links[lang].iteritems():
+                matched = False
+                for olang in olangs:
+                    olinks = term_links[olang].get(term)
+                    if links == olinks:
+                        matched = True
+                        break
+                if not matched:
+                    term_links_filtered[term] = links
+            term_links[lang] = term_links_filtered
+
         # Sorted terms with link, nested as:
         # list of (langname, list of (terms, list of links))
         # Keep pivot language entry out of the list.
