@@ -20,21 +20,23 @@ def rootdir():
 
     return __path__[0]
 
+
+# Collect data paths.
+# Either as installed, when the _paths.py module will be available,
+# or assume locations within the repository.
+try:
+    import dg._paths as _paths
+    _mo_dir = _paths.mo
+    _dtd_dir = _paths.dtd
+except ImportError:
+    _mo_dir = os.path.join(os.path.dirname(rootdir()), "mo")
+    _dtd_dir = os.path.join(os.path.dirname(rootdir()), "dtd")
+
+
 # Global translation object, used internally (only calls exposed in dg.util).
-_mo_dir = os.path.join(os.path.dirname(rootdir()), "mo")
-if not os.path.isdir(_mo_dir):
-    # No repository path, fall back to installed path.
-    # FIXME: Synchronize path with installation.
-    _mo_dir = "/usr/share/locale"
 import gettext
 try:
     _tr = gettext.translation("dgproc", _mo_dir)
 except IOError:
     _tr = gettext.NullTranslations()
 
-# Path to DTDs.
-_dtd_dir = os.path.join(os.path.dirname(rootdir()), "dtd") # FIXME
-if not os.path.isdir(_dtd_dir):
-    # No repository path, fall back to installed path.
-    # FIXME: Synchronize path with installation.
-    _dtd_dir = "/usr/share/xml/divergloss"
