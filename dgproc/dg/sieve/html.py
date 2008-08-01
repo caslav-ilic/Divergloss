@@ -16,7 +16,7 @@ import shutil
 import random
 
 from dg import rootdir
-from dg.util import p_
+from dg.util import p_, np_
 from dg.util import error, warning
 from dg.textfmt import TextFormatterPlain, TextFormatterHtml
 from dg.textfmt import etag, stag, wtext
@@ -547,13 +547,26 @@ class Subcommand (object):
         for desc in descs:
             accl(tfp(desc.text))
         # TODO: version, date.
+        nconcepts = len(self._ckeys_to_filenames.keys())
         if self._pivoted and env:
             ename = tf(le_(gloss.environments[env].name)[0].text)
-            fetext = p_("a paragraph on the top page",
-                        "This view of the glossary has been specialized "
-                        "for the <em>%(env)s</em> environment.") \
-                     % dict(env=ename)
-            accl(wtext(fetext, "p"))
+            fetext = np_("a paragraph on the top page",
+                         "This view of the glossary has been specialized "
+                         "for the <em>%(env)s</em> environment, "
+                         "and contains one concept.",
+                         "This view of the glossary has been specialized "
+                         "for the <em>%(env)s</em> environment, "
+                         "and contains %(n)d concepts.",
+                         nconcepts) \
+                     % dict(env=ename, n=nconcepts)
+        else:
+            fetext = np_("a paragraph on the top page",
+                         "This view of the glossary contains one concept.",
+                         "This view of the glossary contains "
+                         "%(n)d concepts.",
+                         nconcepts) \
+                     % dict(n=nconcepts)
+        accl(wtext(fetext, "p"))
 
         chead = p_("contents header on the top page", "Table of Contents")
         accl(wtext(chead, "p", {"class":"tpage-content-header"}))
