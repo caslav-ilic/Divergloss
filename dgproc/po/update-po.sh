@@ -15,7 +15,7 @@ if test $mode = all || test $mode = extract; then
     srcfiles=`find -iname \*.py | sort`
     potfile=po/$potbase.pot
     xgettext --no-wrap \
-        -k_:1 -kp_:1c,2 -kn_:1,2 -knp_:1c,2 \
+        -k_:1 -kp_:1c,2 -kn_:1,2 -knp_:1c,2,3 \
         -o $potfile $srcfiles
     cd $wdir
 fi
