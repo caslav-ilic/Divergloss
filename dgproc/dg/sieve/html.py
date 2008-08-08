@@ -1098,7 +1098,8 @@ class Subcommand (object):
         # Assemble terms in other environments, for same language.
         secterms_line = ""
         if not self._options.no_term_oenv:
-            # Join environments where the terms are same.
+            # Collect environments by the term which they use,
+            # sort list by environment priority.
             oeterms_all = {}
             for oenv in concept.term.envs(lang):
                 if oenv == env:
@@ -1106,31 +1107,32 @@ class Subcommand (object):
                 oeterms = concept.term(lang, oenv)
                 if oeterms:
                     oeterms = [tf(x.nom.text) for x in oeterms]
-                    oeterms = ", ".join([wtext(x, "span", {"class":"term-oe"})
-                                         for x in oeterms])
+                    oeterms = [wtext(x, "span", {"class":"term-oe"})
+                               for x in oeterms]
+                    # Also need to collect formatted environment names,
+                    # for sorting later on.
                     oenvft = gloss.environments[oenv].shortname(lang, env)[0]
                     oenvft = tf(oenvft.text)
-                    # Must carry on both environment key and formatted name,
-                    # for proper sorting by environment priority later.
-                    if oeterms not in oeterms_all:
-                        oeterms_all[oeterms] = {}
-                    oeterms_all[oeterms][oenv] = oenvft
+                    for oeterm in oeterms:
+                        if oeterm not in oeterms_all:
+                            oeterms_all[oeterm] = []
+                        oeterms_all[oeterm].append((oenv, oenvft))
             if oeterms_all:
+                # For each term, sort environments.
+                oeterms_all_es = {}
+                for oeterm, oenv_packs in oeterms_all.iteritems():
+                    oeterms_all_es[oeterm] = self._envsort(dict(oenv_packs))
+                # Sort terms by considering first environment of each.
+                sort_packs = [(y[0][0], x) for x, y in oeterms_all_es.items()]
+                sorted_oeterms = self._envsort(dict(sort_packs), full=False)
+                oeterms_all_sorted = []
+                for oeterm in sorted_oeterms:
+                    oeterms_all_sorted.append((oeterm, oeterms_all_es[oeterm]))
+                # Assemble the line.
                 oeterms_joined = []
-                for oeterms, oenv_packs in oeterms_all.iteritems():
-                    oenv_packs = self._envsort(oenv_packs)
-                    foenvs = []
-                    for oenv, oenvft in oenv_packs:
-                        oenvob = gloss.environments[oenv]
-                        if oenvob.meta:
-                            oenvft = wtext(oenvft, "span", {"class":"env-meta"})
-                        else:
-                            oenvft = wtext(oenvft, "span", {"class":"env"})
-                        oenvft = wtext(oenvft, "a",
-                                       {"href":self._glref(oenvob, crtop)})
-                        foenvs.append(oenvft)
-                    oeterms_joined += ["%s (%s)" % (oeterms, "/".join(foenvs))]
-                langsort(oeterms_joined, lang)
+                for oeterm, oenv_packs in oeterms_all_sorted:
+                    foenvs = self._fmt_env_list([x for x, y in oenv_packs])
+                    oeterms_joined += ["%s (%s)" % (oeterm, foenvs)]
                 secterms_line = "; ".join(oeterms_joined)
                 secterms_line = p_("terms naming the concept in environments "
                                    "other than the pivotal one",
@@ -1229,26 +1231,7 @@ class Subcommand (object):
                             "border":"0", "width":"100%"}))
         for wenvs, wenames, tline in term_lines_cl:
             accl(stag("tr", {"class":"terms-row"}), 1)
-            # Equip links to environment names.
-            # Omit environments which inherit previous in the list.
-            wenames_linked = []
-            prev_wenvs = []
-            for wenv, wename in zip(wenvs, wenames):
-                wenvob = gloss.environments[wenv]
-                omit = False
-                for prev_wenv in prev_wenvs:
-                    if prev_wenv in wenvob.closeto:
-                        omit = True
-                        break
-                if not omit:
-                    wename = wtext(wename, "a",
-                                   {"href":self._glref(wenvob, crtop)})
-                    wenames_linked.append(wename)
-                prev_wenvs.append(wenv)
-            fenvs = "/".join(wenames_linked)
-            if len(wenames_linked) < len(prev_wenvs):
-                fenvs = p_("list of environments where some have been omitted",
-                           "%(envs)s etc.") % dict(envs=fenvs)
+            fenvs = self._fmt_env_list(wenvs)
             fenvs = wtext(fenvs, "nobr")
             accl(wtext(fenvs, "td", {"class":"terms-cell-envs"}), 2)
             accl(wtext(tline, "td", {"class":"terms-cell-terms"}), 2)
@@ -1259,6 +1242,51 @@ class Subcommand (object):
         # Level.
 
         return aterms, accl
+
+
+    def _fmt_env_list (self, wenvs, omit=True):
+        """
+        Format list of environments (given by keys) into sequence of
+        linked short names, e.g. for displaying next to a term.
+
+        When there are several environments, the hierarchically lower
+        environments will be omitted when a higher one is also in the list.
+        Controlled by C{omit} parameter.
+        """
+
+        gloss = self._gloss
+        tf = self._tf
+        le_ = self._dset_pick
+        crtop = self._crtop
+
+        # Equip links to environment names.
+        # Omit environments which inherit previous in the list.
+        wenames_linked = []
+        prev_wenvs = []
+        for wenv in wenvs:
+            wenvob = gloss.environments[wenv]
+            wename = tf(le_(gloss.environments[wenv].shortname)[0].text)
+            omit = False
+            for prev_wenv in prev_wenvs:
+                if prev_wenv in wenvob.closeto:
+                    omit = True
+                    break
+            if not omit:
+                if wenvob.meta:
+                    wename = wtext(wename, "span", {"class":"env-meta"})
+                else:
+                    wename = wtext(wename, "span", {"class":"env"})
+                wename = wtext(wename, "a",
+                               {"href":self._glref(wenvob, crtop)})
+                wenames_linked.append(wename)
+            prev_wenvs.append(wenv)
+
+        fenvs = "/".join(wenames_linked)
+        if len(wenames_linked) < len(prev_wenvs):
+            fenvs = p_("list of environments where some have been omitted",
+                        "%(envs)s etc.") % dict(envs=fenvs)
+
+        return fenvs
 
 
     def _fmt_index (self, accl):
