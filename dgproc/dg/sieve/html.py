@@ -261,21 +261,33 @@ class Subcommand (object):
 
     def _envsort (self, env_packs, full=True):
         """
-        Sort (envkey, phrase) pairs given as dict,
+        Sort (envkey, phrase) pairs given as dict or list,
         taking into account any defined environment weights.
 
         Return sorted (envkey, phrase) tuples when C{full} is C{True},
         or just sorted phrases otherwise.
         """
 
+        # Construct a dictionary by environment, with phrases in a list.
+        env_packs_d = {}
+        if isinstance(env_packs, dict):
+            for env, phrase in env_packs.iteritems():
+                env_packs_d[env] = [phrase]
+        else:
+            for env, phrase in env_packs:
+                if env not in env_packs_d:
+                    env_packs_d[env] = []
+                env_packs_d[env].append(phrase)
+
         # Go by weight groups, sort lexicographically within each group.
         env_packs_sorted = []
         for weight, wenvs in self._envs_by_weight:
             loc_packs = []
             for wenv in wenvs:
-                phrase = env_packs.get(wenv)
-                if phrase is not None:
-                    loc_packs.append((wenv, phrase))
+                phrases = env_packs_d.get(wenv)
+                if phrases is not None:
+                    for phrase in phrases:
+                        loc_packs.append((wenv, phrase))
             langsort_tuples(loc_packs, 1, self._lang)
             env_packs_sorted.extend(loc_packs)
 
@@ -1124,15 +1136,25 @@ class Subcommand (object):
                     oeterms_all_es[oeterm] = self._envsort(dict(oenv_packs))
                 # Sort terms by considering first environment of each.
                 sort_packs = [(y[0][0], x) for x, y in oeterms_all_es.items()]
-                sorted_oeterms = self._envsort(dict(sort_packs), full=False)
+                sorted_oeterms = self._envsort(sort_packs, full=False)
                 oeterms_all_sorted = []
                 for oeterm in sorted_oeterms:
                     oeterms_all_sorted.append((oeterm, oeterms_all_es[oeterm]))
+                # Collapse terms with same environment sets.
+                oeterms_all_sortcoll = []
+                for oeterm, env_packs in oeterms_all_sorted:
+                    if (   not oeterms_all_sortcoll
+                        or oeterms_all_sortcoll[-1][1] != env_packs
+                    ):
+                        oeterms_all_sortcoll.append(([oeterm], env_packs))
+                    else:
+                        oeterms_all_sortcoll[-1][0].append(oeterm)
                 # Assemble the line.
                 oeterms_joined = []
-                for oeterm, oenv_packs in oeterms_all_sorted:
+                for oeterms, oenv_packs in oeterms_all_sortcoll:
                     foenvs = self._fmt_env_list([x for x, y in oenv_packs])
-                    oeterms_joined += ["%s (%s)" % (oeterm, foenvs)]
+                    foeterms = ", ".join(oeterms)
+                    oeterms_joined += ["%s (%s)" % (foeterms, foenvs)]
                 secterms_line = "; ".join(oeterms_joined)
                 secterms_line = p_("terms naming the concept in environments "
                                    "other than the pivotal one",
