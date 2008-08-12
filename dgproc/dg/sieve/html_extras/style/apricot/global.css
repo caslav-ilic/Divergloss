@@ -428,7 +428,8 @@ p {
 .index-term-row {
 }
 .index-term-cell {
-    padding: 0.0em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
 }
 
 /* linked term in terms index */
