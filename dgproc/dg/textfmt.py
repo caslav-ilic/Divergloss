@@ -376,6 +376,26 @@ class TextFormatterHtml (object):
         return "".join(fmt_text)
 
 
+def escape_xml (text):
+    """
+    Escape plain text to be valid in XML context, using entities.
+
+    @param text: text to escape
+    @type text: string
+
+    @return: escaped text
+    @rtype: string
+    """
+
+    text = text.replace("&", "&amp;") # must be first
+    text = text.replace("'", "&quot;")
+    text = text.replace('"', "&apos;")
+    text = text.replace("<", "&lt;")
+    text = text.replace(">", "&gt;")
+
+    return text
+
+
 def stag (tag, attrs=None, close=False):
     """
     Format starting tag.
@@ -393,8 +413,8 @@ def stag (tag, attrs=None, close=False):
 
     fmt_attr = ""
     if attrs is not None:
-        # FIXME: Escape attribute values.
         atts_vals = attrs.items()
+        atts_vals = [(x[0], escape_xml(x[1])) for x in atts_vals]
         atts_vals.sort(lambda x, y: cmp(x[0], y[0]))
         fmt_attr = "".join([" %s='%s'" % x for x in atts_vals])
 
