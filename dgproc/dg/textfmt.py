@@ -559,3 +559,18 @@ class LineAccumulator (object):
         ofl.writelines(self.lines)
         ofl.close()
 
+
+    def read (self, fpath, enc="UTF-8"):
+        """
+        Accumulate lines from the file.
+
+        @param fpath: path of the file to read
+        @type fpath: string
+        @param enc: encoding for the text
+        @type enc: string
+        """
+
+        ifl = codecs.open(fpath, "r", enc)
+        self.lines.extend(ifl.readlines())
+        ifl.close()
+
