@@ -1,0 +1,88 @@
+/* =========================================================================
+ * A style with icy feeling.
+ * ========================================================================= */
+
+/* dictionary table */
+table.bd-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    font-family: sans-serif;
+}
+
+/* dictionary entry row, odd-numbered */
+tr.bd-entry-odd {
+    background-color: aliceblue;
+}
+
+/* dictionary entry row, even-numbered */
+tr.bd-entry-even {
+}
+
+/* original term column */
+td.bd-oterm {
+    vertical-align: top;
+    padding-left: 0.5em;
+    padding-right: 1.0em;
+    width: 1em;
+
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
+}
+
+/* original term */
+p.bd-otline {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    white-space: nowrap;
+}
+
+/* target terms column */
+td.bd-tterms {
+    vertical-align: top;
+    padding-left: 1.0em;
+    padding-right: 0.5em;
+
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
+}
+
+/* single term group (sharing same meaning) */
+div.bd-ttgroup {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* target terms */
+p.bd-ttline {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* concept description */
+p.bd-desc {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.0em;
+
+    font-size: 85%;
+}
+
+/* concept cross reference */
+a.cref {
+    text-decoration: none;
+    color: mediumblue;
+}
+
+/* entry display controls */
+div.bd-edctl {
+    float: right;
+}
+a.bd-edctl {
+    font-family: monospace;
+    text-decoration: none;
+    color: steelblue;
+}
+
