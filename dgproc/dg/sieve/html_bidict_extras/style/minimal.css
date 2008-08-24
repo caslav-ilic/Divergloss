@@ -35,14 +35,13 @@ td.bd-oterm {
     vertical-align: top;
     padding-left: 0.5em;
     padding-right: 1.5em;
-    width: 1em;
+    width: 10em;
 }
 
 /* original term */
 p.bd-otline {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
-    white-space: nowrap;
 }
 
 /* target terms column */
