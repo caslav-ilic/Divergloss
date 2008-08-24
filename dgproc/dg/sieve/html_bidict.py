@@ -191,10 +191,24 @@ class Subcommand (object):
         accl(wtext(tlname, "th", {"class":"bd-header-tl"}), 2)
         accl(etag("tr"), 1)
 
+        # Entries by origin term.
         anchored = {}
         n_entry = 0
+        n_entry_by_alpha = 0
+        curr_alpha = None
         for oterm in oterms_sorted:
             n_entry += 1
+            n_entry_by_alpha += 1
+
+            # Add new alphabetical separator if needed.
+            prev_alpha = curr_alpha
+            curr_alpha = _term_alpha(oterm)
+            if prev_alpha != curr_alpha:
+                n_entry_by_alpha = 1
+                accl(stag("tr", {"class":"bd-alsep"}), 1)
+                accl(wtext(curr_alpha, "td", {"class":"bd-alsep-al",
+                                              "colspan":"2"}), 2)
+                accl(etag("tr"), 1)
 
             # Collapse all target terms which have same concepts.
             # Sort them alphabetically within the group,
@@ -214,7 +228,7 @@ class Subcommand (object):
             langsort_tuples(tterms_groups, 0, tlang)
             tterms_ckeys = [x[1:] for x in tterms_groups]
 
-            if n_entry % 2 == 1:
+            if n_entry_by_alpha % 2 == 1:
                 accl(stag("tr", {"class":"bd-entry-odd"}), 1)
             else:
                 accl(stag("tr", {"class":"bd-entry-even"}), 1)
@@ -428,4 +442,16 @@ def _replace_ext (fpath, newext):
         fpath = fpath + "." + newext
 
     return nfpath
+
+
+def _term_alpha (term):
+    """
+    Alphabetical start of a term given as formatted plain text string.
+    """
+
+    alpha = term[:1].title()
+    if alpha and not alpha.isalpha():
+        alpha = "#"
+
+    return alpha
 

@@ -32,13 +32,33 @@ th.bd-header-tl { /* target language header */
     color: white;
 }
 
+/* alphabetical separator row */
+tr.bd-alsep {
+    background-color: aliceblue;
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
+}
+td.bd-alsep-al { /* alpha column */
+    vertical-align: top;
+    padding-left: 0.5em;
+    margin-top: 0.5em;
+
+    font-weight: bold;
+}
+
 /* dictionary entry row, odd-numbered */
 tr.bd-entry-odd {
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
 }
 
 /* dictionary entry row, even-numbered */
 tr.bd-entry-even {
-    background-color: aliceblue;
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
 }
 
 /* original term column */
@@ -47,10 +67,6 @@ td.bd-oterm {
     padding-left: 0.5em;
     padding-right: 1.5em;
     width: 10em;
-
-    border-color: lightsteelblue;
-    border-width: thin;
-    border-bottom-style: solid;
 }
 
 /* original term */
@@ -64,10 +80,6 @@ td.bd-tterms {
     vertical-align: top;
     padding-left: 0.5em;
     padding-right: 0.5em;
-
-    border-color: lightsteelblue;
-    border-width: thin;
-    border-bottom-style: solid;
 }
 
 /* single term group (sharing same meaning) */
@@ -94,7 +106,7 @@ p.bd-desc {
 /* concept cross reference */
 a.cref {
     text-decoration: none;
-    color: mediumblue;
+    color: darkblue;
 }
 
 /* entry display controls */
