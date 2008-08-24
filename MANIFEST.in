@@ -12,5 +12,6 @@ graft dgproc/po
 recursive-include dgproc/mo *.mo
 graft dgproc/dg/doc
 graft dgproc/dg/sieve/html_extras
+graft dgproc/dg/sieve/html_bidict_extras
 
 global-exclude .htaccess
