@@ -10,20 +10,42 @@ table.bd-table {
     font-family: sans-serif;
 }
 
+/* dictionary header */
+tr.bd-header {
+    text-align: left;
+
+    background-color: steelblue;
+    border-color: lightsteelblue;
+    border-width: thin;
+    border-bottom-style: solid;
+}
+th.bd-header-ol { /* origin language header */
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+
+    color: white;
+}
+th.bd-header-tl { /* target language header */
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+
+    color: white;
+}
+
 /* dictionary entry row, odd-numbered */
 tr.bd-entry-odd {
-    background-color: aliceblue;
 }
 
 /* dictionary entry row, even-numbered */
 tr.bd-entry-even {
+    background-color: aliceblue;
 }
 
 /* original term column */
 td.bd-oterm {
     vertical-align: top;
     padding-left: 0.5em;
-    padding-right: 1.0em;
+    padding-right: 1.5em;
     width: 1em;
 
     border-color: lightsteelblue;
@@ -41,7 +63,7 @@ p.bd-otline {
 /* target terms column */
 td.bd-tterms {
     vertical-align: top;
-    padding-left: 1.0em;
+    padding-left: 0.5em;
     padding-right: 0.5em;
 
     border-color: lightsteelblue;

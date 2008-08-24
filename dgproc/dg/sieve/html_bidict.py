@@ -183,6 +183,14 @@ class Subcommand (object):
         accl(stag("table", {"class":"bd-table"}))
         accl()
 
+        # Header.
+        accl(stag("tr", {"class":"bd-header"}), 1)
+        olname = tfn(gloss.languages[olang].name(tlang, env)[0].text)
+        accl(wtext(olname, "th", {"class":"bd-header-ol"}), 2)
+        tlname = tfn(gloss.languages[tlang].name(tlang, env)[0].text)
+        accl(wtext(tlname, "th", {"class":"bd-header-tl"}), 2)
+        accl(etag("tr"), 1)
+
         anchored = {}
         n_entry = 0
         for oterm in oterms_sorted:

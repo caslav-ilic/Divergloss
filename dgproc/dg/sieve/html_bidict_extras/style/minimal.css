@@ -9,6 +9,19 @@ table.bd-table {
     border-collapse: collapse;
 }
 
+/* dictionary header */
+tr.bd-header {
+    text-align: left;
+}
+th.bd-header-ol { /* origin language header */
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+}
+th.bd-header-tl { /* target language header */
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+}
+
 /* dictionary entry row, odd-numbered */
 tr.bd-entry-odd {
 }
@@ -21,7 +34,7 @@ tr.bd-entry-even {
 td.bd-oterm {
     vertical-align: top;
     padding-left: 0.5em;
-    padding-right: 1.0em;
+    padding-right: 1.5em;
     width: 1em;
 }
 
@@ -35,7 +48,7 @@ p.bd-otline {
 /* target terms column */
 td.bd-tterms {
     vertical-align: top;
-    padding-left: 1.0em;
+    padding-left: 0.5em;
     padding-right: 0.5em;
 }
 
