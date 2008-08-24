@@ -297,7 +297,7 @@ class Subcommand (object):
                         descstrs[i] = descstrs[i].replace(">", ">" + dhead, 1)
 
                 # Entry display control (if any details present).
-                details_id = "opt_%d_%d" % (n_entry, n_ttgr)
+                details_id = "opt_%s_%d" % (oterm.replace(" ", "_"), n_ttgr)
                 if has_details:
                     accl(stag("div", {"class":"bd-edctl"}), 4)
                     accl(wtext("[+]", "a",
