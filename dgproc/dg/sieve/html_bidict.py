@@ -67,13 +67,15 @@ def fill_optparser (parser_view):
     pv.add_subopt("cssfile", str, defval="",
                   metavar=p_("placeholder for parameter value", "FILE"),
                   desc=p_("subcommand option description",
-                          "File path where to copy the selected style sheet. "
+                          "File path where to copy the selected style sheet, "
+                          "relative to the directory of the HTML page file. "
                           "If not given, the path is constructed as that of "
                           "the HTML page, with extension replaced by .css."))
     pv.add_subopt("jsfile", str, defval="",
                   metavar=p_("placeholder for parameter value", "FILE"),
                   desc=p_("subcommand option description",
-                          "File path where to copy the JavaScript functions. "
+                          "File path where to copy the JavaScript functions, "
+                          "relative to the directory of the HTML page file. "
                           "If not given, the path is constructed as that of "
                           "the HTML page, with extension replaced by .js."))
     pv.add_subopt("header", str, defval="",
@@ -318,17 +320,22 @@ class Subcommand (object):
             if self._options.cssfile:
                 stylepath = self._options.cssfile
             else:
-                stylepath = _replace_ext(self._options.file, "css")
+                stylepath = _replace_ext(os.path.basename(self._options.file),
+                                         "css")
+            stylepath_nr = os.path.join(os.path.dirname(self._options.file),
+                                        stylepath)
             stylesrc = os.path.join(_src_style_dir, self._options.style + ".css")
-            shutil.copyfile(stylesrc, stylepath)
+            shutil.copyfile(stylesrc, stylepath_nr)
 
         # Prepare JavaScript file.
         dctlpath = None
         if self._options.jsfile:
             dctlpath = self._options.jsfile
         else:
-            dctlpath = _replace_ext(self._options.file, "js")
-        shutil.copyfile(_src_dctl_file, dctlpath)
+            dctlpath = _replace_ext(os.path.basename(self._options.file), "js")
+        dctlpath_nr = os.path.join(os.path.dirname(self._options.file),
+                                   dctlpath)
+        shutil.copyfile(_src_dctl_file, dctlpath_nr)
 
         # Header.
         accl_head = LineAccumulator(self._indent, 0)
