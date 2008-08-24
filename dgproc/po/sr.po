@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-01 16:36+0200\n"
+"POT-Creation-Date: 2008-08-24 03:09+0200\n"
 "PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -217,28 +217,145 @@ msgctxt "message"
 msgid "No sieves specified to provide help on."
 msgstr "Нема ниједног сита за које би се дала помоћ."
 
+#: dg/sieve/html_bidict.py:43
+msgctxt "subcommand description"
+msgid "Create HTML page with bilingual dictionary."
+msgstr "Градња ХТМЛ стране са двојезичким речником."
+
+#: dg/sieve/html_bidict.py:46 dg/sieve/html_bidict.py:50 dg/sieve/html.py:49
+#: dg/sieve/plrules.py:69 dg/sieve/plrules.py:73 dg/sieve/po.py:30
+#: dg/sieve/po.py:34 dg/sieve/tbx.py:32 dg/sieve/text_simple.py:26
+msgctxt "placeholder for parameter value"
+msgid "LANGKEY"
+msgstr "ЈЕЗКЉУЧ"
+
+#: dg/sieve/html_bidict.py:48
+msgctxt "subcommand option description"
+msgid "Original language in the dictionary."
+msgstr "Изворни језик у речнику."
+
+#: dg/sieve/html_bidict.py:52
+msgctxt "subcommand option description"
+msgid "Target language in the dictionary."
+msgstr "Циљни језик у речнику."
+
+#: dg/sieve/html_bidict.py:54 dg/sieve/html.py:54 dg/sieve/plrules.py:81
+#: dg/sieve/plrules.py:87 dg/sieve/po.py:38 dg/sieve/tbx.py:37
+#: dg/sieve/text_simple.py:31
+msgctxt "placeholder for parameter value"
+msgid "ENVKEY"
+msgstr "ОКРКЉУЧ"
+
+#: dg/sieve/html_bidict.py:56
+msgctxt "subcommand option description"
+msgid "Environment for which the dictionary is produced. If not given, the glossary default is used."
+msgstr "Окружење за које се производи речник. Ако није дато, узима се подразумевано окружење појмовника."
+
+#: dg/sieve/html_bidict.py:59 dg/sieve/html_bidict.py:68
+#: dg/sieve/html_bidict.py:74 dg/sieve/html_bidict.py:80
+#: dg/sieve/html_bidict.py:86 dg/sieve/plrules.py:77 dg/sieve/po.py:42
+#: dg/sieve/text_simple.py:36
+msgctxt "placeholder for parameter value"
+msgid "FILE"
+msgstr "ДАТОТЕКА"
+
+#: dg/sieve/html_bidict.py:61
+msgctxt "subcommand option description"
+msgid "File to output the HTML page to."
+msgstr "Датотека за испис ХТМЛ стране."
+
+#: dg/sieve/html_bidict.py:63 dg/sieve/html.py:96
+msgctxt "placeholder for parameter value"
+msgid "STYLE"
+msgstr "СТИЛ"
+
+#: dg/sieve/html_bidict.py:65
+msgctxt "subcommand option description"
+msgid "Style sheet for the HTML page. If not given, the page will not be styled."
+msgstr "Опис стила за ХТМЛ страну. Ако није дат, страна ће остати без стилова."
+
+#: dg/sieve/html_bidict.py:70
+msgctxt "subcommand option description"
+msgid "File path where to copy the selected style sheet. If not given, the path is constructed as that of the HTML page, with extension replaced by .css."
+msgstr "Путања датотеке у коју ће бити смештен изабрани опис стила. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .css."
+
+#: dg/sieve/html_bidict.py:76
+msgctxt "subcommand option description"
+msgid "File path where to copy the JavaScript functions. If not given, the path is constructed as that of the HTML page, with extension replaced by .js."
+msgstr "Путања датотеке у коју ће бити смештене јаваскриптске функције. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .js."
+
+#: dg/sieve/html_bidict.py:82
+msgctxt "subcommand option description"
+msgid "File that contains the page header section to use instead of the default, including the <body> tag and possibly some preface text."
+msgstr "Датотека са заглавним одељком стране који треба узети уместо подразумеваног; садржи ознаку <body> и можда нешто уводног текста."
+
+#: dg/sieve/html_bidict.py:88
+msgctxt "subcommand option description"
+msgid "File that contains the page footer section to use instead of the default, possibly including some closing text before the </body> tag."
+msgstr "Датотека са подножним одељком стране који треба узети уместо подразумеваног; може садржати нешто закључног текста пре ознаке </body>."
+
+#: dg/sieve/html_bidict.py:108 dg/sieve/plrules.py:105 dg/sieve/po.py:64
+#, python-format
+msgctxt "error message"
+msgid "origin language '%(lang)s' not present in the glossary"
+msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
+
+#: dg/sieve/html_bidict.py:113 dg/sieve/plrules.py:110 dg/sieve/po.py:69
+#, python-format
+msgctxt "error message"
+msgid "target language '%(lang)s' not present in the glossary"
+msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
+
+#: dg/sieve/html_bidict.py:118 dg/sieve/html.py:130 dg/sieve/plrules.py:115
+#: dg/sieve/plrules.py:120 dg/sieve/po.py:74 dg/sieve/tbx.py:69
+#, python-format
+msgctxt "error message"
+msgid "environment '%(env)s' not defined by the glossary"
+msgstr "окружење ‘%(env)s’ није дефинисано појмовником"
+
+#: dg/sieve/html_bidict.py:128
+msgctxt "warning message"
+msgid "no concepts found which have terms in both the origin and the target language and environment"
+msgstr "нема ниједног концепта који би имао изразе и за изворни и за циљни језик и окружење"
+
+#: dg/sieve/html_bidict.py:255
+#, python-format
+msgctxt "term with declensions"
+msgid "%(term)s (%(decls)s)"
+msgstr "%(term)s (%(decls)s)"
+
+#: dg/sieve/html_bidict.py:281
+msgctxt "tooltip"
+msgid "Show details"
+msgstr "Прикажи детаље"
+
+#: dg/sieve/html_bidict.py:292
+#, python-format
+msgctxt "enumerated target term in the dictionary, one of the meanings of the original term"
+msgid "%(num)d. %(term)s"
+msgstr "%(num)d. %(term)s"
+
+#: dg/sieve/html_bidict.py:339 dg/sieve/html.py:548
+#, python-format
+msgctxt "top page title"
+msgid "%(gloss)s (%(env)s)"
+msgstr "%(gloss)s (%(env)s)"
+
+#: dg/sieve/html_bidict.py:367 dg/sieve/html.py:501 dg/sieve/po.py:194
+#: dg/sieve/tbx.py:134
+msgctxt "comment in generated files (warning to user)"
+msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
+msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂУЈ ====="
+
 #: dg/sieve/html.py:46
 msgctxt "subcommand description"
 msgid "Create HTML pages out of the glossary."
 msgstr "Градња ХТМЛ страна према појмовнику."
 
-#: dg/sieve/html.py:49 dg/sieve/plrules.py:69 dg/sieve/plrules.py:73
-#: dg/sieve/po.py:30 dg/sieve/po.py:34 dg/sieve/tbx.py:32
-#: dg/sieve/text_simple.py:26
-msgctxt "placeholder for parameter value"
-msgid "LANGKEY"
-msgstr "ЈЕЗКЉУЧ"
-
 #: dg/sieve/html.py:51 dg/sieve/tbx.py:34 dg/sieve/text_simple.py:28
 msgctxt "subcommand option description"
 msgid "Pivotal language for the view. The glossary default language is used if not given."
 msgstr "Осовински језик за поглед. Ако није дат, узима се подразумевани језик појмовника."
-
-#: dg/sieve/html.py:54 dg/sieve/plrules.py:81 dg/sieve/plrules.py:87
-#: dg/sieve/po.py:38 dg/sieve/tbx.py:37 dg/sieve/text_simple.py:31
-msgctxt "placeholder for parameter value"
-msgid "ENVKEY"
-msgstr "ОКРКЉУЧ"
 
 #: dg/sieve/html.py:56
 msgctxt "subcommand option description"
@@ -301,11 +418,6 @@ msgctxt "subcommand option description"
 msgid "Do not present terms in non-pivotal environments."
 msgstr "Без израза у неосовинским окружењима."
 
-#: dg/sieve/html.py:96
-msgctxt "placeholder for parameter value"
-msgid "STYLE"
-msgstr "СТИЛ"
-
 #: dg/sieve/html.py:98
 msgctxt "subcommand option description"
 msgid "Style sheet for the HTML pages."
@@ -332,51 +444,33 @@ msgctxt "error message"
 msgid "language '%(lang)s' not present in the glossary"
 msgstr "језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/html.py:130 dg/sieve/plrules.py:115 dg/sieve/plrules.py:120
-#: dg/sieve/po.py:74 dg/sieve/tbx.py:69
-#, python-format
-msgctxt "error message"
-msgid "environment '%(env)s' not defined by the glossary"
-msgstr "окружење ‘%(env)s’ није дефинисано појмовником"
-
-#: dg/sieve/html.py:319
+#: dg/sieve/html.py:331
 msgctxt "link to an about-page in running text"
 msgid "environments"
 msgstr "oкружења"
 
-#: dg/sieve/html.py:325
+#: dg/sieve/html.py:337
 msgctxt "link to an about-page in running text"
 msgid "editors"
 msgstr "уредници"
 
-#: dg/sieve/html.py:331
+#: dg/sieve/html.py:343
 msgctxt "link to an about-page in running text"
 msgid "sources"
 msgstr "извори"
 
-#: dg/sieve/html.py:337
+#: dg/sieve/html.py:349
 msgctxt "link to an about-page in running text"
 msgid "topics"
 msgstr "области"
 
-#: dg/sieve/html.py:411
+#: dg/sieve/html.py:423
 #, python-format
 msgctxt "error message"
 msgid "internal: while chunking concepts, produced file name '%(fname)s' twice"
 msgstr "унутрашња: при комадању појмова двапут настало име датотеке ‘%(fname)s’"
 
-#: dg/sieve/html.py:489 dg/sieve/po.py:194 dg/sieve/tbx.py:134
-msgctxt "comment in generated files (warning to user)"
-msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
-msgstr "===== САМОПРОИЗВЕДЕНА ДАТОТЕКА, НЕ УРЕЂУЈ ====="
-
-#: dg/sieve/html.py:536
-#, python-format
-msgctxt "top page title"
-msgid "%(gloss)s (%(env)s)"
-msgstr "%(gloss)s (%(env)s)"
-
-#: dg/sieve/html.py:554
+#: dg/sieve/html.py:566
 #, python-format
 msgctxt "a paragraph on the top page"
 msgid "This view of the glossary has been specialized for the <em>%(env)s</em> environment, and contains one concept."
@@ -386,7 +480,7 @@ msgstr[1] "Овај поглед на појмовник специјализо�
 msgstr[2] "Овај поглед на појмовник специјализован је за окружење <em>%(env)s</em>, и садржи %(n)d појмова."
 msgstr[3] "Овај поглед на појмовник специјализован је за окружење <em>%(env)s</em>, и садржи један појам."
 
-#: dg/sieve/html.py:564
+#: dg/sieve/html.py:576
 #, python-format
 msgctxt "a paragraph on the top page"
 msgid "This view of the glossary contains one concept."
@@ -396,258 +490,258 @@ msgstr[1] "Овај поглед на појмовник садржи %(n)d по
 msgstr[2] "Овај поглед на појмовник садржи %(n)d појмова."
 msgstr[3] "Овај поглед на појмовник садржи један појам."
 
-#: dg/sieve/html.py:571
+#: dg/sieve/html.py:583
 msgctxt "contents header on the top page"
 msgid "Table of Contents"
 msgstr "Садржај"
 
-#: dg/sieve/html.py:578
+#: dg/sieve/html.py:590
 #, python-format
 msgctxt "alphabetical concepts links in contents"
 msgid "Concepts: %(alpha)s"
 msgstr "Појмови: %(alpha)s"
 
-#: dg/sieve/html.py:582
+#: dg/sieve/html.py:594
 #, python-format
 msgctxt "alphabetical concepts links in contents"
 msgid "Concepts by key: %(alpha)s"
 msgstr "Појмови по кључу: %(alpha)s"
 
-#: dg/sieve/html.py:587
+#: dg/sieve/html.py:599
 msgctxt "concepts link in contents"
 msgid "Concepts"
 msgstr "Појмови"
 
-#: dg/sieve/html.py:593
+#: dg/sieve/html.py:605
 msgctxt "index of terms link in contents"
 msgid "Index of Terms"
 msgstr "Индекс израза"
 
-#: dg/sieve/html.py:609
+#: dg/sieve/html.py:621
 #, python-format
 msgctxt "links to about-pages in contents"
 msgid "About the glossary: %(topics)s"
 msgstr "О појмовнику: %(topics)s"
 
-#: dg/sieve/html.py:634
+#: dg/sieve/html.py:646
 #, python-format
 msgctxt "page title"
 msgid "%(gloss)s (%(env)s)"
 msgstr "%(gloss)s (%(env)s)"
 
-#: dg/sieve/html.py:648
+#: dg/sieve/html.py:660
 msgctxt "link text for going to index of terms"
 msgid "[index]"
 msgstr "[индекс]"
 
-#: dg/sieve/html.py:656
+#: dg/sieve/html.py:668
 msgctxt "link text for returning to top page"
 msgid "[top]"
 msgstr "[почетак]"
 
-#: dg/sieve/html.py:690
+#: dg/sieve/html.py:702
 #, python-format
 msgctxt "page subtitle"
 msgid "Concepts: %(alpha)s"
 msgstr "Појмови: %(alpha)s"
 
-#: dg/sieve/html.py:831
+#: dg/sieve/html.py:843
 #, python-format
 msgctxt "identifier of a description when the concept has several descriptions"
 msgid "#%(no)s)"
 msgstr "#%(no)s"
 
-#: dg/sieve/html.py:862
+#: dg/sieve/html.py:874
 #, python-format
 msgctxt "concept details: link to external source, and some text describing it"
 msgid "%(srclink)s (%(srctext)s)"
 msgstr "%(srclink)s (%(srctext)s)"
 
-#: dg/sieve/html.py:869
+#: dg/sieve/html.py:881
 msgctxt "more details about a concept"
 msgid "Details:"
 msgstr "Детаљније:"
 
-#: dg/sieve/html.py:884
+#: dg/sieve/html.py:896
 msgctxt "concepts related to current concept"
 msgid "See also:"
 msgstr "Види:"
 
-#: dg/sieve/html.py:899
+#: dg/sieve/html.py:911
 #, python-format
 msgctxt "comment label (by an editor on the concept)"
 msgid "%(editor)s on the concept:"
 msgstr "%(editor)s о појму:"
 
-#: dg/sieve/html.py:903
+#: dg/sieve/html.py:915
 msgctxt "comment label (on the concept)"
 msgid "On the concept:"
 msgstr "О појму:"
 
-#: dg/sieve/html.py:923
+#: dg/sieve/html.py:935
 #, python-format
 msgctxt "comment label (by an editor on a term)"
 msgid "%(editor)s on %(term)s:"
 msgstr "%(editor)s о изразу %(term)s:"
 
-#: dg/sieve/html.py:927
+#: dg/sieve/html.py:939
 #, python-format
 msgctxt "comment label (on a term)"
 msgid "On %(term)s:"
 msgstr "О изразу %(term)s:"
 
-#: dg/sieve/html.py:939
+#: dg/sieve/html.py:951
 msgctxt "header to list of comments"
 msgid "Comments:"
 msgstr "Коментари:"
 
-#: dg/sieve/html.py:990
+#: dg/sieve/html.py:1002
 #, python-format
 msgctxt "formatting pattern for a term with its grammar category"
 msgid "%(term)s %(gr)s"
 msgstr "%(term)s %(gr)s"
 
-#: dg/sieve/html.py:1041
+#: dg/sieve/html.py:1053
 #, python-format
 msgctxt "formatting pattern for a declination with its grammar category"
 msgid "%(gr)s %(decl)s"
 msgstr "%(gr)s %(decl)s"
 
-#: dg/sieve/html.py:1051
+#: dg/sieve/html.py:1063
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) [%(topics)s] -- %(decls)s"
 msgstr "%(terms)s (%(olterms)s) [%(topics)s] — %(decls)s"
 
-#: dg/sieve/html.py:1056
+#: dg/sieve/html.py:1068
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) [%(topics)s]"
 msgstr "%(terms)s (%(olterms)s) [%(topics)s]"
 
-#: dg/sieve/html.py:1061
+#: dg/sieve/html.py:1073
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s [%(topics)s] -- %(decls)s"
 msgstr "%(terms)s [%(topics)s] — %(decls)s"
 
-#: dg/sieve/html.py:1066
+#: dg/sieve/html.py:1078
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) -- %(decls)s"
 msgstr "%(terms)s (%(olterms)s) — %(decls)s"
 
-#: dg/sieve/html.py:1071
+#: dg/sieve/html.py:1083
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s)"
 msgstr "%(terms)s (%(olterms)s)"
 
-#: dg/sieve/html.py:1075
+#: dg/sieve/html.py:1087
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s [%(topics)s]"
 msgstr "%(terms)s [%(topics)s]"
 
-#: dg/sieve/html.py:1079
+#: dg/sieve/html.py:1091
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s -- %(decls)s"
 msgstr "%(terms)s — %(decls)s"
 
-#: dg/sieve/html.py:1137
+#: dg/sieve/html.py:1161
 #, python-format
 msgctxt "terms naming the concept in environments other than the pivotal one"
 msgid "In other environments: %(terms)s"
 msgstr "Др. окружења: %(terms)s"
 
-#: dg/sieve/html.py:1176
+#: dg/sieve/html.py:1200
 #, python-format
 msgctxt "format of the concept key line"
 msgid "c.k. %(ckey)s [%(topics)s]"
 msgstr "кп. %(ckey)s [%(topics)s]"
 
-#: dg/sieve/html.py:1180
+#: dg/sieve/html.py:1204
 #, python-format
 msgctxt "format of the concept key line"
 msgid "c.k. %(ckey)s"
 msgstr "кп. %(ckey)s"
 
-#: dg/sieve/html.py:1251
+#: dg/sieve/html.py:1309
 #, python-format
 msgctxt "list of environments where some have been omitted"
 msgid "%(envs)s etc."
 msgstr "%(envs)s и др."
 
-#: dg/sieve/html.py:1268
+#: dg/sieve/html.py:1318
 msgctxt "page subtitle"
 msgid "Index of Terms"
 msgstr "Индекс израза"
 
-#: dg/sieve/html.py:1497
+#: dg/sieve/html.py:1547
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt; -- %(url)s"
 msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt; — %(url)s"
 
-#: dg/sieve/html.py:1502
+#: dg/sieve/html.py:1552
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt;"
 msgstr "%(name)s (скр. %(shortname)s) &lt;%(email)s&gt;"
 
-#: dg/sieve/html.py:1506
+#: dg/sieve/html.py:1556
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) -- %(url)s"
 msgstr "%(name)s (скр. %(shortname)s) — %(url)s"
 
-#: dg/sieve/html.py:1510
+#: dg/sieve/html.py:1560
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt; -- %(url)s"
 msgstr "%(name)s &lt;%(email)s&gt; — %(url)s"
 
-#: dg/sieve/html.py:1514
+#: dg/sieve/html.py:1564
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s)"
 msgstr "%(name)s (скр. %(shortname)s)"
 
-#: dg/sieve/html.py:1518
+#: dg/sieve/html.py:1568
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt;"
 msgstr "%(name)s &lt;%(email)s&gt;"
 
-#: dg/sieve/html.py:1522
+#: dg/sieve/html.py:1572
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s -- %(url)s"
 msgstr "%(name)s — %(url)s"
 
-#: dg/sieve/html.py:1554
+#: dg/sieve/html.py:1604
 msgctxt "page subtitle"
 msgid "About: Environments"
 msgstr "О окружењима"
 
-#: dg/sieve/html.py:1578
+#: dg/sieve/html.py:1628
 msgctxt "page subtitle"
 msgid "About: Sources"
 msgstr "О изворима"
 
-#: dg/sieve/html.py:1594
+#: dg/sieve/html.py:1644
 msgctxt "page subtitle"
 msgid "About: Editors"
 msgstr "О уредницима"
 
-#: dg/sieve/html.py:1606
+#: dg/sieve/html.py:1656
 #, python-format
 msgctxt "editor's affiliation"
 msgid "Affiliation: %(aff)s"
 msgstr "Намештење: %(aff)s"
 
-#: dg/sieve/html.py:1620
+#: dg/sieve/html.py:1670
 msgctxt "page subtitle"
 msgid "About: Topics"
 msgstr "О областима"
@@ -667,11 +761,6 @@ msgctxt "subcommand option description"
 msgid "Target language from the rules point of view."
 msgstr "Циљни језик с тачке гледишта правила."
 
-#: dg/sieve/plrules.py:77 dg/sieve/po.py:42 dg/sieve/text_simple.py:36
-msgctxt "placeholder for parameter value"
-msgid "FILE"
-msgstr "ДАТОТЕКА"
-
 #: dg/sieve/plrules.py:79
 msgctxt "subcommand option description"
 msgid "Rules file to update or create."
@@ -686,18 +775,6 @@ msgstr "Окружење за које се ажурирају правила. �
 msgctxt "subcommand option description"
 msgid "Base environment when making hierarchical rules."
 msgstr "Базно окружење при прављењу хијерархијских правила."
-
-#: dg/sieve/plrules.py:105 dg/sieve/po.py:64
-#, python-format
-msgctxt "error message"
-msgid "origin language '%(lang)s' not present in the glossary"
-msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
-
-#: dg/sieve/plrules.py:110 dg/sieve/po.py:69
-#, python-format
-msgctxt "error message"
-msgid "target language '%(lang)s' not present in the glossary"
-msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
 
 #: dg/sieve/plrules.py:163 dg/sieve/po.py:108
 msgctxt "warning message"
