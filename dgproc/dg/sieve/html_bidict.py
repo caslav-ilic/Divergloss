@@ -77,13 +77,13 @@ def fill_optparser (parser_view):
                           "If not given, the path is constructed as that of "
                           "the HTML page, with extension replaced by .js."))
     pv.add_subopt("header", str, defval="",
-                  metavar=p_("placeholder for parameter value", "ENVKEY"),
+                  metavar=p_("placeholder for parameter value", "FILE"),
                   desc=p_("subcommand option description",
                           "File that contains the page header section to use "
                           "instead of the default, including the <body> "
                           "tag and possibly some preface text."))
     pv.add_subopt("footer", str, defval="",
-                  metavar=p_("placeholder for parameter value", "ENVKEY"),
+                  metavar=p_("placeholder for parameter value", "FILE"),
                   desc=p_("subcommand option description",
                           "File that contains the page footer section to use "
                           "instead of the default, possibly including some "
