@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dgproc-experimental\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-24 03:09+0200\n"
+"POT-Creation-Date: 2008-08-24 03:46+0200\n"
 "PO-Revision-Date: 2008-06-16 12:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -252,8 +252,8 @@ msgid "Environment for which the dictionary is produced. If not given, the gloss
 msgstr "Окружење за које се производи речник. Ако није дато, узима се подразумевано окружење појмовника."
 
 #: dg/sieve/html_bidict.py:59 dg/sieve/html_bidict.py:68
-#: dg/sieve/html_bidict.py:74 dg/sieve/html_bidict.py:80
-#: dg/sieve/html_bidict.py:86 dg/sieve/plrules.py:77 dg/sieve/po.py:42
+#: dg/sieve/html_bidict.py:75 dg/sieve/html_bidict.py:82
+#: dg/sieve/html_bidict.py:88 dg/sieve/plrules.py:77 dg/sieve/po.py:42
 #: dg/sieve/text_simple.py:36
 msgctxt "placeholder for parameter value"
 msgid "FILE"
@@ -276,72 +276,72 @@ msgstr "Опис стила за ХТМЛ страну. Ако није дат, 
 
 #: dg/sieve/html_bidict.py:70
 msgctxt "subcommand option description"
-msgid "File path where to copy the selected style sheet. If not given, the path is constructed as that of the HTML page, with extension replaced by .css."
-msgstr "Путања датотеке у коју ће бити смештен изабрани опис стила. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .css."
+msgid "File path where to copy the selected style sheet, relative to the directory of the HTML page file. If not given, the path is constructed as that of the HTML page, with extension replaced by .css."
+msgstr "Путања датотеке у коју ће бити смештен изабрани опис стила, релативна према директоријуму датотеке ХТМЛ стране. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .css."
 
-#: dg/sieve/html_bidict.py:76
+#: dg/sieve/html_bidict.py:77
 msgctxt "subcommand option description"
-msgid "File path where to copy the JavaScript functions. If not given, the path is constructed as that of the HTML page, with extension replaced by .js."
-msgstr "Путања датотеке у коју ће бити смештене јаваскриптске функције. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .js."
+msgid "File path where to copy the JavaScript functions, relative to the directory of the HTML page file. If not given, the path is constructed as that of the HTML page, with extension replaced by .js."
+msgstr "Путања датотеке у коју ће бити смештене јаваскриптске функције, релативна према директоријуму датотеке ХТМЛ стране. Ако није дата, узима се као путања ХТМЛ стране с наставком промењеним у .js."
 
-#: dg/sieve/html_bidict.py:82
+#: dg/sieve/html_bidict.py:84
 msgctxt "subcommand option description"
 msgid "File that contains the page header section to use instead of the default, including the <body> tag and possibly some preface text."
 msgstr "Датотека са заглавним одељком стране који треба узети уместо подразумеваног; садржи ознаку <body> и можда нешто уводног текста."
 
-#: dg/sieve/html_bidict.py:88
+#: dg/sieve/html_bidict.py:90
 msgctxt "subcommand option description"
 msgid "File that contains the page footer section to use instead of the default, possibly including some closing text before the </body> tag."
 msgstr "Датотека са подножним одељком стране који треба узети уместо подразумеваног; може садржати нешто закључног текста пре ознаке </body>."
 
-#: dg/sieve/html_bidict.py:108 dg/sieve/plrules.py:105 dg/sieve/po.py:64
+#: dg/sieve/html_bidict.py:110 dg/sieve/plrules.py:105 dg/sieve/po.py:64
 #, python-format
 msgctxt "error message"
 msgid "origin language '%(lang)s' not present in the glossary"
 msgstr "изворни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/html_bidict.py:113 dg/sieve/plrules.py:110 dg/sieve/po.py:69
+#: dg/sieve/html_bidict.py:115 dg/sieve/plrules.py:110 dg/sieve/po.py:69
 #, python-format
 msgctxt "error message"
 msgid "target language '%(lang)s' not present in the glossary"
 msgstr "циљни језик ‘%(lang)s’ није присутан у појмовнику"
 
-#: dg/sieve/html_bidict.py:118 dg/sieve/html.py:130 dg/sieve/plrules.py:115
+#: dg/sieve/html_bidict.py:120 dg/sieve/html.py:130 dg/sieve/plrules.py:115
 #: dg/sieve/plrules.py:120 dg/sieve/po.py:74 dg/sieve/tbx.py:69
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' not defined by the glossary"
 msgstr "окружење ‘%(env)s’ није дефинисано појмовником"
 
-#: dg/sieve/html_bidict.py:128
+#: dg/sieve/html_bidict.py:130
 msgctxt "warning message"
 msgid "no concepts found which have terms in both the origin and the target language and environment"
 msgstr "нема ниједног концепта који би имао изразе и за изворни и за циљни језик и окружење"
 
-#: dg/sieve/html_bidict.py:255
+#: dg/sieve/html_bidict.py:257
 #, python-format
 msgctxt "term with declensions"
 msgid "%(term)s (%(decls)s)"
 msgstr "%(term)s (%(decls)s)"
 
-#: dg/sieve/html_bidict.py:281
+#: dg/sieve/html_bidict.py:283
 msgctxt "tooltip"
 msgid "Show details"
 msgstr "Прикажи детаље"
 
-#: dg/sieve/html_bidict.py:292
+#: dg/sieve/html_bidict.py:294
 #, python-format
 msgctxt "enumerated target term in the dictionary, one of the meanings of the original term"
 msgid "%(num)d. %(term)s"
 msgstr "%(num)d. %(term)s"
 
-#: dg/sieve/html_bidict.py:339 dg/sieve/html.py:548
+#: dg/sieve/html_bidict.py:346 dg/sieve/html.py:548
 #, python-format
 msgctxt "top page title"
 msgid "%(gloss)s (%(env)s)"
 msgstr "%(gloss)s (%(env)s)"
 
-#: dg/sieve/html_bidict.py:367 dg/sieve/html.py:501 dg/sieve/po.py:194
+#: dg/sieve/html_bidict.py:374 dg/sieve/html.py:501 dg/sieve/po.py:194
 #: dg/sieve/tbx.py:134
 msgctxt "comment in generated files (warning to user)"
 msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
