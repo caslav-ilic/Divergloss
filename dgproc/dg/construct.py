@@ -189,7 +189,12 @@ def from_file (dgfile, validate=True):
 
         # Resolve the DTD file and validate the tree according to it.
         # FIXME: Better determination of dtd file (by public ID, etc.)
-        dtdfile = os.path.join(_dtd_dir, tree.docinfo.system_url)
+        if tree.docinfo.system_url:
+            dtdname = tree.docinfo.system_url
+        else:
+            # Fallback to latest DTD.
+            dtdname = "divergloss.dtd"
+        dtdfile = os.path.join(_dtd_dir, dtdname)
         dtd = etree.DTD(dtdfile)
         if not dtd.validate(tree):
             errlins = "\n".join([str(x) for x in list(dtd.error_log)])
