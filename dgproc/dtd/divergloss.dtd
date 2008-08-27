@@ -149,7 +149,7 @@
 <!ELEMENT concepts (concept*)>
 <!ATTLIST concepts %a-base;>
 
-<!ELEMENT concept ((desc|ldesc)+,(term|eterm)*,details*,media*,
+<!ELEMENT concept ((desc|ldesc)*,(term|eterm)*,details*,media*,
                    (origin|lorigin)*,(comment|lcomment)*)>
 <!ATTLIST concept %a-id;
                   topic IDREFS #IMPLIED
