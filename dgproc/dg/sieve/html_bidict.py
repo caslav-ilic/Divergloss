@@ -1,9 +1,58 @@
 # -*- coding: UTF-8 -*-
 
 """
-Create HTML page with bilingual dictionary.
+Create HTML table with bilingual dictionary.
 
-Useful for making compact embeddable dictionaries for web pages.
+For example, having a bilingual English/Serbian (en/sr) glossary C{gloss.xml},
+the HTML page with the dictionary table could be created by::
+
+    $ dgproc.py gloss.xml -s olang:en -s tlang:sr \ 
+                          -s file:gloss.html -s style:igloo
+
+The C{olang} parameter specifies the original language for the dictionary,
+and C{tlang} the target language. The C{file} parameter names the file
+of the resulting HTML page, as well as the basename for the accompanying
+style sheet and JavaScript control files included by the HTML page header.
+The C{style} parameter selects one of the internal style sheets
+(which are listed in the sieve help, using C{--help-sieve} option).
+The given command will ultimately produce three files: C{gloss.html},
+C{gloss.css}, and C{gloss.js}.
+
+The HTML page will contain only a single compact two-column table, with
+the left column containing distinct terms from the original language,
+and the right column the corresponding terms in the target language.
+If, for a given original term, there are several target terms, and all
+of them name name the same concept, the target terms will be given as
+a comma-separated list in the right column. On the other hand,
+if the original term names several different concepts, and there are
+different target terms for them, such target terms will be given
+one below the other in the right column, as an enumerated list.
+
+The description and other details on the concepts behind each term
+in the target language will be provided as folded sections of the table,
+which can be unrolled with a +/- button somewhere in the table row.
+If there several concepts are named by the same term, the details of
+all of them are given in the folding section for that term.
+
+The C{style} parameter is optional; if not given, the page will be left
+without a style sheet. This is handy when the user has prepared
+an own style sheet (which can be based on one of the internal sheets);
+in such case, the user will probably also make use of the C{header} parameter.
+
+Using the parameters C{header} and C{footer}, the user can specify text
+files to be prepended before and appended after the HTML code for the table
+(without them, the sieve provides minimal header and footer to make
+a valid standalone HTML page).
+
+The user can explicitly specify names for the accompanying CSS and JS files
+to be created, using the C{cssfile} and C{jsfile} parameters,
+instead of these names being derived from the name of the HTML file.
+Again, this is mostly useful in conjunction with external header and footer.
+
+If the glossary contains several environments, one of them may be selected
+by the usual C{env} parameter. If not given, the default environment is used.
+Only those concepts which have at least one term in the original and target
+language and environment will be used as sources of terms.
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
