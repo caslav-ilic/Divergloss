@@ -80,7 +80,7 @@ def main ():
     # If any subcommand listing required, show and exit.
     if options.list_sieves:
         print p_("header to listing", "Available sieves:")
-        print "  " + "\n  ".join(schandler.subcmd_names(dg.sieve))
+        print schandler.subcmd_overview(dg.sieve, indent="  ")
         sys.exit(0)
 
     # Collect sieves and glossary file.

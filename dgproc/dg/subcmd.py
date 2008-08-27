@@ -163,6 +163,44 @@ class SubcmdHandler (object):
         return subcmds
 
 
+    def subcmd_overview (self, pack, indent="", wcol=79):
+        """
+        Formatted list with names and short descriptions of all
+        the subcommands in the given category.
+
+        @param pack: subcommand package (one from the constructor bundle)
+        @type pack: module
+        @param indent: indentation for the list
+        @type indent: string
+        @param wcol: column to wrap text at (<= 0 for no wrapping)
+        @type wcol: int
+
+        @return: formatted list
+        @rtype: string
+        """
+
+        subcmds = self._subcmds.get(pack, None)
+        if subcmds is None:
+            error(p_("error message",
+                     "requested names of subcommands from an "
+                     "unknown category"))
+        subcmds.sort()
+
+        maxlen = 0
+        shdescs = []
+        for subcmd in subcmds:
+            maxlen = max(maxlen, len(subcmd))
+            shdescs.append(self._optparsers[pack].get_view(subcmd).shdesc())
+
+        itfmt = "%%-%ds - %%s" % maxlen # has 3 chars past maxlen
+        wr = TextWrapper(initial_indent=indent,
+                         subsequent_indent=(indent + " " * (maxlen + 3)),
+                         width=wcol)
+        flist = "\n".join([wr.fill(itfmt % x) for x in zip(subcmds, shdescs)])
+
+        return flist
+
+
     def make_subcmds (self, subcmd_init_bundle, cmdline_options=None):
         """
         Create subcommand objects and parse and route parameters to them.
@@ -344,7 +382,7 @@ class SuboptParser (object):
                 error(p_("error message",
                          "trying to get help for an unknown "
                          "subcommand '%(cmd)s'") % dict(cmd=subcmd))
-            fmts.append(scview.help())
+            fmts.append(scview.help(wcol))
             fmts.append("")
 
         return "\n".join(fmts)
@@ -515,7 +553,7 @@ class SubcmdView (object):
     The view of a particular subcommand in an suboption parser.
     """
 
-    def __init__ (self, parent, subcmd, desc=None):
+    def __init__ (self, parent, subcmd, desc=None, shdesc=None):
         """
         Constructor.
 
@@ -523,11 +561,16 @@ class SubcmdView (object):
         @type parent: L{SuboptParser}
         @param subcmd: subcommand name
         @type subcmd: string
+        @param desc: subcommand description
+        @type subcmd: string
+        @param shdesc: short subcommand description
+        @type subcmd: string
         """
 
         self._parent = parent
         self._subcmd = subcmd
         self._desc = desc
+        self._shdesc = shdesc
 
         # Maps by option name.
         self._otypes = {}
@@ -547,6 +590,14 @@ class SubcmdView (object):
         """
 
         self._desc = desc
+
+
+    def set_shdesc (self, shdesc):
+        """
+        Set short description of the subcommand.
+        """
+
+        self._shdesc = shdesc
 
 
     def add_subopt (self, subopt, otype,
@@ -774,6 +825,27 @@ class SubcmdView (object):
                 ls += [fmt_opt(subopt, "  ")]
 
         return "\n".join(ls)
+
+
+    def shdesc (self):
+        """
+        Get short description of the subcommand.
+
+        Short description was either explicitly provided on construction,
+        or it is taken as the first sentence of the first paragraph of
+        the full description.
+
+        @return: short description
+        @rtype: string
+        """
+
+        if self._shdesc is not None:
+            return self._shdesc
+        else:
+            p = min(self._desc.find("\n\n"), self._desc.find(". "))
+            if p > 0:
+                return self._desc[:p]
+            return self._desc
 
 
 # Check if all elements in a list are instances of given type
