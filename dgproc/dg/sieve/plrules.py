@@ -6,31 +6,52 @@ Update terminology rules file for Pology's C{check-rules} sieve.
 Pology's C{check-rules} sieve applies series of pattern rules to messages
 in a PO file, reporting all those that matched. Each rule can contain
 several matching expressions, applied in different ways, and interlinked
-in a boolean-semantic way.
+in a boolean-semantic way. The rules are written in special rule files.
 
-This sieve updates such a rules file (or creates a new one), adding
-basic skeletons of new rules for checking terminology; rules must then
-be edited manually to make them applicable. This is, in fact, almost
-of no value from the point of view of a particular rule, as the core of
-the rule must be created by the user. The usefulness of the sieve lies
-instead in that it can be used to automatically check if any of
-the existing rules needs to be changed due to terminology changes,
-and add rules for new terminology as it becomes available,
-without having to keep track of it manually.
+This sieve updates such a rule file (or creates a new one), adding
+basic skeletons of new rules for checking terminology in translations;
+rules must then be edited manually to make them applicable.
+This is, in fact, almost of no value from the point of view of
+a particular rule, as the core of the rule must be created by the user.
+The usefulness of the sieve lies instead in that it can be used to
+automatically check if any of the existing rules needs to be changed
+due to terminology changes, and add rules for new terminology as it becomes
+available, without having to keep track of it manually.
 
-Within a rule, concept key is stored in the C{ident} field, while the
-terminology pair is given by the C{hint} field, in form of
+If the glossary file is C{gloss.xml}, and contains English and Serbian terms
+(en, sr), the terminology rule file C{term.rules} for English to Serbian
+translation is both created and updated using::
+
+    $ dgproc.py plrules gloss.xml -s olang:en -s tlang:sr \ 
+                                  -s file:term.rules
+
+The C{olang} and C{tlang} parameters specify original and target language,
+and C{file} the name of the rule file to be created/updated.
+If the glossary contains several environments, one may be selected by
+the C{env} parameter, or else the glossary default environment is used.
+
+Each rule in the rule file corresponds to one of the concepts,
+with the C{ident} field set to the concept key.
+The terminology pair is given by the rule's C{hint} field, in the form of
 C{"<original-terms> = <target-terms> [<free-hints>]"}.
-It is important to keep any free text in the hint within square brackets,
-so that the sieve can detect and indicate terminology changes.
+The sieve relies on this field when updating the rule file, to detect and
+indicate changes in the terminology. Thus, any manual modifications to
+the C{hint} field, e.g. comments to help translators with non-obvious rules,
+should be within the square brackets following the terms.
 
 Rules for terminology hierarchies can be maintained using the base environment
 parameter, C{benv}. In this mode, first the rules are updated for the
-base environment, i.e. its key given as C{env}; then another set of rules
-is updated for the inheriting environment, where its key is given as C{env},
-and base environment's key as C{benv}. The rules for inheriting environment
-will be updated only for those concepts with terminology different to
-that of the base environment.
+base environment C{foo}, i.e. its key given as C{env}::
+
+    $ dgproc.py plrules ... -s env:foo
+
+and then another set of rules is updated for the inheriting environment C{bar},
+such that its key is given as C{env}, and base environment's key as C{benv}::
+
+    $ dgproc.py plrules ... -s env:bar -s benv:foo
+
+Rules for the inheriting environment will be updated only for those concepts
+with terminology different to that of the base environment.
 
 Newly added rules will have C{@gloss-new} string in their comment.
 Existing rules for which the terminology has changed will get C{@gloss-fuzzy},
@@ -38,10 +59,7 @@ while those that no longer have a matching concept will get C{@gloss-obsolete}.
 When the base environment is given and the terminology has been changed
 to match the base one, C{@gloss-merge} will be set instead of C{@gloss-fuzzy}.
 
-The rule files is expected to be UTF-8 encoded (same as Pology expects).
-
-As the rules files are translation-oriented, the glossary must be
-at least bilingual by terms.
+Rule files should be UTF-8 encoded (that is what Pology expects).
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
