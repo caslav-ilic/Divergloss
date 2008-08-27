@@ -141,10 +141,10 @@
     <para id='p-attr-lang'>Let us now add terms in few other languages:
     <programlisting><![CDATA[
 <concept id="blackhole">
-  <term>black hole</term>
   <desc>
     The leftover core of a super massive star after a supernova,
     that exerts a tremendous gravitational pull.</desc>
+  <term>black hole</term>
   <term lang="fr">trou noir</term>
   <term lang="de">Schwarzes Loch</term>
 </concept>
@@ -154,10 +154,10 @@
     <para id='p-attr-env'>How about different environments? Here's a tentative example from a computer glossary:
     <programlisting><![CDATA[
 <concept id="directory">
-  <term>directory</term>
   <desc>
     An entity in a file system which contains a group of files
     and other directories.</desc>
+  <term>directory</term>
   <term env="mac">folder</term>
   <term env="amiga">drawer</term>
 </concept>
@@ -185,10 +185,10 @@
 
     <para id='p-attr-by'>Descriptions and terms may also credit the person who <emphasis>added</emphasis> them into the glossary. This person is an editor of the glossary, not necessarily the one who wrote the description, or coined the term. The editor's credit is assigned using the <literal>by</literal> attribute, for example:
     <programlisting><![CDATA[
-<term by="hal">order</term>
 <desc by="hal">
   An instruction by a superior factor which, if improperly formulated,
   can cause a sentient being to undertake unethical actions.</desc>
+<term by="hal">order</term>
 ]]></programlisting>
     where <literal>"hal"</literal> is the person key, possibly made out of the person's initials. These keys and corresponding editors' real names and contact data are defined within <link linkend="kd-editors">the <literal>editors</literal> node</link>.
     </para>
@@ -302,10 +302,10 @@
     <programlisting><![CDATA[
 <concept id="saturnv"
          topic="apollo spacerace" level="newbie" related="n1 proton">
-  <term>Saturn V</term>
   <desc>
     A multistage liquid-fuel expendable rocket used by NASA's Apollo
     and Skylab programs. Popularly known as the Moon Rocket.</desc>
+  <term>Saturn V</term>
 </concept>
 ]]></programlisting>
     </para>
@@ -314,7 +314,7 @@
 
     <para id="p-attr-src">Furthermore, description and term nodes may have the <literal>src</literal> attribute, which unlike the <literal>by</literal> attribute, defines the source of description or term: another glossary, publication in the field, etc. The source value is a key, with the source data behind it defined by <link linkend="kd-sources">the <literal>sources</literal> node</link>.</para>
 
-    <para>The only mandatory child node for each concept is <literal>desc</literal>, the description of the concept. There must be at least one description, but there can be more. When two descriptions have the same values of <literal>lang</literal> and <literal>env</literal> attributes, they are to be considered as different takes at same explanation. There can be several terms naming the concept, with the term nodes detailed in <link linkend="s-terms">their own section</link>. However, no term needs to be defined, for concepts which are as of yet unnamed. The following is a valid concept definition:
+    <para>There can be one or several description nodes, or even none. When two descriptions have the same values of <literal>lang</literal> and <literal>env</literal> attributes, they are to be considered as different takes at same explanation. Similarly, the concept may be named by one or several terms (with term nodes being detailed in <link linkend="s-terms">their own section</link>); but there may also be no terms, for concepts which are as of yet unnamed. The following is a valid concept definition:
     <programlisting><![CDATA[
 <concept id="alexq" topic="arch">
   <desc>The quality without a name.</desc>
