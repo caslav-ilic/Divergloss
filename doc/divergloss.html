@@ -13,7 +13,7 @@
 <div class="titlepage">
 <div>
 <div>
-<h2 class="title"><a name="id2426471" id="id2426471"></a>The Divergloss XML</h2>
+<h2 class="title"><a name="id2478580" id="id2478580"></a>The Divergloss XML</h2>
 </div>
 <div>
 <div class="authorgroup">
@@ -26,7 +26,7 @@
 <p class="copyright">Copyright © 2008 Chusslove Illich (Часлав Илић)</p>
 </div>
 <div>
-<div class="legalnotice"><a name="id2500978" id="id2500978"></a>
+<div class="legalnotice"><a name="id2553367" id="id2553367"></a>
 <p>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2.</p>
 </div>
 </div>
@@ -38,11 +38,11 @@
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">2008-07-09</td>
+<td align="left">2008-08-27</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
-<td align="left" colspan="3">Last modification (repository rev. 2f25e144436ae259712c38cdb82fcd5cc228808d).</td>
+<td align="left" colspan="3">Last modification (repository rev. 26c3578cc3130c747a595890f9e47d87716629af).</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -177,10 +177,10 @@
 <p><a name="p-attr-lang" id="p-attr-lang"></a>Let us now add terms in few other languages:</p>
 <pre class="programlisting">
 &lt;concept id="blackhole"&gt;
-  &lt;term&gt;black hole&lt;/term&gt;
   &lt;desc&gt;
     The leftover core of a super massive star after a supernova,
     that exerts a tremendous gravitational pull.&lt;/desc&gt;
+  &lt;term&gt;black hole&lt;/term&gt;
   &lt;term lang="fr"&gt;trou noir&lt;/term&gt;
   &lt;term lang="de"&gt;Schwarzes Loch&lt;/term&gt;
 &lt;/concept&gt;
@@ -189,10 +189,10 @@
 <p><a name="p-attr-env" id="p-attr-env"></a>How about different environments? Here's a tentative example from a computer glossary:</p>
 <pre class="programlisting">
 &lt;concept id="directory"&gt;
-  &lt;term&gt;directory&lt;/term&gt;
   &lt;desc&gt;
     An entity in a file system which contains a group of files
     and other directories.&lt;/desc&gt;
+  &lt;term&gt;directory&lt;/term&gt;
   &lt;term env="mac"&gt;folder&lt;/term&gt;
   &lt;term env="amiga"&gt;drawer&lt;/term&gt;
 &lt;/concept&gt;
@@ -218,10 +218,10 @@
 <p>The reference node tag <code class="literal">ref</code> points to a concept key by its <code class="literal">c</code> attribute. If duplication of descriptions due to different terms by environment is to be frequently expected, alternatively the terse <a class="link" href="#text-sel-by-env">embedded selection</a> can be used.</p>
 <p><a name="p-attr-by" id="p-attr-by"></a>Descriptions and terms may also credit the person who <span class="emphasis"><em>added</em></span> them into the glossary. This person is an editor of the glossary, not necessarily the one who wrote the description, or coined the term. The editor's credit is assigned using the <code class="literal">by</code> attribute, for example:</p>
 <pre class="programlisting">
-&lt;term by="hal"&gt;order&lt;/term&gt;
 &lt;desc by="hal"&gt;
   An instruction by a superior factor which, if improperly formulated,
   can cause a sentient being to undertake unethical actions.&lt;/desc&gt;
+&lt;term by="hal"&gt;order&lt;/term&gt;
 </pre>
 <p>where <code class="literal">"hal"</code> is the person key, possibly made out of the person's initials. These keys and corresponding editors' real names and contact data are defined within <a class="link" href="#kd-editors">the <code class="literal">editors</code> node</a>.</p>
 </div>
@@ -326,15 +326,15 @@
 <pre class="programlisting">
 &lt;concept id="saturnv"
          topic="apollo spacerace" level="newbie" related="n1 proton"&gt;
-  &lt;term&gt;Saturn V&lt;/term&gt;
   &lt;desc&gt;
     A multistage liquid-fuel expendable rocket used by NASA's Apollo
     and Skylab programs. Popularly known as the Moon Rocket.&lt;/desc&gt;
+  &lt;term&gt;Saturn V&lt;/term&gt;
 &lt;/concept&gt;
 </pre>
 <p>All children nodes of the concept may have the attributes <a class="link" href="#p-attr-lang"><code class="literal">lang</code></a>, <a class="link" href="#p-attr-env"><code class="literal">env</code></a>, and <a class="link" href="#p-attr-by"><code class="literal">by</code></a>. The client should use these attributes to decide, possibly based on the execution environment, how and which information to present to the user.</p>
 <p><a name="p-attr-src" id="p-attr-src"></a>Furthermore, description and term nodes may have the <code class="literal">src</code> attribute, which unlike the <code class="literal">by</code> attribute, defines the source of description or term: another glossary, publication in the field, etc. The source value is a key, with the source data behind it defined by <a class="link" href="#kd-sources">the <code class="literal">sources</code> node</a>.</p>
-<p>The only mandatory child node for each concept is <code class="literal">desc</code>, the description of the concept. There must be at least one description, but there can be more. When two descriptions have the same values of <code class="literal">lang</code> and <code class="literal">env</code> attributes, they are to be considered as different takes at same explanation. There can be several terms naming the concept, with the term nodes detailed in <a class="link" href="#s-terms" title="5.&nbsp;Terms">their own section</a>. However, no term needs to be defined, for concepts which are as of yet unnamed. The following is a valid concept definition:</p>
+<p>There can be one or several description nodes, or even none. When two descriptions have the same values of <code class="literal">lang</code> and <code class="literal">env</code> attributes, they are to be considered as different takes at same explanation. Similarly, the concept may be named by one or several terms (with term nodes being detailed in <a class="link" href="#s-terms" title="5.&nbsp;Terms">their own section</a>); but there may also be no terms, for concepts which are as of yet unnamed. The following is a valid concept definition:</p>
 <pre class="programlisting">
 &lt;concept id="alexq" topic="arch"&gt;
   &lt;desc&gt;The quality without a name.&lt;/desc&gt;
