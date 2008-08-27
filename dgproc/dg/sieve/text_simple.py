@@ -112,13 +112,13 @@ class Subcommand (object):
                     fmt_ots.append("%s /%s/" % (l, ts))
             if fmt_ots:
                 fmtlist.append(" (%s)" % ("; ".join(fmt_ots)))
-            fmtlist.append("\n")
 
             # All descriptions for this langenv.
             tfd = TextFormatterPlain(gloss, lang=lang, env=env, indent="    ",
                                      wcol=self._options.wcol)
             descs = concept.desc(lang, env)
             if descs:
+                fmtlist.append("\n")
                 fmt_ds = []
                 if len(descs) == 1:
                     fmt_ds.append(tfd(descs[0].text))
@@ -126,7 +126,7 @@ class Subcommand (object):
                     # Enumerate descriptions.
                     for i in range(len(descs)):
                         fmt_ds.append(tfd(descs[i].text,
-                                      prefix=("%d. " % (i + 1))))
+                                          prefix=("%d. " % (i + 1))))
                 fmtlist.append("\n\n".join(fmt_ds))
 
             # Done formatting concept.
