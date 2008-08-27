@@ -562,9 +562,9 @@ class SubcmdView (object):
         @param subcmd: subcommand name
         @type subcmd: string
         @param desc: subcommand description
-        @type subcmd: string
+        @type desc: string
         @param shdesc: short subcommand description
-        @type subcmd: string
+        @type shdesc: string
         """
 
         self._parent = parent
