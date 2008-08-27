@@ -61,6 +61,7 @@ dg.sieve.html.mkdirpath	dg.util-module.html#mkdirpath
 dg.sieve.html_bidict	dg.sieve.html_bidict-module.html
 dg.sieve.html_bidict._replace_ext	dg.sieve.html_bidict-module.html#_replace_ext
 dg.sieve.html_bidict.fill_optparser	dg.sieve.html_bidict-module.html#fill_optparser
+dg.sieve.html_bidict.etag	dg.textfmt-module.html#etag
 dg.sieve.html_bidict._src_dctl_file	dg.sieve.html_bidict-module.html#_src_dctl_file
 dg.sieve.html_bidict.warning	dg.util-module.html#warning
 dg.sieve.html_bidict.langsort_tuples	dg.util-module.html#langsort_tuples
@@ -69,8 +70,8 @@ dg.sieve.html_bidict.stag	dg.textfmt-module.html#stag
 dg.sieve.html_bidict.rootdir	dg-module.html#rootdir
 dg.sieve.html_bidict._src_style_dir	dg.sieve.html_bidict-module.html#_src_style_dir
 dg.sieve.html_bidict.p_	dg.util-module.html#p_
-dg.sieve.html_bidict.etag	dg.textfmt-module.html#etag
 dg.sieve.html_bidict.error	dg.util-module.html#error
+dg.sieve.html_bidict._term_alpha	dg.sieve.html_bidict-module.html#_term_alpha
 dg.sieve.html_bidict.mkdirpath	dg.util-module.html#mkdirpath
 dg.sieve.html_bidict.wtext	dg.textfmt-module.html#wtext
 dg.sieve.plrules	dg.sieve.plrules-module.html
@@ -286,12 +287,15 @@ dg.subcmd.SubcmdHandler	dg.subcmd.SubcmdHandler-class.html
 dg.subcmd.SubcmdHandler.help	dg.subcmd.SubcmdHandler-class.html#help
 dg.subcmd.SubcmdHandler.make_subcmds	dg.subcmd.SubcmdHandler-class.html#make_subcmds
 dg.subcmd.SubcmdHandler.subcmd_names	dg.subcmd.SubcmdHandler-class.html#subcmd_names
+dg.subcmd.SubcmdHandler.subcmd_overview	dg.subcmd.SubcmdHandler-class.html#subcmd_overview
 dg.subcmd.SubcmdHandler._import_submod	dg.subcmd.SubcmdHandler-class.html#_import_submod
 dg.subcmd.SubcmdHandler.__init__	dg.subcmd.SubcmdHandler-class.html#__init__
 dg.subcmd.SubcmdView	dg.subcmd.SubcmdView-class.html
 dg.subcmd.SubcmdView.set_desc	dg.subcmd.SubcmdView-class.html#set_desc
 dg.subcmd.SubcmdView.help	dg.subcmd.SubcmdView-class.html#help
+dg.subcmd.SubcmdView.set_shdesc	dg.subcmd.SubcmdView-class.html#set_shdesc
 dg.subcmd.SubcmdView.add_subopt	dg.subcmd.SubcmdView-class.html#add_subopt
+dg.subcmd.SubcmdView.shdesc	dg.subcmd.SubcmdView-class.html#shdesc
 dg.subcmd.SubcmdView.__init__	dg.subcmd.SubcmdView-class.html#__init__
 dg.subcmd.SuboptParser	dg.subcmd.SuboptParser-class.html
 dg.subcmd.SuboptParser._fmt_admvals	dg.subcmd.SuboptParser-class.html#_fmt_admvals

@@ -77,7 +77,8 @@ object --+
           <td><span class="summary-sig"><a href="dg.subcmd.SubcmdView-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">parent</span>,
         <span class="summary-sig-arg">subcmd</span>,
-        <span class="summary-sig-arg">desc</span>=<span class="summary-sig-default">None</span>)</span><br />
+        <span class="summary-sig-arg">desc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">shdesc</span>=<span class="summary-sig-default">None</span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
             
@@ -97,6 +98,24 @@ object --+
           <td><span class="summary-sig"><a name="set_desc"></a><span class="summary-sig-name">set_desc</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">desc</span>)</span><br />
       Set description of the subcommand.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_shdesc"></a><span class="summary-sig-name">set_shdesc</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">shdesc</span>)</span><br />
+      Set short description of the subcommand.</td>
           <td align="right" valign="top">
             
             
@@ -139,6 +158,23 @@ object --+
           <td><span class="summary-sig"><a href="dg.subcmd.SubcmdView-class.html#help" class="summary-sig-name">help</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">wcol</span>=<span class="summary-sig-default">79</span>)</span><br />
       Formatted help for the subcommand.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dg.subcmd.SubcmdView-class.html#shdesc" class="summary-sig-name">shdesc</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Get short description of the subcommand.</td>
           <td align="right" valign="top">
             
             
@@ -199,7 +235,8 @@ object --+
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">parent</span>,
         <span class="sig-arg">subcmd</span>,
-        <span class="sig-arg">desc</span>=<span class="sig-default">None</span>)</span>
+        <span class="sig-arg">desc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">shdesc</span>=<span class="sig-default">None</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -214,6 +251,8 @@ object --+
         <li><strong class="pname"><code>parent</code></strong> (<a href="dg.subcmd.SuboptParser-class.html" 
           class="link">SuboptParser</a>) - the parent suboption parser.</li>
         <li><strong class="pname"><code>subcmd</code></strong> (string) - subcommand name</li>
+        <li><strong class="pname"><code>desc</code></strong> (string) - subcommand description</li>
+        <li><strong class="pname"><code>shdesc</code></strong> (string) - short subcommand description</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
@@ -295,6 +334,30 @@ object --+
     </ul></dd>
     <dt>Returns: string</dt>
         <dd>formatted help</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="shdesc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">shdesc</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get short description of the subcommand.</p>
+  <p>Short description was either explicitly provided on construction, or 
+  it is taken as the first sentence of the first paragraph of the full 
+  description.</p>
+  <dl class="fields">
+    <dt>Returns: string</dt>
+        <dd>short description</dd>
   </dl>
 </td></tr></table>
 </div>
