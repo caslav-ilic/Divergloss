@@ -363,10 +363,13 @@ class Subcommand (object):
         accl_head = LineAccumulator(self._indent, 0)
         if not self._options.header:
             gname = tfn(gloss.title(tlang, env)[0].text)
-            ename = tfn(gloss.environments[env].name(tlang, env)[0].text)
-            title = p_("top page title",
-                    "%(gloss)s (%(env)s)") \
-                    % dict(gloss=gname, env=ename)
+            if env:
+                ename = tfn(gloss.environments[env].name(tlang, env)[0].text)
+                title = p_("top page title",
+                           "%(gloss)s (%(env)s)") \
+                        % dict(gloss=gname, env=ename)
+            else:
+                title = gname
             self._fmt_header(accl_head, tlang, title, stylepath, dctlpath)
         else:
             accl_head.read(self._options.header)
@@ -439,7 +442,7 @@ def _replace_ext (fpath, newext):
         p = fpath.rfind(".")
         nfpath = fpath[:p] + "." + newext
     else:
-        fpath = fpath + "." + newext
+        nfpath = fpath + "." + newext
 
     return nfpath
 

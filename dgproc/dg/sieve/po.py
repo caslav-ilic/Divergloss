@@ -183,11 +183,17 @@ class Subcommand (object):
                        + '\n')
         s_olang = tft(gloss.languages[olang].name(tlang, env)[0].text)
         s_tlang = tft(gloss.languages[tlang].name(tlang, env)[0].text)
-        s_env = tft(gloss.environments[env].name(tlang, env)[0].text)
+        if env:
+            s_env = tft(gloss.environments[env].name(tlang, env)[0].text)
+            hcmnt = p_('header comment in the PO view (subtitle)',
+                       'languages: %(ol)s->%(tl)s, environment: %(env)s') \
+                    % dict(ol=s_olang, tl=s_tlang, env=s_env)
+        else:
+            hcmnt = p_('header comment in the PO view (subtitle)',
+                       'languages: %(ol)s->%(tl)s') \
+                    % dict(ol=s_olang, tl=s_tlang)
         fmt_header += (  '# '
-                       + p_('header comment in the PO view (subtitle)',
-                            'languages: %(ol)s->%(tl)s, environment: %(env)s')
-                         % dict(ol=s_olang, tl=s_tlang, env=s_env)
+                       + hcmnt
                        + '\n')
         fmt_header += (  '# '
                        + p_('comment in generated files (warning to user)',
