@@ -6,8 +6,8 @@ Create HTML table with bilingual dictionary.
 For example, having a bilingual English/Serbian (en/sr) glossary C{gloss.xml},
 the HTML page with the dictionary table could be created by::
 
-    $ dgproc.py gloss.xml -s olang:en -s tlang:sr \ 
-                          -s file:gloss.html -s style:igloo
+    $ dgproc.py html-bidict gloss.xml -s olang:en -s tlang:sr \ 
+                                      -s file:gloss.html -s style:igloo
 
 The C{olang} parameter specifies the original language for the dictionary,
 and C{tlang} the target language. The C{file} parameter names the file
@@ -48,6 +48,14 @@ The user can explicitly specify names for the accompanying CSS and JS files
 to be created, using the C{cssfile} and C{jsfile} parameters,
 instead of these names being derived from the name of the HTML file.
 Again, this is mostly useful in conjunction with external header and footer.
+
+Instead of creating separate CSS and JS files, using C{phpinc} parameter
+both the style sheet and control functions can be written into a single file,
+wrapped in appropriate tags for PHP inclusion into the body of the HTML file.
+The file name of this file too will be derived from the HTML file name as
+C{gloss.inc}, but an explicit name can be given by the C{incfile} parameter.
+Note that in this case the file name of the page (given by C{file} parameter)
+should probably end in C{.php}.
 
 If the glossary contains several environments, one of them may be selected
 by the usual C{env} parameter. If not given, the default environment is used.
@@ -127,6 +135,19 @@ def fill_optparser (parser_view):
                           "relative to the directory of the HTML page file. "
                           "If not given, the path is constructed as that of "
                           "the HTML page, with extension replaced by .js."))
+    pv.add_subopt("phpinc", bool, defval=False,
+                  desc=p_("subcommand option description",
+                          "Place both the style sheet and the JavaScript "
+                          "functions into a single file, wrapped in "
+                          "appropriate tags for PHP inclusion into "
+                          "the body of the HTML page."))
+    pv.add_subopt("incfile", str, defval="",
+                  metavar=p_("placeholder for parameter value", "FILE"),
+                  desc=p_("subcommand option description",
+                          "File path of the file for raw inclusion, "
+                          "relative to the directory of the HTML page file. "
+                          "If not given, the path is constructed as that of "
+                          "the HTML page, with extension replaced by .inc."))
     pv.add_subopt("header", str, defval="",
                   metavar=p_("placeholder for parameter value", "FILE"),
                   desc=p_("subcommand option description",
@@ -385,7 +406,7 @@ class Subcommand (object):
         accl(etag("table"))
         accl()
 
-        # Prepare style file.
+        # Prepare style file path.
         stylepath = None
         if self._options.style:
             if self._options.cssfile:
@@ -396,9 +417,8 @@ class Subcommand (object):
             stylepath_nr = os.path.join(os.path.dirname(self._options.file),
                                         stylepath)
             stylesrc = os.path.join(_src_style_dir, self._options.style + ".css")
-            shutil.copyfile(stylesrc, stylepath_nr)
 
-        # Prepare JavaScript file.
+        # Prepare JavaScript file path.
         dctlpath = None
         if self._options.jsfile:
             dctlpath = self._options.jsfile
@@ -406,7 +426,35 @@ class Subcommand (object):
             dctlpath = _replace_ext(os.path.basename(self._options.file), "js")
         dctlpath_nr = os.path.join(os.path.dirname(self._options.file),
                                    dctlpath)
-        shutil.copyfile(_src_dctl_file, dctlpath_nr)
+
+        # Prepare PHP inclusion file path.
+        phpincpath = None
+        if self._options.incfile:
+            phpincpath = self._options.incfile
+        else:
+            phpincpath = _replace_ext(os.path.basename(self._options.file),
+                                      "inc")
+        phpincpath_nr = os.path.join(os.path.dirname(self._options.file),
+                                     phpincpath)
+
+        # Either create separate CSS and JS files, or raw inclusion file.
+        if not self._options.phpinc:
+            shutil.copyfile(_src_dctl_file, dctlpath_nr)
+            if self._options.style:
+                shutil.copyfile(stylesrc, stylepath_nr)
+            phpincpath = None # _fmt_header checks this for what to include
+        else:
+            raccl = LineAccumulator()
+            raccl("<script type='text/javascript'>")
+            raccl.read(_src_dctl_file)
+            raccl("</script>")
+            raccl()
+            if self._options.style:
+                raccl("<style type='text/css'>")
+                raccl.read(stylesrc)
+                raccl("</style>")
+                raccl()
+            raccl.write(phpincpath_nr)
 
         # Header.
         accl_head = LineAccumulator(self._indent, 0)
@@ -419,7 +467,8 @@ class Subcommand (object):
                         % dict(gloss=gname, env=ename)
             else:
                 title = gname
-            self._fmt_header(accl_head, tlang, title, stylepath, dctlpath)
+            self._fmt_header(accl_head, tlang, title,
+                             stylepath, dctlpath, phpincpath)
         else:
             accl_head.read(self._options.header)
 
@@ -438,9 +487,17 @@ class Subcommand (object):
         accl_all.write(self._options.file)
 
 
-    def _fmt_header (self, accl, lang, title, stylepath=None, dctlpath=None):
+    def _fmt_header (self, accl, lang, title,
+                           stylepath=None, dctlpath=None, phpincpath=None):
+        """
+        If C{phpincpath} is given, then PHP inclusion for it is issued
+        in the body, while C{stylepath} and C{dctlpath} are ignored.
+        Otherwise HTML inclusions for C{stylepath} and C{dctlpath} are issued
+        in the header (if given themselves).
+        """
 
-        accl("<?xml version='1.0' encoding='UTF-8'?>");
+        if not phpincpath:
+            accl("<?xml version='1.0' encoding='UTF-8'?>");
         accl(  "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' "
              + "'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>");
         accl(  "<!-- "
@@ -457,19 +514,23 @@ class Subcommand (object):
                            "content":"text/html; charset=UTF-8"},
                   close=True), 2)
 
-        if stylepath:
-            accl(stag("link", {"rel":"stylesheet", "type":"text/css",
-                               "href":stylepath}, close=True), 2)
-
-        if dctlpath:
-            accl(wtext("", "script", {"type":"text/javascript",
-                                      "src":dctlpath}), 2)
+        if not phpincpath:
+            if stylepath:
+                accl(stag("link", {"rel":"stylesheet", "type":"text/css",
+                                   "href":stylepath}, close=True), 2)
+            if dctlpath:
+                accl(wtext("", "script", {"type":"text/javascript",
+                                          "src":dctlpath}), 2)
 
         accl(wtext(title, "title"), 2)
 
         accl(etag("head"), 1)
 
         accl(stag("body"), 1)
+
+        if phpincpath:
+            accl("<?php include('%s'); ?>" % phpincpath, 2)
+
         accl()
 
 
