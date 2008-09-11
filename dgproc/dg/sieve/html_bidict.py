@@ -57,6 +57,11 @@ C{gloss.inc}, but an explicit name can be given by the C{incfile} parameter.
 Note that in this case the file name of the page (given by C{file} parameter)
 should probably end in C{.php}.
 
+Finally, both the CSS and JS content can be directly embedded into the page,
+so that only this one HTML file is produced by the sieve. This is done by
+specifyng the C{allinone} parameter. Note that it conflicts all other
+parameters which deal with auxiliary files.
+
 If the glossary contains several environments, one of them may be selected
 by the usual C{env} parameter. If not given, the default environment is used.
 Only those concepts which have at least one term in the original and target
@@ -160,6 +165,10 @@ def fill_optparser (parser_view):
                           "File that contains the page footer section to use "
                           "instead of the default, possibly including some "
                           "closing text before the </body> tag."))
+    pv.add_subopt("allinone", bool, defval=False,
+                  desc=p_("subcommand option description",
+                          "Create only the HTML page file, with style sheet "
+                          "and control functions embedded in it."))
 
 
 class Subcommand (object):
@@ -437,8 +446,10 @@ class Subcommand (object):
         phpincpath_nr = os.path.join(os.path.dirname(self._options.file),
                                      phpincpath)
 
-        # Either create separate CSS and JS files, or raw inclusion file.
-        if not self._options.phpinc:
+        # Create separate CSS and JS files, or raw inclusion file,
+        # or collect everything for direct embedding.
+        auxaccl = None
+        if not self._options.phpinc and not self._options.allinone:
             shutil.copyfile(_src_dctl_file, dctlpath_nr)
             if self._options.style:
                 shutil.copyfile(stylesrc, stylepath_nr)
@@ -454,7 +465,10 @@ class Subcommand (object):
                 raccl.read(stylesrc)
                 raccl("</style>")
                 raccl()
-            raccl.write(phpincpath_nr)
+            if not self._options.allinone:
+                raccl.write(phpincpath_nr)
+            else:
+                auxaccl = raccl
 
         # Header.
         accl_head = LineAccumulator(self._indent, 0)
@@ -468,7 +482,7 @@ class Subcommand (object):
             else:
                 title = gname
             self._fmt_header(accl_head, tlang, title,
-                             stylepath, dctlpath, phpincpath)
+                             stylepath, dctlpath, phpincpath, auxaccl)
         else:
             accl_head.read(self._options.header)
 
@@ -488,11 +502,14 @@ class Subcommand (object):
 
 
     def _fmt_header (self, accl, lang, title,
-                           stylepath=None, dctlpath=None, phpincpath=None):
+                           stylepath=None, dctlpath=None, phpincpath=None,
+                           auxaccl=None):
         """
-        If C{phpincpath} is given, then PHP inclusion for it is issued
-        in the body, while C{stylepath} and C{dctlpath} are ignored.
-        Otherwise HTML inclusions for C{stylepath} and C{dctlpath} are issued
+        If C{auxaccl} is given, it is a line accumulator containing
+        the style sheet and control functions to be embedded into the body.
+        Otherwise, if C{phpincpath} is given, then PHP inclusion for it is
+        issued in the body, while C{stylepath} and C{dctlpath} are ignored.
+        Otherwise, HTML inclusions for C{stylepath} and C{dctlpath} are issued
         in the header (if given themselves).
         """
 
@@ -514,7 +531,7 @@ class Subcommand (object):
                            "content":"text/html; charset=UTF-8"},
                   close=True), 2)
 
-        if not phpincpath:
+        if not phpincpath and not auxaccl:
             if stylepath:
                 accl(stag("link", {"rel":"stylesheet", "type":"text/css",
                                    "href":stylepath}, close=True), 2)
@@ -528,7 +545,9 @@ class Subcommand (object):
 
         accl(stag("body"), 1)
 
-        if phpincpath:
+        if auxaccl:
+            accl(auxaccl, 2)
+        elif phpincpath:
             accl("<?php include('%s'); ?>" % phpincpath, 2)
 
         accl()
