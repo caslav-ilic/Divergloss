@@ -66,6 +66,7 @@ Rule files should be UTF-8 encoded (that is what Pology expects).
 """
 
 import sys
+import os
 import time
 import codecs
 import re
@@ -128,7 +129,7 @@ class Subcommand (object):
                      "target language '%(lang)s' not present in the glossary")
                     % dict(lang=tlang))
         env = self._options.env or gloss.env[0]
-        if env not in gloss.environments:
+        if env and env not in gloss.environments:
             error(p_("error message",
                      "environment '%(env)s' not defined by the glossary")
                   % dict(env=env))
@@ -182,7 +183,9 @@ class Subcommand (object):
                        "the requested origin and target language"))
 
         # Parse rules file.
-        rules, rmap, plines, elines = self._load_rules(rulefile)
+        rules, rmap, plines, elines = [], {}, [], []
+        if os.path.isfile(rulefile):
+            rules, rmap, plines, elines = self._load_rules(rulefile)
 
         # Flag all existing rules.
         for rkey, rule in rmap.iteritems():
