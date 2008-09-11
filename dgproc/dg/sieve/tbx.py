@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Create a TBX view out of the glossary.
+Create a TBX view of the glossary.
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3

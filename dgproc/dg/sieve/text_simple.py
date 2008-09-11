@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-A simple text view (just an example).
+Create a simple plain text view of the glossary.
 
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
@@ -20,7 +20,7 @@ def fill_optparser (parser_view):
     pv = parser_view
 
     pv.set_desc(p_("subcommand description",
-                   "Simple text view as a demonstration of writing views."))
+                   "Create a simple plain text view of the glossary."))
 
     pv.add_subopt("lang", str, defval="",
                   metavar=p_("placeholder for parameter value", "LANGKEY"),
