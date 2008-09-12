@@ -80,23 +80,31 @@ def np_(msgctxt, msgid, msgid_plural, n):
 # --------------------------------------
 # Language-aware sorting.
 
+_lang_to_locale = {
+    "en": [
+        "en_US.UTF-8", "en_US.UTF8", "en_US", "english",
+    ],
+    "sr": [
+        "sr_RS.UTF-8", "sr_CS.UTF-8", "sr_RS",
+    ],
+    "sr@latin": [
+        "sr_RS.UTF-8@latin", "sr_CS.UTF-8@latin", "sr_RS@latin",
+    ],
+}
+
+_no_locale_warning_issued = {}
+
 # Set locale for requested language, and return reset function.
 def _set_lang_locale (lang):
 
     if lang is None:
         return lambda: True
 
-    # Work around some compatibility problems.
-    nlocnames = []
-    if 0: pass
-    elif lang == "sr":
-        nlocnames.append("sr_RS.UTF-8")
-        nlocnames.append("sr_CS.UTF-8")
-    elif lang == "sr@latin":
-        nlocnames.append("sr_RS.UTF-8@latin")
-        nlocnames.append("sr_CS.UTF-8@latin")
-    else:
-        nlocnames.append(locale.normalize(lang + ".UTF-8"))
+    # Get possible locales from explicit mapping, or try auto-resolution.
+    nlocnames = _lang_to_locale.get(lang)
+    if not nlocnames:
+        # Not very reliable.
+        nlocnames = [locale.normalize(lang + ".UTF-8")]
 
     # Try to set one of the locales.
     oldloc = locale.getlocale()
@@ -107,11 +115,13 @@ def _set_lang_locale (lang):
             break
         except:
             pass
-    if setlocname is None:
-        error(p_("error message",
-                 "cannot find a locale for language '%(lang)s', "
-                 "tried: %(locales)s")
-              % dict(lang=lang, locales=" ".join(nlocnames)))
+    if setlocname is None and lang not in _no_locale_warning_issued:
+        warning(p_("error message",
+                    "cannot find a locale for language '%(lang)s', "
+                    "tried: %(locales)s")
+                % dict(lang=lang, locales=" ".join(nlocnames)))
+        _no_locale_warning_issued[lang] = True
+        locale.setlocale(locale.LC_ALL, oldloc)
 
     # Return reset function.
     return lambda: locale.setlocale(locale.LC_ALL, oldloc)
