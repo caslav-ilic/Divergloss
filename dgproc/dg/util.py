@@ -100,11 +100,10 @@ def _set_lang_locale (lang):
     if lang is None:
         return lambda: True
 
-    # Get possible locales from explicit mapping, or try auto-resolution.
+    # Get possible locales from explicit mapping,
+    # try auto-resolution as lower priority (not very reliable).
     nlocnames = _lang_to_locale.get(lang)
-    if not nlocnames:
-        # Not very reliable.
-        nlocnames = [locale.normalize(lang + ".UTF-8")]
+    nlocnames.append(locale.normalize(lang + ".UTF-8"))
 
     # Try to set one of the locales.
     oldloc = locale.getlocale()
