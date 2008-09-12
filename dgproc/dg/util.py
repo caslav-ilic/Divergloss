@@ -90,6 +90,9 @@ _lang_to_locale = {
     "sr@latin": [
         "sr_RS.UTF-8@latin", "sr_CS.UTF-8@latin", "sr_RS@latin",
     ],
+    "ja": [
+        "ja_JP.UTF-8",
+    ],
 }
 
 _no_locale_warning_issued = {}
@@ -102,8 +105,10 @@ def _set_lang_locale (lang):
 
     # Get possible locales from explicit mapping,
     # try auto-resolution as lower priority (not very reliable).
-    nlocnames = _lang_to_locale.get(lang)
-    nlocnames.append(locale.normalize(lang + ".UTF-8"))
+    nlocnames = _lang_to_locale.get(lang, [])
+    nlocname_auto = locale.normalize(lang + ".UTF-8")
+    if nlocname_auto not in nlocnames:
+        nlocnames.append(nlocname_auto)
 
     # Try to set one of the locales.
     oldloc = locale.getlocale()
