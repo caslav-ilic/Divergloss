@@ -67,6 +67,17 @@ by the usual C{env} parameter. If not given, the default environment is used.
 Only those concepts which have at least one term in the original and target
 language and environment will be used as sources of terms.
 
+Internal style sheets (as selected by the C{style} parameter) contain
+some values which can be tuned through the command line using the C{styleopt}
+parameter. It takes a comma-separated list of C{name=value} pairs.
+For example, to set the width of the column with terms in the original
+language to a third of the table width, use::
+
+    $ dgproc.py html-bidict ... -sstyleopt:'oterm_col_width=33%'
+
+Available style options are listed in the sieve help (C{-H}),
+under the description of the C{styleopt} parameter.
+
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
 """
