@@ -73,6 +73,7 @@ language and environment will be used as sources of terms.
 
 import os
 import shutil
+import re
 
 from dg import rootdir
 from dg.util import p_
@@ -88,6 +89,15 @@ from dg.util import mkdirpath
 _src_style_dir = os.path.join(rootdir(), "sieve", "html_bidict_extras", "style")
 _src_dctl_file = os.path.join(rootdir(), "sieve", "html_bidict_extras", "dctl.js")
 
+# Style elements which may be specified through the command line.
+_styleopt_spec = [
+    ("oterm_col_width", "10em",
+     p_("style option description",
+        "The width of the column with terms in the original language. "
+        "It can be set in absolute terms, e.g. '10em' for 10 widths of M, "
+        "or relative, e.g. '33%' for a third of the table width.")),
+]
+
 
 def fill_optparser (parser_view):
 
@@ -95,8 +105,8 @@ def fill_optparser (parser_view):
     styles = [""]
     for item in os.listdir(_src_style_dir):
         path = os.path.join(_src_style_dir, item)
-        if os.path.isfile(path) and path.endswith(".css"):
-            p = item.rfind(".css")
+        if os.path.isfile(path) and path.endswith(".css.in"):
+            p = item.rfind(".css.in")
             styles.append(item[:p])
 
     pv = parser_view
@@ -169,6 +179,18 @@ def fill_optparser (parser_view):
                   desc=p_("subcommand option description",
                           "Create only the HTML page file, with style sheet "
                           "and control functions embedded in it."))
+
+    styleopts = "\n\n".join(["%s [%s]: %s" % x for x in _styleopt_spec])
+    pv.add_subopt("styleopt", str, islist=True, defval=[],
+                  metavar=p_("placeholder for parameter value",
+                             "NAME=VALUE,..."),
+                  desc=p_("subcommand option description",
+                          "Some elements of internal style sheets may be "
+                          "customized, by providing a comma-separated list "
+                          "of name=value pairs, drawn from the following set "
+                          "(default values in brackets):\n"
+                          "\n"
+                          "%(ellist)s") % dict(ellist=styleopts))
 
 
 class Subcommand (object):
@@ -425,7 +447,8 @@ class Subcommand (object):
                                          "css")
             stylepath_nr = os.path.join(os.path.dirname(self._options.file),
                                         stylepath)
-            stylesrc = os.path.join(_src_style_dir, self._options.style + ".css")
+            stylesrc = os.path.join(  _src_style_dir, self._options.style
+                                    + ".css.in")
 
         # Prepare JavaScript file path.
         dctlpath = None
@@ -446,13 +469,55 @@ class Subcommand (object):
         phpincpath_nr = os.path.join(os.path.dirname(self._options.file),
                                      phpincpath)
 
+        # If style requested, fetch the .in file and resolve placeholders.
+        if self._options.style:
+            # Parse values given in the command line.
+            stodict = dict([x[:2] for x in _styleopt_spec])
+            for sopt in self._options.styleopt:
+                lst = [x.strip() for x in sopt.split("=", 1)]
+                if len(lst) < 2:
+                    warning(p_("warning message",
+                               "malformed CSS style option '%(opt)s'")
+                            % dict(opt=sopt))
+                    continue
+                name, value = lst
+                if name not in stodict:
+                    warning(p_("warning message",
+                               "unknown CSS style option '%(opt)s'")
+                            % dict(opt=sopt))
+                    continue
+                stodict[name] = value
+
+            # Replace placeholders in the input style sheet.
+            raccl = LineAccumulator()
+            raccl.read(stylesrc)
+            styleaccl = LineAccumulator()
+            sto_rx = re.compile("@(\w+)@")
+            for line in raccl.lines:
+                nline = ""
+                lastpos = 0
+                for m in sto_rx.finditer(line):
+                    nline += line[lastpos:m.span()[0]]
+                    lastpos = m.span()[1]
+                    soname = m.group(1)
+                    sovalue = stodict.get(soname)
+                    if soname not in stodict:
+                        error(p_("error message",
+                                 "unknown CSS style option '%(opt)s' "
+                                 "requested by the input style sheet "
+                                 "'%(fname)s'")
+                              % dict(opt=soname, fname=stylesrc))
+                    nline += sovalue
+                nline += line[lastpos:]
+                styleaccl(nline)
+
         # Create separate CSS and JS files, or raw inclusion file,
         # or collect everything for direct embedding.
         auxaccl = None
         if not self._options.phpinc and not self._options.allinone:
             shutil.copyfile(_src_dctl_file, dctlpath_nr)
             if self._options.style:
-                shutil.copyfile(stylesrc, stylepath_nr)
+                styleaccl.write(stylepath_nr)
             phpincpath = None # _fmt_header checks this for what to include
         else:
             raccl = LineAccumulator()
@@ -462,7 +527,7 @@ class Subcommand (object):
             raccl()
             if self._options.style:
                 raccl("<style type='text/css'>")
-                raccl.read(stylesrc)
+                raccl(styleaccl)
                 raccl("</style>")
                 raccl()
             if not self._options.allinone:

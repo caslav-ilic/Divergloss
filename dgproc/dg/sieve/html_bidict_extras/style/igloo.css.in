@@ -68,7 +68,7 @@ td.bd-oterm {
     vertical-align: top;
     padding-left: 0.5em;
     padding-right: 1.5em;
-    width: 10em;
+    width: @oterm_col_width@;
 }
 
 /* original term */
