@@ -269,9 +269,9 @@ class Subcommand (object):
 
     class _Rule:
 
-        hint_rx = re.compile(r"^\s*hint\s*=\s*\"(.*)\"")
+        hint_rx = re.compile(r"^\s*hint\s*=\s*(.)(.*)\1")
         free_hint_rx = re.compile(r"\[(.*)\]")
-        ident_rx = re.compile(r"^\s*id\s*=\s*\"(.*)\"")
+        ident_rx = re.compile(r"^\s*id\s*=\s*(.)(.*)\1")
         disabled_rx = re.compile(r"^\s*disabled\b")
 
         flag_pref = "@gloss-"
@@ -418,12 +418,12 @@ class Subcommand (object):
 
             m = ident_rx.search(line)
             if m:
-                crule.ckey = m.group(1).strip()
+                crule.ckey = m.group(2).strip()
                 rmap[crule.ckey] = crule
 
             m = hint_rx.search(line)
             if m:
-                hintstr = m.group(1)
+                hintstr = m.group(2)
                 orig_hintstr = hintstr
 
                 m = free_hint_rx.search(hintstr)
