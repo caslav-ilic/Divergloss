@@ -113,6 +113,18 @@
   default environment is used. Only those concepts which have at least one 
   term in the original and target language and environment will be used as 
   sources of terms.</p>
+  <p>Internal style sheets (as selected by the <code>style</code> 
+  parameter) contain some values which can be tuned through the command 
+  line using the <code>styleopt</code> parameter. It takes a 
+  comma-separated list of <code>name=value</code> pairs. For example, to 
+  set the width of the column with terms in the original language to a 
+  third of the table width, use:</p>
+<pre class="literalblock">
+   $ dgproc.py html-bidict ... -sstyleopt:'oterm_col_width=33%'
+</pre>
+  <p>Available style options are listed in the sieve help 
+  (<code>-H</code>), under the description of the <code>styleopt</code> 
+  parameter.</p>
 
 <hr />
 <div class="fields">      <p><strong>Author:</strong>
