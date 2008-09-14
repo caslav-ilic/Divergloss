@@ -59,8 +59,8 @@ should probably end in C{.php}.
 
 Finally, both the CSS and JS content can be directly embedded into the page,
 so that only this one HTML file is produced by the sieve. This is done by
-specifyng the C{allinone} parameter. Note that it conflicts all other
-parameters which deal with auxiliary files.
+specifyng the C{allinone} parameter. Note that it conflicts all parameters
+which deal with auxiliary files for inclusion.
 
 If the glossary contains several environments, one of them may be selected
 by the usual C{env} parameter. If not given, the default environment is used.
@@ -558,7 +558,7 @@ class Subcommand (object):
             else:
                 title = gname
             self._fmt_header(accl_head, tlang, title,
-                             stylepath, dctlpath, phpincpath, auxaccl)
+                             stylepath, dctlpath, phpincpath)
         else:
             accl_head.read(self._options.header)
 
@@ -572,18 +572,17 @@ class Subcommand (object):
         # Collect everything and write out the HTML page.
         accl_all = LineAccumulator(self._indent, 0)
         accl_all(accl_head)
+        if auxaccl:
+            accl_all(auxaccl, 2)
         accl_all(accl)
         accl_all(accl_foot)
         accl_all.write(self._options.file)
 
 
     def _fmt_header (self, accl, lang, title,
-                           stylepath=None, dctlpath=None, phpincpath=None,
-                           auxaccl=None):
+                           stylepath=None, dctlpath=None, phpincpath=None):
         """
-        If C{auxaccl} is given, it is a line accumulator containing
-        the style sheet and control functions to be embedded into the body.
-        Otherwise, if C{phpincpath} is given, then PHP inclusion for it is
+        If C{phpincpath} is given, then PHP inclusion for it is
         issued in the body, while C{stylepath} and C{dctlpath} are ignored.
         Otherwise, HTML inclusions for C{stylepath} and C{dctlpath} are issued
         in the header (if given themselves).
@@ -607,7 +606,7 @@ class Subcommand (object):
                            "content":"text/html; charset=UTF-8"},
                   close=True), 2)
 
-        if not phpincpath and not auxaccl:
+        if not phpincpath:
             if stylepath:
                 accl(stag("link", {"rel":"stylesheet", "type":"text/css",
                                    "href":stylepath}, close=True), 2)
@@ -621,9 +620,7 @@ class Subcommand (object):
 
         accl(stag("body"), 1)
 
-        if auxaccl:
-            accl(auxaccl, 2)
-        elif phpincpath:
+        if phpincpath:
             accl("<?php include('%s'); ?>" % phpincpath, 2)
 
         accl()
