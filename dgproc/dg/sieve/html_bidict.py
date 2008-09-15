@@ -376,15 +376,26 @@ class Subcommand (object):
                 tterms_compgr = []
                 for tterm in tterms:
                     # Declensions.
+                    lsep_dc = p_("list separator: "
+                                 "acceptable variants of the same declension",
+                                 ", ")
+                    fmt_dcgr = p_("declension group: single declension given "
+                                  "by its name and acceptable variants",
+                                  "<i>%(dname)s</i> %(dvars)s")
+                    lsep_gr = p_("list separator: "
+                                 "declension groups",
+                                 "; ")
                     tdecl = None
                     if tterm in tdecls:
                         lst = []
                         for gr, decls in tdecls[tterm].iteritems():
                             lst2 = list(decls)
                             langsort(lst2, tlang)
-                            lst.append((gr, ", ".join(lst2)))
+                            lst.append((gr, lsep_dc.join(lst2)))
                         langsort_tuples(lst, 0, tlang)
-                        tdecl = "; ".join(["<i>%s</i> %s" % x for x in lst])
+                        tdecl = lsep_gr.join([fmt_dcgr % dict(dname=x[0],
+                                                              dvars=x[1])
+                                              for x in lst])
                     # Compose.
                     if tdecl:
                         ttcgr = p_("term with declensions",
@@ -421,7 +432,9 @@ class Subcommand (object):
                     accl(etag("div"), 4)
 
                 # Line with terms.
-                ttstr = ", ".join(tterms_compgr)
+                lsep_tt = p_("list separator: synonymous terms",
+                             ", ")
+                ttstr = lsep_tt.join(tterms_compgr)
                 if len(tterms_ckeys) > 1:
                     ttstr = p_("enumerated target term in the dictionary, "
                                "one of the meanings of the original term",
