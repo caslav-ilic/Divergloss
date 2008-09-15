@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-13 18:49+0200\n"
+"POT-Creation-Date: 2008-09-15 12:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,109 +211,109 @@ msgctxt "message"
 msgid "No sieves specified to provide help on."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:96
+#: dg/sieve/html_bidict.py:107
 msgctxt "style option description"
 msgid "The width of the column with terms in the original language. It can be set in absolute terms, e.g. '10em' for 10 widths of M, or relative, e.g. '33%' for a third of the table width."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:115
+#: dg/sieve/html_bidict.py:126
 msgctxt "subcommand description"
 msgid "Create HTML page with bilingual dictionary."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:118 dg/sieve/html_bidict.py:122 dg/sieve/html.py:49
+#: dg/sieve/html_bidict.py:129 dg/sieve/html_bidict.py:133 dg/sieve/html.py:49
 #: dg/sieve/plrules.py:88 dg/sieve/plrules.py:92 dg/sieve/po.py:30
 #: dg/sieve/po.py:34 dg/sieve/tbx.py:32 dg/sieve/text_simple.py:26
 msgctxt "placeholder for parameter value"
 msgid "LANGKEY"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:120
+#: dg/sieve/html_bidict.py:131
 msgctxt "subcommand option description"
 msgid "Original language in the dictionary."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:124
+#: dg/sieve/html_bidict.py:135
 msgctxt "subcommand option description"
 msgid "Target language in the dictionary."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:126 dg/sieve/html.py:54 dg/sieve/plrules.py:100
+#: dg/sieve/html_bidict.py:137 dg/sieve/html.py:54 dg/sieve/plrules.py:100
 #: dg/sieve/plrules.py:106 dg/sieve/po.py:38 dg/sieve/tbx.py:37
 #: dg/sieve/text_simple.py:31
 msgctxt "placeholder for parameter value"
 msgid "ENVKEY"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:128
+#: dg/sieve/html_bidict.py:139
 msgctxt "subcommand option description"
 msgid "Environment for which the dictionary is produced. If not given, the glossary default is used."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:131 dg/sieve/html_bidict.py:140
-#: dg/sieve/html_bidict.py:147 dg/sieve/html_bidict.py:160
-#: dg/sieve/html_bidict.py:167 dg/sieve/html_bidict.py:173
+#: dg/sieve/html_bidict.py:142 dg/sieve/html_bidict.py:151
+#: dg/sieve/html_bidict.py:158 dg/sieve/html_bidict.py:171
+#: dg/sieve/html_bidict.py:178 dg/sieve/html_bidict.py:184
 #: dg/sieve/plrules.py:96 dg/sieve/po.py:42 dg/sieve/text_simple.py:36
 msgctxt "placeholder for parameter value"
 msgid "FILE"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:133
+#: dg/sieve/html_bidict.py:144
 msgctxt "subcommand option description"
 msgid "File to output the HTML page to."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:135 dg/sieve/html.py:96
+#: dg/sieve/html_bidict.py:146 dg/sieve/html.py:96
 msgctxt "placeholder for parameter value"
 msgid "STYLE"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:137
+#: dg/sieve/html_bidict.py:148
 msgctxt "subcommand option description"
 msgid "Style sheet for the HTML page. If not given, the page will not be styled."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:142
+#: dg/sieve/html_bidict.py:153
 msgctxt "subcommand option description"
 msgid "File path where to copy the selected style sheet, relative to the directory of the HTML page file. If not given, the path is constructed as that of the HTML page, with extension replaced by .css."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:149
+#: dg/sieve/html_bidict.py:160
 msgctxt "subcommand option description"
 msgid "File path where to copy the JavaScript functions, relative to the directory of the HTML page file. If not given, the path is constructed as that of the HTML page, with extension replaced by .js."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:155
+#: dg/sieve/html_bidict.py:166
 msgctxt "subcommand option description"
 msgid "Place both the style sheet and the JavaScript functions into a single file, wrapped in appropriate tags for PHP inclusion into the body of the HTML page."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:162
+#: dg/sieve/html_bidict.py:173
 msgctxt "subcommand option description"
 msgid "File path of the file for raw inclusion, relative to the directory of the HTML page file. If not given, the path is constructed as that of the HTML page, with extension replaced by .inc."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:169
+#: dg/sieve/html_bidict.py:180
 msgctxt "subcommand option description"
 msgid "File that contains the page header section to use instead of the default, including the <body> tag and possibly some preface text."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:175
+#: dg/sieve/html_bidict.py:186
 msgctxt "subcommand option description"
 msgid "File that contains the page footer section to use instead of the default, possibly including some closing text before the </body> tag."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:180
+#: dg/sieve/html_bidict.py:191
 msgctxt "subcommand option description"
 msgid "Create only the HTML page file, with style sheet and control functions embedded in it."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:186
+#: dg/sieve/html_bidict.py:197
 msgctxt "placeholder for parameter value"
 msgid "NAME=VALUE,..."
 msgstr ""
 
-#: dg/sieve/html_bidict.py:188
+#: dg/sieve/html_bidict.py:199
 #, python-format
 msgctxt "subcommand option description"
 msgid ""
@@ -322,72 +322,93 @@ msgid ""
 "%(ellist)s"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:211 dg/sieve/plrules.py:124 dg/sieve/po.py:64
+#: dg/sieve/html_bidict.py:222 dg/sieve/plrules.py:124 dg/sieve/po.py:64
 #, python-format
 msgctxt "error message"
 msgid "origin language '%(lang)s' not present in the glossary"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:216 dg/sieve/plrules.py:129 dg/sieve/po.py:69
+#: dg/sieve/html_bidict.py:227 dg/sieve/plrules.py:129 dg/sieve/po.py:69
 #, python-format
 msgctxt "error message"
 msgid "target language '%(lang)s' not present in the glossary"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:221 dg/sieve/html.py:130 dg/sieve/plrules.py:134
+#: dg/sieve/html_bidict.py:232 dg/sieve/html.py:130 dg/sieve/plrules.py:134
 #: dg/sieve/plrules.py:139 dg/sieve/po.py:74 dg/sieve/tbx.py:69
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' not defined by the glossary"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:231
+#: dg/sieve/html_bidict.py:242
 msgctxt "warning message"
 msgid "no concepts found which have terms in both the origin and the target language and environment"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:380
+#: dg/sieve/html_bidict.py:381
+msgctxt "list separator: acceptable variants of the same declension"
+msgid ", "
+msgstr ""
+
+#: dg/sieve/html_bidict.py:384
+#, python-format
+msgctxt "declension group: single declension given by its name and acceptable variants"
+msgid "<i>%(dname)s</i> %(dvars)s"
+msgstr ""
+
+#: dg/sieve/html_bidict.py:387
+msgctxt "list separator: declension groups"
+msgid "; "
+msgstr ""
+
+#: dg/sieve/html_bidict.py:402
 #, python-format
 msgctxt "term with declensions"
 msgid "%(term)s (%(decls)s)"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:406
+#: dg/sieve/html_bidict.py:428
 msgctxt "tooltip"
 msgid "Show details"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:417
+#: dg/sieve/html_bidict.py:436
+msgctxt "list separator: synonymous terms"
+msgid ", "
+msgstr ""
+
+#: dg/sieve/html_bidict.py:441
 #, python-format
 msgctxt "enumerated target term in the dictionary, one of the meanings of the original term"
 msgid "%(num)d. %(term)s"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:480
+#: dg/sieve/html_bidict.py:504
 #, python-format
 msgctxt "warning message"
 msgid "malformed CSS style option '%(opt)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:486
+#: dg/sieve/html_bidict.py:510
 #, python-format
 msgctxt "warning message"
 msgid "unknown CSS style option '%(opt)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:506
+#: dg/sieve/html_bidict.py:530
 #, python-format
 msgctxt "error message"
 msgid "unknown CSS style option '%(opt)s' requested by the input style sheet '%(fname)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:545 dg/sieve/html.py:548
+#: dg/sieve/html_bidict.py:569 dg/sieve/html.py:548
 #, python-format
 msgctxt "top page title"
 msgid "%(gloss)s (%(env)s)"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:587 dg/sieve/html.py:501 dg/sieve/po.py:200
+#: dg/sieve/html_bidict.py:610 dg/sieve/html.py:501 dg/sieve/po.py:200
 #: dg/sieve/tbx.py:134
 msgctxt "comment in generated files (warning to user)"
 msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
