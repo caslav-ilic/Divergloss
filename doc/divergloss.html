@@ -13,7 +13,7 @@
 <div class="titlepage">
 <div>
 <div>
-<h2 class="title"><a name="id2654912" id="id2654912"></a>The Divergloss XML</h2>
+<h2 class="title"><a name="id2691299" id="id2691299"></a>The Divergloss XML</h2>
 </div>
 <div>
 <div class="authorgroup">
@@ -26,7 +26,7 @@
 <p class="copyright">Copyright © 2008 Chusslove Illich (Часлав Илић)</p>
 </div>
 <div>
-<div class="legalnotice"><a name="id2729700" id="id2729700"></a>
+<div class="legalnotice"><a name="id2766086" id="id2766086"></a>
 <p>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2.</p>
 </div>
 </div>
@@ -42,7 +42,7 @@
 <td>&nbsp;</td>
 </tr>
 <tr>
-<td align="left" colspan="3">Last modification (repository rev. 26c3578cc3130c747a595890f9e47d87716629af).</td>
+<td align="left" colspan="3">Last modification (repository rev. 0485753966acceccdaff81f4f3276a2e8f692919).</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -77,7 +77,7 @@
 <dt><span class="sect1"><a href="#s-terms">5. Terms</a></span></dt>
 <dt><span class="sect1"><a href="#s-keydefs">6. Key Definitions</a></span></dt>
 <dt><span class="sect1"><a href="#s-textfmt">7. Text Markup</a></span></dt>
-<dt><span class="appendix"><a href="#a-tools">A. Processing Tools</a></span></dt>
+<dt><span class="appendix"><a href="#a-dgdistro">A. Distribution</a></span></dt>
 <dt><span class="appendix"><a href="#a-ack">B. Acknowledgments</a></span></dt>
 </dl>
 </div>
@@ -670,8 +670,32 @@
 <p>i.e. the embedded selector is of the form <code class="code">~env1:phrase1|env2:phrase2|...~</code>, where if one of the environment keys is empty or omitted (as in the example), that phrase inherits the surrounding text's environment. Instead of a single environment key, a whitespace separated list can also be given. The tilde character (~) cannot be a part of ordinary text by itself, but it can be escaped by doubling it (~~). This kind of special-form selection is unusual by XML standards, but has been introduced due to being more human-readable and editable in the running text than e.g. a selection node with subnodes per environment: <code class="code">&lt;select&gt;&lt;for env="env1"&gt;phrase1&lt;/for&gt;&lt;for env="env2"&gt;phrase2&lt;/for&gt;...&lt;/select&gt;</code>.</p>
 </div>
 <div class="appendix" lang="en">
-<h2 class="title" style="clear: both"><a name="a-tools" id="a-tools"></a>A.&nbsp;Processing Tools</h2>
-<p>[[To be written...]]</p>
+<h2 class="title" style="clear: both"><a name="a-dgdistro" id="a-dgdistro"></a>A.&nbsp;Distribution</h2>
+<p>Divergloss is distributed in a package which, aside from the format definition and documentation, contains command-line tools for processing Divergloss glossaries into various end-user formats, and requires minimum installation fuss. This enables users to quickly start writting and putting glossary data to practical uses.</p>
+<p>Since Divergloss is still early in the development, the best place to get the package from is <a class="ulink" href="http://gitorious.org/" target="_top">Gitorious</a>, by <span class="emphasis"><em>cloning</em></span> the <a class="ulink" href="http://git.or.cz/" target="_top">Git</a> repository:</p>
+<pre class="screen">
+$ git clone git://gitorious.org/divergloss/mainline.git
+</pre>
+<p>This will create directory <code class="filename">mainline/</code> with the complete repository. In it there will be the <code class="filename">README</code> file with short setup instructions. The repository can later always be updated to the newest version by issuing:</p>
+<pre class="screen">
+$ cd mainline/
+$ git pull
+</pre>
+<p>In the package there is a Python module, <code class="literal">dg</code>, which provides easy access to glossary content and functionality frequently needed for manipulating glossary data. While e.g. XSLT is very succinct for straightforward mappings of XML data, building glossary outputs (among other things) may be much more demanding than that, and therefore more easily tackled with a general purpose programming language such as Python. Not the least is Python's ease of use and rich variety of modules, which makes any special processing of glossaries that much more viable.</p>
+<p>The packaged <span class="command"><strong>dgproc.py</strong></span> script is one immediate user of the <code class="literal">dg</code> module. It operates by pushing Divergloss files through <span class="emphasis"><em>sieves</em></span>, which build outputs and perform other operations on the glossary. In the basic mode, when run with the glossary file as the single argument, <span class="command"><strong>dgproc.py</strong></span> will validate the glossary, reporting also the problems not discoverable by DTD validation. If the glossary file is <code class="filename">gloss.xml</code>, then executing:</p>
+<pre class="screen">
+$ dgproc.py gloss.xml
+</pre>
+<p>will give no output if the glossary is technically valid.</p>
+<p>The list of applicable sieves may be seen by issuing the <code class="option">--list-sieves</code> (<code class="option">-S</code>) option. For example, if the glossary contain terms in English (<code class="literal">en</code>) and German (<code class="literal">de</code>), <code class="literal">bidict-html</code> sieve may be used to create an embeddable HTML dictionary table, with collapsible concept descriptions:</p>
+<pre class="screen">
+$ dgproc.py html-bidict gloss.xml -solang:en -stlang:de -sfile:gloss.html
+</pre>
+<p>where <code class="option">-s...</code> options issue sieve parameters. Or, to create a TBX glossary file for use in tools that can make use of it (e.g. a translation editor may automatically issue terminology recommendations):</p>
+<pre class="screen">
+$ dgproc.py tbx gloss.xml -sfile:gloss.tbx
+</pre>
+<p>List of parameters for each sieve may be seen by following the sieve name with the <code class="option">--help-sieves</code> (<code class="option">-H</code>). Each sieve is described in more detail in the <code class="literal">dg.sieve</code> module documentation contained in the package.</p>
 </div>
 <div class="appendix" lang="en">
 <h2 class="title" style="clear: both"><a name="a-ack" id="a-ack"></a>B.&nbsp;Acknowledgments</h2>
