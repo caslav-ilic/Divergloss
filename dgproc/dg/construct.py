@@ -46,14 +46,12 @@ moment of the glossary. It would be burdensome to represent such children
 elements as ordinary sequences, since they usually need to be accessed by
 a langenv combination. A d-set attribute of a g-node is named same as its
 XML namesake (not in plural), but has the type L{Dset}, and is callable for
-specialization by langenv. For example, if there is a language C{lang} and environment C{env} in the glossary, the terms naming the concept C{con} in
+specialization by langenv. For example, if there is a language C{lang} and
+environment C{env} in the glossary, the terms naming the concept C{con} in
 that langenv are obtained by the quering the term d-set like
 C{gloss.concepts[ckey].term(lang, env)}; this will return a I{list} of
 term g-nodes, which may have one, more, or zero elements, depending if in
 that langenv the term is unique, has synonyms, or isn't defined at all.
-
-The documentation of each of the C{Gnode} subclasses lists all of its
-attributes and their types, according to the described taxonomy.
 
 Additional notes on the structure:
 
@@ -90,6 +88,7 @@ Additional notes on the structure:
   - D-sets may be queried without providing language and environment
     parameters, in which case they use langenv of their parent.
 
+See L{Glossary} for full hierarchical overview of data attributes.
 
 Text Representation
 ===================
@@ -540,6 +539,151 @@ class Gnode:
 
 # Glossary.
 class Glossary (Gnode):
+    """
+    Root node of internal representation of the glossary.
+
+    Any element of the glossary may be reached through attributes and
+    subattributes of objects of this class, accessed in the appropriate
+    way for their types. Here is the hierachical overview, with type in
+    parenthesis, an followed by I{idem.} when the attribute has been
+    detailed previously in another context::
+
+        concepts (dict)
+            id (string)
+            topic (list of strings)
+            level (list of strings)
+            related (list of strings)
+            desc (d-set)
+                lang (string)
+                env (list of strings)
+                by (string)
+                src (string)
+                text (text)
+            term (d-set)
+                lang (string)
+                env (list of strings)
+                gr (string)
+                by (string)
+                src (string)
+                nom (g-node)
+                    text (text)
+                stem (g-node)
+                    text (text)
+                decl (list of g-nodes)
+                    lang (string)
+                    env (list of strings)
+                    gr (string)
+                    text (text)
+                comment (d-set)
+                    lang (string)
+                    env (list of strings)
+                    by (string)
+                    text (text)
+                origin (d-set)
+                    lang (string)
+                    env (list of strings)
+                    by (string)
+                    src (string)
+                    text (text)
+            details (d-set)
+                lang (string)
+                env (list of strings)
+                root (string)
+                rel (string)
+                by (string)
+                text (text)
+            media (d-set)
+                lang (string)
+                env (list of strings)
+                root (string)
+                rel (string)
+                text (text)
+            comment (d-set) ibid.
+            origin (d-set) ibid.
+        languages (dict)
+            id (string)
+            name (d-set)
+                lang (string)
+                env (list of strings)
+                text (text)
+            shortname (d-set)
+                lang (string)
+                env (list of strings)
+                text (text)
+        environments (dict)
+            id (string)
+            weight (string)
+            meta (string)
+            closeto (list of strings)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+        editors (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+            email (g-node)
+                text (text)
+            affiliation (d-set)
+                lang (string)
+                env (list of strings)
+                text (text)
+        sources (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+            email (g-node) ibid.
+            url (g-node) text
+        topics (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+        levels (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+        grammar (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+        extroots (dict)
+            id (string)
+            name (d-set) ibid.
+            shortname (d-set) ibid.
+            desc (d-set) ibid.
+            rooturl (g-node)
+                text (text)
+            browseurl (g-node)
+                text (text)
+
+    All C{string} values are keys into one of the dictionaries.
+    All C{text} values are glossary texts of the structure as explained
+    in the module overview.
+
+    For example, to reach the language name of the term of the concept
+    with id C{"foo"}, in language with id C{"lang"} and environment
+    with id C{"env"}::
+
+        langkey = gloss.concepts["foo"].term("lang", "env")[0].lang
+        langname = gloss.languages[langkey].name("lang", "env")[0].text
+
+    assuming that the term and language name are defined for given langenv.
+
+    If the glossary has no explicit environments or has a single environment,
+    the environment id can be omitted in d-set element selection calls;
+    similarly, if there is a single language in the glossary, language id
+    may be omitted too. In fact, both may be omitted in any case, when
+    default language and environment will be used if there are multiple.
+
+    @note: At the moment, glossaries are mostly read-only; while elements
+    can be added internally if convenient for processing, serializing
+    a modified glossary is not implemented yet.
+    """
 
     def __init__ (self, node=None):
 

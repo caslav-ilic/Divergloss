@@ -3,6 +3,21 @@
 """
 Create a TBX view of the glossary.
 
+TBX output is intended for read-only use, e.g. in tools for glossary viewing,
+searching, or CAT (computer-aided translation). A TBX glossary created by
+this sieve cannot be, in general, converted back or synced with the original
+Divergloss glossary.
+
+If the glossary contains several languages or environments, I{pivotal} ones
+may be selected by giving their keys with sieve parameters C{lang} and C{env};
+when these parameters are not given, default language and environment are used.
+By default, output TBX glossary will contain terms for all languages, but all
+other language-specific content (e.g. descriptions) are given only in the
+pivotal language. All content in non-pivotal environment is ignored.
+
+TBX glossary is output as a single file, the name of which is either
+given by the C{file} parameter, or derived from the glossary ID.
+
 @author: Chusslove Illich (Часлав Илић) <caslav.ilic@gmx.net>
 @license: GPLv3
 """
