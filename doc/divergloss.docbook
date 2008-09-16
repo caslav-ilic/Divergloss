@@ -682,10 +682,39 @@
 
 </sect1>
 
-<appendix id="a-tools">
-    <title>Processing Tools</title>
+<appendix id="a-dgdistro">
+    <title>Distribution</title>
 
-    <para>[[To be written...]]</para>
+    <para>&dg; is distributed in a package which, aside from the format definition and documentation, contains command-line tools for processing &dg; glossaries into various end-user formats, and requires minimum installation fuss. This enables users to quickly start writting and putting glossary data to practical uses.</para>
+
+    <para>Since &dg; is still early in the development, the best place to get the package from is <ulink url="http://gitorious.org/">Gitorious</ulink>, by <emphasis>cloning</emphasis> the <ulink url="http://git.or.cz/">Git</ulink> repository:
+    <screen><![CDATA[
+$ git clone git://gitorious.org/divergloss/mainline.git
+]]></screen>
+    This will create directory <filename>mainline/</filename> with the complete repository. In it there will be the <filename>README</filename> file with short setup instructions. The repository can later always be updated to the newest version by issuing:
+    <screen><![CDATA[
+$ cd mainline/
+$ git pull
+]]></screen>
+    </para>
+
+    <para>In the package there is a Python module, <literal>dg</literal>, which provides easy access to glossary content and functionality frequently needed for manipulating glossary data. While e.g. XSLT is very succinct for straightforward mappings of XML data, building glossary outputs (among other things) may be much more demanding than that, and therefore more easily tackled with a general purpose programming language such as Python. Not the least is Python's ease of use and rich variety of modules, which makes any special processing of glossaries that much more viable.</para>
+
+    <para>The packaged <command>dgproc.py</command> script is one immediate user of the <literal>dg</literal> module. It operates by pushing &dg; files through <emphasis>sieves</emphasis>, which build outputs and perform other operations on the glossary. In the basic mode, when run with the glossary file as the single argument, <command>dgproc.py</command> will validate the glossary, reporting also the problems not discoverable by DTD validation. If the glossary file is <filename>gloss.xml</filename>, then executing:
+    <screen><![CDATA[
+$ dgproc.py gloss.xml
+]]></screen>
+    will give no output if the glossary is technically valid.</para>
+
+    <para>The list of applicable sieves may be seen by issuing the <option>--list-sieves</option> (<option>-S</option>) option. For example, if the glossary contain terms in English (<literal>en</literal>) and German (<literal>de</literal>), <literal>bidict-html</literal> sieve may be used to create an embeddable HTML dictionary table, with collapsible concept descriptions:
+    <screen><![CDATA[
+$ dgproc.py html-bidict gloss.xml -solang:en -stlang:de -sfile:gloss.html
+]]></screen>
+    where <option>-s...</option> options issue sieve parameters. Or, to create a TBX glossary file for use in tools that can make use of it (e.g. a translation editor may automatically issue terminology recommendations):
+    <screen><![CDATA[
+$ dgproc.py tbx gloss.xml -sfile:gloss.tbx
+]]></screen>
+    List of parameters for each sieve may be seen by following the sieve name with the <option>--help-sieves</option> (<option>-H</option>). Each sieve is described in more detail in the <literal>dg.sieve</literal> module documentation contained in the package.</para>
 </appendix>
 
 <appendix id="a-ack">
