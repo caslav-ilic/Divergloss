@@ -13,7 +13,7 @@
 <div class="titlepage">
 <div>
 <div>
-<h2 class="title"><a name="id2478580" id="id2478580"></a>The Divergloss XML</h2>
+<h2 class="title"><a name="id2654912" id="id2654912"></a>The Divergloss XML</h2>
 </div>
 <div>
 <div class="authorgroup">
@@ -26,7 +26,7 @@
 <p class="copyright">Copyright © 2008 Chusslove Illich (Часлав Илић)</p>
 </div>
 <div>
-<div class="legalnotice"><a name="id2553367" id="id2553367"></a>
+<div class="legalnotice"><a name="id2729700" id="id2729700"></a>
 <p>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2.</p>
 </div>
 </div>
@@ -38,7 +38,7 @@
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">2008-08-27</td>
+<td align="left">2008-09-16</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
@@ -476,7 +476,7 @@
   ...
 &lt;/languages&gt;
 </pre>
-<p>Language identifiers should follow the codes from <a class="ulink" href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_top">ISO 639</a>, when available.</p>
+<p>Language identifiers should follow the codes from <a class="ulink" href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_top">ISO 639</a>, when available. This is important for relating the language to a system locale, such that language-dependent processing (e.g. alphabetical sorting) may be correctly performed.</p>
 </dd>
 <dt><a name="kd-environments" id="kd-environments"></a><span class="term"><code class="literal">environments</code></span></dt>
 <dd>
@@ -568,9 +568,9 @@
     &lt;shortname&gt;basic&lt;/shortname&gt;
     &lt;desc&gt;
       The concepts that every user should know about.&lt;/desc&gt;
-  &lt;/topic&gt;
+  &lt;/level&gt;
   ...
-&lt;/topics&gt;
+&lt;/levels&gt;
 </pre>
 <p>The description is optional.</p>
 </dd>

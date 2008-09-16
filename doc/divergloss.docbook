@@ -467,7 +467,7 @@
   ...
 </languages>
 ]]></programlisting>
-             Language identifiers should follow the codes from <ulink url="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639</ulink>, when available.</para>
+             Language identifiers should follow the codes from <ulink url="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639</ulink>, when available. This is important for relating the language to a system locale, such that language-dependent processing (e.g. alphabetical sorting) may be correctly performed.</para>
         </listitem>
         </varlistentry>
         <varlistentry id="kd-environments">
@@ -571,9 +571,9 @@
     <shortname>basic</shortname>
     <desc>
       The concepts that every user should know about.</desc>
-  </topic>
+  </level>
   ...
-</topics>
+</levels>
 ]]></programlisting>
             The description is optional.</para>
         </listitem>
