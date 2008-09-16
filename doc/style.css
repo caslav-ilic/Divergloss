@@ -39,6 +39,14 @@ div.sect1 {
     border: thin solid silver;
 }
 
+.screen {
+    color: navy;
+    background-color: #f4f4f4;
+    padding: 0.5em;
+
+    border: thin solid silver;
+}
+
 .remark {
 }
 .remark:before {
