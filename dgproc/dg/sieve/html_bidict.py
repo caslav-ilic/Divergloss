@@ -343,7 +343,9 @@ class Subcommand (object):
             if n_entry_by_alpha % 2 == 1:
                 accl(stag("tr", {"class":"bd-entry-odd"}), 1)
             else:
-                accl(stag("tr", {"class":"bd-entry-even"}), 1)
+                #accl(stag("tr", {"class":"bd-entry-even"}), 1)
+                #... provide as option; randomly increases VCS deltas.
+                accl(stag("tr", {"class":"bd-entry-odd"}), 1)
 
             # Column with origin term and anchors.
             accl(stag("td", {"class":"bd-oterm"}), 2)
