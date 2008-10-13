@@ -398,7 +398,7 @@ class Subcommand (object):
         for line in ifl:
             line = line.rstrip("\n")
 
-            if line.startswith("#"): # comment
+            if line.strip().startswith("#"): # comment
                 if in_prologue:
                     prologue.append(line)
                 else:
