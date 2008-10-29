@@ -192,7 +192,7 @@ def fill_optparser (parser_view):
                           "and control functions embedded in it."))
 
     styleopts = "\n\n".join(["%s [%s]: %s" % x for x in _styleopt_spec])
-    pv.add_subopt("styleopt", str, islist=True, defval=[],
+    pv.add_subopt("styleopt", str, multival=True, seplist=True, defval=[],
                   metavar=p_("placeholder for parameter value",
                              "NAME=VALUE,..."),
                   desc=p_("subcommand option description",

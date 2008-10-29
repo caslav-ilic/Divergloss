@@ -22,9 +22,9 @@ parameters as needed. The collector-option can be freely positioned in
 the command line, before or after the subcommand name, and mixed with
 other options.
 
-The format of subcommand barameter is either C{param} for flag parameters, C{param:value} for parameters taking a value, and C{param:value1,value2,...}
-for parameters taking a list of values. In the list of values a double-comma
-(C{,,}) escapes a comma, so that it can be part of a value.
+The format of subcommand parameter is either C{param} for flag parameters, C{param:value} for parameters taking a value, or C{param:value1,value2,...}
+for parameters taking a list of values. Instead of, or in addition to using comma-separated string to represent the list, some parameters can be repeated
+on the command line, and all the values collected to make the list.
 
 Several subcommands may be given too, in which case a each subcommand
 parameter is routed to every subcommand which expects it. This means that
@@ -402,7 +402,7 @@ class SuboptParser (object):
 
         Result of parsing will be a dictionary of objects by subcommand name,
         where each object has attributes named like subcommand options.
-        If an option name is not a non-proper identifier name by itself,
+        If an option name is not a valid identifier name by itself,
         it will be normalized by replacing all troublesome characters with
         an underscore, collapsing contiguous underscore sequences to a single
         underscore, and prepending an 'x' if it does not start with a letter.
@@ -433,7 +433,7 @@ class SuboptParser (object):
             lst += [None] * (2 - len(lst))
             subopt, strval = lst
 
-            if subopt in subopt_vals:
+            if subopt in subopt_vals and not scview._multivals[subopt]:
                 error(p_("error in command line (subcommand)",
                          "parameter '%(par)s' repeated more than once")
                        % dict(par=subopt))
@@ -456,7 +456,7 @@ class SuboptParser (object):
                     val = not val
 
                 if strval is not None:
-                    if not scview._islists[subopt]:
+                    if not scview._seplists[subopt]:
                         try:
                             val = otype(strval)
                         except:
@@ -467,9 +467,7 @@ class SuboptParser (object):
                                   % dict(val=strval, par=subopt, type=otype))
                         val_lst = [val]
                     else:
-                        strval = strval.replace(",,", "\x04")
                         tmplst = strval.split(",")
-                        tmplst = [x.replace("\x04", ",") for x in tmplst]
                         try:
                             val = [otype(x) for x in tmplst]
                         except:
@@ -492,7 +490,12 @@ class SuboptParser (object):
                                   % dict(val=strval, par=subopt, avals=avals))
 
                 subopt_accepted = True
-                subopt_vals[subcmd][subopt] = val
+                if scview._multivals[subopt] or scview._seplists[subopt]:
+                    if subopt not in subopt_vals[subcmd]:
+                        subopt_vals[subcmd][subopt] = []
+                    subopt_vals[subcmd][subopt].extend(val_lst)
+                else:
+                    subopt_vals[subcmd][subopt] = val
 
             if not subopt_accepted:
                 error(p_("error in command line (subcommand)",
@@ -577,7 +580,8 @@ class SubcmdView (object):
         self._defvals = {}
         self._admvals = {}
         self._metavars = {}
-        self._islists = {}
+        self._multivals = {}
+        self._seplists = {}
         self._descs = {}
 
         # Option names in the order in which they were added.
@@ -601,8 +605,8 @@ class SubcmdView (object):
 
 
     def add_subopt (self, subopt, otype,
-                    defval=None, admvals=None,
-                    metavar=None, islist=False, desc=None):
+                    defval=None, admvals=None, metavar=None,
+                    multival=False, seplist=False, desc=None):
         """
         Define a suboption.
 
@@ -616,11 +620,12 @@ class SubcmdView (object):
         meaning: the option is always given without an argument (a flag),
         and its value will become be negation of the default.
 
-        Option can also be a comma-separated list of element values, in which
-        case the parsed option will be a list of elements of requested type.
-        Then the default value should be a list too (or None).
-        To have a comma inside an element of the list, it can be escaped by
-        double-comma in the command line.
+        Option can also be used to collect a list of values, in two ways,
+        or both combined. One is by repeating the option several times
+        with different values, and another by a single option value itself
+        being a comma-separated list of values (in which case the values are
+        parsed into elements of requested type).
+        For such options the default value should be a list too (or None).
 
         Use double-newline in the description for splitting into paragraphs.
 
@@ -634,11 +639,15 @@ class SubcmdView (object):
         @type admvals: list of C{otype} elements or C{None}
         @param metavar: name for option's value
         @type metavar: string or C{None}
-        @param islist: whether the option value should be parsed as list
-        @type islist: bool
+        @param multival: whether option can be repeated to have list of values
+        @type multival: bool
+        @param seplist: whether option is a comma-separated list of values
+        @type seplist: bool
         @param desc: description of the option
         @type desc: string or C{None}
         """
+
+        islist = multival or seplist
 
         if defval is not None and not islist and not isinstance(defval, otype):
             error(p_("error message",
@@ -680,7 +689,8 @@ class SubcmdView (object):
         general_islist = None
         for scview in self._parent._scviews.itervalues():
             general_otype = scview._otypes.get(subopt, None)
-            general_islist = scview._islists.get(subopt, None)
+            general_islist = (   scview._multivals.get(subopt, None)
+                              or scview._seplists.get(subopt, None))
 
         cat = self._parent._category
 
@@ -690,13 +700,13 @@ class SubcmdView (object):
                          "trying to add suboption '%(opt)s' to "
                          "subcommand '%(cmd)s' with a type different from "
                          "other subcommands in the category '%(cat)s'")
-                      % dict(opt=subopt, cmd=subcmd, cat=cat))
+                      % dict(opt=subopt, cmd=self._subcmd, cat=cat))
             else:
                 error(p_("error message",
                          "trying to add suboption '%(opt)s' to "
                          "subcommand '%(cmd)s' with a type different from "
                          "other subcommands")
-                      % dict(opt=subopt, cmd=subcmd))
+                      % dict(opt=subopt, cmd=self._subcmd))
 
         if general_islist is not None and islist is not general_islist:
             if cat:
@@ -704,20 +714,21 @@ class SubcmdView (object):
                          "trying to add suboption '%(opt)s' to "
                          "subcommand '%(cmd)s' with a list-indicator different "
                          "from other subcommands in the category '%(cat)s'")
-                      % dict(opt=subopt, cmd=subcmd, cat=cat))
+                      % dict(opt=subopt, cmd=self._subcmd, cat=cat))
             else:
                 error(p_("error message",
                          "trying to add suboption '%(opt)s' to "
                          "subcommand '%(cmd)s' with a list-indicator different "
                          "from other subcommands")
-                      % dict(opt=subopt, cmd=subcmd))
+                      % dict(opt=subopt, cmd=self._subcmd))
 
 
         self._otypes[subopt] = otype
         self._defvals[subopt] = defval
         self._admvals[subopt] = admvals
         self._metavars[subopt] = metavar
-        self._islists[subopt] = islist
+        self._multivals[subopt] = multival
+        self._seplists[subopt] = seplist
         self._descs[subopt] = desc
 
         self._ordered.append(subopt)
