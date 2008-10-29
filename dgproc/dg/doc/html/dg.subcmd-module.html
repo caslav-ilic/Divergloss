@@ -69,11 +69,12 @@
   subcommand parameters as needed. The collector-option can be freely 
   positioned in the command line, before or after the subcommand name, and 
   mixed with other options.</p>
-  <p>The format of subcommand barameter is either <code>param</code> for 
+  <p>The format of subcommand parameter is either <code>param</code> for 
   flag parameters, <code>param:value</code> for parameters taking a value, 
-  and <code>param:value1,value2,...</code> for parameters taking a list of 
-  values. In the list of values a double-comma (<code>,,</code>) escapes a 
-  comma, so that it can be part of a value.</p>
+  or <code>param:value1,value2,...</code> for parameters taking a list of 
+  values. Instead of, or in addition to using comma-separated string to 
+  represent the list, some parameters can be repeated on the command line, 
+  and all the values collected to make the list.</p>
   <p>Several subcommands may be given too, in which case a each subcommand 
   parameter is routed to every subcommand which expects it. This means that
   all those subcommands should place the same semantics into the same-named

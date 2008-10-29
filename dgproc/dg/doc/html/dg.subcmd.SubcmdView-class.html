@@ -137,7 +137,8 @@ object --+
         <span class="summary-sig-arg">defval</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">admvals</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">metavar</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">islist</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">multival</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">seplist</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">desc</span>=<span class="summary-sig-default">None</span>)</span><br />
       Define a suboption.</td>
           <td align="right" valign="top">
@@ -273,7 +274,8 @@ object --+
         <span class="sig-arg">defval</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">admvals</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">metavar</span>=<span class="sig-default">None</span>,
-        <span class="sig-arg">islist</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">multival</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">seplist</span>=<span class="sig-default">False</span>,
         <span class="sig-arg">desc</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
@@ -290,11 +292,12 @@ object --+
   mandatory. If option type is boolean, then the default value has a 
   special meaning: the option is always given without an argument (a flag),
   and its value will become be negation of the default.</p>
-  <p>Option can also be a comma-separated list of element values, in which 
-  case the parsed option will be a list of elements of requested type. Then
-  the default value should be a list too (or None). To have a comma inside 
-  an element of the list, it can be escaped by double-comma in the command 
-  line.</p>
+  <p>Option can also be used to collect a list of values, in two ways, or 
+  both combined. One is by repeating the option several times with 
+  different values, and another by a single option value itself being a 
+  comma-separated list of values (in which case the values are parsed into 
+  elements of requested type). For such options the default value should be
+  a list too (or None).</p>
   <p>Use double-newline in the description for splitting into 
   paragraphs.</p>
   <dl class="fields">
@@ -305,7 +308,8 @@ object --+
         <li><strong class="pname"><code>defval</code></strong> (instance of <code>otype</code> or <code>None</code>) - default value for the argument</li>
         <li><strong class="pname"><code>admvals</code></strong> (list of <code>otype</code> elements or <code>None</code>) - admissible values for the argument</li>
         <li><strong class="pname"><code>metavar</code></strong> (string or <code>None</code>) - name for option's value</li>
-        <li><strong class="pname"><code>islist</code></strong> (bool) - whether the option value should be parsed as list</li>
+        <li><strong class="pname"><code>multival</code></strong> (bool) - whether option can be repeated to have list of values</li>
+        <li><strong class="pname"><code>seplist</code></strong> (bool) - whether option is a comma-separated list of values</li>
         <li><strong class="pname"><code>desc</code></strong> (string or <code>None</code>) - description of the option</li>
     </ul></dd>
   </dl>
