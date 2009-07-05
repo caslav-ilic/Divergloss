@@ -53,6 +53,7 @@ td.bd-oterm {
 p.bd-otline {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
+    text-indent: 0em;
 }
 
 /* target terms column */
@@ -72,6 +73,7 @@ div.bd-ttgroup {
 p.bd-ttline {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
+    text-indent: 0em;
 }
 
 /* concept description */
