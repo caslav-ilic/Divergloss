@@ -4,7 +4,10 @@
 
 /* dictionary table */
 table.bd-table {
+    margin-top: 1em;
+    margin-bottom: 1em;
     width: 100%;
+
     border-collapse: collapse;
 
     font-family: sans-serif;
