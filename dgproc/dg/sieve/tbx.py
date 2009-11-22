@@ -58,6 +58,11 @@ def fill_optparser (parser_view):
                   desc=p_("subcommand option description",
                           "Name of the TBX file to create. If not given, "
                           "the name is derived from glossary ID."))
+    pv.add_subopt("wdecl", str, defval=[], seplist=True,
+                  metavar=p_("placeholder for parameter value", "LANG,..."),
+                  desc=p_("subcommand option description",
+                          "Languages for which also to include declination "
+                          "forms into TBX term sets."))
 
 
 class Subcommand (object):
@@ -214,20 +219,22 @@ class Subcommand (object):
         alangs.insert(0, lang)
 
         for clang in alangs:
+            accl(stag("langSet", {"xml:lang":clang}))
+            accl(stag("ntig"), 1)
             for term in concept.term(clang, env):
-                accl(stag("langSet", {"xml:lang":clang}))
-                accl(stag("ntig"), 1)
-
-                accl(stag("termGrp"), 2)
-                fterm = tf(term.nom.text)
-                accl(wtext(fterm, "term"), 3)
-                if term.gr:
-                    fgname = fle(gloss.grammar[term.gr].shortname)
-                    if fgname:
-                        accl(wtext(fgname, "termNote",
-                                   {"type":"partOfSpeech"}), 3)
-                accl(etag("termGrp"), 2)
-
-                accl(etag("ntig"), 1)
-                accl(etag("langSet"))
+                tpack = [(term.nom, term.gr)]
+                if clang in self._options.wdecl:
+                    tpack += [(x, x.gr) for x in term.decl]
+                for gnode, gr in tpack:
+                    accl(stag("termGrp"), 2)
+                    fterm = tf(gnode.text)
+                    accl(wtext(fterm, "term"), 3)
+                    if gr:
+                        fgname = fle(gloss.grammar[gr].shortname)
+                        if fgname:
+                            accl(wtext(fgname, "termNote",
+                                    {"type":"partOfSpeech"}), 3)
+                    accl(etag("termGrp"), 2)
+            accl(etag("ntig"), 1)
+            accl(etag("langSet"))
 
