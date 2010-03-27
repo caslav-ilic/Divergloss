@@ -1014,7 +1014,7 @@ class Origin (Gnode):
         _content(self, gloss, node,
                  [(_attributes,
                    [[("lang", gloss.lang),
-                     "by"
+                     "by",
                      "src"]]),
                   (_attrib_lists,
                    [[("env", gloss.env)]]),
