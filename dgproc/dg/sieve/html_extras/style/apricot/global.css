@@ -138,6 +138,52 @@ p {
     text-indent: -1.0em;
 }
 
+/* header to group of origins */
+.origins-header {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/* body of group of origins */
+.origins {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/* origin body */
+.origin {
+    background-color: cornsilk;
+
+    margin-left: 1.0em;
+    margin-right: 1.0em;
+
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+/* label to an origin (above first paragraph) */
+.origin-label {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.origin-label:before {
+    content: "‣";
+    margin-right: 0.25em;
+}
+
+/* term in origin label */
+.origin-term {
+    font-family: sans-serif;
+    font-style: italic;
+}
+
+/* a paragraph in origin */
+.origin-para {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.0em;
+}
+
 /* header to group of comments */
 .comments-header {
     margin-top: 0.5em;

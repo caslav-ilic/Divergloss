@@ -896,6 +896,64 @@ class Subcommand (object):
                               "See also:") + " " + ", ".join(rlst)
             related_line = wtext(related_line, "p", {"class":"related"})
 
+        # Assemble origins.
+        # TODO: Present src attribute.
+        origin_accl = LineAccumulator()
+        # - on the origin
+        for corig in le_(concept.origin):
+            origin_accl(stag("div", {"class":"origin"}))
+
+            if corig.by:
+                edobj = gloss.editors[corig.by]
+                ednames = le_(edobj.shortname)
+                edname = tf(ednames[0].text)
+                edname = wtext(edname, "a", {"href":self._glref(edobj, crtop)})
+                clabel = p_("origin label (by an editor on the concept)",
+                            "%(editor)s on the concept:") \
+                            % dict(editor=edname)
+            else:
+                clabel = p_("origin label (on the concept)",
+                            "On the concept:")
+            clabel = wtext(clabel, "p", {"class":"origin-label"})
+            origin_accl(clabel, 1)
+            cbody = tfp(corig.text, pclass="origin-para")
+            origin_accl(cbody, 1)
+            origin_accl(etag("div"))
+        # - on terms
+        for term in terms:
+            torigs = le_(term.origin)
+            ctext = tf(term.nom.text)
+            ctext = wtext(ctext, "span", {"class":"origin-term"})
+            for torig in torigs:
+                origin_accl(stag("div", {"class":"origin"}))
+                if torig.by:
+                    edobj = gloss.editors[torig.by]
+                    ednames = le_(edobj.shortname)
+                    edname = tf(ednames[0].text)
+                    edname = wtext(edname, "a",
+                                   {"href":self._glref(edobj, crtop)})
+                    clabel = p_("origin label (by an editor on a term)",
+                                "%(editor)s on %(term)s:") \
+                             % dict(editor=edname, term=ctext)
+                else:
+                    clabel = p_("origin label (on a term)",
+                                "On %(term)s:") \
+                             % dict(term=ctext)
+                clabel = wtext(clabel, "p", {"class":"origin-label"})
+                origin_accl(clabel, 1)
+                cbody = tfp(torig.text, pclass="origin-para")
+                origin_accl(cbody, 1)
+                origin_accl(etag("div"))
+        # - origins grouped
+        if origin_accl.lines:
+            origin_accl_tmp = origin_accl
+            origin_accl = LineAccumulator()
+            origin_accl(stag("div", {"class":"origins"}))
+            chead = p_("header to list of origins", "Origins:")
+            origin_accl(wtext(chead, "p", {"class":"origins-header"}), 1)
+            origin_accl(origin_accl_tmp, 1)
+            origin_accl(etag("div"))
+
         # Assemble comments.
         comment_accl = LineAccumulator()
         # - on the concept
@@ -955,7 +1013,6 @@ class Subcommand (object):
 
         # TODO:
         # Media.
-        # Origin: concept/terms.
 
         # Assemble all together.
         if self._pivoted:
@@ -970,6 +1027,7 @@ class Subcommand (object):
             accl(details_line)
         if related_line:
             accl(related_line)
+        accl(origin_accl)
         accl(comment_accl)
 
 
