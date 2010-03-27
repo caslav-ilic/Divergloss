@@ -8,16 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-15 12:20+0200\n"
+"POT-Creation-Date: 2010-03-27 01:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: dg/construct.py:172
+#: dg/construct.py:171
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -25,7 +26,7 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:184 dg/construct.py:202
+#: dg/construct.py:183 dg/construct.py:201
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -33,79 +34,79 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:186
+#: dg/construct.py:185
 #, python-format
 msgctxt "error message"
 msgid "duplicate ID '%(id)s'"
 msgstr ""
 
-#: dg/construct.py:282
+#: dg/construct.py:281
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-language key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:286 dg/construct.py:310
+#: dg/construct.py:285 dg/construct.py:309
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-environment keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:290
+#: dg/construct.py:289
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-editor key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:294
+#: dg/construct.py:293
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-source key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:298
+#: dg/construct.py:297
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-grammar key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:302
+#: dg/construct.py:301
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-root key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:306
+#: dg/construct.py:305
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states a non-concept key: %(key)s"
 msgstr ""
 
-#: dg/construct.py:314
+#: dg/construct.py:313
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-topic keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:318
+#: dg/construct.py:317
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-level keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:322
+#: dg/construct.py:321
 #, python-format
 msgctxt "error message"
 msgid "attribute '%(att)s' states non-concept keys: %(keys)s"
 msgstr ""
 
-#: dg/construct.py:346
+#: dg/construct.py:345
 #, python-format
 msgctxt "message with the location it speaks of"
 msgid "%(file)s:%(line)s: %(msg)s"
 msgstr ""
 
-#: dg/construct.py:350
+#: dg/construct.py:349
 #, python-format
 msgctxt "error message"
 msgid ""
@@ -113,24 +114,24 @@ msgid ""
 "%(msg)s"
 msgstr ""
 
-#: dg/construct.py:535 dg/construct.py:1022
+#: dg/construct.py:534 dg/construct.py:1166
 msgctxt "an unknown file"
 msgid "<unknown>"
 msgstr ""
 
-#: dg/construct.py:1154
+#: dg/construct.py:1298
 #, python-format
 msgctxt "warning message"
 msgid "unterminated embedded selector '%(esel)s'"
 msgstr ""
 
-#: dg/construct.py:1175
+#: dg/construct.py:1319
 #, python-format
 msgctxt "warning message"
 msgid "segment '%(eseg)s' in embedded selector '%(esel)s' repeats environments: %(envs)s"
 msgstr ""
 
-#: dg/construct.py:1224
+#: dg/construct.py:1368
 #, python-format
 msgctxt "warning message"
 msgid "no resolution for expected environment '%(env)s' in embedded selector '%(esel)s'"
@@ -223,7 +224,7 @@ msgstr ""
 
 #: dg/sieve/html_bidict.py:129 dg/sieve/html_bidict.py:133 dg/sieve/html.py:49
 #: dg/sieve/plrules.py:88 dg/sieve/plrules.py:92 dg/sieve/po.py:30
-#: dg/sieve/po.py:34 dg/sieve/tbx.py:32 dg/sieve/text_simple.py:26
+#: dg/sieve/po.py:34 dg/sieve/tbx.py:47 dg/sieve/text_simple.py:26
 msgctxt "placeholder for parameter value"
 msgid "LANGKEY"
 msgstr ""
@@ -239,7 +240,7 @@ msgid "Target language in the dictionary."
 msgstr ""
 
 #: dg/sieve/html_bidict.py:137 dg/sieve/html.py:54 dg/sieve/plrules.py:100
-#: dg/sieve/plrules.py:106 dg/sieve/po.py:38 dg/sieve/tbx.py:37
+#: dg/sieve/plrules.py:106 dg/sieve/po.py:38 dg/sieve/tbx.py:52
 #: dg/sieve/text_simple.py:31
 msgctxt "placeholder for parameter value"
 msgid "ENVKEY"
@@ -335,7 +336,7 @@ msgid "target language '%(lang)s' not present in the glossary"
 msgstr ""
 
 #: dg/sieve/html_bidict.py:232 dg/sieve/html.py:130 dg/sieve/plrules.py:134
-#: dg/sieve/plrules.py:139 dg/sieve/po.py:74 dg/sieve/tbx.py:69
+#: dg/sieve/plrules.py:139 dg/sieve/po.py:74 dg/sieve/tbx.py:89
 #, python-format
 msgctxt "error message"
 msgid "environment '%(env)s' not defined by the glossary"
@@ -346,70 +347,70 @@ msgctxt "warning message"
 msgid "no concepts found which have terms in both the origin and the target language and environment"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:381
+#: dg/sieve/html_bidict.py:383
 msgctxt "list separator: acceptable variants of the same declension"
 msgid ", "
 msgstr ""
 
-#: dg/sieve/html_bidict.py:384
+#: dg/sieve/html_bidict.py:386
 #, python-format
 msgctxt "declension group: single declension given by its name and acceptable variants"
 msgid "<i>%(dname)s</i> %(dvars)s"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:387
+#: dg/sieve/html_bidict.py:389
 msgctxt "list separator: declension groups"
 msgid "; "
 msgstr ""
 
-#: dg/sieve/html_bidict.py:402
+#: dg/sieve/html_bidict.py:404
 #, python-format
 msgctxt "term with declensions"
 msgid "%(term)s (%(decls)s)"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:428
+#: dg/sieve/html_bidict.py:430
 msgctxt "tooltip"
 msgid "Show details"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:436
+#: dg/sieve/html_bidict.py:438
 msgctxt "list separator: synonymous terms"
 msgid ", "
 msgstr ""
 
-#: dg/sieve/html_bidict.py:441
+#: dg/sieve/html_bidict.py:443
 #, python-format
 msgctxt "enumerated target term in the dictionary, one of the meanings of the original term"
 msgid "%(num)d. %(term)s"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:504
+#: dg/sieve/html_bidict.py:506
 #, python-format
 msgctxt "warning message"
 msgid "malformed CSS style option '%(opt)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:510
+#: dg/sieve/html_bidict.py:512
 #, python-format
 msgctxt "warning message"
 msgid "unknown CSS style option '%(opt)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:530
+#: dg/sieve/html_bidict.py:532
 #, python-format
 msgctxt "error message"
 msgid "unknown CSS style option '%(opt)s' requested by the input style sheet '%(fname)s'"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:569 dg/sieve/html.py:548
+#: dg/sieve/html_bidict.py:571 dg/sieve/html.py:548
 #, python-format
 msgctxt "top page title"
 msgid "%(gloss)s (%(env)s)"
 msgstr ""
 
-#: dg/sieve/html_bidict.py:610 dg/sieve/html.py:501 dg/sieve/po.py:200
-#: dg/sieve/tbx.py:134
+#: dg/sieve/html_bidict.py:612 dg/sieve/html.py:501 dg/sieve/po.py:200
+#: dg/sieve/tbx.py:154
 msgctxt "comment in generated files (warning to user)"
 msgid "===== AUTOGENERATED FILE, DO NOT EDIT ====="
 msgstr ""
@@ -419,7 +420,7 @@ msgctxt "subcommand description"
 msgid "Create HTML pages out of the glossary."
 msgstr ""
 
-#: dg/sieve/html.py:51 dg/sieve/tbx.py:34 dg/sieve/text_simple.py:28
+#: dg/sieve/html.py:51 dg/sieve/tbx.py:49 dg/sieve/text_simple.py:28
 msgctxt "subcommand option description"
 msgid "Pivotal language for the view. The glossary default language is used if not given."
 msgstr ""
@@ -498,7 +499,7 @@ msgctxt "error message"
 msgid "chunking by character count not implemented yet"
 msgstr ""
 
-#: dg/sieve/html.py:125 dg/sieve/tbx.py:64
+#: dg/sieve/html.py:125 dg/sieve/tbx.py:84
 #, python-format
 msgctxt "error message"
 msgid "language '%(lang)s' not present in the glossary"
@@ -623,181 +624,209 @@ msgctxt "concepts related to current concept"
 msgid "See also:"
 msgstr ""
 
-#: dg/sieve/html.py:911
+#: dg/sieve/html.py:912
+#, python-format
+msgctxt "origin label (by an editor on the concept)"
+msgid "%(editor)s on the concept:"
+msgstr ""
+
+#: dg/sieve/html.py:916
+msgctxt "origin label (on the concept)"
+msgid "On the concept:"
+msgstr ""
+
+#: dg/sieve/html.py:936
+#, python-format
+msgctxt "origin label (by an editor on a term)"
+msgid "%(editor)s on %(term)s:"
+msgstr ""
+
+#: dg/sieve/html.py:940
+#, python-format
+msgctxt "origin label (on a term)"
+msgid "On %(term)s:"
+msgstr ""
+
+#: dg/sieve/html.py:952
+msgctxt "header to list of origins"
+msgid "Origins:"
+msgstr ""
+
+#: dg/sieve/html.py:969
 #, python-format
 msgctxt "comment label (by an editor on the concept)"
 msgid "%(editor)s on the concept:"
 msgstr ""
 
-#: dg/sieve/html.py:915
+#: dg/sieve/html.py:973
 msgctxt "comment label (on the concept)"
 msgid "On the concept:"
 msgstr ""
 
-#: dg/sieve/html.py:935
+#: dg/sieve/html.py:993
 #, python-format
 msgctxt "comment label (by an editor on a term)"
 msgid "%(editor)s on %(term)s:"
 msgstr ""
 
-#: dg/sieve/html.py:939
+#: dg/sieve/html.py:997
 #, python-format
 msgctxt "comment label (on a term)"
 msgid "On %(term)s:"
 msgstr ""
 
-#: dg/sieve/html.py:951
+#: dg/sieve/html.py:1009
 msgctxt "header to list of comments"
 msgid "Comments:"
 msgstr ""
 
-#: dg/sieve/html.py:1002
+#: dg/sieve/html.py:1060
 #, python-format
 msgctxt "formatting pattern for a term with its grammar category"
 msgid "%(term)s %(gr)s"
 msgstr ""
 
-#: dg/sieve/html.py:1053
+#: dg/sieve/html.py:1111
 #, python-format
 msgctxt "formatting pattern for a declination with its grammar category"
 msgid "%(gr)s %(decl)s"
 msgstr ""
 
-#: dg/sieve/html.py:1063
+#: dg/sieve/html.py:1121
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) [%(topics)s] -- %(decls)s"
 msgstr ""
 
-#: dg/sieve/html.py:1068
+#: dg/sieve/html.py:1126
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) [%(topics)s]"
 msgstr ""
 
-#: dg/sieve/html.py:1073
+#: dg/sieve/html.py:1131
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s [%(topics)s] -- %(decls)s"
 msgstr ""
 
-#: dg/sieve/html.py:1078
+#: dg/sieve/html.py:1136
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s) -- %(decls)s"
 msgstr ""
 
-#: dg/sieve/html.py:1083
+#: dg/sieve/html.py:1141
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s (%(olterms)s)"
 msgstr ""
 
-#: dg/sieve/html.py:1087
+#: dg/sieve/html.py:1145
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s [%(topics)s]"
 msgstr ""
 
-#: dg/sieve/html.py:1091
+#: dg/sieve/html.py:1149
 #, python-format
 msgctxt "format of the terms line"
 msgid "%(terms)s -- %(decls)s"
 msgstr ""
 
-#: dg/sieve/html.py:1161
+#: dg/sieve/html.py:1219
 #, python-format
 msgctxt "terms naming the concept in environments other than the pivotal one"
 msgid "In other environments: %(terms)s"
 msgstr ""
 
-#: dg/sieve/html.py:1200
+#: dg/sieve/html.py:1258
 #, python-format
 msgctxt "format of the concept key line"
 msgid "c.k. %(ckey)s [%(topics)s]"
 msgstr ""
 
-#: dg/sieve/html.py:1204
+#: dg/sieve/html.py:1262
 #, python-format
 msgctxt "format of the concept key line"
 msgid "c.k. %(ckey)s"
 msgstr ""
 
-#: dg/sieve/html.py:1309
+#: dg/sieve/html.py:1367
 #, python-format
 msgctxt "list of environments where some have been omitted"
 msgid "%(envs)s etc."
 msgstr ""
 
-#: dg/sieve/html.py:1318
+#: dg/sieve/html.py:1376
 msgctxt "page subtitle"
 msgid "Index of Terms"
 msgstr ""
 
-#: dg/sieve/html.py:1547
+#: dg/sieve/html.py:1605
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt; -- %(url)s"
 msgstr ""
 
-#: dg/sieve/html.py:1552
+#: dg/sieve/html.py:1610
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) &lt;%(email)s&gt;"
 msgstr ""
 
-#: dg/sieve/html.py:1556
+#: dg/sieve/html.py:1614
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s) -- %(url)s"
 msgstr ""
 
-#: dg/sieve/html.py:1560
+#: dg/sieve/html.py:1618
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt; -- %(url)s"
 msgstr ""
 
-#: dg/sieve/html.py:1564
+#: dg/sieve/html.py:1622
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s (short: %(shortname)s)"
 msgstr ""
 
-#: dg/sieve/html.py:1568
+#: dg/sieve/html.py:1626
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s &lt;%(email)s&gt;"
 msgstr ""
 
-#: dg/sieve/html.py:1572
+#: dg/sieve/html.py:1630
 #, python-format
 msgctxt "about pages: entry header"
 msgid "%(name)s -- %(url)s"
 msgstr ""
 
-#: dg/sieve/html.py:1604
+#: dg/sieve/html.py:1662
 msgctxt "page subtitle"
 msgid "About: Environments"
 msgstr ""
 
-#: dg/sieve/html.py:1628
+#: dg/sieve/html.py:1686
 msgctxt "page subtitle"
 msgid "About: Sources"
 msgstr ""
 
-#: dg/sieve/html.py:1644
+#: dg/sieve/html.py:1702
 msgctxt "page subtitle"
 msgid "About: Editors"
 msgstr ""
 
-#: dg/sieve/html.py:1656
+#: dg/sieve/html.py:1714
 #, python-format
 msgctxt "editor's affiliation"
 msgid "Affiliation: %(aff)s"
 msgstr ""
 
-#: dg/sieve/html.py:1670
+#: dg/sieve/html.py:1728
 msgctxt "page subtitle"
 msgid "About: Topics"
 msgstr ""
@@ -900,32 +929,42 @@ msgctxt "subcommand description"
 msgid "Transform Serbian Cyrillic text in the glossary into Serbian Latin."
 msgstr ""
 
-#: dg/sieve/tbx.py:29
+#: dg/sieve/tbx.py:44
 msgctxt "subcommand description"
 msgid "Create a TBX view of the glossary."
 msgstr ""
 
-#: dg/sieve/tbx.py:39 dg/sieve/text_simple.py:33
+#: dg/sieve/tbx.py:54 dg/sieve/text_simple.py:33
 msgctxt "subcommand option description"
 msgid "Pivotal environment for the view. The glossary default environment is used if not given."
 msgstr ""
 
-#: dg/sieve/tbx.py:42
+#: dg/sieve/tbx.py:57
 msgctxt "placeholder for parameter value"
 msgid "NAME"
 msgstr ""
 
-#: dg/sieve/tbx.py:44
+#: dg/sieve/tbx.py:59
 msgctxt "subcommand option description"
 msgid "Name of the TBX file to create. If not given, the name is derived from glossary ID."
 msgstr ""
 
-#: dg/sieve/tbx.py:144
+#: dg/sieve/tbx.py:62
+msgctxt "placeholder for parameter value"
+msgid "LANG,..."
+msgstr ""
+
+#: dg/sieve/tbx.py:64
+msgctxt "subcommand option description"
+msgid "Languages for which also to include declination forms into TBX term sets."
+msgstr ""
+
+#: dg/sieve/tbx.py:164
 msgctxt "glossary title, when undefined"
 msgid "Unnamed"
 msgstr ""
 
-#: dg/sieve/tbx.py:149
+#: dg/sieve/tbx.py:169
 #, python-format
 msgctxt "glossary title format"
 msgid "%(title)s (%(env)s)"
@@ -1027,129 +1066,129 @@ msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:477
+#: dg/subcmd.py:475
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "cannot convert value '%(val)s' to parameter '%(par)s' into list of elements of expected type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:490
+#: dg/subcmd.py:488
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "value '%(val)s' to parameter '%(par)s' not from the admissible set: %(avals)s"
 msgstr ""
 
-#: dg/subcmd.py:499
+#: dg/subcmd.py:502
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "parameter '%(par)s' not expected in any of the issued subcommands"
 msgstr ""
 
-#: dg/subcmd.py:516
+#: dg/subcmd.py:519
 #, python-format
 msgctxt "error in command line (subcommand)"
 msgid "mandatory parameter '%(par)s' to subcommand '%(cmd)s' not given"
 msgstr ""
 
-#: dg/subcmd.py:547
+#: dg/subcmd.py:550
 msgctxt "the name for an empty string as parameter value"
 msgid "<empty>"
 msgstr ""
 
-#: dg/subcmd.py:645
+#: dg/subcmd.py:654
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' different from its stated type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:652
+#: dg/subcmd.py:661
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' which contains some elements different from their stated type '%(type)s'"
 msgstr ""
 
-#: dg/subcmd.py:660
+#: dg/subcmd.py:669
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with default value '%(val)s' not from the admissible set: %(avals)s"
 msgstr ""
 
-#: dg/subcmd.py:668
+#: dg/subcmd.py:677
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' once again"
 msgstr ""
 
-#: dg/subcmd.py:674
+#: dg/subcmd.py:683
 #, python-format
 msgctxt "error message"
 msgid "suboption '%(opt)s' to subcommand '%(cmd)s' stated to be list-valued, but the default value is not given as a list"
 msgstr ""
 
-#: dg/subcmd.py:690
+#: dg/subcmd.py:700
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:696
+#: dg/subcmd.py:706
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a type different from other subcommands"
 msgstr ""
 
-#: dg/subcmd.py:704
+#: dg/subcmd.py:714
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands in the category '%(cat)s'"
 msgstr ""
 
-#: dg/subcmd.py:710
+#: dg/subcmd.py:720
 #, python-format
 msgctxt "error message"
 msgid "trying to add suboption '%(opt)s' to subcommand '%(cmd)s' with a list-indicator different from other subcommands"
 msgstr ""
 
-#: dg/subcmd.py:765
+#: dg/subcmd.py:776
 msgctxt "subcommand help: somewhere near the suboption name, indicates the suboption is a flag"
 msgid "[flag]"
 msgstr ""
 
-#: dg/subcmd.py:771
+#: dg/subcmd.py:782
 msgctxt "subcommand help: default name for the suboptions' parameter; do keep uppercase"
 msgid "ARG"
 msgstr ""
 
-#: dg/subcmd.py:780
+#: dg/subcmd.py:791
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the default value of its argument"
 msgid "[default %(arg)s=%(val)s]"
 msgstr ""
 
-#: dg/subcmd.py:789
+#: dg/subcmd.py:800
 #, python-format
 msgctxt "subcommand help: somewhere near the suboption name, states the admissible values for its argument"
 msgid "[%(arg)s is one of: %(avals)s]"
 msgstr ""
 
-#: dg/subcmd.py:804
+#: dg/subcmd.py:815
 #, python-format
 msgctxt "subcommand help: header"
 msgid "%(cmd)s"
 msgstr ""
 
-#: dg/subcmd.py:807
+#: dg/subcmd.py:818
 #, python-format
 msgctxt "subcommand help: header"
 msgid "%(cmd)s (%(cat)s)"
 msgstr ""
 
-#: dg/subcmd.py:816
+#: dg/subcmd.py:827
 msgctxt "subcommand help: header"
 msgid "Mandatory parameters:"
 msgstr ""
 
-#: dg/subcmd.py:823
+#: dg/subcmd.py:834
 msgctxt "subcommand help: header"
 msgid "Optional parameters:"
 msgstr ""
