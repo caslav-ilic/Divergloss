@@ -269,10 +269,10 @@ class Subcommand (object):
 
     class _Rule:
 
-        hint_rx = re.compile(r"^\s*hint\s*=\s*(.)(.*)\1")
+        hint_rx = re.compile(r"^\s*hint\s*=\s*(.)(.*)\1(.*)")
         free_hint_rx = re.compile(r"\[(.*)\]")
-        ident_rx = re.compile(r"^\s*id\s*=\s*(.)(.*)\1")
-        disabled_rx = re.compile(r"^\s*disabled\b")
+        ident_rx = re.compile(r"^\s*id\s*=\s*(.)(.*)\1(.*)")
+        disabled_rx = re.compile(r"^\s*disabled\b(.*)")
 
         flag_pref = "@gloss-"
         flag_rx = re.compile(r"^\s*#\s*%s(\w+)" % flag_pref)
@@ -284,6 +284,9 @@ class Subcommand (object):
             self.tterms = u""
             self.freehint = None
             self.disabled = False
+            self.ckeyrest = u""
+            self.hintrest = u""
+            self.disabledrest = u""
 
             self.lines = []
 
@@ -317,6 +320,8 @@ class Subcommand (object):
             identstr = ""
             if self.ckey:
                 identstr = "id=\"%s\"" % self.ckey
+            if self.ckeyrest:
+                identstr += self.ckeyrest
             self.set_line(lambda x: self.ident_rx.search(x), identstr)
 
             # Create or remove hint.
@@ -328,12 +333,16 @@ class Subcommand (object):
                 hintstr = "hint=\"%s = %s\"" % (self.oterms, self.tterms)
             elif self.freehint is not None:
                 hintstr = "hint=\"%s\"" % self.freehint
+            if self.hintrest:
+                hintstr += self.hintrest
             self.set_line(lambda x: self.hint_rx.search(x), hintstr)
 
             # Create or remove disabled state.
             disabledstr = ""
             if self.disabled:
                 disabledstr = "disabled"
+            if self.disabledrest:
+                disabledstr += self.disabledrest
             self.set_line(lambda x: self.disabled_rx.search(x), disabledstr)
 
 
@@ -419,11 +428,13 @@ class Subcommand (object):
             m = ident_rx.search(line)
             if m:
                 crule.ckey = m.group(2).strip()
+                crule.ckeyrest = m.group(3)
                 rmap[crule.ckey] = crule
 
             m = hint_rx.search(line)
             if m:
                 hintstr = m.group(2)
+                crule.hintrest = m.group(3)
                 orig_hintstr = hintstr
 
                 m = free_hint_rx.search(hintstr)
@@ -441,6 +452,7 @@ class Subcommand (object):
             m = disabled_rx.search(line)
             if m:
                 crule.disabled = True
+                crule.disabledrest = m.group(1)
 
             crule.lines.append(line)
 
