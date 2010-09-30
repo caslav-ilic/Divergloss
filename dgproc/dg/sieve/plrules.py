@@ -31,7 +31,8 @@ If the glossary contains several environments, one may be selected by
 the C{env} parameter, or else the glossary default environment is used.
 
 Each rule in the rule file corresponds to one of the concepts,
-with the C{ident} field set to the concept key.
+with the C{ident} field set to the concept key
+(parameter C{idpref} can be used to add a prefix as well).
 The terminology pair is given by the rule's C{hint} field, in the form of
 C{"<original-terms> = <target-terms> [<free-hints>]"}.
 The sieve relies on this field when updating the rule file, to detect and
@@ -106,6 +107,11 @@ def fill_optparser (parser_view):
                   metavar=p_("placeholder for parameter value", "ENVKEY"),
                   desc=p_("subcommand option description",
                           "Base environment when making hierarchical rules."))
+    pv.add_subopt("idpref", str, defval="",
+                  metavar=p_("placeholder for parameter value", "PREFIX"),
+                  desc=p_("subcommand option description",
+                          "The prefix to add to the concept key "
+                          "when constructing the rule identifier."))
 
 
 class Subcommand (object):
@@ -139,6 +145,7 @@ class Subcommand (object):
                      "environment '%(env)s' not defined by the glossary")
                   % dict(env=benv))
         rulefile = self._options.file
+        idpref = self._options.idpref
 
         # Formatters for resolving glossary into plain text.
         tft = TextFormatterPlain(gloss, lang=tlang, env=env)
@@ -167,8 +174,9 @@ class Subcommand (object):
         # the base environment *from the viewpoint of rules*.
         concepts_data = {}
         concepts_shared = set()
-        for ckey, concept in gloss.concepts.iteritems():
+        for rawckey, concept in gloss.concepts.iteritems():
             oterms, tterms = format_terms(concept)
+            ckey = idpref + rawckey
             if oterms and tterms:
                 concepts_data[ckey] = (oterms, tterms)
                 if benv:
