@@ -18,6 +18,7 @@
         </author>
     </authorgroup>
 
+    <!--
     <copyright>
         <year>2008</year>
         <holder>Chusslove Illich (Часлав Илић)</holder>
@@ -26,18 +27,17 @@
     <legalnotice>
         <para>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2.</para>
     </legalnotice>
+    -->
 
+    <!--
     <revhistory>
-        <revision>
-            <date>@date@</date>
-            <revremark>Last modification (repository rev. @vcsrev@).</revremark>
-        </revision>
         <revision>
             <date>2008-02-18</date>
             <authorinitials>CI</authorinitials>
             <revremark>Writing started.</revremark>
         </revision>
     </revhistory>
+    -->
 
     <abstract>
         <para>This document informally describes the &dg; XML format. It can be read as a tutorial and usage guide to &dg;, with some design rationales provided along the way.
