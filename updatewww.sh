@@ -1,9 +1,16 @@
 #!/bin/sh
+#
+# Updates the exported WWW directory for divergloss.
 
-mkdir tmpwww
-ln -s ../doc/html tmpwww/doc
-touch -d 2010-12-06 tmpwww/favicon.gif tmpwww/favicon.ico
-echo '<?php header("Location: http://divergloss.nedohodnik.net/doc/");?>' > tmpwww/index.php
-touch -d 2010-12-06 tmpwww/index.php
-rsync -raLv --delete tmpwww/ www-divergloss:divergloss.nedohodnik.net/
-rm -rf tmpwww
+DATE="2010-12-06"
+DIR=tmpwww
+
+mkdir $DIR
+ln -s ../doc/html $DIR/doc
+touch -d $DATE $DIR/favicon.gif $DIR/favicon.ico
+echo \
+  '<?php header("Location: http://divergloss.nedohodnik.net/doc/");?>' \
+  > $DIR/index.php
+touch -d $DATE $DIR/index.php
+rsync -raLv --delete $DIR/ www-divergloss:divergloss.nedohodnik.net/
+rm -rf $DIR
