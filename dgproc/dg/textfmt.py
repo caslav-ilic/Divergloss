@@ -369,7 +369,7 @@ class TextFormatterHtml (object):
                 fmt_seg = self._format_sub(seg, pclass)
             else:
                 # Must be a string.
-                fmt_seg = seg
+                fmt_seg = escape_xml(seg)
 
             fmt_text.append(fmt_seg)
 
