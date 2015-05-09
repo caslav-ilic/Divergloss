@@ -687,13 +687,13 @@
 
     <para>&dg; is distributed in a package which, aside from the format definition and documentation, contains command-line tools for processing &dg; glossaries into various end-user formats, and requires minimum installation fuss. This enables users to quickly start writting and putting glossary data to practical uses.</para>
 
-    <para>Since &dg; is still early in the development, the best place to get the package from is <ulink url="http://gitorious.org/projects/divergloss">Gitorious</ulink>, by <emphasis>cloning</emphasis> the <ulink url="http://git.or.cz/">Git</ulink> repository:
+    <para>Since &dg; is still early in the development, the best place to get the package from is <ulink url="https://github.com/caslav-ilic/divergloss">Github</ulink>, by <emphasis>cloning</emphasis> the <ulink url="http://git.or.cz/">Git</ulink> repository:
     <screen><![CDATA[
-$ git clone git://gitorious.org/divergloss/mainline.git
+$ git clone https://github.com/caslav-ilic/divergloss.git
 ]]></screen>
-    This will create directory <filename>mainline/</filename> with the complete repository. In it there will be the <filename>README</filename> file with short setup instructions. The repository can later always be updated to the newest version by issuing:
+    This will create directory <filename>divergloss/</filename> with the complete repository. In it there will be the <filename>README</filename> file with short setup instructions. The repository can later always be updated to the newest version by issuing:
     <screen><![CDATA[
-$ cd mainline/
+$ cd divergloss/
 $ git pull
 ]]></screen>
     </para>
