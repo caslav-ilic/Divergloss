@@ -29,7 +29,7 @@ from dg import rootdir
 from dg.util import p_
 from dg.util import error, warning
 from dg.textfmt import TextFormatterPlain, TextFormatterHtml
-from dg.textfmt import etag, stag, wtext
+from dg.textfmt import etag, stag, wtext, escape_xml
 from dg.textfmt import LineAccumulator
 from dg.util import langsort, langsort_tuples
 from dg.util import mkdirpath
@@ -93,7 +93,8 @@ class Subcommand (object):
         concepts = self._select_concepts()
 
         # Prepare text formatters.
-        self._tf = TextFormatterPlain(gloss, lang=self._lang, env=self._env)
+        self._tf = TextFormatterPlain(gloss, lang=self._lang, env=self._env,
+                                      escape=escape_xml)
 
         # Create TBX.
         accl = LineAccumulator(self._indent)
