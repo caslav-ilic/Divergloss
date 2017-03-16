@@ -23,7 +23,7 @@ class TextFormatterPlain (object):
 
     def __init__ (self, gloss, lang=None, env=None,
                         wcol=None, indent=None, first_indent=None,
-                        prefix=None, suffix=None):
+                        prefix=None, suffix=None, escape=None):
         """
         Constructor.
 
@@ -52,6 +52,9 @@ class TextFormatterPlain (object):
 
         @param suffix: suffix to add to the text
         @type suffix: string or C{None}
+
+        @param escape: escaping function to apply to text
+        @type escape: callable (string) -> string or C{None}
         """
 
         self._gloss = gloss
@@ -60,6 +63,8 @@ class TextFormatterPlain (object):
 
         self._prefix = prefix
         self._suffix = suffix
+
+        self._escape = escape
 
         self._indent = indent
         self._wrapper = None
@@ -170,8 +175,11 @@ class TextFormatterPlain (object):
                              "%(phrase)s (%(url)s)") \
                           % dict(phrase=self._format_sub(seg), url=seg.url)
             else:
-                # Must be a string
-                fmt_seg = seg
+                # Must be a string.
+                if self._escape is not None:
+                    fmt_seg = self._escape(seg)
+                else:
+                    fmt_seg = seg
 
             fmt_text.append(fmt_seg)
 
